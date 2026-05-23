@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>everybodyknowsyou.com</title>
+<meta name="description" content="Te hacemos un sitio web impresionante en 3 días que hace que Google y la inteligencia artificial cuenten tu historia como tú quieres. Desde $500.">
+<meta property="og:title" content="everybodyknowsyou.com">
+<meta property="og:description" content="Un sitio web impresionante en 3 días, en español e inglés, que hace que Google y la IA cuenten tu historia como tú quieres.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://everybodyknowsyou.com/">
+<meta property="og:site_name" content="everybodyknowsyou.com">
+<meta property="og:locale" content="es_SV">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="robots" content="index, follow, max-image-preview:large">
+<link rel="icon" href="icons/eky.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Nunito:wght@400;600;700;800&family=Caveat:wght@600;700&display=swap">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"ProfessionalService","name":"everybodyknowsyou.com","description":"Custom personal and business websites built in 3 days, in Spanish and English, optimized to be found by Google and AI assistants.","areaServed":"El Salvador, Latin America, Worldwide","url":"https://everybodyknowsyou.com","priceRange":"$500 to $4000"}
+</script>
+<style>
+  :root{--cream:#FFFAED;--coral:#FF7D59;--coral-deep:#F2602F;--peri:#99B0ED;--pink:#FFBDE8;--olive:#C7C24A;--butter:#FFDE94;--sky:#CDDBF9;--ink:#2C2C34;--shadow:0 10px 30px rgba(44,44,52,.12);--display:'Fredoka',system-ui,sans-serif;--body:'Nunito',system-ui,sans-serif;--hand:'Caveat',cursive;--max:1140px}
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{font-family:var(--body);color:var(--ink);background:var(--cream);line-height:1.6;font-weight:600;overflow-x:hidden}
+  .wrap{max-width:var(--max);margin:0 auto;padding:0 clamp(1.1rem,4vw,2.5rem)}
+  h1,h2,h3{font-family:var(--display);font-weight:700;line-height:1.05;color:var(--ink)}
+  a{color:inherit}
+  .block{padding:clamp(3rem,7vw,5rem) 0}
+  .bg-peri{background:#6E7FD6} .bg-peri .sec-title,.bg-peri .sec-sub{color:var(--cream)}
+  .bg-coral{background:var(--coral)} .bg-coral .sec-title,.bg-coral .sec-sub{color:var(--cream)}
+  .bg-peach{background:#FFE9E2} .bg-sky{background:var(--sky)} .bg-butter{background:#FFEFC2}
+  .sec-title{font-size:clamp(2rem,5.5vw,3.4rem);text-align:center;margin-bottom:.5rem}
+  .sec-sub{text-align:center;max-width:660px;margin:0 auto 2.4rem;opacity:.85;font-weight:600;font-size:1.05rem}
+  header{position:sticky;top:0;z-index:50;background:var(--cream);border-bottom:2px solid var(--ink)}
+  .bar{display:flex;align-items:center;justify-content:space-between;padding:.6rem 0}
+  .logo{display:flex;align-items:center;gap:.5rem;font-family:var(--display);font-weight:700;font-size:1.2rem}
+  .logomark{height:40px;width:40px}
+  .nav-cta{display:flex;align-items:center;gap:.6rem}
+  .lang{cursor:pointer;background:#fff;border:2px solid var(--ink);border-radius:999px;font-family:var(--display);font-weight:600;padding:.2rem .7rem;font-size:.85rem}
+  .btn{display:inline-block;cursor:pointer;font-family:var(--display);font-weight:700;font-size:1.05rem;background:var(--coral);color:var(--ink);border:2px solid var(--ink);border-radius:999px;padding:.8rem 1.6rem;text-decoration:none;box-shadow:0 6px 0 var(--ink);transition:transform .08s,box-shadow .08s}
+  .btn:hover{transform:translateY(3px);box-shadow:0 3px 0 var(--ink)}
+  .btn.small{padding:.45rem 1rem;font-size:.9rem;box-shadow:0 4px 0 var(--ink)}
+  .btn.dark{background:var(--ink);color:var(--cream)}
+  .hero{text-align:center;position:relative}
+  .eyebrow{font-family:var(--hand);font-size:1.9rem;color:var(--coral-deep);display:inline-block;transform:rotate(-2deg)}
+  .hero h1{font-size:clamp(2.6rem,8.5vw,5.4rem);margin:.3rem 0 .7rem}
+  .hero h1 .hl{color:var(--coral)}
+  .lead{font-size:clamp(1.05rem,2.4vw,1.4rem);max-width:640px;margin:0 auto 1.7rem;opacity:.85}
+  .hero-meta{margin-top:1rem;font-family:var(--display);opacity:.7}
+  .doodle{position:absolute;font-size:2.4rem}
+  .grid{display:grid;gap:1.4rem}
+  .g3{grid-template-columns:repeat(3,1fr)} .g2{grid-template-columns:repeat(2,1fr)} .g4{grid-template-columns:repeat(4,1fr)}
+  @media(max-width:900px){.g4{grid-template-columns:repeat(2,1fr)}}
+  @media(max-width:820px){.g3{grid-template-columns:1fr 1fr}.g2{grid-template-columns:1fr}}
+  @media(max-width:560px){.g3{grid-template-columns:1fr}.g4{grid-template-columns:1fr}}
+  .pillar{text-align:center;border:2px solid var(--ink);border-radius:24px;padding:1.6rem 1.3rem;box-shadow:var(--shadow)}
+  .pillar:nth-child(1){background:#FFE9E2}.pillar:nth-child(2){background:#E7EDFB}.pillar:nth-child(3){background:#FFF1CC}.pillar:nth-child(4){background:#FFEAF7}.pillar:nth-child(5){background:#F1F0CF}.pillar:nth-child(6){background:#FFE3DA}
+  .ico-img{width:120px;height:120px;display:block;margin:0 auto .7rem}
+  .pillar h3{font-size:1.25rem;margin-bottom:.25rem}
+  .pillar p{opacity:.8;font-size:.98rem}
+  .rot{font-family:var(--display);font-weight:700;font-size:1.2rem;background:var(--coral);color:var(--cream);border:2px solid var(--ink);border-radius:10px;padding:.05rem .55rem;display:inline-block}
+  .value{max-width:780px;margin:0 auto}
+  .chead,.crow{display:grid;grid-template-columns:1fr 110px 130px;gap:.8rem;align-items:center}
+  .chead{padding:0 1.2rem .4rem;font-family:var(--display);opacity:.7}
+  .chead .h-mid,.chead .h-us{text-align:center}
+  .crow{background:#fff;border:2px solid var(--ink);border-radius:16px;padding:.85rem 1.2rem;margin-bottom:.7rem}
+  .crow .what{font-weight:700}
+  .crow .others{font-family:var(--display);text-align:center;color:#4A4A52;text-decoration:line-through;text-decoration-color:var(--coral);text-decoration-thickness:2px;white-space:nowrap}
+  .crow .us{font-family:var(--display);text-align:center;color:var(--coral-deep);white-space:nowrap}
+  .crow.deliver{background:var(--butter)}
+  @media(max-width:560px){.chead{display:none}.crow{grid-template-columns:1fr auto;row-gap:.2rem}.crow .what{grid-column:1/-1}}
+  .faster{max-width:680px;margin:0 auto 1.8rem;text-align:center;background:var(--coral);color:var(--cream);border:2px solid var(--ink);border-radius:16px;padding:.9rem 1.2rem;font-family:var(--display);font-size:1.15rem}
+  .vtotal{text-align:center;margin-top:1.6rem;font-family:var(--display);font-size:1.4rem}
+  .vtotal .old{text-decoration:line-through;text-decoration-color:var(--coral);text-decoration-thickness:3px;opacity:.6}
+  .vtotal .new b{color:var(--coral-deep)}
+  .jab{max-width:640px;margin:1.6rem auto 0;text-align:center;background:var(--peri);color:var(--ink);border:2px solid var(--ink);border-radius:16px;padding:1rem 1.2rem;font-family:var(--display);font-size:1.15rem}
+  .price-card{text-align:center;background:#fff;border:2px solid var(--ink);border-radius:24px;padding:1.6rem 1.4rem;box-shadow:var(--shadow);position:relative}
+  .price-card.feature{background:var(--butter)}
+  .price-card .tier{font-family:var(--hand);font-size:1.7rem;color:var(--coral-deep)}
+  .price-card .amt{font-family:var(--display);font-size:2.7rem;line-height:1;margin:.1rem 0}
+  .price-card .when{font-weight:700;opacity:.7;margin-bottom:.7rem}
+  .price-card ul{list-style:none;text-align:left;margin:.8rem 0 1.1rem;font-size:.96rem}
+  .price-card li{padding:.2rem 0 .2rem 1.6rem;position:relative}
+  .price-card li:before{content:"\2726";position:absolute;left:0;color:var(--coral)}
+  .badge{position:absolute;top:-15px;left:50%;transform:translateX(-50%);background:var(--coral);color:var(--cream);font-family:var(--display);font-weight:700;border:2px solid var(--ink);border-radius:999px;padding:.15rem .9rem;font-size:.8rem;white-space:nowrap}
+  .addon{text-align:center;margin-top:1.4rem;font-weight:600;opacity:.8}
+  .steps{counter-reset:s}
+  .step{position:relative;background:#fff;border:2px solid var(--ink);border-radius:20px;padding:1.4rem 1.3rem 1.4rem 3.6rem;box-shadow:var(--shadow)}
+  .step:before{counter-increment:s;content:counter(s);position:absolute;left:1rem;top:1.2rem;width:2.2rem;height:2.2rem;background:var(--coral);color:var(--cream);border:2px solid var(--ink);border-radius:50%;display:grid;place-items:center;font-family:var(--display);font-weight:700}
+  .browser{background:#fff;border:2px solid var(--ink);border-radius:18px;box-shadow:var(--shadow);text-align:left}
+  .browser .top{background:var(--cream);border-bottom:2px solid var(--ink);padding:.45rem .7rem;display:flex;align-items:center;gap:.4rem;border-radius:16px 16px 0 0}
+  .browser .dot{width:10px;height:10px;border-radius:50%;background:var(--ink);opacity:.5}
+  .browser .url{margin-left:.4rem;font-family:var(--display);font-size:.8rem;opacity:.7}
+  .browser .shot{aspect-ratio:16/11;display:grid;place-items:center;padding:1rem;text-align:center}
+  .browser:nth-child(1) .shot{background:#FFE9E2}.browser:nth-child(2) .shot{background:#E7EDFB}.browser:nth-child(3) .shot{background:#FFF1CC}.browser:nth-child(4) .shot{background:#FFEAF7}
+  .browser .nm{font-family:var(--display);font-size:1.15rem;font-weight:700}
+  .browser .tg{opacity:.7;font-size:.85rem;margin-top:.25rem}
+  .browser .go{display:block;text-align:center;padding:.55rem;font-family:var(--display);border-top:2px solid var(--ink);text-decoration:none;background:#fff;border-radius:0 0 16px 16px}
+  .card{background:#fff;border:2px solid var(--ink);border-radius:22px;padding:1.6rem;box-shadow:var(--shadow)}
+  .card.pink{background:var(--pink)}.card.butter{background:var(--butter)}
+  .cta-final{text-align:center}
+  .cta-final h2{font-size:clamp(2.2rem,6.5vw,3.8rem)}
+  .cta-final .btn{margin-top:1.6rem}
+  footer{background:var(--ink);color:var(--cream);padding:3rem 0;text-align:center}
+  footer .logo{justify-content:center;color:var(--butter)}
+  footer a{color:var(--butter)}
+  footer p{margin:.9rem 0;opacity:.85}
+  .reveal{opacity:0;transform:translateY(18px);transition:opacity .5s,transform .5s}
+  .reveal.in{opacity:1;transform:none}
+
+  .block{position:relative;overflow:hidden}
+  .block>.wrap{position:relative;z-index:2}
+  .deco{position:absolute;z-index:1;pointer-events:none;opacity:.85}
+  @keyframes floaty{0%,100%{transform:translateY(0)}50%{transform:translateY(-16px)}}
+  @keyframes sway{0%,100%{transform:rotate(-7deg)}50%{transform:rotate(7deg)}}
+  @keyframes spin{to{transform:rotate(360deg)}}
+  .s-float{animation:floaty 6s ease-in-out infinite}
+  .s-float2{animation:floaty 8.5s ease-in-out infinite}
+  .s-sway{animation:sway 5s ease-in-out infinite}
+  .s-spin{animation:spin 24s linear infinite}
+  @media(max-width:700px){.deco{display:none}}
+
+  .pillar,.browser,.card{position:relative}
+  .pillar:before{content:"";position:absolute;top:-13px;left:50%;width:92px;height:24px;transform:translateX(-50%) rotate(-4deg);background:rgba(255,222,148,.8);border:1px dashed rgba(44,44,52,.3);box-shadow:0 2px 5px rgba(0,0,0,.12);z-index:4}
+  .pillar:nth-child(even):before{transform:translateX(-50%) rotate(4deg);background:rgba(153,176,237,.7)}
+  .pillar:nth-child(3n):before{background:rgba(255,189,232,.8)}
+  .card.tape-card:before{content:"";position:absolute;top:-13px;left:50%;width:110px;height:26px;transform:translateX(-50%) rotate(-3deg);background:rgba(255,222,148,.85);border:1px dashed rgba(44,44,52,.3);box-shadow:0 2px 5px rgba(0,0,0,.12);z-index:4}
+  .browser:before{content:"";position:absolute;top:-9px;left:50%;transform:translateX(-50%);width:17px;height:17px;border-radius:50%;background:radial-gradient(circle at 35% 35%,#fff 0 2px,#FF7D59 3px);border:2px solid var(--ink);box-shadow:0 2px 4px rgba(0,0,0,.25);z-index:4}
+  .step:after{content:"";position:absolute;top:-9px;right:16px;width:16px;height:16px;border-radius:50%;background:radial-gradient(circle at 35% 35%,#fff 0 2px,#99B0ED 3px);border:2px solid var(--ink);z-index:4}
+  .sticky{display:inline-block;background:var(--butter);border:2px solid var(--ink);border-radius:7px;padding:.45rem 1rem;font-family:var(--display);font-weight:700;transform:rotate(-2deg);box-shadow:var(--shadow);position:relative}
+  .sticky:before{content:"";position:absolute;top:-9px;left:50%;transform:translateX(-50%) rotate(3deg);width:64px;height:18px;background:rgba(255,125,89,.5)}
+  .note{margin-top:.7rem;font-size:.82rem;opacity:.7;font-weight:700}
+  .refer-wrap{max-width:560px;margin:0 auto}
+
+  .postit{position:absolute;bottom:-16px;right:8px;max-width:150px;background:var(--butter);border:2px solid var(--ink);border-radius:7px;padding:.35rem .55rem;font-family:var(--display);font-weight:700;font-size:.72rem;line-height:1.15;text-align:center;transform:rotate(5deg);box-shadow:var(--shadow);z-index:6}
+  .refer-card{background:#FFEFC2;border:2px solid var(--ink);border-radius:22px;padding:1.1rem 1.6rem 1.4rem;box-shadow:var(--shadow);position:relative;transform:rotate(-1deg)}
+  .refer-card:before{content:"";position:absolute;top:-11px;left:50%;width:120px;height:26px;transform:translateX(-50%) rotate(-3deg);background:rgba(255,189,232,.9);border:1px dashed rgba(44,44,52,.3);box-shadow:0 2px 5px rgba(0,0,0,.12);z-index:4}
+  .refer-card h3{margin-bottom:.3rem}
+  .powered{margin-top:.5rem}
+  .powered a{display:inline-flex;align-items:center;gap:.5rem;opacity:1;color:#fff;font-family:var(--display)}
+  .powered img{height:56px}
+</style>
+</head>
+<body>
+<header>
+  <div class="wrap bar">
+    <div class="logo"><img src="icons/eky.svg" class="logomark" alt="EKY">everybodyknowsyou</div>
+    <div class="nav-cta">
+      <span class="lang" id="langBtn">EN</span>
+      <a class="btn small cta" data-tier="generic" href="#" target="_blank" data-i18n="cta_short">Hazme el mío!</a>
+    </div>
+  </div>
+</header>
+<main>
+  <section class="block"><svg class="deco s-sway" style="top:8%;left:4%;width:118px" viewBox="0 0 120 34"><path d="M3 17 q14 -17 28 0 t28 0 t28 0 t25 0" fill="none" stroke="#FAAB94" stroke-width="10" stroke-linecap="round"/></svg><svg class="deco s-float" style="top:12%;right:6%;width:58px" viewBox="0 0 100 100"><path d="M50 4 C57 38 62 43 96 50 C62 57 57 62 50 96 C43 62 38 57 4 50 C38 43 43 38 50 4 Z" fill="#FF7D59"/></svg><svg class="deco s-float2" style="bottom:10%;left:6%;width:74px" viewBox="0 0 100 100"><g fill="#FFBDE8"><circle cx="50" cy="24" r="15"/><circle cx="76" cy="39" r="15"/><circle cx="76" cy="61" r="15"/><circle cx="50" cy="76" r="15"/><circle cx="24" cy="61" r="15"/><circle cx="24" cy="39" r="15"/></g><circle cx="50" cy="50" r="15" fill="#FFDE94"/></svg><svg class="deco s-float2" style="bottom:14%;right:7%;width:50px" viewBox="0 0 100 100"><path d="M50 2 A48 48 0 0 1 50 98 Z" fill="#99B0ED"/></svg><div class="wrap hero">
+    
+    
+    <span class="eyebrow" data-i18n="eyebrow">En la era de la IA</span>
+    <h1><span data-i18n="h1a">En 3 días,</span><br><span class="hl" data-i18n="h1b">todos te conocen.</span></h1>
+    <p class="lead" data-i18n="lead">Te hacemos un sitio web impresionante que hace que Google y la inteligencia artificial cuenten tu historia como tú quieres.</p>
+    <a class="btn cta" data-tier="generic" href="#" target="_blank" data-i18n="cta_main">Hazme el mío!</a>
+    <div class="hero-meta" data-i18n="hero_meta">Listo en 3 días &middot; Desde $500 &middot; En español e inglés</div>
+  </div></section>
+  <section class="block bg-peri"><svg class="deco s-spin" style="top:12%;left:5%;width:44px" viewBox="0 0 100 100"><g stroke="#FFFAED" stroke-width="12" stroke-linecap="round"><line x1="50" y1="10" x2="50" y2="90"/><line x1="14" y1="50" x2="86" y2="50"/><line x1="24" y1="24" x2="76" y2="76"/><line x1="76" y1="24" x2="24" y2="76"/></g></svg><div class="wrap">
+    <h2 class="sec-title reveal" data-i18n="why_t">Ahora mismo, alguien te está buscando.</h2>
+    <p class="wholine reveal" style="text-align:center;margin:-.4rem auto 1.6rem;font-family:var(--display);font-size:1.25rem;color:var(--cream)"><span data-i18n="who_lead" style="color:#FFD24D">Perfecto si quieres</span> <span class="rot" id="rotwho">conseguir un trabajo mejor pagado</span></p>
+    <p class="sec-sub reveal" data-i18n="why_p">Cuando alguien escribe tu nombre en Google, o le pregunta a una inteligencia artificial '¿quién es...?', algo aparece. La pregunta es simple: ¿lo escribiste tú, o lo adivinó internet? Mientras esperas, esa respuesta se vuelve más difícil de cambiar. Y la gente que importa, tu próximo cliente, tus seguidores, tu futuro jefe, se forma una opinión en segundos.</p>
+  </div></section>
+  <section class="block"><svg class="deco s-float" style="top:6%;right:5%;width:44px" viewBox="0 0 100 100"><path d="M50 4 C57 38 62 43 96 50 C62 57 57 62 50 96 C43 62 38 57 4 50 C38 43 43 38 50 4 Z" fill="#C7C24A"/></svg><div class="wrap">
+    <h2 class="sec-title reveal" data-i18n="pill_t">Por qué la gente nos elige</h2>
+    <div class="sec-sub"></div>
+    <div class="grid g3">
+      <div class="pillar reveal"><img class="ico-img" src="DoneForYou.png" alt=""><h3 data-i18n="p1t">Hecho por nosotros</h3><p data-i18n="p1p">Tú casi no haces nada.</p></div>
+      <div class="pillar reveal"><img class="ico-img" src="DiscoverableByAI.png" alt=""><h3 data-i18n="p2t">Te descubre la IA</h3><p data-i18n="p2p">Google y la IA hablan bien de ti.</p></div>
+      <div class="pillar reveal"><img class="ico-img" src="ReadyIn3Days.png" alt=""><h3 data-i18n="p3t">Listo en 3 días</h3><p data-i18n="p3p">Otros tardan 30.</p></div>
+      <div class="pillar reveal"><img class="ico-img" src="100%25custom.png" alt=""><h3 data-i18n="p4t">100% a tu medida</h3><p data-i18n="p4p">Hecho para ti, nunca una plantilla.</p></div>
+      <div class="pillar reveal"><img class="ico-img" src="YouOnlyGoLiveWhenYouLoveIt.png" alt=""><h3 data-i18n="p5t">Solo sale cuando te encanta</h3><p data-i18n="p5p">Y en todos los idiomas que necesites.</p></div>
+      <div class="pillar reveal"><img class="ico-img" src="ImpressYourFriends.png" alt=""><h3 data-i18n="p6t">Impresiona a tus</h3><div class="rot" id="rotword">clientes</div></div>
+    </div>
+  </div></section>
+  <section class="block bg-peach"><svg class="deco s-sway" style="top:10%;left:5%;width:52px" viewBox="0 0 100 100"><path d="M50 96 C18 72 18 28 50 4 C82 28 82 72 50 96 Z" fill="#99B0ED"/></svg><div class="wrap">
+    <h2 class="sec-title reveal" data-i18n="val_t">Todo lo que incluye</h2>
+    <p class="sec-sub reveal" data-i18n="val_s">Mira lo que pagarías por separado en otro lugar, y lo que pagas con nosotros:</p>
+    <div class="faster reveal" data-i18n="faster">La mayoría tarda un mes o más. Nosotros te entregamos 10 veces más rápido.</div>
+    <div class="value">
+      <div class="chead"><span></span><span class="h-mid" data-i18n="h_others">Normalmente</span><span class="h-us" data-i18n="h_us">Con nosotros</span></div>
+      <div class="crow reveal"><span class="what" data-i18n="v1">Diseño único, hecho para ti</span><span class="others">$900</span><span class="us" data-i18n="incl">incluido</span></div>
+      <div class="crow reveal"><span class="what" data-i18n="v2">En español e inglés</span><span class="others">$400</span><span class="us" data-i18n="incl">incluido</span></div>
+      <div class="crow reveal"><span class="what" data-i18n="v3">Paquete Te descubre la IA: SEO, GEO, LMO</span><span class="others">$700</span><span class="us" data-i18n="incl">incluido</span></div>
+      <div class="crow reveal"><span class="what" data-i18n="v4">Rapidísimo en PC y celular</span><span class="others">$200</span><span class="us" data-i18n="incl">incluido</span></div>
+      <div class="crow reveal"><span class="what" data-i18n="v5">Tu dominio, manejado por nosotros</span><span class="others" data-i18n="o5">$120/año</span><span class="us" data-i18n="incl">incluido</span></div>
+      <div class="crow reveal"><span class="what" data-i18n="v6">Alojamiento el primer año</span><span class="others" data-i18n="o6">$100/año</span><span class="us" data-i18n="incl">incluido</span></div>
+      <div class="crow reveal"><span class="what" data-i18n="v8">Cambios hasta que te encante</span><span class="others">$200</span><span class="us" data-i18n="incl">incluido</span></div>
+      <div class="crow deliver reveal"><span class="what" data-i18n="v7">Tiempo de entrega</span><span class="others" data-i18n="o7">30 días</span><span class="us" data-i18n="u7">3 días</span></div>
+    </div>
+    <div class="vtotal reveal"><span class="old" data-i18n="tot_old">Normalmente: más de $2,500</span><br><span class="new"><span data-i18n="tot_new">Tú pagas: desde</span> <b>$500</b></span></div>
+    <div class="jab reveal" data-i18n="jab">Otros cobran $59 al MES solo por alojarlo. Nosotros, $29 al AÑO.</div>
+  </div></section>
+  <section class="block"><svg class="deco s-float" style="top:8%;right:5%;width:46px" viewBox="0 0 100 100"><path d="M50 4 C57 38 62 43 96 50 C62 57 57 62 50 96 C43 62 38 57 4 50 C38 43 43 38 50 4 Z" fill="#FFBDE8"/></svg><div class="wrap">
+    <h2 class="sec-title reveal" data-i18n="price_t">Elige tu plan</h2>
+    <p class="sec-sub reveal" data-i18n="price_s">Pago único, sin sorpresas. La renovación anual es solo $29.</p>
+    
+    <div class="grid g3">
+      <div class="price-card feature reveal"><span class="badge" data-i18n="t2badge">El más popular</span><div class="tier" data-i18n="t1">Personal</div><div class="amt">$500</div><div class="when" data-i18n="t1w">en 3 días</div><ul><li data-i18n="t1a">Tu sitio personal completo</li><li data-i18n="t1b">Español e inglés</li><li data-i18n="t1c">Te encuentra Google y la IA</li><li data-i18n="t1d">Dominio + alojamiento gratis 1 año</li></ul><a class="btn cta" data-tier="personal" href="#" target="_blank" data-i18n="cta_p1">Hazme el mío!</a><div class="note" data-i18n="onetime">Pago único. Renovación: $29/año.</div></div>
+      <div class="price-card reveal"><div class="tier" data-i18n="t2">Negocios</div><div class="amt">$1,500</div><div class="when" data-i18n="t2w">en 3 días</div><ul><li data-i18n="t2a">Todo lo del plan Personal</li><li data-i18n="t2b">Más páginas, personalizadas para tu posicionamiento</li><li data-i18n="t2c">Revisión de tu oferta de valor, con sugerencias</li><li data-i18n="t2d">Investigación de palabras clave de tu mercado</li></ul><a class="btn cta" data-tier="business" href="#" target="_blank" data-i18n="cta_p2">Hazme el de Negocios!</a><div class="note" data-i18n="onetime">Pago único. Renovación: $29/año.</div></div>
+      <div class="price-card reveal"><span class="postit reveal" data-i18n="few">Solo tomamos unos pocos clientes nuevos al mes.</span><div class="tier" data-i18n="t3">Flash Ejecutivo</div><div class="amt">$4,000</div><div class="when" data-i18n="t3w">listo en 24 horas</div><ul><li data-i18n="t3a">Todo lo del plan Negocios</li><li data-i18n="t3b">Para quien valora la rapidez</li><li data-i18n="t3c">Dejamos todo y lo hacemos ya</li><li data-i18n="t3d">Listo en 24 horas</li></ul><a class="btn dark cta" data-tier="flash" href="#" target="_blank" data-i18n="cta_p3">Hazme el mío para mañana!</a><div class="note" data-i18n="onetime">Pago único. Renovación: $29/año.</div></div>
+    </div>
+    <div class="addon reveal" data-i18n="addon">¿Necesitas más idiomas? Cada idioma extra: solo $50. &middot; Plan Personal: paga en 6 meses de $100 ($600 en total).</div>
+  </div></section>
+  <section class="block bg-coral"><svg class="deco s-float2" style="bottom:14%;left:6%;width:50px" viewBox="0 0 100 100"><path d="M50 2 A48 48 0 0 1 50 98 Z" fill="#FFFAED"/></svg><div class="wrap" style="text-align:center">
+    <h2 class="sec-title reveal" data-i18n="g_t">Sin riesgo para ti</h2>
+    <p class="sec-sub reveal" data-i18n="g_p">Pagas la mitad para empezar y ves tu sitio terminado en una vista previa privada. Si no te encanta, te devolvemos tu dinero. Solo pagas el resto cuando estás feliz, y lo publicamos.</p>
+  </div></section>
+  <section class="block"><svg class="deco s-spin" style="top:8%;right:5%;width:44px" viewBox="0 0 100 100"><g stroke="#FF7D59" stroke-width="12" stroke-linecap="round"><line x1="50" y1="10" x2="50" y2="90"/><line x1="14" y1="50" x2="86" y2="50"/><line x1="24" y1="24" x2="76" y2="76"/><line x1="76" y1="24" x2="24" y2="76"/></g></svg><div class="wrap" style="text-align:center">
+    <h2 class="sec-title reveal" data-i18n="pr_t">Mira lo que hacemos</h2>
+    <p class="sec-sub reveal" data-i18n="pr_s">Sitios reales que hemos creado:</p>
+    <div class="grid g4">
+      <div class="browser reveal"><div class="top"><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="url">unstableinnovation.com</span></div><div class="shot"><div><div class="nm">Unstable Innovation</div><div class="tg" data-i18n="pr1">Libro y marca personal</div></div></div><a class="go" href="https://unstableinnovation.com" target="_blank" data-i18n="pr_visit">Visitar</a></div>
+      <div class="browser reveal"><div class="top"><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="url">nelsoninno.com</span></div><div class="shot"><div><div class="nm">Nelson Inno</div><div class="tg" data-i18n="pr2">Sitio personal y marca</div></div></div><a class="go" href="https://nelsoninno.com" target="_blank" data-i18n="pr_visit">Visitar</a></div>
+      <div class="browser reveal"><div class="top"><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="url">zaragozahome.org</span></div><div class="shot"><div><div class="nm">Zaragoza Home</div><div class="tg" data-i18n="pr3">Causa social bilingüe</div></div></div><a class="go" href="https://zaragozahome.org" target="_blank" data-i18n="pr_visit">Visitar</a></div>
+      <div class="browser reveal"><div class="top"><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="url">mareadecor.com</span></div><div class="shot"><div><div class="nm">Marea Decor</div><div class="tg" data-i18n="pr4">Marca de decoración</div></div></div><a class="go" href="https://mareadecor.com" target="_blank" data-i18n="pr_visit">Visitar</a></div>
+    </div>
+  </div></section>
+  <section class="block bg-sky"><svg class="deco s-float" style="bottom:12%;left:6%;width:48px" viewBox="0 0 100 100"><path d="M50 4 C57 38 62 43 96 50 C62 57 57 62 50 96 C43 62 38 57 4 50 C38 43 43 38 50 4 Z" fill="#FF7D59"/></svg><div class="wrap">
+    <h2 class="sec-title reveal" data-i18n="how_t">Cómo funciona</h2>
+    <div class="sec-sub"></div>
+    <div class="grid g3 steps">
+      <div class="step reveal"><h3 data-i18n="s1t">Una llamada corta</h3><p data-i18n="s1p">15 a 30 minutos sobre ti, tu historia y tu meta.</p></div>
+      <div class="step reveal"><h3 data-i18n="s2t">Nos mandas tus fotos y enlaces</h3><p data-i18n="s2p">Un formulario simple. Esa es toda tu tarea.</p></div>
+      <div class="step reveal"><h3 data-i18n="s3t">En 3 días, estás en línea</h3><p data-i18n="s3p">Lo construimos, lo revisas, lo pulimos, el mundo te conoce.</p></div>
+    </div>
+    <div class="refer-wrap" style="margin-top:2.6rem"><div class="refer-card reveal"><h3 data-i18n="ref_t">Recomienda y gana un año gratis</h3><p data-i18n="ref_p">¿Te encantó tu sitio? Recomienda a alguien: cuando reciba su web, te regalamos un año entero gratis. Con una sola persona basta.</p></div></div>
+  </div></section>
+  
+  <section class="block bg-butter"><svg class="deco s-sway" style="top:12%;left:6%;width:90px" viewBox="0 0 120 34"><path d="M3 17 q14 -17 28 0 t28 0 t28 0 t25 0" fill="none" stroke="#FF7D59" stroke-width="10" stroke-linecap="round"/></svg><svg class="deco s-spin" style="bottom:12%;right:8%;width:62px" viewBox="0 0 100 100"><g fill="#FFBDE8"><circle cx="50" cy="24" r="15"/><circle cx="76" cy="39" r="15"/><circle cx="76" cy="61" r="15"/><circle cx="50" cy="76" r="15"/><circle cx="24" cy="61" r="15"/><circle cx="24" cy="39" r="15"/></g><circle cx="50" cy="50" r="15" fill="#FFDE94"/></svg><div class="wrap cta-final">
+    <h2 class="reveal" data-i18n="end_t">Que todos te conozcan.</h2>
+    <p class="sec-sub reveal" data-i18n="end_p">En 3 días tienes un sitio que te hace ver tan bien como mereces.</p>
+    <a class="btn cta" data-tier="generic" href="#" target="_blank" data-i18n="cta_main">Hazme el mío!</a>
+  </div></section>
+</main>
+<footer>
+  <div class="wrap">
+    <div class="logo"><img src="icons/eky.svg" class="logomark" alt="EKY">everybodyknowsyou.com</div>
+    <p data-i18n="foot">Sitios web impresionantes en 3 días &middot; Español e inglés &middot; Hecho con cariño en El Salvador</p>
+    <p><a class="cta" data-tier="generic" href="#" target="_blank" data-i18n="cta_short">Hazme el mío!</a></p>
+    <p class="powered"><a href="https://wespark.io" target="_blank"><span data-i18n="powered">Impulsado por</span> <img src="WeSpark%20Logo%20Classic%20White%20Wide.png" alt="WeSpark"></a></p>
+  </div>
+</footer>
+<script>
+  var WHATSAPP_NUMBER = "50300000000"; // NELSON: replace with your real WhatsApp number (country code + number, no plus, no spaces)
+  var LOCALES = {
+    es: {cta_short:"Hazme el mío!", cta_main:"Hazme el mío!", cta_p1:"Hazme el mío!", cta_p2:"Hazme el de Negocios!", cta_p3:"Hazme el mío para mañana!", eyebrow:"En la era de la IA", h1a:"En 3 días,", h1b:"todos te conocen.", lead:"Te hacemos un sitio web impresionante que hace que Google y la inteligencia artificial cuenten tu historia como tú quieres.", hero_meta:"Listo en 3 días · Desde $500 · En español e inglés", why_t:"Ahora mismo, alguien te está buscando.", why_p:"Cuando alguien escribe tu nombre en Google, o le pregunta a una inteligencia artificial '¿quién es...?', algo aparece. La pregunta es simple: ¿lo escribiste tú, o lo adivinó internet? Mientras esperas, esa respuesta se vuelve más difícil de cambiar. Y la gente que importa, tu próximo cliente, tus seguidores, tu futuro jefe, se forma una opinión en segundos.", who_lead:"Perfecto si quieres", pill_t:"Por qué la gente nos elige", p6t:"Impresiona a tus", p1t:"Hecho por nosotros", p1p:"Tú casi no haces nada.", p2t:"Te descubre la IA", p2p:"Google y la IA hablan bien de ti.", p3t:"Listo en 3 días", p3p:"Otros tardan 30.", p4t:"100% a tu medida", p4p:"Hecho para ti, nunca una plantilla.", p5t:"Solo sale cuando te encanta", p5p:"Y en todos los idiomas que necesites.", val_t:"Todo lo que incluye", val_s:"Mira lo que pagarías por separado en otro lugar, y lo que pagas con nosotros:", faster:"La mayoría tarda un mes o más. Nosotros te entregamos 10 veces más rápido.", h_others:"Normalmente", h_us:"Con nosotros", v1:"Diseño único, hecho para ti", v2:"En español e inglés", v3:"Paquete Te descubre la IA: SEO, GEO, LMO", v4:"Rapidísimo en PC y celular", v5:"Tu dominio, manejado por nosotros", v6:"Alojamiento el primer año", v8:"Cambios hasta que te encante", v7:"Tiempo de entrega", o5:"$120/año", o6:"$100/año", o7:"30 días", u7:"3 días", incl:"incluido", tot_old:"Normalmente: más de $2,500", tot_new:"Tú pagas: desde", jab:"Otros cobran $59 al MES solo por alojarlo. Nosotros, $29 al AÑO.", price_t:"Elige tu plan", price_s:"Pago único, sin sorpresas. La renovación anual es solo $29.", few:"Solo tomamos unos pocos clientes nuevos al mes.", onetime:"Pago único. Renovación: $29/año.", t1:"Personal", t1w:"en 3 días", t1a:"Tu sitio personal completo", t1b:"Español e inglés", t1c:"Te encuentra Google y la IA", t1d:"Dominio + alojamiento gratis 1 año", t2:"Negocios", t2w:"en 3 días", t2badge:"El más popular", t2a:"Todo lo del plan Personal", t2b:"Más páginas, personalizadas para tu posicionamiento", t2c:"Revisión de tu oferta de valor, con sugerencias", t2d:"Investigación de palabras clave de tu mercado", t3:"Flash Ejecutivo", t3w:"listo en 24 horas", t3a:"Todo lo del plan Negocios", t3b:"Para quien valora la rapidez", t3c:"Dejamos todo y lo hacemos ya", t3d:"Listo en 24 horas", addon:"¿Necesitas más idiomas? Cada idioma extra: solo $50. · Plan Personal: paga en 6 meses de $100 ($600 en total).", g_t:"Sin riesgo para ti", g_p:"Pagas la mitad para empezar y ves tu sitio terminado en una vista previa privada. Si no te encanta, te devolvemos tu dinero. Solo pagas el resto cuando estás feliz, y lo publicamos.", pr_t:"Mira lo que hacemos", pr_s:"Sitios reales que hemos creado:", pr_visit:"Visitar", pr1:"Libro y marca personal", pr2:"Sitio personal y marca", pr3:"Causa social bilingüe", pr4:"Marca de decoración", how_t:"Cómo funciona", s1t:"Una llamada corta", s1p:"15 a 30 minutos sobre ti, tu historia y tu meta.", s2t:"Nos mandas tus fotos y enlaces", s2p:"Un formulario simple. Esa es toda tu tarea.", s3t:"En 3 días, estás en línea", s3p:"Lo construimos, lo revisas, lo pulimos, el mundo te conoce.", ref_t:"Recomienda y gana un año gratis", ref_p:"¿Te encantó tu sitio? Recomienda a alguien: cuando reciba su web, te regalamos un año entero gratis. Con una sola persona basta.", f10_t:"Los primeros 10", f10_p:"Los primeros 10 clientes reciben dominio y alojamiento gratis por un año, y un cambio extra. Cuando se llenan los 10, se acaba.", end_t:"Que todos te conozcan.", end_p:"En 3 días tienes un sitio que te hace ver tan bien como mereces.", foot:"Sitios web impresionantes en 3 días · Español e inglés · Hecho con cariño en El Salvador", powered:"Impulsado por", wa_generic:"Hola, vi everybodyknowsyou.com y quiero el mío.", wa_personal:"Hola, vi everybodyknowsyou.com y quiero el plan Personal ($500).", wa_business:"Hola, vi everybodyknowsyou.com y quiero el plan Negocios ($1,500).", wa_flash:"Hola, vi everybodyknowsyou.com y quiero el plan Flash 24 horas ($4,000)."},
+    en: {cta_short:"Build me mine!", cta_main:"Build me mine!", cta_p1:"Build me mine!", cta_p2:"Build my Business one!", cta_p3:"Build me mine by tomorrow!", eyebrow:"In the age of AI", h1a:"In 3 days,", h1b:"everybody knows you.", lead:"We build you a stunning website that makes Google and AI tell your story exactly the way you want.", hero_meta:"Ready in 3 days · From $500 · In Spanish and English", why_t:"Right now, someone is looking you up.", why_p:"When someone types your name into Google, or asks an AI 'who is?', something shows up. The question is simple: did you write it, or did the internet guess? And the longer you wait, the harder that answer is to change. And the people who matter, your next client, your followers, your future boss, form an opinion in seconds.", who_lead:"Perfect if you want to", pill_t:"Why people choose us", p6t:"Impress your", p1t:"Done for you", p1p:"You barely lift a finger.", p2t:"Discoverable by AI", p2p:"Google and AI speak well of you.", p3t:"Ready in 3 days", p3p:"Others take 30.", p4t:"100% custom", p4p:"Made for you, never a template.", p5t:"You only go live when you love it", p5p:"And in every language your people speak.", val_t:"Everything you get", val_s:"See what you would pay separately elsewhere, and what you pay with us:", faster:"Most take a month or more. We deliver 10 times faster.", h_others:"Usually", h_us:"With us", v1:"A unique design, made for you", v2:"Spanish and English", v3:"The Discoverable by AI package: SEO, GEO, LMO", v4:"Lightning-fast on PC and phone", v5:"Your domain, handled for you", v6:"Hosting the first year", v8:"Changes until you love it", v7:"Delivery time", o5:"$120/yr", o6:"$100/yr", o7:"30 days", u7:"3 days", incl:"included", tot_old:"Usually: over $2,500", tot_new:"You pay: from", jab:"Others charge $59 a MONTH just to host it. We charge $29 a YEAR.", price_t:"Pick your plan", price_s:"One-time payment, no surprises. The annual renewal is just $29.", few:"We only take a few new clients per month.", onetime:"One-time payment. Renewal: $29/yr.", t1:"Personal", t1w:"in 3 days", t1a:"Your complete personal site", t1b:"Spanish and English", t1c:"Found by Google and AI", t1d:"Domain + hosting free for 1 year", t2:"Business", t2w:"in 3 days", t2badge:"Most popular", t2a:"Everything in Personal", t2b:"More pages, customized for your positioning", t2c:"Review of your value offer, with suggestions", t2d:"Keyword research from your target market", t3:"Executive Flash", t3w:"live in 24 hours", t3a:"Everything in Business", t3b:"For those who value speed", t3c:"We drop everything and do it now", t3d:"Live in 24 hours", addon:"Need more languages? Each extra language: just $50. · Personal plan: pay over 6 months of $100 ($600 total).", g_t:"No risk for you", g_p:"You pay half to start and see your finished site on a private preview. If you do not love it, we give you your money back. You only pay the rest when you are happy, and we publish it.", pr_t:"See what we make", pr_s:"Real sites we've built:", pr_visit:"Visit", pr1:"Book and personal brand", pr2:"Personal site and brand", pr3:"Bilingual social cause", pr4:"Home decor brand", how_t:"How it works", s1t:"One short call", s1p:"15 to 30 minutes about you, your story, and your goal.", s2t:"Send us your photos and links", s2p:"One simple form. That is your whole homework.", s3t:"In 3 days, you're live", s3p:"We build it, you review it, we polish it, the world meets you.", ref_t:"Refer a friend, get a free year", ref_p:"Loved your site? Refer someone: when they get their website, we give you a whole year free. Just one person is enough.", f10_t:"The Founding 10", f10_p:"The first 10 clients get domain and hosting free for a year, and one extra update. When the 10 spots are gone, it is over.", end_t:"Let everybody know you.", end_p:"In 3 days you get a site that makes you look as good as you deserve.", foot:"Stunning websites in 3 days · Spanish and English · Made with love in El Salvador", powered:"Powered by", wa_generic:"Hi, I saw everybodyknowsyou.com and I want one for me!", wa_personal:"Hi, I saw everybodyknowsyou.com and I want the Personal plan ($500).", wa_business:"Hi, I saw everybodyknowsyou.com and I want the Business plan ($1,500).", wa_flash:"Hi, I saw everybodyknowsyou.com and I want the 24-Hour Flash plan ($4,000)."}
+  };
+  var lang = "es";
+  function apply(){
+    var d = LOCALES[lang];
+    document.querySelectorAll("[data-i18n]").forEach(function(el){ var k=el.getAttribute("data-i18n"); if(d[k]!==undefined) el.textContent=d[k]; });
+    document.documentElement.lang = lang;
+    document.getElementById("langBtn").textContent = (lang==="es") ? "EN" : "ES";
+    document.querySelectorAll("a.cta").forEach(function(a){ var t=a.getAttribute("data-tier")||"generic"; var m=d["wa_"+t]||d.wa_generic; a.setAttribute("href","https://wa.me/"+WHATSAPP_NUMBER+"?text="+encodeURIComponent(m)); });
+  }
+  var ROT={es:["clientes","colegas","fans","amigos","próximo jefe","familia","estudiantes","empleados","seguidores"],en:["customers","colleagues","fans","friends","next employer","family","students","employees","followers"]};
+  var ROTWHO={es:["conseguir un trabajo mejor pagado","destacar en tu proxima entrevista","dejar tu legado","compartir lo que sabes","fortalecer tu posicion","que te encuentren los clientes","atraer más seguidores","impresionar a tu próximo jefe","vender tu libro","conseguir más conferencias","ganar la confianza de todos","mostrar tu trabajo al mundo","que la IA hable bien de ti","verte tan profesional como eres","abrir nuevas oportunidades","construir tu marca personal","que te recuerden","controlar tu historia"],en:["land a higher-paid job","stand out in your next interview","leave your legacy","share what you know","strengthen your position","get found by clients","attract more followers","impress your next boss","sell your book","book more speaking gigs","earn everyone's trust","show your work to the world","have AI speak well of you","look as professional as you are","open new opportunities","build your personal brand","be remembered","own your story"]};
+  var ri=0, ri2=0;
+  function rot(){ var a=ROT[lang]; var el=document.getElementById("rotword"); if(el) el.textContent=a[ri%a.length]; }
+  function rotwho(){ var a=ROTWHO[lang]; var el=document.getElementById("rotwho"); if(el) el.textContent=a[ri2%a.length]; }
+  document.getElementById("langBtn").addEventListener("click", function(){ lang = (lang==="es") ? "en" : "es"; apply(); rot(); rotwho(); });
+  apply(); rot(); rotwho();
+  setInterval(function(){ ri++; rot(); }, 1500);
+  setInterval(function(){ ri2++; rotwho(); }, 2400);
+  var io = new IntersectionObserver(function(entries){ entries.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add("in"); io.unobserve(e.target); } }); }, {threshold:.12});
+  document.querySelectorAll(".reveal").forEach(function(el){ io.observe(el); });
+</script>
+</body>
+</html>
