@@ -1236,6 +1236,25 @@ applyLang();
     if (q) { elQuery.value = q; setTimeout(startCheck, 120); }
   } catch (e) {}
 })();
+
+/* ============================================================
+   WhatsApp CTA wiring (footer "Build me my website" button)
+   ============================================================ */
+(function(){
+  var WHATSAPP_NUMBER = "50374927681";
+  var WA_MSG_ES = "Hola, vi everybodyknowsyou.com y quiero el mío.";
+  var WA_MSG_EN = "Hi, I saw everybodyknowsyou.com and I want one for me!";
+  function wire(){
+    var l = (document.body.className === 'es' || document.documentElement.lang === 'es') ? 'es' : 'en';
+    var msg = (l === 'es') ? WA_MSG_ES : WA_MSG_EN;
+    document.querySelectorAll(".btn.small.cta, a.cta:not(.cta-small):not(.eky-cta)").forEach(function(a){
+      a.setAttribute("href", "https://wa.me/" + WHATSAPP_NUMBER + "?text=" + encodeURIComponent(msg));
+    });
+  }
+  if (document.readyState !== 'loading') { wire(); }
+  else { document.addEventListener('DOMContentLoaded', wire); }
+})();
+
 </script>
 </body>
 </html>
