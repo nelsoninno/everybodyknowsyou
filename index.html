@@ -15,11 +15,11 @@
 
 <!-- Open Graph -->
 <meta property="og:title" content="Páginas web en 3 días, encontradas por la IA">
-<meta property="og:description" content="everybodyknowsyou helps brands and people launch stunning websites optimized for Google and AI discovery in as little as 3 days!">
+<meta property="og:description" content="Te hacemos un sitio web impresionante en 3 días, en español e inglés, optimizado para que Google y la IA te describan como tú quieres. Desde $500.">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://everybodyknowsyou.com/">
 <meta property="og:site_name" content="everybodyknowsyou.com">
-<meta property="og:image" content="https://everybodyknowsyou.com/images/everybodyknowsyou_socialshare.jpg">
+<meta property="og:image" content="https://everybodyknowsyou.com/og.jpg">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta property="og:image:alt" content="everybodyknowsyou.com — páginas web en 3 días, encontradas por la IA">
@@ -30,7 +30,7 @@
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Páginas web en 3 días, encontradas por la IA">
 <meta name="twitter:description" content="Sitio web impresionante en 3 días, español + inglés, optimizado para Google y la IA. Desde $500.">
-<meta name="twitter:image" content="https://everybodyknowsyou.com/images/everybodyknowsyou_socialshare.jpg">
+<meta name="twitter:image" content="https://everybodyknowsyou.com/og.jpg">
 
 <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
 
@@ -41,8 +41,7 @@
 <meta name="author" content="WeSpark / everybodyknowsyou.com">
 
 <!-- Icons -->
-<link rel="icon" type="image/jpeg" sizes="any" href="/images/favicon.jpg?v=2">
-<link rel="apple-touch-icon" href="/images/favicon.jpg?v=2">
+<link rel="icon" type="image/png" sizes="any" href="/images/logo/eky-logo.png">
 <link rel="apple-touch-icon" href="/images/logo/eky-logo.png">
 
 <!-- Fonts -->
@@ -89,29 +88,19 @@
   .wrap{max-width:var(--max);margin:0 auto;padding:0 clamp(1.1rem,4vw,2.5rem);position:relative}
   h1,h2,h3{font-family:var(--display);font-weight:700;line-height:1.05;letter-spacing:-.01em}
   a{color:inherit}
-  .block{padding:clamp(3rem,7vw,5rem) 0;position:relative;overflow:hidden}
+  .block{ position:relative;padding:clamp(3rem,7vw,5rem) 0;position:relative;overflow:hidden}
   .block>.wrap{position:relative;z-index:2}
 
   .bg-black{background:var(--ink);color:#fff}
   
 /* === audit hand-off pink section === */
-@keyframes ekyFloat { 0%,100%{ transform:translateY(0) rotate(-2deg);} 50%{ transform:translateY(-7px) rotate(2deg);} }
-@keyframes ekyWobble{ 0%,100%{ transform:rotate(-3deg);} 50%{ transform:rotate(3deg);} }
-@keyframes ekyDrift { 0%,100%{ transform:translate(0,0) rotate(-4deg);} 50%{ transform:translate(4px,-4px) rotate(4deg);} }
-.eky-sticker{ position:absolute; pointer-events:none; z-index:3; }
-.eky-sticker.sticker-hero{ top:8%; left:3%; width:160px; animation:ekyDrift 6s ease-in-out infinite; }
-.eky-sticker.sticker-why{ top:6%; right:3%; width:120px; animation:ekyFloat 5s ease-in-out infinite; }
-.eky-sticker.sticker-pricing-bolt{ top:8%; left:3%; width:130px; animation:ekyWobble 4.5s ease-in-out infinite; }
-.eky-sticker.sticker-pricing-ai{ bottom:6%; right:3%; width:130px; animation:ekyDrift 5.5s ease-in-out infinite; }
-@media (max-width:900px){ .eky-sticker{ width:80px !important; } .eky-sticker.sticker-pricing-bolt, .eky-sticker.sticker-pricing-ai{ display:none; } }
-.btn.white{ background:#fff !important; color:var(--ink) !important; border-color:var(--ink); }
 .bg-pink{ background:var(--pink); color:#fff; position:relative; overflow:hidden; }
 .bg-pink .wrap{ text-align:center; position:relative; z-index:2; }
 .bg-pink .eyebrow{ font-family:var(--hand); color:#fff; font-size:28.8px; font-weight:700; text-align:center; margin:0 0 6px; }
 .bg-pink h2{ color:#fff; font-family:var(--display); font-weight:700; font-size:clamp(34px, 6vw, 54.4px); line-height:1.05; text-align:center; margin:6px 0 12px; }
 .bg-pink .lead{ color:#fff; text-align:center; max-width:640px; margin:0 auto; }
 .bg-pink .lead-sm{ color:#fff; font-size:14px; opacity:.9; margin:12px auto 0; text-align:center; max-width:640px; }
-.bg-pink .char-left{ position:absolute; left:24px; top:50%; width:112px; height:auto; pointer-events:none; z-index:1; animation:ekyFloat 5.5s ease-in-out infinite; transform-origin:center; }
+.bg-pink .char-left{ position:absolute; left:24px; top:50%; transform:translateY(-50%); width:140px; height:auto; pointer-events:none; z-index:1; }
 @media (max-width:1024px){ .bg-pink .char-left{ width:100px; left:12px; } }
 @media (max-width:760px){ .bg-pink .char-left{ display:none; } }
 .audit-form{ display:flex; flex-wrap:wrap; gap:12px; align-items:stretch; justify-content:center; margin:28px auto 0; max-width:780px; }
@@ -270,13 +259,13 @@
 </header>
 
 <main>
-<!-- decor: hero -->
   <!-- HERO -->
   <section class="block">
     <span class="ast-deco s-spin" style="top:14%;left:6%;font-size:2.6rem;color:var(--lime)">*</span>
     <span class="ast-deco s-spin" style="bottom:18%;right:8%;font-size:2.2rem;color:var(--pink)">*</span>
     <div class="char s-float" style="top:6%;right:5%;width:80px"><img src="images/characters/plup.png" alt=""></div>
     <div class="wrap hero">
+      <img class="eky-sticker sticker-hero" src="/images/decorations/wwwsticker.png" alt="" aria-hidden="true">
       <span class="eyebrow" data-i18n="eyebrow">En la era de la IA</span>
       <h1><span data-i18n="h1a">En 3 días,</span><br><span class="hl" data-i18n="h1b">todos te conocen.</span></h1>
       <p class="lead" data-i18n-html="lead"><span class="hl">Te hacemos un sitio web impresionante</span> que hace que Google y la inteligencia artificial cuenten tu historia como tú quieres.</p>
@@ -331,6 +320,7 @@
   <section class="block">
     <div class="char s-float" style="top:4%;right:3%;width:130px"><img src="images/characters/blob.png" alt=""></div>
     <div class="wrap">
+      <img class="eky-sticker sticker-why" src="/images/decorations/binocular.png" alt="" aria-hidden="true">
       <h2 class="sec-title reveal" data-i18n="pill_t">Por qué la gente nos elige</h2>
       <div class="sec-sub"></div>
       <div class="grid g3">
@@ -370,10 +360,12 @@
   <section class="block">
     <span class="ast-deco s-spin" style="top:6%;right:4%;font-size:2.4rem;color:var(--lime)">*</span>
     <div class="wrap">
+      <img class="eky-sticker sticker-pricing-bolt" src="/images/decorations/lightningsticker.png" alt="" aria-hidden="true">
+      <img class="eky-sticker sticker-pricing-ai" src="/images/decorations/AIsticker.png" alt="" aria-hidden="true">
       <h2 class="sec-title reveal" data-i18n="price_t">Elige tu plan</h2>
       <p class="sec-sub reveal" data-i18n="price_s">Pago único, sin sorpresas. La renovación anual es solo $29.</p>
       <div class="grid g3">
-        <div class="price-card feature reveal"><span class="badge" data-i18n="t2badge">El más popular</span><div class="tier" data-i18n="t1">Personal</div><div class="amt">$500</div><div class="when" data-i18n="t1w">en 3 días</div><ul><li data-i18n="t1a">Tu sitio personal completo</li><li data-i18n="t1b">Español e inglés</li><li data-i18n="t1c">Te encuentra Google y la IA</li><li data-i18n="t1d">Dominio + alojamiento gratis el primer año</li><li data-i18n="t1e">2 iteraciones de diseño durante la creación</li></ul><a class="btn cta white" data-tier="personal" href="#" target="_blank" data-i18n="cta_p1">¡Hazme mi sitio web!</a><div class="note" data-i18n="onetime">Pago único. Renovación: $29/año.</div></div>
+        <div class="price-card feature reveal"><span class="badge" data-i18n="t2badge">El más popular</span><div class="tier" data-i18n="t1">Personal</div><div class="amt">$500</div><div class="when" data-i18n="t1w">en 3 días</div><ul><li data-i18n="t1a">Tu sitio personal completo</li><li data-i18n="t1b">Español e inglés</li><li data-i18n="t1c">Te encuentra Google y la IA</li><li data-i18n="t1d">Dominio + alojamiento gratis el primer año</li><li data-i18n="t1e">2 iteraciones de diseño durante la creación</li></ul><a class="btn cta" data-tier="personal" href="#" target="_blank" data-i18n="cta_p1">¡Hazme mi sitio web!</a><div class="note" data-i18n="onetime">Pago único. Renovación: $29/año.</div></div>
         <div class="price-card reveal"><div class="tier" data-i18n="t2">Negocios</div><div class="amt">$1,500</div><div class="when" data-i18n="t2w">en 3 días</div><ul><li data-i18n="t2a">Todo lo del plan Personal</li><li data-i18n="t2b">Más páginas, personalizadas para tu posicionamiento</li><li data-i18n="t2c">Revisión de tu oferta de valor, con sugerencias</li><li data-i18n="t2d">Investigación de palabras clave de tu mercado</li><li data-i18n="t2e">3 iteraciones de diseño durante la creación</li></ul><a class="btn purple cta" data-tier="business" href="#" target="_blank" data-i18n="cta_p2">¡Hazme mi sitio de Negocios!</a><div class="note" data-i18n="onetime">Pago único. Renovación: $29/año.</div></div>
         <div class="price-card reveal"><div class="tier" data-i18n="t3">Flash Ejecutivo</div><div class="amt">$4,000</div><div class="when" data-i18n="t3w">listo en 24 horas</div><ul><li data-i18n="t3a">Todo lo del plan Negocios</li><li data-i18n="t3b">Para quien valora la rapidez</li><li data-i18n="t3c">Dejamos todo y lo hacemos ya</li><li data-i18n="t3d">Listo en 24 horas</li><li data-i18n="t3e">10 iteraciones de diseño durante la creación</li></ul><a class="btn dark cta" data-tier="flash" href="#" target="_blank" data-i18n="cta_p3">¡Hazme mi sitio para mañana!</a><div class="note" data-i18n="onetime">Pago único. Renovación: $29/año.</div><span class="postit reveal" data-i18n="few">Solo tomamos unos pocos clientes nuevos al mes.</span></div>
       </div>
@@ -448,7 +440,7 @@
 
 <footer>
   <div class="wrap">
-    <img class="mark" src="images/logo/eky-logo.png" alt="eky">
+    <img class="mark" src="/images/logo/eky-logo-square-forblackbackground.png" alt="everybodyknowsyou.com">
     <p data-i18n="foot">Sitios web impresionantes en 3 días &middot; Español e inglés &middot; Hecho con cariño en El Salvador</p>
     <p class="flinks"><a href="/pricing" data-i18n="f_pricing">Precios</a> &middot; <a href="/terms" data-i18n="f_terms">Términos</a></p>
     <p><a class="btn small cta" data-tier="generic" href="#" target="_blank" data-i18n="cta_short">¡Hazme mi sitio web!</a></p>
