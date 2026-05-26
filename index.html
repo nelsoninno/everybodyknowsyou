@@ -130,7 +130,8 @@
   .nav-cta{display:flex;align-items:center;gap:.6rem;flex-shrink:0}
   .lang{cursor:pointer;background:#fff;border:2px solid var(--ink);border-radius:999px;font-family:var(--display);font-weight:600;padding:.25rem .85rem;font-size:.85rem}
 
-  .btn{display:inline-block;cursor:pointer;font-family:var(--display);font-weight:700;font-size:1.05rem;background:var(--lime);color:var(--ink);border:2px solid var(--ink);border-radius:999px;padding:.85rem 1.7rem;text-decoration:none;box-shadow:var(--hard);transition:transform .08s,box-shadow .08s}
+  .btn.white{ background:#fff !important; color:var(--ink) !important; border-color:var(--ink) !important; }
+.btn{display:inline-block;cursor:pointer;font-family:var(--display);font-weight:700;font-size:1.05rem;background:var(--lime);color:var(--ink);border:2px solid var(--ink);border-radius:999px;padding:.85rem 1.7rem;text-decoration:none;box-shadow:var(--hard);transition:transform .08s,box-shadow .08s}
   .btn:hover{transform:translateY(3px);box-shadow:var(--hard-sm)}
   .btn.small{padding:.5rem 1.05rem;font-size:.9rem;box-shadow:var(--hard-sm)}
   .btn.dark{background:var(--ink);color:#fff}
@@ -246,7 +247,7 @@
   .s-spin{animation:spin 22s linear infinite}
   .s-sway{animation:sway 5s ease-in-out infinite}
 
-.postit-hl{ display:inline; padding:2px 4px; background:linear-gradient(transparent 55%, var(--lime) 55%); color:var(--ink); font-weight:700; border:none; box-shadow:none; border-radius:0; line-height:1.4; }
+.postit-hl{ display:inline-block; padding:6px 14px; background:var(--lime); color:var(--ink); font-weight:700; border:none; box-shadow:none; border-radius:10px; transform:rotate(-1deg); line-height:1.3; margin-top:.5rem; }
 </style>
 </head>
 <body>
@@ -330,7 +331,7 @@
         <div class="pillar reveal"><span class="ast">*</span><h3 data-i18n="p2t">Te descubre la IA</h3><p data-i18n="p2p">Google y la IA hablan bien de ti.</p></div>
         <div class="pillar reveal"><span class="ast">*</span><h3 data-i18n="p3t">Listo en 3 días</h3><p data-i18n="p3p">Otros tardan 30.</p></div>
         <div class="pillar reveal"><span class="ast">*</span><h3 data-i18n="p4t">100% a tu medida</h3><p data-i18n="p4p">Hecho para ti, nunca una plantilla.</p></div>
-        <div class="pillar reveal"><span class="ast">*</span><h3 data-i18n="p5t">Solo sale cuando te encanta</h3><p data-i18n="p5p">Y en todos los idiomas que necesites.</p></div>
+        <div class="pillar reveal"><span class="ast">*</span><h3 data-i18n="p5t">Solo se publica cuando te encanta</h3><p data-i18n="p5p">Y en todos los idiomas que necesites.</p></div>
         <div class="pillar reveal"><span class="ast">*</span><h3 data-i18n="p6t">Impresiona a tus</h3><div class="rot" id="rotword">clientes</div></div>
       </div>
     </div>
@@ -367,7 +368,7 @@
       <h2 class="sec-title reveal" data-i18n="price_t">Elige tu plan</h2>
       <p class="sec-sub reveal" data-i18n="price_s">Pago único, sin sorpresas. La renovación anual es solo $29.</p>
       <div class="grid g3">
-        <div class="price-card feature reveal"><span class="badge" data-i18n="t2badge">El más popular</span><div class="tier" data-i18n="t1">Personal</div><div class="amt">$500</div><div class="when" data-i18n="t1w">en 3 días</div><ul><li data-i18n="t1a">Tu sitio personal completo</li><li data-i18n="t1b">Español e inglés</li><li data-i18n="t1c">Te encuentra Google y la IA</li><li data-i18n="t1d">Dominio + alojamiento gratis el primer año</li><li data-i18n="t1e">2 iteraciones de diseño durante la creación</li></ul><a class="btn cta" data-tier="personal" href="#" target="_blank" data-i18n="cta_p1">¡Hazme mi sitio web!</a><div class="note" data-i18n="onetime">Pago único. Renovación: $29/año.</div></div>
+        <div class="price-card feature reveal"><span class="badge" data-i18n="t2badge">El más popular</span><div class="tier" data-i18n="t1">Personal</div><div class="amt">$500</div><div class="when" data-i18n="t1w">en 3 días</div><ul><li data-i18n="t1a">Tu sitio personal completo</li><li data-i18n="t1b">Español e inglés</li><li data-i18n="t1c">Te encuentra Google y la IA</li><li data-i18n="t1d">Dominio + alojamiento gratis el primer año</li><li data-i18n="t1e">2 iteraciones de diseño durante la creación</li></ul><a class="btn cta white" data-tier="personal" href="#" target="_blank" data-i18n="cta_p1">¡Hazme mi sitio web!</a><div class="note" data-i18n="onetime">Pago único. Renovación: $29/año.</div></div>
         <div class="price-card reveal"><div class="tier" data-i18n="t2">Negocios</div><div class="amt">$1,500</div><div class="when" data-i18n="t2w">en 3 días</div><ul><li data-i18n="t2a">Todo lo del plan Personal</li><li data-i18n="t2b">Más páginas, personalizadas para tu posicionamiento</li><li data-i18n="t2c">Revisión de tu oferta de valor, con sugerencias</li><li data-i18n="t2d">Investigación de palabras clave de tu mercado</li><li data-i18n="t2e">3 iteraciones de diseño durante la creación</li></ul><a class="btn purple cta" data-tier="business" href="#" target="_blank" data-i18n="cta_p2">¡Hazme mi sitio de Negocios!</a><div class="note" data-i18n="onetime">Pago único. Renovación: $29/año.</div></div>
         <div class="price-card reveal"><div class="tier" data-i18n="t3">Flash Ejecutivo</div><div class="amt">$4,000</div><div class="when" data-i18n="t3w">listo en 24 horas</div><ul><li data-i18n="t3a">Todo lo del plan Negocios</li><li data-i18n="t3b">Para quien valora la rapidez</li><li data-i18n="t3c">Dejamos todo y lo hacemos ya</li><li data-i18n="t3d">Listo en 24 horas</li><li data-i18n="t3e">10 iteraciones de diseño durante la creación</li></ul><a class="btn dark cta" data-tier="flash" href="#" target="_blank" data-i18n="cta_p3">¡Hazme mi sitio para mañana!</a><div class="note" data-i18n="onetime">Pago único. Renovación: $29/año.</div><span class="postit reveal" data-i18n="few">Solo tomamos unos pocos clientes nuevos al mes.</span></div>
       </div>
