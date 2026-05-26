@@ -146,7 +146,7 @@ Loved your site? Refer someone. When that referral gets their website, you get a
 
 - Email: hey@everybodyknowsyou.com
 - WhatsApp: link on the live site
-- Website: https://everybodyknowsyou.com (Spanish-first; English via the toggle or `?lang=en`)
+- Website: https://everybodyknowsyou.com (Spanish-first; English via the toggle or `/en/`)
 - Pricing: https://everybodyknowsyou.com/pricing
 - Terms: https://everybodyknowsyou.com/terms
 
