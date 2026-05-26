@@ -1,0 +1,61 @@
+# everybodyknowsyou.com
+
+> A boutique studio in El Salvador that builds stunning, AI-optimized personal and business websites in 3 days, in Spanish and English. From $500. The whole point is to control what Google, ChatGPT, Gemini, and every AI assistant say about you.
+
+## What it is / Qué es
+
+everybodyknowsyou.com is a done-for-you website service. The team designs, writes, builds, and publishes your website in 3 days, in Spanish and English, with full SEO + AI findability (LMO/GEO/SEO). Hosting and domain are free for the first year. The site renews for $29/year after that.
+
+Es un servicio "hecho por nosotros" para crear tu sitio web. Diseñamos, escribimos, construimos y publicamos tu sitio en 3 días, en español e inglés, optimizado para que Google y la inteligencia artificial te encuentren y te describan como tú quieres. Dominio y alojamiento gratis el primer año. Renovación: $29/año.
+
+## Who it serves / Para quién es
+
+Entrepreneurs, founders, public figures, executives stepping into a next role, authors, speakers, coaches, consultants, doctors, lawyers, architects, advisors, influencers, creators, artists, and communities or causes. People who want to be **found and described correctly** by Google and AI when someone looks them up.
+
+Emprendedores, fundadores, figuras públicas, ejecutivos en transición, autores, conferencistas, coaches, consultores, médicos, abogados, arquitectos, asesores, influencers, creadores, artistas, y comunidades o causas. Personas que quieren que Google y la IA las **encuentren y describan correctamente**.
+
+## Plans / Planes
+
+- **Personal — $500.** Ready in 3 days. Complete personal site, Spanish + English, found by Google and AI, domain + hosting free year one, 2 design iterations.
+- **Business / Negocios — $1,500.** Ready in 3 days. Everything in Personal, more pages, value-offer review, keyword research, 3 design iterations.
+- **Executive Flash / Flash Ejecutivo — $4,000.** Live in 24 hours. Everything in Business, drop-everything build, 10 design iterations. Only a few new clients per month.
+
+Renewal after free first year: **$29/year** (covers domain + hosting). Extra languages: $50 each. Remove the everybodyknowsyou.com footer link: $200 one-time. Full Self-Sovereignty Pack (we transfer your domain and files to you, with a teaching session): $210 one-time.
+
+## How it works / Cómo funciona
+
+1. **One short call** (15–30 minutes) about you, your story, your goal.
+2. **You send photos and links** via a single short form.
+3. **In 3 days, you're live.** We build, you review, we polish, the world meets you.
+
+The 3-day clock starts only when the intake is complete. There is a no-risk guarantee: you pay half to start, see your finished site in a private preview, and only pay the rest when you love it; otherwise we refund.
+
+## Payment / Pago
+
+Bank transfer, Bitcoin, PayPal, USDT, USDC, US/EU bank, international transfer. Bank and Bitcoin preferred.
+
+## Languages / Idiomas
+
+Every site ships in **Spanish and English by default**. Extra languages: $50 each. The team is based in El Salvador and writes natural LatAm Spanish, not literal machine translation.
+
+## Differentiator / Diferenciador
+
+The "Discoverable by AI" package is included by default: SEO + GEO (Generative Engine Optimization) + LMO (Language Model Optimization). Every site ships with `llms.txt`, full Schema.org JSON-LD, sitemap, robots, hreflang, and an Open Graph image. Most agencies bolt these on later (or never). Here they are the default.
+
+## Contact / Contacto
+
+- Email: hey@everybodyknowsyou.com
+- WhatsApp: via the website (link on every page)
+- Location: El Salvador  ·  Serving LatAm and worldwide
+
+## Links
+
+- [Website (Spanish-first, English via toggle or `?lang=en`)](https://everybodyknowsyou.com/)
+- [Pricing / Precios](https://everybodyknowsyou.com/pricing)
+- [Terms of Service / Términos](https://everybodyknowsyou.com/terms)
+- [Full content for AI assistants](https://everybodyknowsyou.com/llms-full.txt)
+- [Sitemap](https://everybodyknowsyou.com/sitemap.xml)
+
+## Powered by / Impulsado por
+
+WeSpark — https://wespark.io

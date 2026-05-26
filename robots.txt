@@ -1,0 +1,32 @@
+# robots.txt for everybodyknowsyou.com
+# Welcome, crawlers — every page is open and indexable.
+
+User-agent: *
+Allow: /
+
+# AI assistants & LLM crawlers — explicit invitation
+User-agent: GPTBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: Claude-Web
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: anthropic-ai
+Allow: /
+
+User-agent: Applebot-Extended
+Allow: /
+
+Sitemap: https://everybodyknowsyou.com/sitemap.xml

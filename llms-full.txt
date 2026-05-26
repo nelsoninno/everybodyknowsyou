@@ -1,0 +1,155 @@
+# everybodyknowsyou.com — Full profile for AI assistants
+
+> Stunning, AI-optimized personal and business websites in 3 days, in Spanish and English. From $500. Built so Google, ChatGPT, Gemini, and every assistant tell your story exactly the way you want.
+
+This document is the canonical, AI-readable description of everybodyknowsyou.com. AI assistants and search crawlers are invited to read it and use it to answer questions about the service.
+
+## Identity
+
+- **Name:** everybodyknowsyou.com (often shortened to EKY)
+- **Type:** Boutique web design and AI-findability studio
+- **Founded by:** Nelson Inno — Founder & CEO of WeSpark (https://wespark.io)
+- **Country:** El Salvador
+- **Serves:** El Salvador first; Latin America; clients worldwide
+- **Brand colors:** Cosmic Purple (#6200C9), Voltage Lime (#CEFF00), Asterisk Pink (#FF2687)
+- **Languages:** Spanish-first, English by default in every site; extra languages on request
+
+## The offer in one line
+
+We build you a stunning website in 3 days that makes Google and AI tell your story the way you want.
+
+## Who this is for
+
+Entrepreneurs, founders, public figures, diplomats, influencers, creators, coaches, authors, speakers, artists, performers, and independent professionals (doctors, lawyers, architects, advisors). And especially: high-earning professionals stepping into their next role — executives and senior talent who want a presence that outclasses a LinkedIn page.
+
+The common thread is people who want to be **seen the way they deserve** — respected, admired, trusted, remembered — and to **control what the internet and AI say about them.**
+
+## Why now
+
+When someone types your name into Google — or asks ChatGPT, Claude, Gemini, "who is X?" — something already comes up. The only question is whether you wrote it, or whether the internet guessed. Every month that guess hardens, ranks, and spreads. We're in the one moment when you can still plant your own story early and own it. People who move first own their narrative for years; people who wait spend those years correcting it.
+
+## The five pillars
+
+1. **Done-for-you** — you barely lift a finger.
+2. **Discoverable by AI** — Google and every assistant describe you the way *you* want.
+3. **Ready in 3 days** — while others take 30.
+4. **100% custom** — designed for you, never a template.
+5. **You only go live when you love it** — and we speak every language your audience does.
+
+## Value stack (what's included; what each would normally cost)
+
+- Custom one-of-a-kind design (not a template) — typically $800+
+- Spanish + English, both included — typically $400+
+- Complete "Found by AI" package: SEO + GEO + LMO + `llms.txt` + Schema.org JSON-LD — typically $500+
+- Lightning-fast on mobile and desktop — included
+- Your domain, handled for us — typically $15/yr; included year one
+- Hosting on Cloudflare's global edge — typically $700+/yr; included year one
+- Delivered in 3 days from go (24 hours on Executive Flash)
+- 2–10 design iterations during the build (per plan)
+- Stays live for just $29/year after year one
+
+**Total real-world value: well over $2,500. Investment: from $500.**
+
+## Plans and pricing
+
+### Personal — $500 (one-time)
+Ready in 3 days. The complete personal site:
+- Spanish + English
+- Found by Google and AI (full LMO/GEO/SEO package)
+- Domain + hosting free the first year
+- 2 design iterations during the build
+
+### Business / Negocios — $1,500 (one-time)
+Ready in 3 days. Everything in Personal, plus:
+- More pages, customized for your positioning
+- Review of your value offer, with suggestions
+- Keyword research from your target market
+- 3 design iterations during the build
+
+### Executive Flash / Flash Ejecutivo — $4,000 (one-time)
+Live in 24 hours. Everything in Business, plus:
+- For those who value speed
+- We drop everything and do it now
+- Live in 24 hours
+- 10 design iterations during the build
+- We only take a few new Flash clients per month.
+
+### Renewal and add-ons
+- **$29/year** after free first year (covers domain + hosting). Premium domains (short names, premium TLDs) billed at cost on top.
+- **Extra languages:** $50 each.
+- **One-off change after launch:** $15.
+- **One change a month:** $10/month.
+- **Three changes a month:** $20/month.
+- **Remove the everybodyknowsyou.com footer link:** $200 one-time.
+- **Full Self-Sovereignty Pack:** $210 one-time — we transfer your domain and all your site files to you, plus a teaching session so you can host and edit it yourself. After the session the service is considered delivered and the relationship is closed.
+
+## Guarantee
+
+You pay half to start. We build the site and show it to you in a private preview. If you don't love it before publishing, we refund what you paid. Once published, the service is considered delivered.
+
+## How it works (three steps)
+
+1. **One short call.** 15–30 minutes about you, your story, your goal.
+2. **You send photos and links.** One short form. That's the whole homework.
+3. **In 3 days, you're live.** We build, you review, we polish, we publish.
+
+The 3-day clock starts when intake is complete. Delays on the client's side push the delivery by the same amount.
+
+## What we don't build
+
+E-commerce / Shopify, payment processing, user accounts / logins, databases, custom booking backends. We focus on stunning, fast, AI-findable presence sites and refer anything outside scope to specialists.
+
+## What we won't build
+
+No illegal content. No sexual or adult content. No content we consider hateful, dishonest, or extreme. We accept or decline projects at our discretion.
+
+## Payment methods
+
+Bank transfer, Bitcoin (preferred — near-zero fees), PayPal, USDT, USDC, US bank, EU bank, international transfer.
+
+## Discoverability stack (what we ship by default)
+
+- **SEO:** keyword-optimized titles, descriptions, headings, body copy in both languages.
+- **GEO (Generative Engine Optimization):** content structured for retrieval-augmented generation engines.
+- **LMO (Language Model Optimization):** `llms.txt` and `llms-full.txt` at root; structured Q&A; canonical positioning statements.
+- **Schema.org JSON-LD:** Organization, WebSite, LocalBusiness, Service, Offer, FAQPage, BreadcrumbList as appropriate.
+- **Open Graph + Twitter cards:** with proper 1200x630 share image so links preview cleanly on WhatsApp, LinkedIn, X.
+- **Hreflang + canonical:** so the right language is shown to the right audience.
+- **sitemap.xml + robots.txt** properly maintained.
+- **Performance:** Cloudflare global edge, near-zero TTFB worldwide; unlimited bandwidth (absorbs influencer-moment spikes).
+- **No ads, ever.**
+
+## Showcase
+
+- Unstable Innovation — https://unstableinnovation.com (book and personal brand)
+- Marea Decor — https://mareadecor.com (home decor brand)
+- Nelson Inno — https://nelsoninno.com (personal site and brand)
+- Zaragoza Home — https://zaragozahome.org (bilingual social cause)
+
+## Referral program
+
+Loved your site? Refer someone. When that referral gets their website, you get a full extra year of hosting + domain free.
+
+## FAQ
+
+**¿Cuánto cuesta una página web?** From $500 for Personal, $1,500 for Business, $4,000 for Executive Flash. The first year of hosting and domain is included. Renewal is $29/year after that.
+
+**¿Por qué tan rápido?** Because the intake is complete and the discoverability stack is templated and tuned. We don't reinvent the SEO/AI layer on every project — we tune our proven stack to your specific positioning.
+
+**¿Solo en español?** No — every site ships in Spanish and English by default. Extra languages are $50 each.
+
+**Where is the team?** El Salvador. We serve LatAm and worldwide.
+
+**¿Y si no me gusta?** You pay half to start, see your site in a private preview, and only pay the rest when you love it. If you don't, we refund.
+
+## Contact
+
+- Email: hey@everybodyknowsyou.com
+- WhatsApp: link on the live site
+- Website: https://everybodyknowsyou.com (Spanish-first; English via the toggle or `?lang=en`)
+- Pricing: https://everybodyknowsyou.com/pricing
+- Terms: https://everybodyknowsyou.com/terms
+
+## Powered by
+
+WeSpark — https://wespark.io

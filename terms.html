@@ -5,11 +5,53 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Términos de Servicio · everybodyknowsyou.com</title>
 <meta name="description" content="Términos de Servicio de everybodyknowsyou.com: qué incluye, permanencia del contenido en línea, cambios, renovación, uso aceptable y garantía.">
+
+<link rel="canonical" href="https://everybodyknowsyou.com/terms">
+<link rel="alternate" hreflang="es" href="https://everybodyknowsyou.com/terms">
+<link rel="alternate" hreflang="en" href="https://everybodyknowsyou.com/terms?lang=en">
+<link rel="alternate" hreflang="x-default" href="https://everybodyknowsyou.com/terms">
+
+<meta property="og:title" content="Términos de Servicio · everybodyknowsyou.com">
+<meta property="og:description" content="Términos claros, en lenguaje simple: qué hacemos, permanencia online, cambios, renovación y garantía.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://everybodyknowsyou.com/terms">
+<meta property="og:site_name" content="everybodyknowsyou.com">
+<meta property="og:image" content="https://everybodyknowsyou.com/og.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:locale" content="es_SV">
+<meta property="og:locale:alternate" content="en_US">
+
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://everybodyknowsyou.com/og.jpg">
+
 <meta name="robots" content="index, follow">
-<link rel="icon" type="image/png" href="images/logo/eky-logo.png">
+
+<meta name="theme-color" content="#6200C9">
+<meta name="geo.region" content="SV">
+<meta name="geo.placename" content="El Salvador">
+<meta http-equiv="content-language" content="es-SV">
+<meta name="author" content="WeSpark / everybodyknowsyou.com">
+
+<!-- Icons -->
+<link rel="icon" type="image/png" sizes="any" href="/images/logo/eky-logo.png">
+<link rel="apple-touch-icon" href="/images/logo/eky-logo.png">
+
+<!-- Fonts -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Caveat:wght@600;700&display=swap">
+
+<!-- Pointer for AI assistants -->
+<link rel="alternate" type="text/plain" title="llms.txt" href="https://everybodyknowsyou.com/llms.txt">
+
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"Organization","@id":"https://everybodyknowsyou.com/#org","name":"everybodyknowsyou.com","alternateName":"EKY","url":"https://everybodyknowsyou.com/","logo":"https://everybodyknowsyou.com/images/logo/eky-logo-complete.png","image":"https://everybodyknowsyou.com/og.jpg","description":"Boutique studio that builds stunning, AI-optimized personal and business websites in 3 days, in Spanish and English, from El Salvador.","areaServed":["SV","GT","HN","NI","CR","PA","MX","CO","AR","CL","PE","EC","US","ES"],"email":"hey@everybodyknowsyou.com","address":{"@type":"PostalAddress","addressCountry":"SV"},"founder":{"@type":"Person","name":"Nelson Inno","url":"https://nelsoninno.com"},"parentOrganization":{"@type":"Organization","name":"WeSpark","url":"https://wespark.io"},"sameAs":["https://wespark.io"]}
+</script>
+
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Inicio","item":"https://everybodyknowsyou.com/"},{"@type":"ListItem","position":2,"name":"Términos","item":"https://everybodyknowsyou.com/terms"}]}
+</script>
 <style>
   :root{
     --bg:#FFFFFF;
@@ -148,7 +190,15 @@
 </footer>
 
 <script>
-  var lang = "es";
+  var lang = (function(){
+    try {
+      var p = new URLSearchParams(window.location.search).get('lang');
+      if (p === 'en' || p === 'es') return p;
+      var n = (navigator.language || navigator.userLanguage || '').toLowerCase();
+      if (n.indexOf('en') === 0) return 'en';
+    } catch(e) {}
+    return 'es';
+  })();
   function apply(){
     document.body.className = lang;
     document.documentElement.lang = lang;
