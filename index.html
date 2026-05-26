@@ -256,8 +256,9 @@
 .eky-sticker{ position:absolute; pointer-events:none; z-index:3; height:auto; }
 .eky-sticker.sticker-hero{ top:6%; left:4%; width:168px; animation:ekyDrift 6s ease-in-out infinite; }
 .eky-sticker.sticker-why{ top:10%; right:5%; width:120px; animation:ekyFloat 5s ease-in-out infinite; }
-.eky-sticker.sticker-pricing-bolt{ top:8%; left:5%; width:120px; animation:ekyWobble 4.5s ease-in-out infinite; }
-.eky-sticker.sticker-pricing-ai{ bottom:8%; right:5%; width:120px; animation:ekyDrift 5.5s ease-in-out infinite; }
+.eky-sticker.sticker-pricing-bolt{ top:2%; left:1%; width:110px; animation:ekyWobble 4.5s ease-in-out infinite; }
+.eky-sticker.sticker-pricing-ai{ bottom:2%; right:1%; width:110px; animation:ekyDrift 5.5s ease-in-out infinite; }
+@media (max-width:1100px){ .eky-sticker.sticker-pricing-bolt, .eky-sticker.sticker-pricing-ai{ display:none; } }
 @media (max-width:640px){ .eky-sticker{ display:none; } }
 /* center the hero eyebrow regardless of sticker presence */
 .wrap.hero{ text-align:center; }
@@ -277,7 +278,7 @@
 <main>
   <!-- HERO -->
   <section class="block">
-    <span class="ast-deco s-spin" style="top:14%;left:6%;font-size:2.6rem;color:var(--lime)">*</span>
+    <span class="ast-deco s-spin" style="top:5%;left:3%;font-size:2.6rem;color:var(--ink)">*</span>
     <span class="ast-deco s-spin" style="bottom:18%;right:8%;font-size:2.2rem;color:var(--pink)">*</span>
     <div class="char s-float" style="top:6%;right:5%;width:80px"><img src="images/characters/plup.png" alt=""></div>
     <div class="wrap hero">
@@ -293,7 +294,7 @@
   <!-- WHY: looking you up -->
   <section class="block bg-black">
     <span class="ast-deco s-spin" style="top:12%;left:6%;font-size:2.2rem;color:var(--lime)">*</span>
-    <span class="ast-deco s-spin" style="bottom:14%;right:6%;font-size:2.6rem;color:var(--pink)">*</span>
+    <span class="ast-deco s-spin" style="bottom:5%;right:3%;font-size:2.6rem;color:#fff">*</span>
     <div class="wrap">
       <h2 class="sec-title reveal" data-i18n="why_t">Ahora mismo, alguien te está buscando.</h2>
       <p class="wholine reveal" style="text-align:center;margin:-.2rem auto 1.6rem;font-family:var(--display);font-size:1.2rem;color:#fff;font-weight:500"><span data-i18n="who_lead" style="color:var(--lime);font-weight:700">Perfecto si quieres</span> <span class="rot" id="rotwho">conseguir un trabajo mejor pagado</span></p>
@@ -303,7 +304,6 @@
 
   <!-- PILLARS: why people choose us -->
   <section class="block bg-pink">
-  <img class="char-left" src="/images/characters/blob.png" alt="" aria-hidden="true">
   <div class="wrap">
     <p class="eyebrow" data-i18n="audit_eyebrow">No confíes — verifica.</p>
     <h2 data-i18n="audit_h2">Escribe tu nombre. Mira lo que la IA dice de ti.</h2>
@@ -375,9 +375,9 @@
   <!-- PRICING -->
   <section class="block">
     <span class="ast-deco s-spin" style="top:6%;right:4%;font-size:2.4rem;color:var(--lime)">*</span>
+    <img class="eky-sticker sticker-pricing-bolt" src="/images/decorations/lightningsticker.png" alt="" aria-hidden="true">
+    <img class="eky-sticker sticker-pricing-ai" src="/images/decorations/AIsticker.png" alt="" aria-hidden="true">
     <div class="wrap">
-      <img class="eky-sticker sticker-pricing-bolt" src="/images/decorations/lightningsticker.png" alt="" aria-hidden="true">
-      <img class="eky-sticker sticker-pricing-ai" src="/images/decorations/AIsticker.png" alt="" aria-hidden="true">
       <h2 class="sec-title reveal" data-i18n="price_t">Elige tu plan</h2>
       <p class="sec-sub reveal" data-i18n="price_s">Pago único, sin sorpresas. La renovación anual es solo $29.</p>
       <div class="grid g3">
@@ -460,7 +460,7 @@
     <p data-i18n="foot">Sitios web impresionantes en 3 días &middot; Español e inglés &middot; Hecho con cariño en El Salvador</p>
     <p class="flinks"><a href="/pricing" data-i18n="f_pricing">Precios</a> &middot; <a href="/terms" data-i18n="f_terms">Términos</a></p>
     <p><a class="btn small cta" data-tier="generic" href="#" target="_blank" data-i18n="cta_short">¡Hazme mi sitio web!</a></p>
-    <p class="powered"><a href="https://wespark.io" target="_blank"><span data-i18n="powered">Impulsado por</span> <img src="WeSpark%20Logo%20Classic%20White%20Wide.png" alt="WeSpark"></a></p>
+    <p class="powered"><a href="https://wespark.io" target="_blank"><span data-i18n="powered">Impulsado por</span> <img src="/WeSpark%20Logo%20Classic%20White%20Wide.png" alt="WeSpark"></a></p>
   </div>
 </footer>
 
