@@ -9,7 +9,7 @@
 <link rel="icon" type="image/png" href="images/logo/eky-logo.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Caveat:wght@600;700&display=swap">
 <style>
   :root{
     --bg:#FFFFFF;
@@ -21,6 +21,7 @@
     --hard:0 6px 0 var(--ink);
     --hard-sm:0 4px 0 var(--ink);
     --display:'Fredoka',system-ui,sans-serif;
+    --hand:'Caveat',cursive;
     --max:1000px;
   }
   *{margin:0;padding:0;box-sizing:border-box}
@@ -38,7 +39,7 @@
   .btn{display:inline-block;cursor:pointer;font-family:var(--display);font-weight:700;font-size:1.05rem;background:var(--lime);color:var(--ink);border:2px solid var(--ink);border-radius:999px;padding:.8rem 1.65rem;text-decoration:none;box-shadow:var(--hard);transition:transform .08s,box-shadow .08s}
   .btn:hover{transform:translateY(3px);box-shadow:var(--hard-sm)}
   .hero{text-align:center;padding:clamp(2.4rem,6vw,4rem) 0 1rem}
-  .eyebrow{display:inline-block;font-family:var(--display);font-weight:700;text-transform:uppercase;letter-spacing:.12em;font-size:.78rem;background:var(--lime);color:var(--ink);padding:.32rem .9rem;border:2px solid var(--ink);border-radius:999px;margin-bottom:1rem;box-shadow:var(--hard-sm)}
+  .eyebrow{display:inline-block;font-family:var(--hand);font-weight:700;font-size:1.8rem;color:var(--pink);transform:rotate(-2deg);margin-bottom:.6rem}
   .hero h1{font-size:clamp(2.1rem,6vw,3.4rem);margin:.2rem 0 .55rem}
   .hero p{max-width:640px;margin:0 auto;opacity:.85}
   .block{padding:clamp(2rem,5vw,3.2rem) 0}
