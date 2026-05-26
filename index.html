@@ -94,20 +94,24 @@
   .bg-black{background:var(--ink);color:#fff}
   
 /* === audit hand-off pink section === */
-.bg-pink{ background:var(--pink); color:#fff; }
-.bg-pink .eyebrow{ font-family:var(--hand); color:#fff; }
-.bg-pink h2{ color:#fff; }
-.bg-pink .lead{ color:#fff; }
+.bg-pink{ background:var(--pink); color:#fff; position:relative; overflow:hidden; }
+.bg-pink .wrap{ text-align:center; position:relative; z-index:2; }
+.bg-pink .eyebrow{ font-family:var(--hand); color:#fff; font-size:28.8px; font-weight:700; text-align:center; margin:0 0 6px; }
+.bg-pink h2{ color:#fff; font-family:var(--display); font-weight:700; font-size:clamp(34px, 6vw, 54.4px); line-height:1.05; text-align:center; margin:6px 0 12px; }
+.bg-pink .lead{ color:#fff; text-align:center; max-width:640px; margin:0 auto; }
+.bg-pink .lead-sm{ color:#fff; font-size:14px; opacity:.9; margin:12px auto 0; text-align:center; max-width:640px; }
+.bg-pink .char-left{ position:absolute; left:24px; top:50%; transform:translateY(-50%); width:140px; height:auto; pointer-events:none; z-index:1; }
+@media (max-width:1024px){ .bg-pink .char-left{ width:100px; left:12px; } }
+@media (max-width:760px){ .bg-pink .char-left{ display:none; } }
 .audit-form{ display:flex; flex-wrap:wrap; gap:12px; align-items:stretch; justify-content:center; margin:28px auto 0; max-width:780px; }
 .audit-form select, .audit-form input{ background:#fff; color:var(--ink); border:2px solid var(--ink); border-radius:12px; padding:0 14px; height:56px; font:inherit; font-weight:500; font-size:16px; box-shadow:0 4px 0 var(--ink); }
 .audit-form select{ flex:0 0 200px; cursor:pointer; }
-.audit-form input{ flex:1 1 280px; min-width:0; }
+.audit-form input{ flex:1 1 280px; min-width:0; text-align:center; }
 .audit-form input::placeholder{ color:#777; }
 .audit-form input:focus, .audit-form select:focus{ outline:3px solid var(--lime); }
 .audit-form button{ flex:0 0 auto; height:56px; padding:0 28px; background:var(--lime); color:var(--ink); border:2px solid var(--ink); border-radius:12px; font:inherit; font-weight:700; font-size:18px; cursor:pointer; box-shadow:0 4px 0 var(--ink); transition:transform .08s, box-shadow .08s; }
 .audit-form button:hover{ filter:brightness(1.04); }
 .audit-form button:active{ transform:translateY(2px); box-shadow:0 2px 0 var(--ink); }
-.bg-pink .lead-sm{ font-size:14px; opacity:.9; margin-top:12px; }
 @media (max-width:640px){ .audit-form select, .audit-form input, .audit-form button{ flex:1 1 100%; } }
 
 .bg-purple{background:var(--purple);color:#fff}
@@ -282,6 +286,7 @@
 
   <!-- PILLARS: why people choose us -->
   <section class="block bg-pink">
+  <img class="char-left" src="/images/characters/blob.png" alt="" aria-hidden="true">
   <div class="wrap">
     <p class="eyebrow" data-i18n="audit_eyebrow">No confíes — verifica.</p>
     <h2 data-i18n="audit_h2">Escribe tu nombre. Mira lo que la IA dice de ti.</h2>
