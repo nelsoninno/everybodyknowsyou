@@ -286,6 +286,29 @@ input.eky-text:focus, select.eky-select:focus{ outline:3px solid var(--lime); ou
 #ekyNoSite{ background:var(--purple); color:#fff; }
 #ekyNoSite:hover{ background:var(--purple-deep); filter:none; }
 
+.eky-header{ background:#fff; border-bottom:2px solid var(--ink); padding:14px 24px; position:sticky; top:0; z-index:50; }
+.eky-header .wrap{ max-width:1140px; margin:0 auto; display:flex; align-items:center; justify-content:space-between; gap:16px; }
+.eky-header .brand-link{ display:inline-flex; align-items:center; }
+.eky-header .brand{ height:34px; width:auto; display:block; }
+.eky-header .nav-cta{ display:flex; align-items:center; gap:12px; }
+.eky-header .eky-lang{ box-shadow:0 3px 0 var(--ink); }
+.eky-header .cta-small{ height:40px; padding:0 18px; background:var(--lime); color:var(--ink); border:2px solid var(--ink); border-radius:999px; font-weight:700; font-size:14px; display:inline-flex; align-items:center; justify-content:center; text-decoration:none; box-shadow:0 4px 0 var(--ink); transition:transform .08s, box-shadow .08s; }
+.eky-header .cta-small:hover{ filter:brightness(1.04); }
+.eky-header .cta-small:active{ transform:translateY(2px); box-shadow:0 2px 0 var(--ink); }
+
+.eky-footer{ background:var(--ink); color:#fff; padding:48px 24px 36px; margin-top:56px; }
+.eky-footer .wrap{ max-width:1140px; margin:0 auto; display:flex; flex-direction:column; align-items:center; gap:14px; text-align:center; }
+.eky-footer .big{ font-weight:700; font-size:26px; margin:0; color:#fff; line-height:1.2; letter-spacing:-.01em; }
+.eky-footer .big .pop{ color:var(--lime); }
+.eky-footer .footer-cta{ display:inline-flex; align-items:center; justify-content:center; height:54px; padding:0 28px; background:var(--lime); color:var(--ink); border:2px solid var(--ink); border-radius:999px; font-weight:700; font-size:18px; text-decoration:none; box-shadow:0 6px 0 #fff; transition:transform .08s, box-shadow .08s; }
+.eky-footer .footer-cta:hover{ filter:brightness(1.04); }
+.eky-footer .footer-cta:active{ transform:translateY(2px); box-shadow:0 3px 0 #fff; }
+.eky-footer .meta{ font-size:14px; margin:6px 0 0; color:rgba(255,255,255,.78); font-weight:500; }
+.eky-footer .powered{ margin:18px 0 0; font-family:var(--font-hand); font-size:22px; color:#fff; }
+.eky-footer .powered a{ color:var(--lime); text-decoration:none; font-weight:600; }
+
+@media (max-width:720px){ .eky-header .brand{ height:28px; } .eky-header .cta-small{ padding:0 14px; font-size:13px; } }
+
 @media (max-width:560px){
   .eky-country, .eky-input-cell{ flex:1 1 100%; }
   .eky-cta{ width:100%; }
@@ -298,12 +321,20 @@ input.eky-text:focus, select.eky-select:focus{ outline:3px solid var(--lime); ou
 <body>
 <div class="eky-page">
 
-  <div class="eky-top">
-    <div class="eky-lang" role="group" aria-label="Language">
-      <button type="button" data-lang="en" class="on">EN</button>
-      <button type="button" data-lang="es">ES</button>
+  <header class="eky-header">
+    <div class="wrap">
+      <a class="brand-link" href="/" aria-label="everybodyknowsyou.com">
+        <img class="brand" src="/images/logo/eky-logo-complete.png" alt="everybodyknowsyou.com">
+      </a>
+      <div class="nav-cta">
+        <div class="eky-lang" role="group" aria-label="Language">
+          <button type="button" data-lang="en" class="on">EN</button>
+          <button type="button" data-lang="es">ES</button>
+        </div>
+        <a class="cta-small" href="/" data-t="header_cta">¡Hazme mi sitio web!</a>
+      </div>
     </div>
-  </div>
+  </header>
 
   <header class="eky-hero">
     <p class="eky-eyebrow" data-t="eyebrow">In the age of AI</p>
@@ -415,10 +446,25 @@ input.eky-text:focus, select.eky-select:focus{ outline:3px solid var(--lime); ou
       <div class="b3" data-t="cta_meta">Ready in 3 days · From $500 · In Spanish and English</div>
     </section>
 
-    <p style="text-align:center; color:var(--text-muted); font-size:12px; margin-top:30px;" data-t="footer">
+    <p style="text-align:center; color:var(--muted); font-size:13px; margin-top:30px;" data-t="footer">
       A free check by Everybody Knows You · helping people, projects and brands be understood by AI.
     </p>
   </div>
+</div>
+
+<footer class="eky-footer">
+  <div class="wrap">
+    <p class="big" data-t="footer_cta_line">¿Listo para que la IA cuente <span class="pop">tu</span> historia?</p>
+    <a class="footer-cta" href="/" data-t="footer_cta_btn">¡Hazme mi sitio web! →</a>
+    <p class="meta" data-t="footer_meta">Listo en 3 días · Desde $500 · En español e inglés</p>
+    <p class="powered"><a href="https://wespark.io" target="_blank"><span data-t="footer_powered">Impulsado por</span> WeSpark</a></p>
+  </div>
+</footer>
+
+<!-- closed page wrappers above by new footer block -->
+<div style="display:none">
+  </div>
+</div>
 </div>
 
 <script>
@@ -500,6 +546,11 @@ const STRINGS = {
     cta_btn:       "Build me my website →",
     cta_meta:      "Ready in 3 days · From $500 · In Spanish and English",
     footer:        "A free check by Everybody Knows You · helping people, projects and brands be understood by AI.",
+    header_cta:    "Build me my website!",
+    footer_cta_line:'Ready for AI to tell <span class="pop">your</span> story?',
+    footer_cta_btn: "Build me my website! →",
+    footer_meta:   "Ready in 3 days · From $500 · In Spanish and English",
+    footer_powered:"Powered by",
     bands: {
       excellent: "AI knows you cold.",
       high:      "AI mostly gets you right.",
@@ -596,6 +647,11 @@ const STRINGS = {
     cta_btn:       "Construir mi sitio web →",
     cta_meta:      "Listo en 3 días · Desde $500 · En español e inglés",
     footer:        "Una revisión gratis de Everybody Knows You · ayudando a personas, proyectos y marcas a ser entendidos por la IA.",
+    header_cta:    "¡Hazme mi sitio web!",
+    footer_cta_line:'¿Listo para que la IA cuente <span class="pop">tu</span> historia?',
+    footer_cta_btn: "¡Hazme mi sitio web! →",
+    footer_meta:   "Listo en 3 días · Desde $500 · En español e inglés",
+    footer_powered:"Impulsado por",
     bands: {
       excellent: "La IA te conoce perfectamente.",
       high:      "La IA te entiende bastante bien.",
