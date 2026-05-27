@@ -139,6 +139,10 @@
   .nav-cta{display:flex;align-items:center;gap:.6rem;flex-shrink:0}
   .lang{cursor:pointer;background:#fff;border:2px solid var(--ink);border-radius:999px;font-family:var(--display);font-weight:600;padding:.25rem .85rem;font-size:.85rem}
 
+  .eky-lang{display:inline-flex;gap:2px;background:#fff;border:2px solid var(--ink);border-radius:999px;padding:4px 5px;box-shadow:0 3px 0 var(--ink)}
+  .eky-lang a, .eky-lang span{font-family:inherit;font-weight:600;font-size:13px;color:#666;padding:5px 11px;border-radius:999px;text-decoration:none;line-height:1;display:inline-flex;align-items:center;cursor:pointer}
+  .eky-lang .on{background:var(--ink);color:#fff;cursor:default}
+  .eky-lang a:hover{background:rgba(0,0,0,.04)}
   .btn{display:inline-block;cursor:pointer;font-family:var(--display);font-weight:700;font-size:1.05rem;background:var(--lime);color:var(--ink);border:2px solid var(--ink);border-radius:999px;padding:.85rem 1.7rem;text-decoration:none;box-shadow:var(--hard);transition:transform .08s,box-shadow .08s}
   .btn:hover{transform:translateY(3px);box-shadow:var(--hard-sm)}
   .btn.small{padding:.5rem 1.05rem;font-size:.9rem;box-shadow:var(--hard-sm)}
@@ -265,7 +269,10 @@
   <div class="wrap bar">
     <a href="/" aria-label="everybodyknowsyou.com"><img class="brand" src="/images/logo/eky-logo-complete.png" alt="everybodyknowsyou.com"></a>
     <div class="nav-cta">
-      <span class="lang" id="langBtn">ES</span>
+      <div class="eky-lang" role="group" aria-label="Language">
+        <span class="on">EN</span>
+        <a href="/es/" onclick="try{localStorage.setItem('eky_lang','es')}catch(e){}">ES</a>
+      </div>
       <a class="btn small cta" data-tier="generic" href="#" target="_blank" data-i18n="cta_short">Build me my website!</a>
     </div>
   </div>
@@ -302,7 +309,7 @@
   <section class="block bg-pink">
   <div class="wrap">
     <p class="eyebrow" data-i18n="audit_eyebrow">Don't trust — verify.</p>
-    <h2 data-i18n="audit_h2">Type your name. See what AI says about you.</h2>
+    <h2 data-i18n="audit_h2">Type your name.<br>See what AI says about you.</h2>
     <p class="lead" data-i18n="audit_lead">A free audit, in seconds. No strings.</p>
     <form class="audit-form" action="/audit/" method="get">
       <select name="country" aria-label="Country">
@@ -474,7 +481,6 @@
     document.querySelectorAll("[data-i18n]").forEach(function(el){ var k=el.getAttribute("data-i18n"); if(d[k]!==undefined) el.textContent=d[k]; });
     document.querySelectorAll("[data-i18n-html]").forEach(function(el){ var k=el.getAttribute("data-i18n-html"); if(d[k]!==undefined) el.innerHTML=d[k]; });
     document.documentElement.lang = lang;
-    document.getElementById("langBtn").textContent = (lang==="es") ? "EN" : "ES";
     document.querySelectorAll("a.cta").forEach(function(a){ var t=a.getAttribute("data-tier")||"generic"; var m=d["wa_"+t]||d.wa_generic; a.setAttribute("href","https://wa.me/"+WHATSAPP_NUMBER+"?text="+encodeURIComponent(m)); });
   }
   var ROT={es:["clientes","colegas","fans","amigos","próximo jefe","familia","estudiantes","empleados","seguidores","inversionistas","equipo","suscriptores"],en:["customers","colleagues","fans","friends","next employer","family","students","employees","followers","investors","team","subscribers"]};
@@ -482,7 +488,6 @@
   var ri=0, ri2=0;
   function rot(){ var a=ROT[lang]; var el=document.getElementById("rotword"); if(el) el.textContent=a[ri%a.length]; }
   function rotwho(){ var a=ROTWHO[lang]; var el=document.getElementById("rotwho"); if(el) el.textContent=a[ri2%a.length]; }
-  document.getElementById("langBtn").addEventListener("click", function(){ try{localStorage.setItem("eky_lang","es")}catch(e){} window.location.href = "/es/"; });
   apply(); rot(); rotwho();
   setInterval(function(){ ri++; rot(); }, 1500);
   setInterval(function(){ ri2++; rotwho(); }, 2400);

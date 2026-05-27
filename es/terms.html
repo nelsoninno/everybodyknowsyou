@@ -111,6 +111,10 @@
   ol.terms h3{font-size:1.15rem;margin-bottom:.35rem}
   ol.terms p{opacity:.9;font-size:.98rem;font-weight:500}
   .flag{background:var(--lime);padding:.2rem .5rem;border-radius:4px;color:var(--ink);font-weight:700}
+  .eky-lang{display:inline-flex;gap:2px;background:#fff;border:2px solid var(--ink);border-radius:999px;padding:4px 5px;box-shadow:0 3px 0 var(--ink)}
+  .eky-lang a, .eky-lang span{font-family:inherit;font-weight:600;font-size:13px;color:#666;padding:5px 11px;border-radius:999px;text-decoration:none;line-height:1;display:inline-flex;align-items:center;cursor:pointer}
+  .eky-lang .on{background:var(--ink);color:#fff;cursor:default}
+  .eky-lang a:hover{background:rgba(0,0,0,.04)}
   .btn{display:inline-block;cursor:pointer;font-family:var(--display);font-weight:700;font-size:1.05rem;background:var(--lime);color:var(--ink);border:2px solid var(--ink);border-radius:999px;padding:.8rem 1.65rem;text-decoration:none;box-shadow:var(--hard);transition:transform .08s,box-shadow .08s}
   .btn:hover{transform:translateY(3px);box-shadow:var(--hard-sm)}
   .btn.small{padding:.5rem 1.05rem;font-size:.9rem;box-shadow:var(--hard-sm)}
@@ -138,7 +142,10 @@
     <a href="/es/" aria-label="everybodyknowsyou.com"><img class="brand" src="/images/logo/eky-logo-complete.png" alt="everybodyknowsyou.com"></a>
     <div class="nav-cta">
       <a class="home" href="/es/">Inicio</a>
-      <a class="lang" onclick="try{localStorage.setItem('eky_lang','en')}catch(e){}" href="/terms">EN</a>
+      <div class="eky-lang" role="group" aria-label="Language">
+        <a href="/terms" onclick="try{localStorage.setItem('eky_lang','en')}catch(e){}">EN</a>
+        <span class="on">ES</span>
+      </div>
     </div>
   </div>
 </header>
@@ -234,7 +241,6 @@
     document.body.className = lang;
     document.documentElement.lang = lang;
       }
-  document.getElementById("langBtn").addEventListener("click", function(){ lang = (lang==="es") ? "en" : "es"; apply(); });
   apply();
   // Wire up WhatsApp CTAs (uses the `lang` variable from the lang switcher above)
   var WHATSAPP_NUMBER = "50374927681";
