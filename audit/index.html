@@ -304,6 +304,8 @@ input.eky-text:focus, select.eky-select:focus{ outline:3px solid var(--lime); ou
 .eky-cta-banner .bh .pop{ color:var(--purple); }
 .eky-cta-banner .bs{ color:var(--ink); font-size:16px; line-height:1.5; margin:0 0 18px; font-weight:500; }
 .eky-cta-banner .b3{ display:inline-block; font-size:13px; color:var(--ink); margin-top:14px; font-weight:600; }
+.eky-cta-banner .ast-mark{ color:var(--purple); font-size:.7em; vertical-align:super; line-height:0; margin-left:.1em; font-weight:700; }
+.eky-cta-banner .bnote{ max-width:560px; margin:14px auto 0; font-size:13px; line-height:1.5; color:var(--ink); opacity:.72; font-weight:500; text-align:center; }
 .eky-cta-banner .eky-cta{ background:var(--purple); color:#fff; border-color:var(--ink); }
 .eky-cta-banner .eky-cta:hover{ background:var(--purple-deep); filter:none; }
 
@@ -478,6 +480,7 @@ input.eky-text:focus, select.eky-select:focus{ outline:3px solid var(--lime); ou
       <div class="bs" data-t="cta_s"></div>
       <a id="ekyCtaLink" class="eky-cta" href="/" data-t="cta_btn">Build my website →</a>
       <div class="b3" data-t="cta_meta">Ready in 3 days · From $500 · In Spanish and English</div>
+      <p class="bnote" data-t="cta_h_note"></p>
     </section>
 
   </div>
@@ -577,7 +580,8 @@ const STRINGS = {
     layer_a:       "Where AI finds you",
     layer_b:       "Your own hub",
     how_to_improve:"How to improve",
-    cta_h:         'Want to be at <span class="pop">100%</span> in 3 days?',
+    cta_h:         'Want to be at <span class="pop">100%</span> in 3 days?<sup class="ast-mark">*</sup>',
+    cta_h_note:    "*Some signals (search rankings, AI memory of you, profile cross-links) take days, sometimes weeks, to propagate. But the biggest jump — your own website, properly optimized — happens inside our 3-day window.",
     cta_s:         "We build the website that makes AI tell your story exactly the way you want.",
     cta_btn:       "Build me my website →",
     cta_meta:      "Ready in 3 days · From $500 · In Spanish and English",
@@ -678,7 +682,8 @@ const STRINGS = {
     layer_a:       "Dónde te encuentra la IA",
     layer_b:       "Tu propio sitio",
     how_to_improve:"Cómo mejorar",
-    cta_h:         '¿Quieres estar al <span class="pop">100%</span> en 3 días?',
+    cta_h:         '¿Quieres estar al <span class="pop">100%</span> en 3 días?<sup class="ast-mark">*</sup>',
+    cta_h_note:    "*Algunas señales (rankings de búsqueda, lo que la IA recuerda de ti, los enlaces que conectan tus perfiles) tardan días, a veces semanas, en propagarse. Pero el salto más grande —tu propio sitio web, bien optimizado— ocurre dentro de nuestra ventana de 3 días.",
     cta_s:         "Construimos el sitio que hace que la IA cuente tu historia exactamente como tú quieres.",
     cta_btn:       "Construir mi sitio web →",
     cta_meta:      "Listo en 3 días · Desde $500 · En español e inglés",
