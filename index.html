@@ -106,6 +106,23 @@
   .block>.wrap{position:relative;z-index:2}
 
   .bg-black{background:var(--ink);color:#fff}
+  .bg-pink{ background:var(--pink); color:#fff; position:relative; overflow:hidden; }
+.bg-pink .wrap{ text-align:center; position:relative; z-index:2; }
+.bg-pink .eyebrow{ font-family:var(--hand); color:#fff; font-size:28.8px; font-weight:700; text-align:center; margin:0 0 6px; }
+.bg-pink h2{ color:#fff; font-family:var(--display); font-weight:700; font-size:clamp(34px, 6vw, 54.4px); line-height:1.05; text-align:center; margin:6px 0 12px; }
+.bg-pink .lead{ color:#fff; text-align:center; max-width:640px; margin:0 auto; }
+.bg-pink .lead-sm{ color:#fff; font-size:14px; opacity:.9; margin:12px auto 0; text-align:center; max-width:640px; }
+.audit-form{ display:flex; flex-wrap:wrap; gap:12px; align-items:stretch; justify-content:center; margin:28px auto 0; max-width:780px; }
+.audit-form select, .audit-form input{ background:#fff; color:var(--ink); border:2px solid var(--ink); border-radius:12px; padding:0 14px; height:56px; font:inherit; font-weight:500; font-size:16px; box-shadow:0 4px 0 var(--ink); }
+.audit-form select{ flex:0 0 200px; cursor:pointer; }
+.audit-form input{ flex:1 1 280px; min-width:0; text-align:center; }
+.audit-form input::placeholder{ color:#777; }
+.audit-form input:focus, .audit-form select:focus{ outline:3px solid var(--lime); }
+.audit-form button{ flex:0 0 auto; height:56px; padding:0 28px; background:var(--lime); color:var(--ink); border:2px solid var(--ink); border-radius:12px; font:inherit; font-weight:700; font-size:18px; cursor:pointer; box-shadow:0 4px 0 var(--ink); transition:transform .08s, box-shadow .08s; }
+.audit-form button:hover{ filter:brightness(1.04); }
+.audit-form button:active{ transform:translateY(2px); box-shadow:0 2px 0 var(--ink); }
+@media (max-width:640px){ .audit-form select, .audit-form input, .audit-form button{ flex:1 1 100%; } }
+
   .bg-purple{background:var(--purple);color:#fff}
   .bg-lime{background:var(--lime);color:var(--ink)}
   .bg-soft{background:#F7F2FF}
@@ -246,7 +263,7 @@
 <body>
 <header>
   <div class="wrap bar">
-    <a href="/" aria-label="everybodyknowsyou.com"><img class="brand" src="images/logo/eky-logo-complete.png" alt="everybodyknowsyou.com"></a>
+    <a href="/" aria-label="everybodyknowsyou.com"><img class="brand" src="/images/logo/eky-logo-complete.png" alt="everybodyknowsyou.com"></a>
     <div class="nav-cta">
       <span class="lang" id="langBtn">ES</span>
       <a class="btn small cta" data-tier="generic" href="#" target="_blank" data-i18n="cta_short">Build me my website!</a>
@@ -259,7 +276,7 @@
   <section class="block">
     <span class="ast-deco s-spin" style="top:5%;left:3%;font-size:2.6rem;color:var(--ink)">*</span>
     <span class="ast-deco s-spin" style="bottom:18%;right:8%;font-size:2.2rem;color:var(--pink)">*</span>
-    <div class="char s-float" style="top:6%;right:5%;width:80px"><img src="images/characters/plup.png" alt=""></div>
+    <div class="char s-float" style="top:6%;right:5%;width:80px"><img src="/images/characters/plup.png" alt=""></div>
     <div class="wrap hero">
       <span class="eyebrow" data-i18n="eyebrow">In the age of AI</span>
       <h1><span data-i18n="h1a">In 3 days,</span><br><span class="hl" data-i18n="h1b">everybody knows you.</span></h1>
@@ -280,9 +297,41 @@
     </div>
   </section>
 
+
+  <!-- AUDIT: free check (pink) -->
+  <section class="block bg-pink">
+  <div class="wrap">
+    <p class="eyebrow" data-i18n="audit_eyebrow">Don't trust — verify.</p>
+    <h2 data-i18n="audit_h2">Type your name. See what AI says about you.</h2>
+    <p class="lead" data-i18n="audit_lead">A free audit, in seconds. No strings.</p>
+    <form class="audit-form" action="/audit/" method="get">
+      <select name="country" aria-label="Country">
+        <option value="SV">El Salvador</option>
+        <option value="US">United States</option>
+        <option value="MX">Mexico</option>
+        <option value="GT">Guatemala</option>
+        <option value="HN">Honduras</option>
+        <option value="CR">Costa Rica</option>
+        <option value="PA">Panama</option>
+        <option value="CO">Colombia</option>
+        <option value="AR">Argentina</option>
+        <option value="CL">Chile</option>
+        <option value="PE">Peru</option>
+        <option value="EC">Ecuador</option>
+        <option value="DO">Dominican Republic</option>
+        <option value="ES">Spain</option>
+        <option value="__">Worldwide</option>
+      </select>
+      <input type="text" name="q" placeholder="Your name, brand, or business" aria-label="Your name, brand, or business" required>
+      <button type="submit" data-i18n="audit_btn">Check me now →</button>
+    </form>
+    <p class="lead-sm" data-i18n="audit_meta">See exactly what AI says about you — and what it's missing.</p>
+  </div>
+</section>
+
   <!-- PILLARS: why people choose us -->
   <section class="block">
-    <div class="char s-float" style="top:4%;right:3%;width:130px"><img src="images/characters/blob.png" alt=""></div>
+    <div class="char s-float" style="top:4%;right:3%;width:130px"><img src="/images/characters/blob.png" alt=""></div>
     <div class="wrap">
       <h2 class="sec-title reveal" data-i18n="pill_t">Why people choose us</h2>
       <div class="sec-sub"></div>
@@ -336,7 +385,7 @@
 
   <!-- GUARANTEE -->
   <section class="block bg-purple">
-    <div class="char s-float" style="top:8%;right:5%;width:140px"><img src="images/characters/mlem.png" alt=""></div>
+    <div class="char s-float" style="top:8%;right:5%;width:140px"><img src="/images/characters/mlem.png" alt=""></div>
     <span class="ast-deco s-spin" style="bottom:10%;left:6%;font-size:2.4rem;color:var(--lime)">*</span>
     <div class="wrap" style="text-align:center">
       <h2 class="sec-title reveal" data-i18n="g_t">No risk for you</h2>
@@ -352,19 +401,19 @@
       <p class="sec-sub reveal" data-i18n="pr_s">Real sites we've built:</p>
       <div class="grid g4">
         <a class="project-card reveal" href="https://unstableinnovation.com" target="_blank" rel="noopener">
-          <img class="thumb" src="images/website-thumbnails/unstableinnovationbook.jpg" alt="Unstable Innovation" loading="lazy">
+          <img class="thumb" src="/images/website-thumbnails/unstableinnovationbook.jpg" alt="Unstable Innovation" loading="lazy">
           <div class="meta"><div class="nm">Unstable Innovation</div><div class="tg" data-i18n="pr1">Book and personal brand</div><span class="go" data-i18n="pr_visit">Visit</span></div>
         </a>
         <a class="project-card reveal" href="https://mareadecor.com" target="_blank" rel="noopener">
-          <img class="thumb" src="images/website-thumbnails/marea.jpg" alt="Marea Decor" loading="lazy">
+          <img class="thumb" src="/images/website-thumbnails/marea.jpg" alt="Marea Decor" loading="lazy">
           <div class="meta"><div class="nm">Marea Decor</div><div class="tg" data-i18n="pr4">Home decor brand</div><span class="go" data-i18n="pr_visit">Visit</span></div>
         </a>
         <a class="project-card reveal" href="https://nelsoninno.com" target="_blank" rel="noopener">
-          <img class="thumb" src="images/website-thumbnails/nelsoninno.jpg" alt="Nelson Inno" loading="lazy">
+          <img class="thumb" src="/images/website-thumbnails/nelsoninno.jpg" alt="Nelson Inno" loading="lazy">
           <div class="meta"><div class="nm">Nelson Inno</div><div class="tg" data-i18n="pr2">Personal site and brand</div><span class="go" data-i18n="pr_visit">Visit</span></div>
         </a>
         <a class="project-card reveal" href="https://zaragozahome.org" target="_blank" rel="noopener">
-          <img class="thumb" src="images/website-thumbnails/zaragozahome.jpg" alt="Zaragoza Home" loading="lazy">
+          <img class="thumb" src="/images/website-thumbnails/zaragozahome.jpg" alt="Zaragoza Home" loading="lazy">
           <div class="meta"><div class="nm">Zaragoza Home</div><div class="tg" data-i18n="pr3">Bilingual social cause</div><span class="go" data-i18n="pr_visit">Visit</span></div>
         </a>
       </div>
