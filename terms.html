@@ -1,26 +1,44 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="en">
 <head>
+<script>
+(function(){
+  try {
+    if (localStorage.getItem("eky_lang")) return; // already chose; respect
+    var referrer = document.referrer || "";
+    var nav = (navigator.language || navigator.userLanguage || "").toLowerCase();
+    var browserPrefersEs = nav.indexOf("es") === 0;
+    var spanishTld = /\.(es|mx|ar|cl|co|pe|ec|gt|sv|hn|ni|cr|pa|do|ve|bo|py|uy|cu|pr)(\/|:|$)/i;
+    var referrerEs = referrer && spanishTld.test(referrer);
+    if (browserPrefersEs || referrerEs) {
+      localStorage.setItem("eky_lang", "es");
+      var dest = "/es/" + (window.location.search || "") + (window.location.hash || "");
+      window.location.replace(dest);
+    }
+  } catch (e) {}
+})();
+</script>
+
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Términos de Servicio · everybodyknowsyou.com</title>
-<meta name="description" content="Términos de Servicio de everybodyknowsyou.com: qué incluye, permanencia del contenido en línea, cambios, renovación, uso aceptable y garantía.">
+<title>Terms of Service · everybodyknowsyou.com</title>
+<meta name="description" content="Terms of Service for everybodyknowsyou.com: what we do, permanence of online content, changes, renewal, acceptable use, and guarantee.">
 
 <link rel="canonical" href="https://everybodyknowsyou.com/terms">
-<link rel="alternate" hreflang="es" href="https://everybodyknowsyou.com/terms">
-<link rel="alternate" hreflang="en" href="https://everybodyknowsyou.com/en/terms">
+<link rel="alternate" hreflang="en" href="https://everybodyknowsyou.com/terms">
+<link rel="alternate" hreflang="es" href="https://everybodyknowsyou.com/es/terms">
 <link rel="alternate" hreflang="x-default" href="https://everybodyknowsyou.com/terms">
 
-<meta property="og:title" content="Términos de Servicio · everybodyknowsyou.com">
-<meta property="og:description" content="Términos claros, en lenguaje simple: qué hacemos, permanencia online, cambios, renovación y garantía.">
+<meta property="og:title" content="Terms of Service · everybodyknowsyou.com">
+<meta property="og:description" content="Clear, plain-language terms: what we do, online permanence, changes, renewal, and guarantee.">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://everybodyknowsyou.com/terms">
 <meta property="og:site_name" content="everybodyknowsyou.com">
 <meta property="og:image" content="https://everybodyknowsyou.com/images/everybodyknowsyou_socialshare.jpg">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
-<meta property="og:locale" content="es_SV">
-<meta property="og:locale:alternate" content="en_US">
+<meta property="og:locale" content="en_US">
+<meta property="og:locale:alternate" content="es_SV">
 
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:image" content="https://everybodyknowsyou.com/images/everybodyknowsyou_socialshare.jpg">
@@ -30,28 +48,26 @@
 <meta name="theme-color" content="#6200C9">
 <meta name="geo.region" content="SV">
 <meta name="geo.placename" content="El Salvador">
-<meta http-equiv="content-language" content="es-SV">
+<meta http-equiv="content-language" content="en">
 <meta name="author" content="WeSpark / everybodyknowsyou.com">
 
-<!-- Icons -->
 <link rel="icon" type="image/jpeg" href="/images/favicon.jpg">
 <link rel="apple-touch-icon" href="/images/favicon.jpg">
 
-<!-- Fonts -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Caveat:wght@600;700&display=swap">
 
-<!-- Pointer for AI assistants -->
 <link rel="alternate" type="text/plain" title="llms.txt" href="https://everybodyknowsyou.com/llms.txt">
 
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"Organization","@id":"https://everybodyknowsyou.com/#org","name":"everybodyknowsyou.com","alternateName":"EKY","url":"https://everybodyknowsyou.com/","logo":"https://everybodyknowsyou.com/images/logo/eky-logo-complete.png","image":"https://everybodyknowsyou.com/images/everybodyknowsyou_socialshare.jpg","description":"Boutique studio that builds stunning, AI-optimized personal and business websites in 3 days, in Spanish and English, from El Salvador.","areaServed":["SV","GT","HN","NI","CR","PA","MX","CO","AR","CL","PE","EC","US","ES"],"email":"hey@everybodyknowsyou.com","address":{"@type":"PostalAddress","addressCountry":"SV"},"founder":{"@type":"Person","name":"Nelson Inno","url":"https://nelsoninno.com"},"parentOrganization":{"@type":"Organization","name":"WeSpark","url":"https://wespark.io"},"sameAs":["https://wespark.io","https://www.linkedin.com/company/everybodyknowsyou/","https://www.instagram.com/everybodyknowsyou.eky"]}
+{"@context":"https://schema.org","@type":"Organization","@id":"https://everybodyknowsyou.com/#org","name":"everybodyknowsyou.com","alternateName":"EKY","url":"https://everybodyknowsyou.com/","logo":"https://everybodyknowsyou.com/images/logo/eky-logo-complete.png","image":"https://everybodyknowsyou.com/images/everybodyknowsyou_socialshare.jpg","description":"Boutique studio that builds stunning, AI-optimized personal and business websites in 3 days, in English and Spanish, from El Salvador.","email":"hey@everybodyknowsyou.com","address":{"@type":"PostalAddress","addressCountry":"SV"},"founder":{"@type":"Person","name":"Nelson Inno","url":"https://nelsoninno.com"},"parentOrganization":{"@type":"Organization","name":"WeSpark","url":"https://wespark.io"},"sameAs":["https://wespark.io","https://www.linkedin.com/company/everybodyknowsyou/","https://www.instagram.com/everybodyknowsyou.eky"]}
 </script>
 
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Inicio","item":"https://everybodyknowsyou.com/"},{"@type":"ListItem","position":2,"name":"Términos","item":"https://everybodyknowsyou.com/terms"}]}
+{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://everybodyknowsyou.com/"},{"@type":"ListItem","position":2,"name":"Terms","item":"https://everybodyknowsyou.com/terms"}]}
 </script>
+
 <style>
   :root{
     --bg:#FFFFFF;
@@ -106,83 +122,81 @@
   .powered a{display:inline-flex;align-items:center;gap:.5rem;color:#fff;font-family:var(--display)}
   .powered img{height:46px}
   [data-lang]{display:none}
-  body.es [data-lang="es"]{display:block}
-  body.en [data-lang="en"]{display:block}
+
   span[data-lang]{display:none}
-  body.es span[data-lang="es"]{display:inline}
-  body.en span[data-lang="en"]{display:inline}
+
 </style>
 </head>
-<body class="es">
+<body class="en">
 <header>
   <div class="bar">
     <a href="/" aria-label="everybodyknowsyou.com"><img class="brand" src="images/logo/eky-logo-complete.png" alt="everybodyknowsyou.com"></a>
     <div class="nav-cta">
-      <a class="home" href="/"><span data-lang="es">Inicio</span><span data-lang="en">Home</span></a>
-      <button class="lang" id="langBtn">EN</button>
+      <a class="home" href="/"><span>Home</span></a>
+      <a class="lang" onclick="try{localStorage.setItem('eky_lang','es')}catch(e){}" href="/es/terms">ES</a>
     </div>
   </div>
 </header>
 
 <div class="hero wrap">
-  <span class="eyebrow"><span data-lang="es">En lenguaje simple, a propósito</span><span data-lang="en">In plain language, on purpose</span></span>
-  <h1><span data-lang="es">Términos de Servicio</span><span data-lang="en">Terms of Service</span></h1>
-  <div class="updated"><span data-lang="es">Última actualización: mayo 2026</span><span data-lang="en">Last updated: May 2026</span></div>
+  <span class="eyebrow"><span>In plain language, on purpose</span></span>
+  <h1><span>Terms of Service</span></h1>
+  <div class="updated"><span>Last updated: May 2026</span></div>
 </div>
 
 <div class="doc wrap">
   <div class="intro">
-    <p><span data-lang="es">Al enviar nuestro formulario o contratar el servicio, aceptas estos términos. Los escribimos cortos y claros para que de verdad los entiendas. Los precios completos están en la <a href="/pricing">página de precios</a>.</span><span data-lang="en">By submitting our form or hiring the service, you accept these terms. We kept them short and clear so you actually understand them. Full prices live on the <a href="/pricing">pricing page</a>.</span></p>
+    <p><span>By submitting our form or hiring the service, you accept these terms. We kept them short and clear so you actually understand them. Full prices live on the <a href="/pricing">pricing page</a>.</span></p>
   </div>
 
   <ol class="terms">
     <li>
-      <h3><span data-lang="es">Qué hacemos</span><span data-lang="en">What we do</span></h3>
-      <p><span data-lang="es">Creamos y publicamos tu sitio web con la información y las fotos que nos das. El primer año incluye tu dominio, el alojamiento y las iteraciones de diseño de tu plan.</span><span data-lang="en">We build and publish your website using the information and photos you give us. The first year includes your domain, hosting, and your plan's design iterations.</span></p>
+      <h3><span>What we do</span></h3>
+      <p><span>We build and publish your website using the information and photos you give us. The first year includes your domain, hosting, and your plan's design iterations.</span></p>
     </li>
     <li>
-      <h3><span data-lang="es">Tu contenido y tu permiso</span><span data-lang="en">Your content and your permission</span></h3>
-      <p><span data-lang="es">Nos autorizas a usar la información, los textos y las fotos que compartes para crear y publicar tu sitio. Declaras que ese contenido es verdadero y que tienes derecho a usarlo. Tú eres responsable de lo que nos entregas.</span><span data-lang="en">You authorize us to use the information, text, and photos you share to build and publish your site. You confirm that this content is truthful and that you have the right to use it. You are responsible for what you give us.</span></p>
+      <h3><span>Your content and your permission</span></h3>
+      <p><span>You authorize us to use the information, text, and photos you share to build and publish your site. You confirm that this content is truthful and that you have the right to use it. You are responsible for what you give us.</span></p>
     </li>
     <li>
-      <h3><span data-lang="es">Lo que se publica en internet es permanente</span><span data-lang="en">What goes online is permanent</span></h3>
-      <p><span data-lang="es">Una vez en línea, tu sitio es indexado y copiado por buscadores como Google y por herramientas de inteligencia artificial. Esa información se difunde, se guarda en otros servidores y en copias en caché, y en la práctica es casi imposible de borrar por completo, aunque más adelante pidas quitarla. No nos hacemos responsables por contenido que después quieras eliminar. Publica solo lo que estés cómodo con que viva en internet para siempre.</span><span data-lang="en">Once online, your site is indexed and copied by search engines like Google and by AI tools. That information spreads, gets stored on other servers and in cached copies, and is in practice nearly impossible to erase completely, even if you later ask to remove it. We are not responsible for content you later want taken down. Publish only what you are comfortable living on the internet forever.</span></p>
+      <h3><span>What goes online is permanent</span></h3>
+      <p><span>Once online, your site is indexed and copied by search engines like Google and by AI tools. That information spreads, gets stored on other servers and in cached copies, and is in practice nearly impossible to erase completely, even if you later ask to remove it. We are not responsible for content you later want taken down. Publish only what you are comfortable living on the internet forever.</span></p>
     </li>
     <li>
-      <h3><span data-lang="es">Iteraciones y cambios</span><span data-lang="en">Iterations and changes</span></h3>
-      <p><span data-lang="es">Durante la creación de tu sitio incluimos varias iteraciones de diseño (2 en Personal, 3 en Negocios, 10 en Flash Ejecutivo) para dejarlo a tu gusto. Una vez publicado, cualquier cambio posterior tiene costo, según los <a href="/pricing">precios publicados</a>. Los cambios no son gratis ni ilimitados.</span><span data-lang="en">While we build your site we include several design iterations (2 in Personal, 3 in Business, 10 in Executive Flash) to get it just right. Once it is published, any later change is paid, per the <a href="/pricing">published pricing</a>. Changes are not free or unlimited.</span></p>
+      <h3><span>Iterations and changes</span></h3>
+      <p><span>While we build your site we include several design iterations (2 in Personal, 3 in Business, 10 in Executive Flash) to get it just right. Once it is published, any later change is paid, per the <a href="/pricing">published pricing</a>. Changes are not free or unlimited.</span></p>
     </li>
     <li>
-      <h3><span data-lang="es">Tiempos y demoras</span><span data-lang="en">Timelines and delays</span></h3>
-      <p><span data-lang="es">Nuestros plazos (por ejemplo, 3 días) empiezan a contar cuando nos entregas toda la información, las fotos y los accesos que necesitamos. El reloj se detiene mientras esperamos algo de tu parte: cualquier demora tuya retrasa la entrega en la misma medida. Si tardas un día en enviarnos lo que falta, la entrega se mueve un día.</span><span data-lang="en">Our timelines (for example, 3 days) start counting once you give us all the information, photos, and access we need. The clock stops while we wait on you: any delay on your side pushes the delivery by the same amount. If you take a day to send what's missing, the delivery moves by a day.</span></p>
+      <h3><span>Timelines and delays</span></h3>
+      <p><span>Our timelines (for example, 3 days) start counting once you give us all the information, photos, and access we need. The clock stops while we wait on you: any delay on your side pushes the delivery by the same amount. If you take a day to send what's missing, the delivery moves by a day.</span></p>
     </li>
     <li>
-      <h3><span data-lang="es">Renovación y dominio</span><span data-lang="en">Renewal and domain</span></h3>
-      <p><span data-lang="es">El primer año va incluido. Después, tu sitio se renueva por $29 al año (dominio y alojamiento). Los dominios premium o especiales se cobran a costo, aparte. Si no pagas la renovación, tu sitio puede salir de línea tras un periodo de gracia de 14 días; podemos volver a publicarlo desde nuestro respaldo con una cuota de reactivación de $15. Importante: si dejamos de pagar tu dominio porque no renovaste, ese dominio puede expirar y ser tomado por cualquier persona, y no podemos garantizar recuperarlo.</span><span data-lang="en">The first year is included. After that, your site renews for $29 a year (domain and hosting). Premium or special domains are billed at cost, separately. If you do not pay the renewal, your site may go offline after a 14-day grace period; we can re-publish it from our backup for a $15 reactivation fee. Important: if we stop paying for your domain because you did not renew, that domain can expire and be claimed by anyone, and we cannot guarantee recovering it.</span></p>
+      <h3><span>Renewal and domain</span></h3>
+      <p><span>The first year is included. After that, your site renews for $29 a year (domain and hosting). Premium or special domains are billed at cost, separately. If you do not pay the renewal, your site may go offline after a 14-day grace period; we can re-publish it from our backup for a $15 reactivation fee. Important: if we stop paying for your domain because you did not renew, that domain can expire and be claimed by anyone, and we cannot guarantee recovering it.</span></p>
     </li>
     <li>
-      <h3><span data-lang="es">Uso aceptable</span><span data-lang="en">Acceptable use</span></h3>
-      <p><span data-lang="es">No creamos ni alojamos sitios con contenido ilegal, sexual, adulto o extremo, ni con desinformación o contenido que cause daño. Podemos aceptar o rechazar cualquier proyecto a nuestro criterio, y podemos cancelar el servicio y bajar un sitio que viole estos términos o que difunda información falsa, ilegal o moralmente reprochable, sin reembolso.</span><span data-lang="en">We do not build or host sites with illegal, sexual, adult, or extreme content, or with misinformation or harmful content. We may accept or decline any project at our discretion, and we may cancel the service and take down a site that breaks these terms or spreads false, illegal, or morally objectionable content, with no refund.</span></p>
+      <h3><span>Acceptable use</span></h3>
+      <p><span>We do not build or host sites with illegal, sexual, adult, or extreme content, or with misinformation or harmful content. We may accept or decline any project at our discretion, and we may cancel the service and take down a site that breaks these terms or spreads false, illegal, or morally objectionable content, with no refund.</span></p>
     </li>
     <li>
-      <h3><span data-lang="es">Pago inicial y propiedad intelectual</span><span data-lang="en">Initial payment and intellectual property</span></h3>
-      <p><span data-lang="es">El trabajo comienza con el pago inicial (la mitad). Si no se completa el pago inicial acordado, no entregamos ni publicamos el sitio, y todo el material que hayamos creado (diseño, textos, código y archivos) sigue siendo de nuestra propiedad intelectual: no puede ser usado, copiado, reproducido ni publicado por el cliente ni por terceros.</span><span data-lang="en">Work begins with the initial payment (half). If the agreed initial payment is not completed, we do not deliver or publish the site, and any material we created (design, text, code, and files) remains our intellectual property: it may not be used, copied, reproduced, or published by the client or by third parties.</span></p>
+      <h3><span>Initial payment and intellectual property</span></h3>
+      <p><span>Work begins with the initial payment (half). If the agreed initial payment is not completed, we do not deliver or publish the site, and any material we created (design, text, code, and files) remains our intellectual property: it may not be used, copied, reproduced, or published by the client or by third parties.</span></p>
     </li>
     <li>
-      <h3><span data-lang="es">Garantía y reembolsos</span><span data-lang="en">Guarantee and refunds</span></h3>
-      <p><span data-lang="es">Pagas la mitad para empezar y ves tu sitio en una vista previa privada antes de publicarlo. Si no te encanta antes de publicar, te devolvemos lo que pagaste. Una vez publicado, el servicio se considera entregado.</span><span data-lang="en">You pay half to start and see your site on a private preview before it goes live. If you do not love it before publishing, we refund what you paid. Once published, the service is considered delivered.</span></p>
+      <h3><span>Guarantee and refunds</span></h3>
+      <p><span>You pay half to start and see your site on a private preview before it goes live. If you do not love it before publishing, we refund what you paid. Once published, the service is considered delivered.</span></p>
     </li>
     <li>
-      <h3><span data-lang="es">Pack de Autonomía Total</span><span data-lang="en">Full Self-Sovereignty Pack</span></h3>
-      <p><span data-lang="es">Es un complemento opcional (ver <a href="/pricing">precios</a>). Una vez pagado, hacemos una sesión única en la que te transferimos el dominio, te entregamos todos los archivos de tu sitio y te explicamos cómo mantenerlo y actualizarlo por tu cuenta. Al concluir esa sesión, el servicio se considera entregado y la relación cliente–proveedor queda finalizada y cerrada.</span><span data-lang="en">An optional add-on (see <a href="/pricing">pricing</a>). Once paid, we run a single session in which we transfer the domain to you, hand over all your site files, and explain how to maintain and update it on your own. When that session ends, the service is considered delivered and the client–provider relationship is finalized and closed.</span></p>
+      <h3><span>Full Self-Sovereignty Pack</span></h3>
+      <p><span>An optional add-on (see <a href="/pricing">pricing</a>). Once paid, we run a single session in which we transfer the domain to you, hand over all your site files, and explain how to maintain and update it on your own. When that session ends, the service is considered delivered and the client–provider relationship is finalized and closed.</span></p>
     </li>
     <li>
-      <h3><span data-lang="es">Responsabilidad</span><span data-lang="en">Liability</span></h3>
-      <p><span data-lang="es">Entregamos el servicio "tal cual". No somos responsables por daños indirectos, por el contenido que decidas publicar, ni por lo que terceros (buscadores, IA u otras personas) hagan con tu información ya pública. Tampoco somos responsables por fallas, caídas del servicio, hackeos, pérdidas de datos o interrupciones causadas por servicios de terceros (alojamiento, registradores de dominios, proveedores de internet o plataformas externas), ni por eventos fuera de nuestro control razonable (fuerza mayor).</span><span data-lang="en">We provide the service "as is." We are not responsible for indirect damages, for the content you choose to publish, or for what third parties (search engines, AI, or other people) do with your already-public information. We are also not responsible for failures, downtime, hacks, data loss, or interruptions caused by third-party services (hosting, domain registrars, internet providers, or external platforms), or for events beyond our reasonable control (force majeure).</span></p>
+      <h3><span>Liability</span></h3>
+      <p><span>We provide the service "as is." We are not responsible for indirect damages, for the content you choose to publish, or for what third parties (search engines, AI, or other people) do with your already-public information. We are also not responsible for failures, downtime, hacks, data loss, or interruptions caused by third-party services (hosting, domain registrars, internet providers, or external platforms), or for events beyond our reasonable control (force majeure).</span></p>
     </li>
     <li>
-      <h3><span data-lang="es">Cambios a estos términos y contacto</span><span data-lang="en">Changes to these terms and contact</span></h3>
-      <p><span data-lang="es">Podemos actualizar estos términos; la versión vigente es la publicada en esta página. ¿Dudas? Escríbenos por WhatsApp o a <a href="mailto:hey@everybodyknowsyou.com" class="flag">hey@everybodyknowsyou.com</a>.</span><span data-lang="en">We may update these terms; the current version is the one published on this page. Questions? Reach us on WhatsApp or at <a href="mailto:hey@everybodyknowsyou.com" class="flag">hey@everybodyknowsyou.com</a>.</span></p>
+      <h3><span>Changes to these terms and contact</span></h3>
+      <p><span>We may update these terms; the current version is the one published on this page. Questions? Reach us on WhatsApp or at <a href="mailto:hey@everybodyknowsyou.com" class="flag">hey@everybodyknowsyou.com</a>.</span></p>
     </li>
   </ol>
 </div>
@@ -190,33 +204,24 @@
 <footer>
   <div class="wrap">
     <img class="mark" src="/images/logo/eky-logo-square-forblackbackground.png" alt="everybodyknowsyou.com">
-    <p data-i18n="foot">Sitios web impresionantes en 3 días &middot; Español e inglés &middot; Hecho con cariño en El Salvador</p>
-    <p class="flinks"><a href="/pricing" data-i18n="f_pricing">Precios</a> &middot; <a href="/terms" data-i18n="f_terms">Términos</a></p>
-    <p><a class="btn small cta" data-tier="generic" href="#" target="_blank" data-i18n="cta_short">¡Hazme mi sitio web!</a></p>
+    <p data-i18n="foot">Stunning websites in 3 days &middot; Spanish and English &middot; Made with love in El Salvador</p>
+    <p class="flinks"><a href="/pricing" data-i18n="f_pricing">Pricing</a> &middot; <a href="/terms" data-i18n="f_terms">Terms</a></p>
+    <p><a class="btn small cta" data-tier="generic" href="#" target="_blank" data-i18n="cta_short">Build me my website!</a></p>
     <p class="social">
       <a href="https://www.linkedin.com/company/everybodyknowsyou/" target="_blank" rel="noopener" aria-label="LinkedIn"><svg viewBox="0 0 24 24" fill="currentColor" width="28" height="28" aria-hidden="true"><path d="M19 3H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V5a2 2 0 0 0-2-2zM8.34 17H6V10h2.34v7zM7.17 9a1.34 1.34 0 1 1 0-2.68 1.34 1.34 0 0 1 0 2.68zM18 17h-2.34v-3.5c0-.83-.17-1.5-1.17-1.5s-1.17.83-1.17 1.5V17H11V10h2.27v1h.03c.32-.6 1.1-1.2 2.27-1.2 2.43 0 2.86 1.5 2.86 3.45V17z"/></svg></a>
       <a href="https://www.instagram.com/everybodyknowsyou.eky" target="_blank" rel="noopener" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="28" height="28" aria-hidden="true"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg></a>
     </p>
-    <p class="powered"><a href="https://wespark.io" target="_blank"><span data-i18n="powered">Impulsado por</span> <img src="/WeSpark%20Logo%20Classic%20White%20Wide.png" alt="WeSpark"></a></p>
+    <p class="powered"><a href="https://wespark.io" target="_blank"><span data-i18n="powered">Powered by</span> <img src="/WeSpark%20Logo%20Classic%20White%20Wide.png" alt="WeSpark"></a></p>
   </div>
 </footer>
 
 <script>
-  var lang = (function(){
-    try {
-      var p = new URLSearchParams(window.location.search).get('lang');
-      if (p === 'en' || p === 'es') return p;
-      var n = (navigator.language || navigator.userLanguage || '').toLowerCase();
-      if (n.indexOf('en') === 0) return 'en';
-    } catch(e) {}
-    return 'es';
-  })();
+  var lang = "en";
   function apply(){
     document.body.className = lang;
     document.documentElement.lang = lang;
-    document.getElementById("langBtn").textContent = (lang==="es") ? "EN" : "ES";
-  }
-  document.getElementById("langBtn").addEventListener("click", function(){ lang = (lang==="es") ? "en" : "es"; apply(); });
+      }
+  document.getElementById("langBtn").addEventListener("click", function(){ window.location.href = "/terms"; });
   apply();
   // Wire up WhatsApp CTAs (uses the `lang` variable from the lang switcher above)
   var WHATSAPP_NUMBER = "50374927681";

@@ -1,31 +1,49 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="en">
 <head>
+<script>
+(function(){
+  try {
+    if (localStorage.getItem("eky_lang")) return; // already chose; respect
+    var referrer = document.referrer || "";
+    var nav = (navigator.language || navigator.userLanguage || "").toLowerCase();
+    var browserPrefersEs = nav.indexOf("es") === 0;
+    var spanishTld = /\.(es|mx|ar|cl|co|pe|ec|gt|sv|hn|ni|cr|pa|do|ve|bo|py|uy|cu|pr)(\/|:|$)/i;
+    var referrerEs = referrer && spanishTld.test(referrer);
+    if (browserPrefersEs || referrerEs) {
+      localStorage.setItem("eky_lang", "es");
+      var dest = "/es/" + (window.location.search || "") + (window.location.hash || "");
+      window.location.replace(dest);
+    }
+  } catch (e) {}
+})();
+</script>
+
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Precios: páginas web desde $500 en 3 días · everybodyknowsyou.com</title>
-<meta name="description" content="Precios transparentes de everybodyknowsyou.com: plan Personal $500, Negocios $1,500, Flash Ejecutivo $4,000 (24 horas). Renovación anual $29. Sin sorpresas.">
-<meta name="keywords" content="precio página web El Salvador, cuánto cuesta un sitio web, página web desde $500, renovación dominio, cambios sitio web, página web bilingüe">
+<title>Pricing: websites from $500 in 3 days · everybodyknowsyou.com</title>
+<meta name="description" content="Clear pricing from everybodyknowsyou.com: Personal $500, Business $1,500, Executive Flash $4,000 (24-hour delivery). Annual renewal just $29. No surprises.">
+<meta name="keywords" content="website pricing, website in 3 days price, AI-optimized website cost, bilingual website pricing, fast website design pricing, Latin America website pricing">
 
 <link rel="canonical" href="https://everybodyknowsyou.com/pricing">
-<link rel="alternate" hreflang="es" href="https://everybodyknowsyou.com/pricing">
-<link rel="alternate" hreflang="en" href="https://everybodyknowsyou.com/en/pricing">
+<link rel="alternate" hreflang="en" href="https://everybodyknowsyou.com/pricing">
+<link rel="alternate" hreflang="es" href="https://everybodyknowsyou.com/es/pricing">
 <link rel="alternate" hreflang="x-default" href="https://everybodyknowsyou.com/pricing">
 
-<meta property="og:title" content="Precios — páginas web desde $500 · everybodyknowsyou.com">
-<meta property="og:description" content="Precios transparentes: Personal $500, Negocios $1,500, Flash $4,000 (24h). Renovación $29/año. Sin sorpresas.">
+<meta property="og:title" content="Pricing — websites from $500 in 3 days · everybodyknowsyou.com">
+<meta property="og:description" content="Transparent pricing: Personal $500, Business $1,500, Executive Flash $4,000 (24h). Renewal $29/year. No surprises.">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://everybodyknowsyou.com/pricing">
 <meta property="og:site_name" content="everybodyknowsyou.com">
 <meta property="og:image" content="https://everybodyknowsyou.com/images/everybodyknowsyou_socialshare.jpg">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
-<meta property="og:locale" content="es_SV">
-<meta property="og:locale:alternate" content="en_US">
+<meta property="og:locale" content="en_US">
+<meta property="og:locale:alternate" content="es_SV">
 
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Precios — páginas web desde $500 · everybodyknowsyou.com">
-<meta name="twitter:description" content="Personal $500, Negocios $1,500, Flash $4,000 (24h). Renovación $29/año.">
+<meta name="twitter:title" content="Pricing — websites from $500 · everybodyknowsyou.com">
+<meta name="twitter:description" content="Personal $500, Business $1,500, Executive Flash $4,000 (24h). Renewal $29/year.">
 <meta name="twitter:image" content="https://everybodyknowsyou.com/images/everybodyknowsyou_socialshare.jpg">
 
 <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">
@@ -33,36 +51,34 @@
 <meta name="theme-color" content="#6200C9">
 <meta name="geo.region" content="SV">
 <meta name="geo.placename" content="El Salvador">
-<meta http-equiv="content-language" content="es-SV">
+<meta http-equiv="content-language" content="en">
 <meta name="author" content="WeSpark / everybodyknowsyou.com">
 
-<!-- Icons -->
 <link rel="icon" type="image/jpeg" href="/images/favicon.jpg">
 <link rel="apple-touch-icon" href="/images/favicon.jpg">
 
-<!-- Fonts -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Caveat:wght@600;700&display=swap">
 
-<!-- Pointer for AI assistants -->
 <link rel="alternate" type="text/plain" title="llms.txt" href="https://everybodyknowsyou.com/llms.txt">
 
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"Organization","@id":"https://everybodyknowsyou.com/#org","name":"everybodyknowsyou.com","alternateName":"EKY","url":"https://everybodyknowsyou.com/","logo":"https://everybodyknowsyou.com/images/logo/eky-logo-complete.png","image":"https://everybodyknowsyou.com/images/everybodyknowsyou_socialshare.jpg","description":"Boutique studio that builds stunning, AI-optimized personal and business websites in 3 days, in Spanish and English, from El Salvador.","areaServed":["SV","GT","HN","NI","CR","PA","MX","CO","AR","CL","PE","EC","US","ES"],"email":"hey@everybodyknowsyou.com","address":{"@type":"PostalAddress","addressCountry":"SV"},"founder":{"@type":"Person","name":"Nelson Inno","url":"https://nelsoninno.com"},"parentOrganization":{"@type":"Organization","name":"WeSpark","url":"https://wespark.io"},"sameAs":["https://wespark.io","https://www.linkedin.com/company/everybodyknowsyou/","https://www.instagram.com/everybodyknowsyou.eky"]}
+{"@context":"https://schema.org","@type":"Organization","@id":"https://everybodyknowsyou.com/#org","name":"everybodyknowsyou.com","alternateName":"EKY","url":"https://everybodyknowsyou.com/","logo":"https://everybodyknowsyou.com/images/logo/eky-logo-complete.png","image":"https://everybodyknowsyou.com/images/everybodyknowsyou_socialshare.jpg","description":"Boutique studio that builds stunning, AI-optimized personal and business websites in 3 days, in English and Spanish, from El Salvador.","areaServed":["SV","GT","HN","NI","CR","PA","MX","CO","AR","CL","PE","EC","US","ES"],"email":"hey@everybodyknowsyou.com","address":{"@type":"PostalAddress","addressCountry":"SV"},"founder":{"@type":"Person","name":"Nelson Inno","url":"https://nelsoninno.com"},"parentOrganization":{"@type":"Organization","name":"WeSpark","url":"https://wespark.io"},"sameAs":["https://wespark.io","https://www.linkedin.com/company/everybodyknowsyou/","https://www.instagram.com/everybodyknowsyou.eky"]}
 </script>
 
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"ProfessionalService","@id":"https://everybodyknowsyou.com/#service","name":"everybodyknowsyou.com","description":"Custom personal and business websites in 3 days, in Spanish and English, optimized for Google and AI discoverability.","image":"https://everybodyknowsyou.com/images/everybodyknowsyou_socialshare.jpg","url":"https://everybodyknowsyou.com/","email":"hey@everybodyknowsyou.com","priceRange":"$500-$4000","address":{"@type":"PostalAddress","addressCountry":"SV"},"areaServed":[{"@type":"Country","name":"El Salvador"},{"@type":"Place","name":"Latin America"},{"@type":"Place","name":"Worldwide"}],"currenciesAccepted":"USD","paymentAccepted":"Bank transfer, Bitcoin, PayPal, USDT, USDC","hasOfferCatalog":{"@type":"OfferCatalog","name":"Plans","itemListElement":[{"@type":"Offer","name":"Personal","price":"500","priceCurrency":"USD","url":"https://everybodyknowsyou.com/pricing","description":"Complete personal website in 3 days, Spanish + English, found by Google and AI, domain + hosting free year one, 2 design iterations."},{"@type":"Offer","name":"Business","price":"1500","priceCurrency":"USD","url":"https://everybodyknowsyou.com/pricing","description":"Everything in Personal, more pages, value-offer review, keyword research, 3 design iterations."},{"@type":"Offer","name":"Executive Flash","price":"4000","priceCurrency":"USD","url":"https://everybodyknowsyou.com/pricing","description":"Live in 24 hours. Everything in Business, drop-everything build, 10 design iterations. Only a few new clients per month."}]}}
+{"@context":"https://schema.org","@type":"ProfessionalService","@id":"https://everybodyknowsyou.com/#service","name":"everybodyknowsyou.com","description":"Custom personal and business websites in 3 days, in English and Spanish, optimized for Google and AI discoverability.","image":"https://everybodyknowsyou.com/images/everybodyknowsyou_socialshare.jpg","url":"https://everybodyknowsyou.com/","email":"hey@everybodyknowsyou.com","priceRange":"$500-$4000","address":{"@type":"PostalAddress","addressCountry":"SV"},"areaServed":[{"@type":"Country","name":"El Salvador"},{"@type":"Place","name":"Latin America"},{"@type":"Place","name":"Worldwide"}],"currenciesAccepted":"USD","paymentAccepted":"Bank transfer, Bitcoin, PayPal, USDT, USDC","hasOfferCatalog":{"@type":"OfferCatalog","name":"Plans","itemListElement":[{"@type":"Offer","name":"Personal","price":"500","priceCurrency":"USD","url":"https://everybodyknowsyou.com/pricing","description":"Complete personal website in 3 days, English + Spanish, found by Google and AI, domain + hosting free year one, 2 design iterations."},{"@type":"Offer","name":"Business","price":"1500","priceCurrency":"USD","url":"https://everybodyknowsyou.com/pricing","description":"Everything in Personal, more pages, value-offer review, keyword research, 3 design iterations."},{"@type":"Offer","name":"Executive Flash","price":"4000","priceCurrency":"USD","url":"https://everybodyknowsyou.com/pricing","description":"Live in 24 hours. Everything in Business, drop-everything build, 10 design iterations. Only a few new clients per month."}]}}
 </script>
 
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"¿Cuánto cuesta una página web en everybodyknowsyou.com?","acceptedAnswer":{"@type":"Answer","text":"Personal $500, Negocios $1,500, Flash Ejecutivo $4,000. Pago único. La renovación anual es solo $29 e incluye dominio y alojamiento."}},{"@type":"Question","name":"¿En cuánto tiempo entregan el sitio?","acceptedAnswer":{"@type":"Answer","text":"En 3 días para los planes Personal y Negocios, y en 24 horas para Flash Ejecutivo, desde el momento en que tenemos toda tu información completa."}},{"@type":"Question","name":"¿Cómo funciona la renovación anual?","acceptedAnswer":{"@type":"Answer","text":"El primer año va incluido. Después, tu sitio se renueva por $29 al año, lo que cubre tu dominio, el alojamiento y mantener tu sitio en línea. Los dominios premium se cobran a costo aparte."}},{"@type":"Question","name":"¿Y los cambios después de publicar?","acceptedAnswer":{"@type":"Answer","text":"Durante la creación incluimos iteraciones de diseño (2 en Personal, 3 en Negocios, 10 en Flash Ejecutivo). Una vez publicado, los cambios tienen costo: $15 por cambio suelto, $10/mes por uno al mes, o $20/mes por tres al mes."}},{"@type":"Question","name":"¿En qué idiomas viene el sitio?","acceptedAnswer":{"@type":"Answer","text":"Cada sitio incluye español e inglés por defecto. Cada idioma adicional cuesta $50."}},{"@type":"Question","name":"¿Qué métodos de pago aceptan?","acceptedAnswer":{"@type":"Answer","text":"Transferencia bancaria, Bitcoin, PayPal, USDT, USDC, banco EE.UU. o UE, y transferencia internacional."}},{"@type":"Question","name":"¿Qué pasa si no me encanta el sitio?","acceptedAnswer":{"@type":"Answer","text":"Pagas la mitad para empezar y ves tu sitio en una vista previa privada antes de publicar. Si no te encanta, te devolvemos lo que pagaste. Solo pagas el resto cuando estás feliz y lo publicamos."}}]}
+{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"How much does a website at everybodyknowsyou.com cost?","acceptedAnswer":{"@type":"Answer","text":"Personal $500, Business $1,500, Executive Flash $4,000. One-time payment. Annual renewal is just $29, which includes domain and hosting."}},{"@type":"Question","name":"How long does delivery take?","acceptedAnswer":{"@type":"Answer","text":"3 days for Personal and Business plans; 24 hours for Executive Flash, from the moment we have all your complete information."}},{"@type":"Question","name":"How does annual renewal work?","acceptedAnswer":{"@type":"Answer","text":"The first year is included. After that, your site renews for $29 a year, which covers domain, hosting, and keeping the site online. Premium domains are billed at cost separately."}},{"@type":"Question","name":"What about changes after launch?","acceptedAnswer":{"@type":"Answer","text":"During the build we include design iterations (2 in Personal, 3 in Business, 10 in Executive Flash). Once published, changes are paid: $15 per one-off change, $10/month for one change a month, or $20/month for three changes a month."}},{"@type":"Question","name":"What languages does the site come in?","acceptedAnswer":{"@type":"Answer","text":"Every site includes English and Spanish by default. Each additional language costs $50."}},{"@type":"Question","name":"What payment methods do you accept?","acceptedAnswer":{"@type":"Answer","text":"Bank transfer, Bitcoin, PayPal, USDT, USDC, US or EU bank, and international transfer."}},{"@type":"Question","name":"What if I don't love the site?","acceptedAnswer":{"@type":"Answer","text":"You pay half to start and see your site on a private preview before publishing. If you don't love it, we refund what you paid. You only pay the rest when you're happy and we publish."}}]}
 </script>
 
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Inicio","item":"https://everybodyknowsyou.com/"},{"@type":"ListItem","position":2,"name":"Precios","item":"https://everybodyknowsyou.com/pricing"}]}
+{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://everybodyknowsyou.com/"},{"@type":"ListItem","position":2,"name":"Pricing","item":"https://everybodyknowsyou.com/pricing"}]}
 </script>
+
 <style>
   :root{
     --bg:#FFFFFF;
@@ -145,144 +161,132 @@
   .powered a{display:inline-flex;align-items:center;gap:.5rem;color:#fff;font-family:var(--display)}
   .powered img{height:46px}
   [data-lang]{display:none}
-  body.es [data-lang="es"]{display:block}
-  body.en [data-lang="en"]{display:block}
+
   .price-card ul[data-lang]{display:none}
-  body.es .price-card ul[data-lang="es"]{display:block}
-  body.en .price-card ul[data-lang="en"]{display:block}
+
   span[data-lang]{display:none}
-  body.es span[data-lang="es"]{display:inline}
-  body.en span[data-lang="en"]{display:inline}
+
 </style>
 </head>
-<body class="es">
+<body class="en">
 <header>
   <div class="wrap bar">
     <a href="/" aria-label="everybodyknowsyou.com"><img class="brand" src="images/logo/eky-logo-complete.png" alt="everybodyknowsyou.com"></a>
     <div class="nav-cta">
-      <a class="home" href="/"><span data-lang="es">Inicio</span><span data-lang="en">Home</span></a>
-      <button class="lang" id="langBtn">EN</button>
+      <a class="home" href="/"><span>Home</span></a>
+      <a class="lang" onclick="try{localStorage.setItem('eky_lang','es')}catch(e){}" href="/es/pricing">ES</a>
     </div>
   </div>
 </header>
 <div class="hero wrap">
-  <span class="eyebrow"><span data-lang="es">Sin letra pequeña escondida</span><span data-lang="en">No hidden fine print</span></span>
-  <h1><span data-lang="es">Precios claros, sin sorpresas</span><span data-lang="en">Clear pricing, no surprises</span></h1>
-  <p><span data-lang="es">Pagas una vez para crear tu sitio. Todo lo demás, dominio, renovación, idiomas y cambios, lo ves aquí, transparente.</span><span data-lang="en">You pay once to build your site. Everything else, domain, renewal, languages and changes, is laid out right here.</span></p>
+  <span class="eyebrow"><span>No hidden fine print</span></span>
+  <h1><span>Clear pricing, no surprises</span></h1>
+  <p><span>You pay once to build your site. Everything else, domain, renewal, languages and changes, is laid out right here.</span></p>
 </div>
 
 <section class="block wrap">
   <div class="grid g3">
     <div class="price-card feature">
-      <span class="badge"><span data-lang="es">El más popular</span><span data-lang="en">Most popular</span></span>
+      <span class="badge"><span>Most popular</span></span>
       <div class="tier">Personal</div>
       <div class="amt">$500</div>
-      <div class="when"><span data-lang="es">en 3 días</span><span data-lang="en">in 3 days</span></div>
-      <ul data-lang="es"><li>Tu sitio personal completo</li><li>Español e inglés</li><li>Te encuentra Google y la IA</li><li>Dominio + alojamiento gratis el primer año</li><li>2 iteraciones de diseño durante la creación</li></ul>
-      <ul data-lang="en"><li>Your complete personal site</li><li>Spanish and English</li><li>Found by Google and AI</li><li>Domain + hosting free the first year</li><li>2 design iterations during setup</li></ul>
+      <div class="when"><span>in 3 days</span></div>
+      
+      <ul><li>Your complete personal site</li><li>Spanish and English</li><li>Found by Google and AI</li><li>Domain + hosting free the first year</li><li>2 design iterations during setup</li></ul>
     </div>
     <div class="price-card">
-      <div class="tier"><span data-lang="es">Negocios</span><span data-lang="en">Business</span></div>
+      <div class="tier"><span>Business</span></div>
       <div class="amt">$1,500</div>
-      <div class="when"><span data-lang="es">en 3 días</span><span data-lang="en">in 3 days</span></div>
-      <ul data-lang="es"><li>Todo lo del plan Personal</li><li>Más páginas, personalizadas para tu posicionamiento</li><li>Revisión de tu oferta de valor, con sugerencias</li><li>Investigación de palabras clave de tu mercado</li><li>3 iteraciones de diseño durante la creación</li></ul>
-      <ul data-lang="en"><li>Everything in Personal</li><li>More pages, customized for your positioning</li><li>Review of your value offer, with suggestions</li><li>Keyword research from your target market</li><li>3 design iterations during setup</li></ul>
+      <div class="when"><span>in 3 days</span></div>
+      
+      <ul><li>Everything in Personal</li><li>More pages, customized for your positioning</li><li>Review of your value offer, with suggestions</li><li>Keyword research from your target market</li><li>3 design iterations during setup</li></ul>
     </div>
     <div class="price-card">
-      <div class="tier"><span data-lang="es">Flash Ejecutivo</span><span data-lang="en">Executive Flash</span></div>
+      <div class="tier"><span>Executive Flash</span></div>
       <div class="amt">$4,000</div>
-      <div class="when"><span data-lang="es">listo en 24 horas</span><span data-lang="en">live in 24 hours</span></div>
-      <ul data-lang="es"><li>Todo lo del plan Negocios</li><li>Para quien valora la rapidez</li><li>Dejamos todo y lo hacemos ya</li><li>Listo en 24 horas</li><li>10 iteraciones de diseño durante la creación</li></ul>
-      <ul data-lang="en"><li>Everything in Business</li><li>For those who value speed</li><li>We drop everything and do it now</li><li>Live in 24 hours</li><li>10 design iterations during setup</li></ul>
+      <div class="when"><span>live in 24 hours</span></div>
+      
+      <ul><li>Everything in Business</li><li>For those who value speed</li><li>We drop everything and do it now</li><li>Live in 24 hours</li><li>10 design iterations during setup</li></ul>
     </div>
   </div>
-  <p class="note" style="text-align:center"><span data-lang="es">Pagas la mitad para empezar y ves tu sitio en una vista previa privada. Solo pagas el resto cuando te encanta y lo publicamos.</span><span data-lang="en">You pay half to start and see your site on a private preview. You only pay the rest when you love it and we publish it.</span></p>
+  <p class="note" style="text-align:center"><span>You pay half to start and see your site on a private preview. You only pay the rest when you love it and we publish it.</span></p>
 </section>
 
 <section class="block wrap">
-  <h2 class="sec-head"><span data-lang="es">Lo que pasa después</span><span data-lang="en">What happens next</span></h2>
+  <h2 class="sec-head"><span>What happens next</span></h2>
 
   <div class="panel soft">
-    <h3><span data-lang="es">Renovación anual</span><span data-lang="en">Annual renewal</span></h3>
-    <p><span data-lang="es">El primer año va incluido. Después, tu sitio se renueva por <b>$29 al año</b>, lo que cubre tu dominio, el alojamiento y mantener tu sitio en línea.</span><span data-lang="en">The first year is included. After that, your site renews for <b>$29 a year</b>, which covers your domain, hosting, and keeping your site online.</span></p>
-    <p class="note"><span data-lang="es">Dominios premium: algunos dominios especiales (nombres cortos o extensiones premium) cuestan más. Esos se cobran a precio de costo, lo que cobre el registrador, además del $29.</span><span data-lang="en">Premium domains: some special domains (short names or premium extensions) cost more. Those are billed at cost, whatever the registrar charges, on top of the $29.</span></p>
+    <h3><span>Annual renewal</span></h3>
+    <p><span>The first year is included. After that, your site renews for <b>$29 a year</b>, which covers your domain, hosting, and keeping your site online.</span></p>
+    <p class="note"><span>Premium domains: some special domains (short names or premium extensions) cost more. Those are billed at cost, whatever the registrar charges, on top of the $29.</span></p>
   </div>
 
   <div class="panel dark">
-    <h3><span data-lang="es">Cambios después de publicar</span><span data-lang="en">Changes after launch</span></h3>
-    <p><span data-lang="es">Durante la creación incluimos varias iteraciones de diseño (2 en Personal, 3 en Negocios, 10 en Flash Ejecutivo) para dejar tu sitio justo como lo quieres. Una vez publicado, cualquier cambio nuevo tiene costo; elige lo que te sirva:</span><span data-lang="en">While we build, we include several design iterations (2 in Personal, 3 in Business, 10 in Executive Flash) to get your site just right. Once it's live, any new change is paid; pick what suits you:</span></p>
+    <h3><span>Changes after launch</span></h3>
+    <p><span>While we build, we include several design iterations (2 in Personal, 3 in Business, 10 in Executive Flash) to get your site just right. Once it's live, any new change is paid; pick what suits you:</span></p>
     <ul class="rows">
-      <li><span class="lab"><span data-lang="es">Un cambio suelto</span><span data-lang="en">A one-off change</span></span><span class="val">$15</span></li>
-      <li><span class="lab"><span data-lang="es">Un cambio al mes</span><span data-lang="en">One change a month</span></span><span class="val"><span data-lang="es">$10/mes</span><span data-lang="en">$10/mo</span></span></li>
-      <li><span class="lab"><span data-lang="es">Tres cambios al mes</span><span data-lang="en">Three changes a month</span></span><span class="val"><span data-lang="es">$20/mes</span><span data-lang="en">$20/mo</span></span></li>
+      <li><span class="lab"><span>A one-off change</span></span><span class="val">$15</span></li>
+      <li><span class="lab"><span>One change a month</span></span><span class="val"><span>$10/mo</span></span></li>
+      <li><span class="lab"><span>Three changes a month</span></span><span class="val"><span>$20/mo</span></span></li>
     </ul>
-    <p class="note" style="opacity:.85"><span data-lang="es">Los planes mensuales son ideales si tienes un blog o actualizas seguido.</span><span data-lang="en">The monthly plans are ideal if you have a blog or update often.</span></p>
+    <p class="note" style="opacity:.85"><span>The monthly plans are ideal if you have a blog or update often.</span></p>
   </div>
 
   <div class="panel lime">
-    <h3><span data-lang="es">Idiomas extra</span><span data-lang="en">Extra languages</span></h3>
-    <p><span data-lang="es">Tu sitio viene en español e inglés. Cada idioma adicional: <b>$50</b>.</span><span data-lang="en">Your site comes in Spanish and English. Each additional language: <b>$50</b>.</span></p>
+    <h3><span>Extra languages</span></h3>
+    <p><span>Your site comes in Spanish and English. Each additional language: <b>$50</b>.</span></p>
   </div>
 
   <div class="panel soft">
-    <h3><span data-lang="es">Quitar el enlace a everybodyknowsyou.com</span><span data-lang="en">Remove the everybodyknowsyou.com link</span></h3>
-    <p><span data-lang="es">Cada sitio lleva un pequeño enlace «hecho con cariño por everybodyknowsyou.com». Si prefieres quitarlo, lo hacemos con un pago único de <b>$200</b>.</span><span data-lang="en">Every site carries a small "made with love by everybodyknowsyou.com" link. If you'd rather remove it, we do it for a one-time <b>$200</b>.</span></p>
+    <h3><span>Remove the everybodyknowsyou.com link</span></h3>
+    <p><span>Every site carries a small "made with love by everybodyknowsyou.com" link. If you'd rather remove it, we do it for a one-time <b>$200</b>.</span></p>
   </div>
 
   <div class="panel lime">
-    <h3><span data-lang="es">Pack de Autonomía Total</span><span data-lang="en">Full Self-Sovereignty Pack</span></h3>
-    <p><span data-lang="es">¿Quieres el control total de tu sitio? Para clientes actuales de cualquier plan, con un pago único de <b>$210</b> hacemos una sesión en la que te transferimos tu dominio, te entregamos todos los archivos de tu sitio y te enseñamos a alojarlo y a hacer tus propios cambios, sin pagar por cada cambio. Tu sitio queda completamente en tus manos.</span><span data-lang="en">Want full control of your site? For existing clients on any plan, for a one-time <b>$210</b> we run a session where we transfer your domain, hand over all your site files, and teach you to host it and make your own changes, with no per-change fees. Your site ends up entirely in your hands.</span></p>
+    <h3><span>Full Self-Sovereignty Pack</span></h3>
+    <p><span>Want full control of your site? For existing clients on any plan, for a one-time <b>$210</b> we run a session where we transfer your domain, hand over all your site files, and teach you to host it and make your own changes, with no per-change fees. Your site ends up entirely in your hands.</span></p>
   </div>
 
   <div class="panel pink-accent">
-    <h3><span data-lang="es">Cómo puedes pagar</span><span data-lang="en">How you can pay</span></h3>
+    <h3><span>How you can pay</span></h3>
     <p class="pay">
-      <span><span data-lang="es">Transferencia bancaria</span><span data-lang="en">Bank transfer</span></span>
+      <span><span>Bank transfer</span></span>
       <span>Bitcoin</span>
       <span>PayPal</span>
       <span>USDT</span>
       <span>USDC</span>
-      <span><span data-lang="es">Banco EE.UU. / UE</span><span data-lang="en">US / EU bank</span></span>
-      <span><span data-lang="es">Transferencia internacional</span><span data-lang="en">International transfer</span></span>
+      <span><span>US / EU bank</span></span>
+      <span><span>International transfer</span></span>
     </p>
   </div>
 
   <div class="lead-cta">
-    <a class="btn" href="/"><span data-lang="es">Quiero mi sitio web</span><span data-lang="en">I want my website</span></a>
-    <p class="note"><span data-lang="es">¿Detalles legales? Lee los <a href="/terms" style="color:var(--purple);font-weight:700">Términos de Servicio</a>.</span><span data-lang="en">Legal details? Read the <a href="/terms" style="color:var(--purple);font-weight:700">Terms of Service</a>.</span></p>
+    <a class="btn" href="/"><span>I want my website</span></a>
+    <p class="note"><span>Legal details? Read the <a href="/terms" style="color:var(--purple);font-weight:700">Terms of Service</a>.</span></p>
   </div>
 </section>
 
 <footer>
   <div class="wrap">
     <img class="mark" src="/images/logo/eky-logo-square-forblackbackground.png" alt="everybodyknowsyou.com">
-    <p data-i18n="foot">Sitios web impresionantes en 3 días &middot; Español e inglés &middot; Hecho con cariño en El Salvador</p>
-    <p class="flinks"><a href="/pricing" data-i18n="f_pricing">Precios</a> &middot; <a href="/terms" data-i18n="f_terms">Términos</a></p>
-    <p><a class="btn small cta" data-tier="generic" href="#" target="_blank" data-i18n="cta_short">¡Hazme mi sitio web!</a></p>
+    <p data-i18n="foot">Stunning websites in 3 days &middot; Spanish and English &middot; Made with love in El Salvador</p>
+    <p class="flinks"><a href="/pricing" data-i18n="f_pricing">Pricing</a> &middot; <a href="/terms" data-i18n="f_terms">Terms</a></p>
+    <p><a class="btn small cta" data-tier="generic" href="#" target="_blank" data-i18n="cta_short">Build me my website!</a></p>
     <p class="social">
       <a href="https://www.linkedin.com/company/everybodyknowsyou/" target="_blank" rel="noopener" aria-label="LinkedIn"><svg viewBox="0 0 24 24" fill="currentColor" width="28" height="28" aria-hidden="true"><path d="M19 3H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V5a2 2 0 0 0-2-2zM8.34 17H6V10h2.34v7zM7.17 9a1.34 1.34 0 1 1 0-2.68 1.34 1.34 0 0 1 0 2.68zM18 17h-2.34v-3.5c0-.83-.17-1.5-1.17-1.5s-1.17.83-1.17 1.5V17H11V10h2.27v1h.03c.32-.6 1.1-1.2 2.27-1.2 2.43 0 2.86 1.5 2.86 3.45V17z"/></svg></a>
       <a href="https://www.instagram.com/everybodyknowsyou.eky" target="_blank" rel="noopener" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="28" height="28" aria-hidden="true"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg></a>
     </p>
-    <p class="powered"><a href="https://wespark.io" target="_blank"><span data-i18n="powered">Impulsado por</span> <img src="/WeSpark%20Logo%20Classic%20White%20Wide.png" alt="WeSpark"></a></p>
+    <p class="powered"><a href="https://wespark.io" target="_blank"><span data-i18n="powered">Powered by</span> <img src="/WeSpark%20Logo%20Classic%20White%20Wide.png" alt="WeSpark"></a></p>
   </div>
 </footer>
 
 <script>
-  var lang = (function(){
-    try {
-      var p = new URLSearchParams(window.location.search).get('lang');
-      if (p === 'en' || p === 'es') return p;
-      var n = (navigator.language || navigator.userLanguage || '').toLowerCase();
-      if (n.indexOf('en') === 0) return 'en';
-    } catch(e) {}
-    return 'es';
-  })();
+  var lang = "en";
   function apply(){
     document.body.className = lang;
     document.documentElement.lang = lang;
-    document.getElementById("langBtn").textContent = (lang==="es") ? "EN" : "ES";
-  }
-  document.getElementById("langBtn").addEventListener("click", function(){ lang = (lang==="es") ? "en" : "es"; apply(); });
+      }
+  document.getElementById("langBtn").addEventListener("click", function(){ window.location.href = "/pricing"; });
   apply();
   // Wire up WhatsApp CTAs (uses the `lang` variable from the lang switcher above)
   var WHATSAPP_NUMBER = "50374927681";

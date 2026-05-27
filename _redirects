@@ -1,0 +1,8 @@
+# Cloudflare Pages redirects
+# Permanent migration: /en/* is now at root. Old links still work.
+
+/en/pricing  /pricing  301
+/en/terms    /terms    301
+/en/         /         301
+/en          /         301
+/en/*        /:splat   301

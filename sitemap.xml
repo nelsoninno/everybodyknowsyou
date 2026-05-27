@@ -2,12 +2,12 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
         xmlns:xhtml="http://www.w3.org/1999/xhtml">
 
-  <!-- Spanish (primary) -->
+  <!-- English (primary) -->
   <url>
     <loc>https://everybodyknowsyou.com/</loc>
-    <xhtml:link rel="alternate" hreflang="es" href="https://everybodyknowsyou.com/"/>
-    <xhtml:link rel="alternate" hreflang="es-SV" href="https://everybodyknowsyou.com/"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://everybodyknowsyou.com/en/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://everybodyknowsyou.com/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://everybodyknowsyou.com/es/"/>
+    <xhtml:link rel="alternate" hreflang="es-SV" href="https://everybodyknowsyou.com/es/"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://everybodyknowsyou.com/"/>
     <lastmod>2026-05-26</lastmod>
     <changefreq>weekly</changefreq>
@@ -16,8 +16,8 @@
 
   <url>
     <loc>https://everybodyknowsyou.com/pricing</loc>
-    <xhtml:link rel="alternate" hreflang="es" href="https://everybodyknowsyou.com/pricing"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://everybodyknowsyou.com/en/pricing"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://everybodyknowsyou.com/pricing"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://everybodyknowsyou.com/es/pricing"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://everybodyknowsyou.com/pricing"/>
     <lastmod>2026-05-26</lastmod>
     <changefreq>monthly</changefreq>
@@ -26,19 +26,19 @@
 
   <url>
     <loc>https://everybodyknowsyou.com/terms</loc>
-    <xhtml:link rel="alternate" hreflang="es" href="https://everybodyknowsyou.com/terms"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://everybodyknowsyou.com/en/terms"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://everybodyknowsyou.com/terms"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://everybodyknowsyou.com/es/terms"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://everybodyknowsyou.com/terms"/>
     <lastmod>2026-05-26</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.5</priority>
   </url>
 
-  <!-- English mirror -->
+  <!-- Spanish mirror -->
   <url>
-    <loc>https://everybodyknowsyou.com/en/</loc>
-    <xhtml:link rel="alternate" hreflang="en" href="https://everybodyknowsyou.com/en/"/>
-    <xhtml:link rel="alternate" hreflang="es" href="https://everybodyknowsyou.com/"/>
+    <loc>https://everybodyknowsyou.com/es/</loc>
+    <xhtml:link rel="alternate" hreflang="es" href="https://everybodyknowsyou.com/es/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://everybodyknowsyou.com/"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://everybodyknowsyou.com/"/>
     <lastmod>2026-05-26</lastmod>
     <changefreq>weekly</changefreq>
@@ -46,9 +46,9 @@
   </url>
 
   <url>
-    <loc>https://everybodyknowsyou.com/en/pricing</loc>
-    <xhtml:link rel="alternate" hreflang="en" href="https://everybodyknowsyou.com/en/pricing"/>
-    <xhtml:link rel="alternate" hreflang="es" href="https://everybodyknowsyou.com/pricing"/>
+    <loc>https://everybodyknowsyou.com/es/pricing</loc>
+    <xhtml:link rel="alternate" hreflang="es" href="https://everybodyknowsyou.com/es/pricing"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://everybodyknowsyou.com/pricing"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://everybodyknowsyou.com/pricing"/>
     <lastmod>2026-05-26</lastmod>
     <changefreq>monthly</changefreq>
@@ -56,13 +56,21 @@
   </url>
 
   <url>
-    <loc>https://everybodyknowsyou.com/en/terms</loc>
-    <xhtml:link rel="alternate" hreflang="en" href="https://everybodyknowsyou.com/en/terms"/>
-    <xhtml:link rel="alternate" hreflang="es" href="https://everybodyknowsyou.com/terms"/>
+    <loc>https://everybodyknowsyou.com/es/terms</loc>
+    <xhtml:link rel="alternate" hreflang="es" href="https://everybodyknowsyou.com/es/terms"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://everybodyknowsyou.com/terms"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://everybodyknowsyou.com/terms"/>
     <lastmod>2026-05-26</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.4</priority>
+  </url>
+
+  <!-- Audit (bilingual single URL) -->
+  <url>
+    <loc>https://everybodyknowsyou.com/audit/</loc>
+    <lastmod>2026-05-26</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
   </url>
 
   <!-- AI files -->

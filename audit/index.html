@@ -366,7 +366,7 @@ input.eky-text:focus, select.eky-select:focus{ outline:3px solid var(--lime); ou
           <button type="button" data-lang="en" class="on">EN</button>
           <button type="button" data-lang="es">ES</button>
         </div>
-        <a class="cta-small" href="/" data-t="header_cta">Volver al inicio</a>
+        <a class="cta-small" href="/" data-langlink="/" data-t="header_cta">Volver al inicio</a>
       </div>
     </div>
   </header>
@@ -478,7 +478,7 @@ input.eky-text:focus, select.eky-select:focus{ outline:3px solid var(--lime); ou
     <section class="eky-cta-banner" id="ekyCtaBanner">
       <div class="bh" data-t="cta_h"></div>
       <div class="bs" data-t="cta_s"></div>
-      <a id="ekyCtaLink" class="eky-cta" href="/" data-t="cta_btn">Build my website →</a>
+      <a id="ekyCtaLink" class="eky-cta" href="/" data-langlink="/" data-t="cta_btn">Build my website →</a>
       <div class="b3" data-t="cta_meta">Ready in 3 days · From $500 · In Spanish and English</div>
       <p class="bnote" data-t="cta_h_note"></p>
     </section>
@@ -490,7 +490,7 @@ input.eky-text:focus, select.eky-select:focus{ outline:3px solid var(--lime); ou
   <div class="wrap">
     <img class="mark" src="/images/logo/eky-logo-square-forblackbackground.png" alt="everybodyknowsyou.com">
     <p data-i18n="foot">Sitios web impresionantes en 3 días &middot; Español e inglés &middot; Hecho con cariño en El Salvador</p>
-    <p class="flinks"><a href="/pricing" data-i18n="f_pricing">Precios</a> &middot; <a href="/terms" data-i18n="f_terms">Términos</a></p>
+    <p class="flinks"><a href="/pricing" data-langlink="/pricing" data-i18n="f_pricing">Precios</a> &middot; <a href="/terms" data-langlink="/terms" data-i18n="f_terms">Términos</a></p>
     <p><a class="btn small cta" data-tier="generic" href="#" target="_blank" data-i18n="cta_short">¡Hazme mi sitio web!</a></p>
     <p class="social">
       <a href="https://www.linkedin.com/company/everybodyknowsyou/" target="_blank" rel="noopener" aria-label="LinkedIn"><svg viewBox="0 0 24 24" fill="currentColor" width="28" height="28" aria-hidden="true"><path d="M19 3H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V5a2 2 0 0 0-2-2zM8.34 17H6V10h2.34v7zM7.17 9a1.34 1.34 0 1 1 0-2.68 1.34 1.34 0 0 1 0 2.68zM18 17h-2.34v-3.5c0-.83-.17-1.5-1.17-1.5s-1.17.83-1.17 1.5V17H11V10h2.27v1h.03c.32-.6 1.1-1.2 2.27-1.2 2.43 0 2.86 1.5 2.86 3.45V17z"/></svg></a>
@@ -1266,6 +1266,27 @@ applyLang();
   }
   if (document.readyState !== 'loading') { wire(); }
   else { document.addEventListener('DOMContentLoaded', wire); }
+})();
+
+
+/* ============================================================
+   Make footer links language-aware (added during EN-at-root migration)
+   ============================================================ */
+(function(){
+  function langAwareLinks(){
+    var l = (typeof LANG !== 'undefined' && LANG === 'es') ? 'es' : 'en';
+    document.querySelectorAll('a[data-langlink]').forEach(function(a){
+      var p = a.getAttribute('data-langlink');
+      a.setAttribute('href', (l === 'es' ? '/es' : '') + p);
+    });
+  }
+  // Hook into applyLang
+  if (typeof applyLang === 'function') {
+    var _origApplyLang = applyLang;
+    window.applyLang = function(){ _origApplyLang.apply(this, arguments); langAwareLinks(); };
+  }
+  if (document.readyState !== 'loading') { langAwareLinks(); }
+  else { document.addEventListener('DOMContentLoaded', langAwareLinks); }
 })();
 
 </script>

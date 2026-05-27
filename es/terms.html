@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<script>
+(function(){
+  try {
+    if (localStorage.getItem("eky_lang")) return; // already chose; respect
+    var referrer = document.referrer || "";
+    var nav = (navigator.language || navigator.userLanguage || "").toLowerCase();
+    var browserPrefersEn = nav.indexOf("en") === 0;
+    var spanishTld = /\.(es|mx|ar|cl|co|pe|ec|gt|sv|hn|ni|cr|pa|do|ve|bo|py|uy|cu|pr)(\/|:|$)/i;
+    var referrerEs = referrer && spanishTld.test(referrer);
+    // On the Spanish page, only redirect to English if browser is English
+    // AND referrer is NOT from a Spanish-speaking country (don't fight a clear ES signal)
+    if (browserPrefersEn && !referrerEs) {
+      localStorage.setItem("eky_lang", "en");
+      var path = window.location.pathname.replace(/^\/es\//, "/");
+      var dest = path + (window.location.search || "") + (window.location.hash || "");
+      window.location.replace(dest);
+    }
+  } catch (e) {}
+})();
+</script>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Términos de Servicio · everybodyknowsyou.com</title>
+<meta name="description" content="Términos de Servicio de everybodyknowsyou.com: qué incluye, permanencia del contenido en línea, cambios, renovación, uso aceptable y garantía.">
+
+<link rel="canonical" href="https://everybodyknowsyou.com/es/terms">
+<link rel="alternate" hreflang="es" href="https://everybodyknowsyou.com/es/terms">
+<link rel="alternate" hreflang="en" href="https://everybodyknowsyou.com/terms">
+<link rel="alternate" hreflang="x-default" href="https://everybodyknowsyou.com/terms">
+
+<meta property="og:title" content="Términos de Servicio · everybodyknowsyou.com">
+<meta property="og:description" content="Términos claros, en lenguaje simple: qué hacemos, permanencia online, cambios, renovación y garantía.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://everybodyknowsyou.com/es/terms">
+<meta property="og:site_name" content="everybodyknowsyou.com">
+<meta property="og:image" content="https://everybodyknowsyou.com/images/everybodyknowsyou_socialshare.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:locale" content="es_SV">
+<meta property="og:locale:alternate" content="en_US">
+
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://everybodyknowsyou.com/images/everybodyknowsyou_socialshare.jpg">
+
+<meta name="robots" content="index, follow">
+
+<meta name="theme-color" content="#6200C9">
+<meta name="geo.region" content="SV">
+<meta name="geo.placename" content="El Salvador">
+<meta http-equiv="content-language" content="es-SV">
+<meta name="author" content="WeSpark / everybodyknowsyou.com">
+
+<!-- Icons -->
+<link rel="icon" type="image/jpeg" href="/images/favicon.jpg">
+<link rel="apple-touch-icon" href="/images/favicon.jpg">
+
+<!-- Fonts -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Caveat:wght@600;700&display=swap">
+
+<!-- Pointer for AI assistants -->
+<link rel="alternate" type="text/plain" title="llms.txt" href="https://everybodyknowsyou.com/llms.txt">
+
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"Organization","@id":"https://everybodyknowsyou.com/#org","name":"everybodyknowsyou.com","alternateName":"EKY","url":"https://everybodyknowsyou.com/","logo":"https://everybodyknowsyou.com/images/logo/eky-logo-complete.png","image":"https://everybodyknowsyou.com/images/everybodyknowsyou_socialshare.jpg","description":"Boutique studio that builds stunning, AI-optimized personal and business websites in 3 days, in Spanish and English, from El Salvador.","areaServed":["SV","GT","HN","NI","CR","PA","MX","CO","AR","CL","PE","EC","US","ES"],"email":"hey@everybodyknowsyou.com","address":{"@type":"PostalAddress","addressCountry":"SV"},"founder":{"@type":"Person","name":"Nelson Inno","url":"https://nelsoninno.com"},"parentOrganization":{"@type":"Organization","name":"WeSpark","url":"https://wespark.io"},"sameAs":["https://wespark.io","https://www.linkedin.com/company/everybodyknowsyou/","https://www.instagram.com/everybodyknowsyou.eky"]}
+</script>
+
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Inicio","item":"https://everybodyknowsyou.com/"},{"@type":"ListItem","position":2,"name":"Términos","item":"https://everybodyknowsyou.com/terms"}]}
+</script>
+<style>
+  :root{
+    --bg:#FFFFFF;
+    --ink:#0A0A0A;
+    --purple:#6200C9;
+    --purple-deep:#4A0099;
+    --lime:#CEFF00;
+    --pink:#FF2687;
+    --hard:0 6px 0 var(--ink);
+    --hard-sm:0 4px 0 var(--ink);
+    --display:'Fredoka',system-ui,sans-serif;
+    --hand:'Caveat',cursive;
+    --max:780px;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  body{font-family:var(--display);font-weight:500;color:var(--ink);background:var(--bg);line-height:1.65;overflow-x:hidden}
+  .wrap{max-width:var(--max);margin:0 auto;padding:0 clamp(1.1rem,4vw,2.2rem)}
+  h1,h2,h3{font-family:var(--display);font-weight:700;line-height:1.15;letter-spacing:-.01em}
+  a{color:var(--purple)}
+  header{position:sticky;top:0;z-index:50;background:var(--bg);border-bottom:2px solid var(--ink)}
+  .bar{display:flex;align-items:center;justify-content:space-between;padding:.7rem 0;gap:1rem;max-width:1000px;margin:0 auto;padding-left:clamp(1.1rem,4vw,2.2rem);padding-right:clamp(1.1rem,4vw,2.2rem)}
+  .brand{height:36px;display:block}
+  @media(min-width:560px){.brand{height:42px}}
+  .nav-cta{display:flex;align-items:center;gap:.6rem;flex-shrink:0}
+  .lang,.home{cursor:pointer;background:#fff;border:2px solid var(--ink);border-radius:999px;font-family:var(--display);font-weight:600;padding:.28rem .85rem;font-size:.85rem;text-decoration:none;color:var(--ink)}
+  .hero{text-align:center;padding:clamp(2.2rem,5vw,3.4rem) 0 .5rem}
+  .eyebrow{display:inline-block;font-family:var(--hand);font-weight:700;font-size:1.8rem;color:var(--pink);transform:rotate(-2deg);margin-bottom:.6rem}
+  .hero h1{font-size:clamp(2rem,5.5vw,3rem);margin:.2rem 0 .4rem}
+  .updated{opacity:.7;font-size:.9rem;font-weight:500}
+  .doc{padding:1.4rem 0 2.4rem}
+  .intro{background:#F7F2FF;border:2px solid var(--ink);border-radius:18px;box-shadow:var(--hard);padding:1.2rem 1.4rem;margin-bottom:1.6rem}
+  .intro p{font-weight:500}
+  ol.terms{list-style:none;counter-reset:t;padding:0}
+  ol.terms>li{counter-increment:t;position:relative;background:#fff;border:2px solid var(--ink);border-radius:18px;box-shadow:var(--hard);padding:1.3rem 1.3rem 1.3rem 3.5rem;margin-bottom:1rem}
+  ol.terms>li:before{content:counter(t);position:absolute;left:1rem;top:1.25rem;width:2rem;height:2rem;background:var(--lime);color:var(--ink);border:2px solid var(--ink);border-radius:50%;display:grid;place-items:center;font-family:var(--display);font-weight:700;font-size:.95rem}
+  ol.terms h3{font-size:1.15rem;margin-bottom:.35rem}
+  ol.terms p{opacity:.9;font-size:.98rem;font-weight:500}
+  .flag{background:var(--lime);padding:.2rem .5rem;border-radius:4px;color:var(--ink);font-weight:700}
+  .btn{display:inline-block;cursor:pointer;font-family:var(--display);font-weight:700;font-size:1.05rem;background:var(--lime);color:var(--ink);border:2px solid var(--ink);border-radius:999px;padding:.8rem 1.65rem;text-decoration:none;box-shadow:var(--hard);transition:transform .08s,box-shadow .08s}
+  .btn:hover{transform:translateY(3px);box-shadow:var(--hard-sm)}
+  .btn.small{padding:.5rem 1.05rem;font-size:.9rem;box-shadow:var(--hard-sm)}
+  footer{background:var(--ink);color:#fff;padding:3rem 0;text-align:center}
+  footer .mark{display:block;margin:0 auto 1rem;height:128px;width:auto}
+  footer a{color:var(--lime);text-decoration:none}
+  footer p{margin:.9rem 0;opacity:.9;font-weight:500}
+  footer .flinks a{color:var(--lime)}
+  .social{margin:1rem 0 .4rem;display:flex;gap:1.1rem;justify-content:center;align-items:center}
+  .social a{display:inline-flex;color:var(--lime);transition:transform .15s,color .15s}
+  .social a:hover{transform:translateY(-2px);color:#fff}
+  .social svg{display:block}
+  .powered{margin-top:.5rem}
+  .powered a{display:inline-flex;align-items:center;gap:.5rem;color:#fff;font-family:var(--display)}
+  .powered img{height:46px}
+  [data-lang]{display:none}
+
+  span[data-lang]{display:none}
+
+</style>
+</head>
+<body class="es">
+<header>
+  <div class="bar">
+    <a href="/es/" aria-label="everybodyknowsyou.com"><img class="brand" src="images/logo/eky-logo-complete.png" alt="everybodyknowsyou.com"></a>
+    <div class="nav-cta">
+      <a class="home" href="/es/">Inicio</a>
+      <a class="lang" onclick="try{localStorage.setItem('eky_lang','en')}catch(e){}" href="/terms">EN</a>
+    </div>
+  </div>
+</header>
+
+<div class="hero wrap">
+  <span class="eyebrow">En lenguaje simple, a propósito</span>
+  <h1>Términos de Servicio</h1>
+  <div class="updated">Última actualización: mayo 2026</div>
+</div>
+
+<div class="doc wrap">
+  <div class="intro">
+    <p>Al enviar nuestro formulario o contratar el servicio, aceptas estos términos. Los escribimos cortos y claros para que de verdad los entiendas. Los precios completos están en la <a href="/es/pricing">página de precios</a>.</p>
+  </div>
+
+  <ol class="terms">
+    <li>
+      <h3>Qué hacemos</h3>
+      <p>Creamos y publicamos tu sitio web con la información y las fotos que nos das. El primer año incluye tu dominio, el alojamiento y las iteraciones de diseño de tu plan.</p>
+    </li>
+    <li>
+      <h3>Tu contenido y tu permiso</h3>
+      <p>Nos autorizas a usar la información, los textos y las fotos que compartes para crear y publicar tu sitio. Declaras que ese contenido es verdadero y que tienes derecho a usarlo. Tú eres responsable de lo que nos entregas.</p>
+    </li>
+    <li>
+      <h3>Lo que se publica en internet es permanente</h3>
+      <p>Una vez en línea, tu sitio es indexado y copiado por buscadores como Google y por herramientas de inteligencia artificial. Esa información se difunde, se guarda en otros servidores y en copias en caché, y en la práctica es casi imposible de borrar por completo, aunque más adelante pidas quitarla. No nos hacemos responsables por contenido que después quieras eliminar. Publica solo lo que estés cómodo con que viva en internet para siempre.</p>
+    </li>
+    <li>
+      <h3>Iteraciones y cambios</h3>
+      <p>Durante la creación de tu sitio incluimos varias iteraciones de diseño (2 en Personal, 3 en Negocios, 10 en Flash Ejecutivo) para dejarlo a tu gusto. Una vez publicado, cualquier cambio posterior tiene costo, según los <a href="/es/pricing">precios publicados</a>. Los cambios no son gratis ni ilimitados.</p>
+    </li>
+    <li>
+      <h3>Tiempos y demoras</h3>
+      <p>Nuestros plazos (por ejemplo, 3 días) empiezan a contar cuando nos entregas toda la información, las fotos y los accesos que necesitamos. El reloj se detiene mientras esperamos algo de tu parte: cualquier demora tuya retrasa la entrega en la misma medida. Si tardas un día en enviarnos lo que falta, la entrega se mueve un día.</p>
+    </li>
+    <li>
+      <h3>Renovación y dominio</h3>
+      <p>El primer año va incluido. Después, tu sitio se renueva por $29 al año (dominio y alojamiento). Los dominios premium o especiales se cobran a costo, aparte. Si no pagas la renovación, tu sitio puede salir de línea tras un periodo de gracia de 14 días; podemos volver a publicarlo desde nuestro respaldo con una cuota de reactivación de $15. Importante: si dejamos de pagar tu dominio porque no renovaste, ese dominio puede expirar y ser tomado por cualquier persona, y no podemos garantizar recuperarlo.</p>
+    </li>
+    <li>
+      <h3>Uso aceptable</h3>
+      <p>No creamos ni alojamos sitios con contenido ilegal, sexual, adulto o extremo, ni con desinformación o contenido que cause daño. Podemos aceptar o rechazar cualquier proyecto a nuestro criterio, y podemos cancelar el servicio y bajar un sitio que viole estos términos o que difunda información falsa, ilegal o moralmente reprochable, sin reembolso.</p>
+    </li>
+    <li>
+      <h3>Pago inicial y propiedad intelectual</h3>
+      <p>El trabajo comienza con el pago inicial (la mitad). Si no se completa el pago inicial acordado, no entregamos ni publicamos el sitio, y todo el material que hayamos creado (diseño, textos, código y archivos) sigue siendo de nuestra propiedad intelectual: no puede ser usado, copiado, reproducido ni publicado por el cliente ni por terceros.</p>
+    </li>
+    <li>
+      <h3>Garantía y reembolsos</h3>
+      <p>Pagas la mitad para empezar y ves tu sitio en una vista previa privada antes de publicarlo. Si no te encanta antes de publicar, te devolvemos lo que pagaste. Una vez publicado, el servicio se considera entregado.</p>
+    </li>
+    <li>
+      <h3>Pack de Autonomía Total</h3>
+      <p>Es un complemento opcional (ver <a href="/es/pricing">precios</a>). Una vez pagado, hacemos una sesión única en la que te transferimos el dominio, te entregamos todos los archivos de tu sitio y te explicamos cómo mantenerlo y actualizarlo por tu cuenta. Al concluir esa sesión, el servicio se considera entregado y la relación cliente–proveedor queda finalizada y cerrada.</p>
+    </li>
+    <li>
+      <h3>Responsabilidad</h3>
+      <p>Entregamos el servicio "tal cual". No somos responsables por daños indirectos, por el contenido que decidas publicar, ni por lo que terceros (buscadores, IA u otras personas) hagan con tu información ya pública. Tampoco somos responsables por fallas, caídas del servicio, hackeos, pérdidas de datos o interrupciones causadas por servicios de terceros (alojamiento, registradores de dominios, proveedores de internet o plataformas externas), ni por eventos fuera de nuestro control razonable (fuerza mayor).</p>
+    </li>
+    <li>
+      <h3>Cambios a estos términos y contacto</h3>
+      <p>Podemos actualizar estos términos; la versión vigente es la publicada en esta página. ¿Dudas? Escríbenos por WhatsApp o a <a href="mailto:hey@everybodyknowsyou.com" class="flag">hey@everybodyknowsyou.com</a>.</p>
+    </li>
+  </ol>
+</div>
+
+<footer>
+  <div class="wrap">
+    <img class="mark" src="/images/logo/eky-logo-square-forblackbackground.png" alt="everybodyknowsyou.com">
+    <p data-i18n="foot">Sitios web impresionantes en 3 días &middot; Español e inglés &middot; Hecho con cariño en El Salvador</p>
+    <p class="flinks"><a href="/es/pricing" data-i18n="f_pricing">Precios</a> &middot; <a href="/es/terms" data-i18n="f_terms">Términos</a></p>
+    <p><a class="btn small cta" data-tier="generic" href="#" target="_blank" data-i18n="cta_short">¡Hazme mi sitio web!</a></p>
+    <p class="social">
+      <a href="https://www.linkedin.com/company/everybodyknowsyou/" target="_blank" rel="noopener" aria-label="LinkedIn"><svg viewBox="0 0 24 24" fill="currentColor" width="28" height="28" aria-hidden="true"><path d="M19 3H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V5a2 2 0 0 0-2-2zM8.34 17H6V10h2.34v7zM7.17 9a1.34 1.34 0 1 1 0-2.68 1.34 1.34 0 0 1 0 2.68zM18 17h-2.34v-3.5c0-.83-.17-1.5-1.17-1.5s-1.17.83-1.17 1.5V17H11V10h2.27v1h.03c.32-.6 1.1-1.2 2.27-1.2 2.43 0 2.86 1.5 2.86 3.45V17z"/></svg></a>
+      <a href="https://www.instagram.com/everybodyknowsyou.eky" target="_blank" rel="noopener" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="28" height="28" aria-hidden="true"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg></a>
+    </p>
+    <p class="powered"><a href="https://wespark.io" target="_blank"><span data-i18n="powered">Impulsado por</span> <img src="/WeSpark%20Logo%20Classic%20White%20Wide.png" alt="WeSpark"></a></p>
+  </div>
+</footer>
+
+<script>
+  var lang = (function(){
+    try {
+      var p = new URLSearchParams(window.location.search).get('lang');
+      if (p === 'en' || p === 'es') return p;
+      var n = (navigator.language || navigator.userLanguage || '').toLowerCase();
+      if (n.indexOf('en') === 0) return 'en';
+    } catch(e) {}
+    return 'es';
+  })();
+  function apply(){
+    document.body.className = lang;
+    document.documentElement.lang = lang;
+      }
+  document.getElementById("langBtn").addEventListener("click", function(){ lang = (lang==="es") ? "en" : "es"; apply(); });
+  apply();
+  // Wire up WhatsApp CTAs (uses the `lang` variable from the lang switcher above)
+  var WHATSAPP_NUMBER = "50374927681";
+  var WA_MSG_ES = "Hola, vi everybodyknowsyou.com y quiero el mío.";
+  var WA_MSG_EN = "Hi, I saw everybodyknowsyou.com and I want one for me!";
+  function wireCTAs(){
+    var msg = (lang === 'en') ? WA_MSG_EN : WA_MSG_ES;
+    document.querySelectorAll("a.cta").forEach(function(a){
+      a.setAttribute("href", "https://wa.me/" + WHATSAPP_NUMBER + "?text=" + encodeURIComponent(msg));
+    });
+  }
+  // Re-wire whenever language changes
+  var _origApply = apply;
+  apply = function(){ _origApply(); wireCTAs(); };
+  wireCTAs();
+</script>
+</body>
+</html>

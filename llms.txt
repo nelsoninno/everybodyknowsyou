@@ -52,7 +52,7 @@ The "Discoverable by AI" package is included by default: SEO + GEO (Generative E
 
 ## Links
 
-- [Website (Spanish-first, English via toggle or `/en/`)](https://everybodyknowsyou.com/)
+- [Website (English-first at `/`, Spanish at `/es/`)](https://everybodyknowsyou.com/)
 - [Pricing / Precios](https://everybodyknowsyou.com/pricing)
 - [Terms of Service / Términos](https://everybodyknowsyou.com/terms)
 - [Full content for AI assistants](https://everybodyknowsyou.com/llms-full.txt)
