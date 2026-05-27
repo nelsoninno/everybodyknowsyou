@@ -46,6 +46,8 @@ The "Discoverable by AI" package is included by default: SEO + GEO (Generative E
 
 - Email: hey@everybodyknowsyou.com
 - WhatsApp: via the website (link on every page)
+- LinkedIn: https://www.linkedin.com/company/everybodyknowsyou/
+- Instagram: https://www.instagram.com/everybodyknowsyou.eky
 - Location: El Salvador  ·  Serving LatAm and worldwide
 
 ## Links
