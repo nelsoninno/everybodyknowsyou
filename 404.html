@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Not found · No encontrado · everybodyknowsyou.com</title>
+<meta name="robots" content="noindex, follow">
+<link rel="canonical" href="https://everybodyknowsyou.com/">
+<link rel="icon" type="image/jpeg" href="/images/favicon.jpg">
+<link rel="apple-touch-icon" href="/images/favicon.jpg">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Caveat:wght@600;700&display=swap" rel="stylesheet">
+
+<style>
+:root{
+  --ink:#0A0A0A;
+  --purple:#6200C9;
+  --lime:#CEFF00;
+  --pink:#FF2687;
+  --display:'Fredoka', system-ui, sans-serif;
+  --hand:'Caveat', cursive;
+  --hard:0 6px 0 var(--ink);
+  --hard-sm:0 4px 0 var(--ink);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{height:100%}
+body{
+  font-family:var(--display);
+  color:var(--ink);
+  background:var(--lime);
+  min-height:100vh;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  padding:32px 24px;
+  text-align:center;
+  -webkit-font-smoothing:antialiased;
+}
+.wrap{max-width:640px}
+
+.binocular-wrap{
+  position:relative;
+  display:inline-block;
+  margin:0 auto 24px;
+  width:200px;
+  height:200px;
+}
+.binocular-wrap img{
+  width:200px;
+  height:auto;
+  display:block;
+  animation:bobble 4s ease-in-out infinite;
+}
+@keyframes bobble{
+  0%,100%{transform:translateY(0) rotate(-3deg)}
+  50%{transform:translateY(-6px) rotate(3deg)}
+}
+.pink-x{
+  position:absolute;
+  top:50%; left:50%;
+  transform:translate(-50%,-50%) rotate(-8deg);
+  color:var(--pink);
+  font-family:var(--hand);
+  font-size:280px;
+  font-weight:700;
+  line-height:1;
+  pointer-events:none;
+  text-shadow:0 4px 0 var(--ink), 4px 0 0 var(--ink), 0 -4px 0 var(--ink), -4px 0 0 var(--ink);
+  user-select:none;
+}
+
+h1{
+  font-family:var(--display);
+  font-weight:700;
+  font-size:clamp(2.2rem, 7vw, 3.6rem);
+  line-height:1.05;
+  letter-spacing:-.01em;
+  margin-bottom:6px;
+}
+h1 .es{color:var(--purple); display:block; font-size:.82em; margin-top:.1em;}
+
+.code{
+  display:inline-block;
+  font-family:var(--hand);
+  color:var(--ink);
+  background:#fff;
+  border:2px solid var(--ink);
+  border-radius:999px;
+  padding:.2rem .9rem;
+  font-size:1.4rem;
+  font-weight:700;
+  box-shadow:var(--hard-sm);
+  margin:14px 0 22px;
+  transform:rotate(-2deg);
+}
+
+p.copy{
+  font-size:1.1rem;
+  font-weight:500;
+  line-height:1.5;
+  max-width:520px;
+  margin:0 auto 8px;
+}
+p.copy.es{color:var(--purple); opacity:.95; font-size:1rem}
+
+.btn-row{
+  display:flex;
+  gap:14px;
+  flex-wrap:wrap;
+  justify-content:center;
+  margin-top:28px;
+}
+.btn{
+  display:inline-block;
+  padding:14px 28px;
+  font-family:var(--display);
+  font-weight:700;
+  font-size:1rem;
+  text-decoration:none;
+  border-radius:999px;
+  border:2px solid var(--ink);
+  background:var(--ink);
+  color:#fff;
+  box-shadow:var(--hard);
+  transition:transform .08s, box-shadow .08s;
+}
+.btn:hover{transform:translateY(3px); box-shadow:var(--hard-sm)}
+.btn.alt{background:#fff; color:var(--ink)}
+.btn.alt:hover{background:#fff}
+
+@media (max-width:560px){
+  .binocular-wrap{width:160px; height:160px}
+  .binocular-wrap img{width:160px}
+  .pink-x{font-size:220px}
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <div class="binocular-wrap">
+    <img src="/images/decorations/binocular.png" alt="" aria-hidden="true">
+    <span class="pink-x" aria-hidden="true">×</span>
+  </div>
+
+  <h1>
+    Not found
+    <span class="es">No encontrado</span>
+  </h1>
+
+  <span class="code">404</span>
+
+  <p class="copy">The page you were looking for is not here, but we are.</p>
+  <p class="copy es">La página que buscabas no está aquí, pero nosotros sí.</p>
+
+  <div class="btn-row">
+    <a class="btn" href="/">Home</a>
+    <a class="btn alt" href="/es/">Inicio</a>
+  </div>
+
+</div>
+</body>
+</html>
