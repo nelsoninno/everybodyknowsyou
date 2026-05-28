@@ -438,6 +438,27 @@ input.eky-text:focus, select.eky-select:focus{ outline:3px solid var(--lime); ou
       </div>
     </section>
 
+    <!-- ============ STEP 1.5 - Confirm main website (Edge 2 refined) ============ -->
+    <section class="eky-confirm eky-mainsite" id="ekyMainSite" aria-live="polite">
+      <h2 data-t="mainsite_title">Is this your main website?</h2>
+      <p class="sub" data-t="mainsite_sub">We found this site for you. Confirm it's your main one, or paste your real one.</p>
+      <div class="eky-candidate" id="ekyMainSiteCard" style="margin-bottom:14px">
+        <div class="curl" id="ekyMainSiteUrl"></div>
+      </div>
+      <div class="eky-confirm-actions">
+        <div class="row">
+          <button id="ekyMainYes" class="eky-cta grow" type="button"><span data-t="mainsite_yes">Yes, this is my main website</span></button>
+        </div>
+        <div class="row">
+          <input id="ekyMainOther" type="text" placeholder="https://yoursite.com" />
+          <button id="ekyMainOtherGo" class="eky-cta ghost" type="button"><span data-t="mainsite_no_go">No - use this URL instead</span></button>
+        </div>
+        <div class="row">
+          <button id="ekyMainNoSite" class="eky-cta ghost grow" type="button"><span data-t="confirm_nosite">I don't have a website yet</span></button>
+        </div>
+      </div>
+    </section>
+
     <!-- ============ STEP 2 - Website ============ -->
     <section class="eky-confirm eky-website" id="ekyWebsite" aria-live="polite">
       <h2 data-t="website_title">Do you have a website?</h2>
@@ -604,6 +625,10 @@ const STRINGS = {
     confirm_sub:   "We searched and found this. Confirm it's really you — otherwise we'd be measuring the wrong person.",
     confirm_yes:   "Yes, that's me",
     confirm_notme: "That's not me",
+    mainsite_title: "Is this your main website?",
+    mainsite_sub:   "We found this site for you. Confirm it's your main one, or paste your real one.",
+    mainsite_yes:   "Yes, this is my main website",
+    mainsite_no_go: "No - use this URL instead",
     website_title: "Do you have a website?",
     website_sub:   "Paste your URL - or tell us you don't have one yet.",
     empty_title:   "We couldn't find you in AI",
@@ -713,6 +738,10 @@ const STRINGS = {
     confirm_sub:   "Buscamos y encontramos esto. Confírmanos que eres tú — si no, mediríamos a otra persona.",
     confirm_yes:   "Sí, soy yo",
     confirm_notme: "No soy yo",
+    mainsite_title: "¿Es este tu sitio web principal?",
+    mainsite_sub:   "Encontramos este sitio. Confirma si es el principal, o pega el tuyo.",
+    mainsite_yes:   "Sí, es mi sitio web principal",
+    mainsite_no_go: "No - usa este URL en su lugar",
     website_title: "¿Tienes un sitio web?",
     website_sub:   "Pega tu URL - o dinos que aún no tienes uno.",
     empty_title:   "No te encontramos en la IA",
@@ -837,10 +866,16 @@ const elProfilesChips = $("ekyProfilesChips");
 const elYes      = $("ekyYes");
 const elMyUrl    = $("ekyMyUrl");
 const elMyUrlGo  = $("ekyMyUrlGo");
-const elNoSite   = $("ekyNoSite");
-const elNotMe    = $("ekyNotMe");
-const elWebsite  = $("ekyWebsite");
-const elEmpty    = $("ekyEmptyState");
+const elNoSite     = $("ekyNoSite");
+const elNotMe      = $("ekyNotMe");
+const elWebsite    = $("ekyWebsite");
+const elEmpty      = $("ekyEmptyState");
+const elMainSite   = $("ekyMainSite");
+const elMainSiteUrl= $("ekyMainSiteUrl");
+const elMainYes    = $("ekyMainYes");
+const elMainOther  = $("ekyMainOther");
+const elMainOtherGo= $("ekyMainOtherGo");
+const elMainNoSite = $("ekyMainNoSite");
 const elResult   = $("ekyResult");
 const elArc      = $("ekyArc");
 const elNeedle   = $("ekyNeedle");
@@ -970,11 +1005,42 @@ function showEmptyState() {
 
 elYes.addEventListener("click", () => {
   identityConfirmed = true;
+  // Edge 2 refined: AI found a clean website - ASK if it's their main site
+  // (just because the URL matches their name doesn't mean it's actually theirs
+  // or their current/main one - could be old portfolio, different person, etc.)
   if (discovered.candidate && discovered.candidate.url && !isProfileUrl(discovered.candidate.url)) {
-    runAudit({ confirmedUrl: discovered.candidate.url });
+    showMainSiteStep(discovered.candidate.url);
     return;
   }
+  // Otherwise (candidate is a profile, or none) - go to Step 2
   showWebsiteStep();
+});
+
+function showMainSiteStep(url) {
+  hide(elConfirm); hide(elWebsite); hide(elEmpty);
+  elMainSiteUrl.textContent = url;
+  elMainOther.value = "";
+  show(elMainSite);
+  clearError();
+  try { elMainSite.scrollIntoView({ behavior:"smooth", block:"start" }); } catch (e) {}
+}
+
+elMainYes.addEventListener("click", () => {
+  const url = discovered.candidate && discovered.candidate.url;
+  if (!url) return;
+  runAudit({ confirmedUrl: url });
+});
+
+elMainOtherGo.addEventListener("click", () => {
+  const u = elMainOther.value.trim();
+  if (!u) { showError(STRINGS[LANG].err_url); return; }
+  if (isProfileUrl(u)) { runNoSite(); return; }
+  runAudit({ confirmedUrl: u });
+});
+
+elMainNoSite.addEventListener("click", () => {
+  // identity already confirmed (we reached this card via Yes that\'s me)
+  runNoSite();
 });
 elNotMe.addEventListener("click", () => {
   identityConfirmed = false;
@@ -998,7 +1064,7 @@ elNoSite.addEventListener("click", () => {
 });
 
 function clearAll() {
-  hide(elConfirm); hide(elWebsite); hide(elEmpty); hide(elResult); hide(elCtaBanner);
+  hide(elConfirm); hide(elMainSite); hide(elWebsite); hide(elEmpty); hide(elResult); hide(elCtaBanner);
   clearError();
   identityConfirmed = false;
   var fb = document.getElementById("ekyFallback");
@@ -1275,7 +1341,8 @@ function renderTarget(data) {
     if (typeof data.matches === "number" && data.matches > 1) {
       html += ' · ' + escapeHtml(t.target_matches(data.matches));
     }
-    html += '<span class="notyours">' + escapeHtml(t.target_notyours) + '</span>';
+    // The 'Not you? Click...' hint used to point at a button on the same
+    // page. In the two-step flow the button is gone, so we drop the hint.
     elTarget.innerHTML = html;
   } else if (data.hasNoSite) {
     elTarget.textContent = "";
