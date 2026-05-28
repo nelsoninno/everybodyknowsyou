@@ -342,36 +342,54 @@ function layerAToSignals(la) {
 }
 
 /* LAYER B — max 60 (regex-free)
-     site 8 · llms 14 · schema 14 · sameas_xref 14 · basics 10           */
+     Rebalanced to restore the sameAs COUNT signal that existed in the old
+     Layer-S-only path. Two distinct sameAs measurements:
+       sameas_count    — credit for the declarations you have made (10 pts)
+       sameAsCrossVerify — credit for those declarations matching what AI sees (10 pts)
+     Breakdown:
+       site 6 · llms 12 · schema 12 · sameas_count 10 · sameas_xref 10 · basics 10
+*/
 function computeLayerB({ home, llms, llmsFull, robots, sitemap, html, sd, target, profiles }) {
   const b1state = home.ok ? "full" : (home.status > 0 ? "partial" : "none");
-  const b1pts = b1state === "full" ? 8 : (b1state === "partial" ? 4 : 0);
+  const b1pts = b1state === "full" ? 6 : (b1state === "partial" ? 3 : 0);
   const llmsBody = (llms.ok && llms.text.trim()) || (llmsFull.ok && llmsFull.text.trim()) || "";
   const b2state = llmsBody.length > 200 ? "full" : (llmsBody.length > 0 ? "partial" : "none");
-  const b2pts = b2state === "full" ? 14 : (b2state === "partial" ? 7 : 0);
+  const b2pts = b2state === "full" ? 12 : (b2state === "partial" ? 6 : 0);
   const richEntity = sd.hasEntity && sd.name && (sd.hasDescription || sd.hasImage);
   const b3state = richEntity ? "full" : (sd.hasEntity ? "partial" : "none");
-  const b3pts = b3state === "full" ? 14 : (b3state === "partial" ? 7 : 0);
-  /* Cross-verify with same union approach: declared sameAs + HTML profile
-     links count toward "identity declarations AI can verify". HTML-only
-     matches still count at 0.7 weight. Smooth gradient up to 14. */
+  const b3pts = b3state === "full" ? 12 : (b3state === "partial" ? 6 : 0);
+
+  /* sameAs declarations: JSON-LD canonical + visible HTML profile links
+     (footer/header/contact). HTML-only entries count at 0.7 weight. */
   const profileHosts = new Set((profiles || []).map(p => hostOf(p.url)).filter(Boolean));
   const declaredHosts = new Set((sd.sameAs || []).map(hostOf).filter(Boolean));
   const htmlProfileHosts = extractHtmlProfileLinks(html);
   const htmlOnlyHosts = new Set([...htmlProfileHosts].filter(h => !declaredHosts.has(h)));
   const sameAsHosts = new Set([...declaredHosts, ...htmlOnlyHosts]);
+  const weightedSameAsCount = declaredHosts.size + (htmlOnlyHosts.size * 0.7);
+  const sameAsCount = sameAsHosts.size;
+
+  /* COUNT signal: credit for declaring real profiles (no AI verification needed).
+     Linear gradient: weighted count × (10/2.5) ≈ × 4, capped at 10.
+     → 0:0, 1:4, 2:8, 2.5+:10. Same gradient shape Nelson liked, scaled to 10. */
+  let b4pts = Math.min(10, Math.round(weightedSameAsCount * 4));
+  let b4state = "none";
+  if (b4pts >= 8) b4state = "full";
+  else if (b4pts > 0) b4state = "partial";
+
+  /* CROSS-VERIFY signal: matches between declared/visible and AI's findings */
   let declaredCrossMatches = 0;
   for (const h of declaredHosts) if (profileHosts.has(h)) declaredCrossMatches++;
   let htmlOnlyCrossMatches = 0;
   for (const h of htmlOnlyHosts) if (profileHosts.has(h)) htmlOnlyCrossMatches++;
   const weightedCrossMatches = declaredCrossMatches + (htmlOnlyCrossMatches * 0.7);
   const crossMatches = declaredCrossMatches + htmlOnlyCrossMatches;
-  /* Linear gradient: 4 pts per weighted match, capped at 14 (so 4+ matches = full) */
-  let b4pts = Math.min(14, Math.round(weightedCrossMatches * 4));
-  let b4state = "none";
-  if (b4pts >= 12) b4state = "full";
-  else if (b4pts > 0) b4state = "partial";
-  else if (sameAsHosts.size >= 1 && profileHosts.size === 0) { b4state = "partial"; b4pts = 7; }
+  let b5pts = Math.min(10, Math.round(weightedCrossMatches * 4));
+  let b5state = "none";
+  if (b5pts >= 8) b5state = "full";
+  else if (b5pts > 0) b5state = "partial";
+  else if (sameAsHosts.size >= 1 && profileHosts.size === 0) { b5state = "partial"; b5pts = 5; }
+
   const low = (html || "").toLowerCase();
   const hasTitle = low.indexOf("<title>") !== -1 || low.indexOf("<title ") !== -1;
   const hasDesc  = low.indexOf('name="description"') !== -1 || low.indexOf("name='description'") !== -1;
@@ -384,40 +402,43 @@ function computeLayerB({ home, llms, llmsFull, robots, sitemap, html, sd, target
   const robotsOk = robots.ok && !robotsLines.includes("disallow:/");
   const sitemapText = (sitemap && sitemap.text) || "";
   const sitemapOk = sitemap.ok && (sitemapText.indexOf("<urlset") !== -1 || sitemapText.indexOf("<sitemapindex") !== -1);
-  let b5pts = 0;
-  if (hasTitle) b5pts += 2;
-  if (hasDesc)  b5pts += 2;
-  if (hasOg)    b5pts += 2;
-  if (hasCanon) b5pts += 2;
-  if (isHttps && !noindex)   b5pts += 1;
-  if (robotsOk || sitemapOk) b5pts += 1;
-  let b5state = "none";
-  if (b5pts >= 8) b5state = "full";
-  else if (b5pts >= 4) b5state = "partial";
+  let b6pts = 0;
+  if (hasTitle) b6pts += 2;
+  if (hasDesc)  b6pts += 2;
+  if (hasOg)    b6pts += 2;
+  if (hasCanon) b6pts += 2;
+  if (isHttps && !noindex)   b6pts += 1;
+  if (robotsOk || sitemapOk) b6pts += 1;
+  let b6state = "none";
+  if (b6pts >= 8) b6state = "full";
+  else if (b6pts >= 4) b6state = "partial";
   const bySignal = {
-    ownedSite:         { state: b1state, points: b1pts, max: 8,  meta: { status: home.status } },
-    llmsTxt:           { state: b2state, points: b2pts, max: 14, meta: { length: llmsBody.length, file: llms.ok ? "llms.txt" : (llmsFull.ok ? "llms-full.txt" : null) } },
-    structuredData:    { state: b3state, points: b3pts, max: 14, meta: { types: sd.types, name: sd.name || "" } },
-    sameAsCrossVerify: { state: b4state, points: b4pts, max: 14, meta: { matches: crossMatches, declaredMatches: declaredCrossMatches, htmlOnlyMatches: htmlOnlyCrossMatches, siteSameAs: [...sameAsHosts], declaredHosts: [...declaredHosts], htmlOnlyHosts: [...htmlOnlyHosts], profileHosts: [...profileHosts] } },
-    pageBasics:        { state: b5state, points: b5pts, max: 10, meta: { hasTitle, hasDesc, hasOg, hasCanon, isHttps: isHttps && !noindex, crawlable: robotsOk || sitemapOk } }
+    ownedSite:         { state: b1state, points: b1pts, max: 6,  meta: { status: home.status } },
+    llmsTxt:           { state: b2state, points: b2pts, max: 12, meta: { length: llmsBody.length, file: llms.ok ? "llms.txt" : (llmsFull.ok ? "llms-full.txt" : null) } },
+    structuredData:    { state: b3state, points: b3pts, max: 12, meta: { types: sd.types, name: sd.name || "" } },
+    sameAsCount:       { state: b4state, points: b4pts, max: 10, meta: { count: sameAsCount, declaredCount: declaredHosts.size, htmlOnlyCount: htmlOnlyHosts.size, hosts: [...sameAsHosts], htmlOnlyHosts: [...htmlOnlyHosts] } },
+    sameAsCrossVerify: { state: b5state, points: b5pts, max: 10, meta: { matches: crossMatches, declaredMatches: declaredCrossMatches, htmlOnlyMatches: htmlOnlyCrossMatches, siteSameAs: [...sameAsHosts], declaredHosts: [...declaredHosts], htmlOnlyHosts: [...htmlOnlyHosts], profileHosts: [...profileHosts] } },
+    pageBasics:        { state: b6state, points: b6pts, max: 10, meta: { hasTitle, hasDesc, hasOg, hasCanon, isHttps: isHttps && !noindex, crawlable: robotsOk || sitemapOk } }
   };
-  return { bySignal, total: b1pts + b2pts + b3pts + b4pts + b5pts };
+  return { bySignal, total: b1pts + b2pts + b3pts + b4pts + b5pts + b6pts };
 }
 function layerBToSignals(lb) {
   return [
     { id:"site",         layer:"B", ...lb.ownedSite },
     { id:"llms",         layer:"B", ...lb.llmsTxt },
     { id:"schema",       layer:"B", ...lb.structuredData },
+    { id:"sameas",       layer:"B", ...lb.sameAsCount },
     { id:"sameas_xref",  layer:"B", ...lb.sameAsCrossVerify },
     { id:"basics",       layer:"B", ...lb.pageBasics }
   ];
 }
 function layerBPlaceholderSignals() {
   return [
-    { id:"site",        layer:"B", state:"none", points:0, max:8,  meta:{ noSite:true } },
-    { id:"llms",        layer:"B", state:"none", points:0, max:14, meta:{ noSite:true } },
-    { id:"schema",      layer:"B", state:"none", points:0, max:14, meta:{ noSite:true } },
-    { id:"sameas_xref", layer:"B", state:"none", points:0, max:14, meta:{ noSite:true } },
+    { id:"site",        layer:"B", state:"none", points:0, max:6,  meta:{ noSite:true } },
+    { id:"llms",        layer:"B", state:"none", points:0, max:12, meta:{ noSite:true } },
+    { id:"schema",      layer:"B", state:"none", points:0, max:12, meta:{ noSite:true } },
+    { id:"sameas",      layer:"B", state:"none", points:0, max:10, meta:{ noSite:true } },
+    { id:"sameas_xref", layer:"B", state:"none", points:0, max:10, meta:{ noSite:true } },
     { id:"basics",      layer:"B", state:"none", points:0, max:10, meta:{ noSite:true } }
   ];
 }
