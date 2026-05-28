@@ -131,11 +131,20 @@ function computeWebsiteAudit({ home, llms, llmsFull, robots, sitemap, html, sd, 
   const richEntity = sd.hasEntity && sd.name && (sd.hasDescription || sd.hasImage);
   const s3state = richEntity ? "full" : (sd.hasEntity ? "partial" : "none");
   const s3pts = s3state === "full" ? 25 : (s3state === "partial" ? 12 : 0);
-  const sameAsHosts = new Set((sd.sameAs || []).map(hostOf).filter(Boolean));
+  /* Identity declarations: JSON-LD sameAs (canonical) + visible HTML profile
+     links (footer/header/contact). HTML-only entries count at 0.7 weight
+     since JSON-LD is the gold-standard signal. Linear gradient up to 15. */
+  const declaredHosts = new Set((sd.sameAs || []).map(hostOf).filter(Boolean));
+  const htmlProfileHosts = extractHtmlProfileLinks(html);
+  const htmlOnlyHosts = new Set([...htmlProfileHosts].filter(h => !declaredHosts.has(h)));
+  const sameAsHosts = new Set([...declaredHosts, ...htmlOnlyHosts]);
+  const weightedSameAsCount = declaredHosts.size + (htmlOnlyHosts.size * 0.7);
   const sameAsCount = sameAsHosts.size;
-  let s4state = "none", s4pts = 0;
-  if (sameAsCount >= 3) { s4state = "full"; s4pts = 15; }
-  else if (sameAsCount >= 1) { s4state = "partial"; s4pts = 8; }
+  /* Smooth gradient: 3 pts per weighted unit, full credit at ~5 units (15 pts) */
+  let s4pts = Math.min(15, Math.round(weightedSameAsCount * 3));
+  let s4state = "none";
+  if (s4pts >= 12) s4state = "full";
+  else if (s4pts > 0) s4state = "partial";
   const low = (html || "").toLowerCase();
   const hasTitle  = low.indexOf("<title>") !== -1 || low.indexOf("<title ") !== -1;
   const hasDesc   = low.indexOf('name="description"') !== -1 || low.indexOf("name='description'") !== -1;
@@ -162,7 +171,7 @@ function computeWebsiteAudit({ home, llms, llmsFull, robots, sitemap, html, sd, 
     { id:"site",   layer:"S", state:s1state, points:s1pts, max:10, meta:{ status: home.status } },
     { id:"llms",   layer:"S", state:s2state, points:s2pts, max:25, meta:{ length: llmsBody.length, file: llms.ok ? "llms.txt" : (llmsFull.ok ? "llms-full.txt" : null) } },
     { id:"schema", layer:"S", state:s3state, points:s3pts, max:25, meta:{ types: sd.types, name: sd.name || "" } },
-    { id:"sameas", layer:"S", state:s4state, points:s4pts, max:15, meta:{ count: sameAsCount, hosts: [...sameAsHosts] } },
+    { id:"sameas", layer:"S", state:s4state, points:s4pts, max:15, meta:{ count: sameAsCount, declaredCount: declaredHosts.size, htmlOnlyCount: htmlOnlyHosts.size, hosts: [...sameAsHosts], htmlOnlyHosts: [...htmlOnlyHosts] } },
     { id:"basics", layer:"S", state:s5state, points:s5pts, max:25, meta:{ hasTitle, hasDesc, hasOg, hasCanon, isHttps: isHttps && !noindex, crawlable: robotsOk || sitemapOk } }
   ];
   return { signals, total: s1pts + s2pts + s3pts + s4pts + s5pts };
@@ -304,13 +313,25 @@ function computeLayerB({ home, llms, llmsFull, robots, sitemap, html, sd, target
   const richEntity = sd.hasEntity && sd.name && (sd.hasDescription || sd.hasImage);
   const b3state = richEntity ? "full" : (sd.hasEntity ? "partial" : "none");
   const b3pts = b3state === "full" ? 14 : (b3state === "partial" ? 7 : 0);
+  /* Cross-verify with same union approach: declared sameAs + HTML profile
+     links count toward "identity declarations AI can verify". HTML-only
+     matches still count at 0.7 weight. Smooth gradient up to 14. */
   const profileHosts = new Set((profiles || []).map(p => hostOf(p.url)).filter(Boolean));
-  const sameAsHosts = new Set((sd.sameAs || []).map(hostOf).filter(Boolean));
-  let crossMatches = 0;
-  for (const h of sameAsHosts) if (profileHosts.has(h)) crossMatches++;
-  let b4state = "none", b4pts = 0;
-  if (crossMatches >= 2) { b4state = "full"; b4pts = 14; }
-  else if (crossMatches === 1) { b4state = "partial"; b4pts = 7; }
+  const declaredHosts = new Set((sd.sameAs || []).map(hostOf).filter(Boolean));
+  const htmlProfileHosts = extractHtmlProfileLinks(html);
+  const htmlOnlyHosts = new Set([...htmlProfileHosts].filter(h => !declaredHosts.has(h)));
+  const sameAsHosts = new Set([...declaredHosts, ...htmlOnlyHosts]);
+  let declaredCrossMatches = 0;
+  for (const h of declaredHosts) if (profileHosts.has(h)) declaredCrossMatches++;
+  let htmlOnlyCrossMatches = 0;
+  for (const h of htmlOnlyHosts) if (profileHosts.has(h)) htmlOnlyCrossMatches++;
+  const weightedCrossMatches = declaredCrossMatches + (htmlOnlyCrossMatches * 0.7);
+  const crossMatches = declaredCrossMatches + htmlOnlyCrossMatches;
+  /* Smooth gradient: 3.5 pts per weighted match, full credit at ~4 units */
+  let b4pts = Math.min(14, Math.round(weightedCrossMatches * 3.5));
+  let b4state = "none";
+  if (b4pts >= 12) b4state = "full";
+  else if (b4pts > 0) b4state = "partial";
   else if (sameAsHosts.size >= 1 && profileHosts.size === 0) { b4state = "partial"; b4pts = 7; }
   const low = (html || "").toLowerCase();
   const hasTitle = low.indexOf("<title>") !== -1 || low.indexOf("<title ") !== -1;
@@ -338,7 +359,7 @@ function computeLayerB({ home, llms, llmsFull, robots, sitemap, html, sd, target
     ownedSite:         { state: b1state, points: b1pts, max: 8,  meta: { status: home.status } },
     llmsTxt:           { state: b2state, points: b2pts, max: 14, meta: { length: llmsBody.length, file: llms.ok ? "llms.txt" : (llmsFull.ok ? "llms-full.txt" : null) } },
     structuredData:    { state: b3state, points: b3pts, max: 14, meta: { types: sd.types, name: sd.name || "" } },
-    sameAsCrossVerify: { state: b4state, points: b4pts, max: 14, meta: { matches: crossMatches, siteSameAs: [...sameAsHosts], profileHosts: [...profileHosts] } },
+    sameAsCrossVerify: { state: b4state, points: b4pts, max: 14, meta: { matches: crossMatches, declaredMatches: declaredCrossMatches, htmlOnlyMatches: htmlOnlyCrossMatches, siteSameAs: [...sameAsHosts], declaredHosts: [...declaredHosts], htmlOnlyHosts: [...htmlOnlyHosts], profileHosts: [...profileHosts] } },
     pageBasics:        { state: b5state, points: b5pts, max: 10, meta: { hasTitle, hasDesc, hasOg, hasCanon, isHttps: isHttps && !noindex, crawlable: robotsOk || sitemapOk } }
   };
   return { bySignal, total: b1pts + b2pts + b3pts + b4pts + b5pts };
@@ -464,6 +485,39 @@ function isThirdParty(url) {
 function hostOf(url) {
   try { return new URL(url).hostname.replace(/^www\./, "").toLowerCase(); }
   catch (e) { return ""; }
+}
+
+function extractHtmlProfileLinks(html) {
+  /* Conservative regex scan for <a href="..."> entries that look like
+     identity-declaring profile links (footer/header social icons, contact
+     sections, etc). Returns a Set of hostnames. Used to extend sameAs
+     coverage beyond explicit JSON-LD Schema.org declarations — AI tools
+     read these visible links, so the audit should credit them too
+     (at 0.7 weight, since JSON-LD is still the gold standard). */
+  if (!html) return new Set();
+  const found = new Set();
+  /* Skip share-intent URLs that look like profiles but are widget buttons */
+  const SHARE_RE = /\/(share|sharer|intent|sharearticle|shareurl|tweet|popup)/i;
+  const linkRe = /href\s*=\s*["']([^"']+)["']/gi;
+  let m;
+  while ((m = linkRe.exec(html)) !== null) {
+    const url = m[1];
+    if (!/^https?:\/\//i.test(url)) continue;
+    try {
+      const u = new URL(url);
+      const host = u.hostname.replace(/^www\./, "").toLowerCase();
+      const path = u.pathname || "/";
+      /* Must be a recognized identity platform (PLATFORMS list) */
+      if (!classifyHost(url)) continue;
+      /* Must have a meaningful path (not the bare domain root — that's
+         usually a logo link to the platform itself, not a user profile) */
+      if (path === "/" || path === "") continue;
+      /* Skip share-widget URLs */
+      if (SHARE_RE.test(path)) continue;
+      found.add(host);
+    } catch (e) {}
+  }
+  return found;
 }
 function extractJsonLd(html) {
   const blocks = [];
