@@ -245,7 +245,8 @@ input.eky-text:focus, select.eky-select:focus{ outline:3px solid var(--lime); ou
 .eky-target a{ color:var(--lime); font-weight:700; text-decoration:none; }
 .eky-target a:hover{ text-decoration:underline; }
 .eky-target .notyours{ display:block; margin-top:6px; font-size:13px; color:rgba(255,255,255,.7); font-style:italic; }
-.eky-target .disclaimer{ display:block; margin-top:10px; font-size:12.5px; color:rgba(255,255,255,.7); font-style:italic; line-height:1.5; max-width:560px; }
+.eky-target .disclaimer{ display:block; margin:10px auto 0; font-size:12.5px; color:rgba(255,255,255,.7); font-style:italic; line-height:1.5; max-width:560px; text-align:center; }
+.eky-collision-warn{ color:var(--pink); font-style:italic; font-size:12.5px; line-height:1.4; margin:10px 0 0; max-width:560px; }
 
 .eky-layers{ display:grid; grid-template-columns:1fr 1fr; gap:14px; margin-top:26px; }
 @media (max-width:640px){ .eky-layers{ grid-template-columns:1fr; } }
@@ -429,6 +430,7 @@ input.eky-text:focus, select.eky-select:focus{ outline:3px solid var(--lime); ou
       <div id="ekyProfilesWrap" style="display:none">
         <p style="margin:0 0 8px; font-weight:600; font-size:14px;" data-t="profiles_seen">AI also sees you on:</p>
         <div class="eky-chips" id="ekyProfilesChips"></div>
+        <p class="eky-collision-warn" data-t="profiles_collision"></p>
       </div>
 
       <div class="eky-confirm-actions">
@@ -639,6 +641,7 @@ const STRINGS = {
     confirm_nosite:"I don't have a website yet",
     confirm_no_placeholder: "https://yoursite.com",
     profiles_seen: "AI also sees you on:",
+    profiles_collision: "Heads up: AI can include profiles that belong to other people with similar names. If some of these are not you, your real score is lower than what we show.",
     kg_badge:      "Google Knowledge Panel",
     result_title:  "Here's what AI sees",
     result_title_url: "Here's how AI-ready your website is",
@@ -754,6 +757,7 @@ const STRINGS = {
     confirm_nosite:"Aún no tengo sitio web",
     confirm_no_placeholder: "https://tusitio.com",
     profiles_seen: "La IA también te ve en:",
+    profiles_collision: "Atención: la IA puede incluir perfiles que pertenecen a otras personas con nombres parecidos. Si algunos de estos no eres tú, tu puntaje real es más bajo del que mostramos.",
     kg_badge:      "Panel de Google",
     result_title:  "Esto es lo que la IA ve",
     result_title_url: "Esto es lo que tu sitio le dice a la IA",
