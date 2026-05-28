@@ -226,7 +226,30 @@ async function modeIdentityAudit({ url, name, country, countryName, passedProfil
     profiles = sd.sameAs.map(u => ({ platform: classifyHost(u) || "other", url: u, title: "" }));
     matches = 1;
   }
-  const layerA = computeLayerA({ profiles, matches });
+  /* COMMIT B: when the site declares sameAs, use it as the identity-truth filter.
+     Tag each AI-found profile as verified (host present in sameAs) or not.
+     Layer A breadth is then scored from verified profiles only — which prevents
+     name-collision profiles ("a different Nelson") from inflating the score. */
+  const sameAsHosts = new Set((sd.sameAs || []).map(hostOf).filter(Boolean));
+  const useSameAsFilter = sameAsHosts.size > 0;
+  if (useSameAsFilter) {
+    profiles = profiles.map(p => ({ ...p, verified: sameAsHosts.has(hostOf(p.url)) }));
+  } else {
+    profiles = profiles.map(p => ({ ...p, verified: false }));
+  }
+  const profilesForScoring = useSameAsFilter
+    ? profiles.filter(p => p.verified)
+    : profiles;
+  const unverifiedProfiles = useSameAsFilter
+    ? profiles.filter(p => !p.verified)
+    : [];
+  const unverifiedPlatforms = [...new Set(unverifiedProfiles.map(p => p.platform).filter(Boolean))];
+  const layerA = computeLayerA({
+    profiles: profilesForScoring,
+    matches,
+    unverifiedPlatforms,
+    sameAsFiltered: useSameAsFilter
+  });
   const layerB = computeLayerB({ home, llms, llmsFull, robots, sitemap, html, sd, target, profiles });
   const signals = layerAToSignals(layerA.bySignal).concat(layerBToSignals(layerB.bySignal));
   const total = layerA.total + layerB.total;
@@ -247,8 +270,12 @@ function computeLayerA({ profiles, matches }) {
   let a2pts = 0, a2state = "none";
   if (m <= 1) { a2pts = 15; a2state = "full"; }
   else if (m <= 3) { a2pts = 8; a2state = "partial"; }
+  /* unverifiedPlatforms is set by modeIdentityAudit when sameAs filtering
+     was applied — passes through here so the UI knows what to surface. */
+  const unverifiedPlatforms = arguments[0].unverifiedPlatforms || [];
+  const sameAsFiltered = !!arguments[0].sameAsFiltered;
   const bySignal = {
-    profileBreadth:  { state: a1state, points: a1pts, max: 25, meta: { count: breadth, platforms: [...platformsSeen] } },
+    profileBreadth:  { state: a1state, points: a1pts, max: 25, meta: { count: breadth, platforms: [...platformsSeen], unverifiedPlatforms, sameAsFiltered } },
     identityClarity: { state: a2state, points: a2pts, max: 15, meta: { matches: m } }
   };
   return { bySignal, total: a1pts + a2pts };

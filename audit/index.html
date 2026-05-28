@@ -203,6 +203,13 @@ input.eky-text:focus, select.eky-select:focus{ outline:3px solid var(--lime); ou
   font-size:13px; font-weight:600; color:var(--ink);
   text-decoration:none; box-shadow:0 2px 0 var(--ink);
 }
+.eky-chip.verified{ border-color:#5fb31a; background:#eafce1; color:var(--ink); }
+.eky-chip.verified .dot{ background:#5fb31a; }
+.eky-chip.unverified{ border-color:#bbb; background:#f6f6f6; color:#666; opacity:.85; }
+.eky-chip.unverified .dot{ background:#bbb; }
+.eky-chip .vmark{ margin-left:6px; font-weight:700; font-size:11px; }
+.eky-chip.verified .vmark{ color:#3a8410; }
+.eky-chip.unverified .vmark{ color:#888; }
 .eky-chip:hover{ background:var(--bg-soft); }
 .eky-chip .dot{ width:8px; height:8px; background:var(--purple); border-radius:50%; }
 
@@ -688,7 +695,8 @@ const STRINGS = {
       profiles:"Build a stronger online presence — at minimum LinkedIn + one social + one bio site.",
       clarity: "Use your full unique name everywhere, and link every profile back to your owned site.",
       site:    "Get your own website — without one, AI has no canonical place to learn who you are.",
-      kg:      "Knowledge Panels build over time from consistent, cross-verified online presence — keep posting and linking."
+      kg:      "Knowledge Panels build over time from consistent, cross-verified online presence — keep posting and linking.",
+      unverified_profiles: "AI also found profiles under your name not declared in your site's sameAs. Add the real ones (or remove if they aren't you) so AI can confirm identity."
     }
   },
   es: {
@@ -796,7 +804,8 @@ const STRINGS = {
       profiles:"Construye más presencia — al menos LinkedIn + una red + un sitio bio.",
       clarity: "Usa tu nombre completo único en todas partes, y enlaza cada perfil de vuelta a tu sitio propio.",
       site:    "Crea tu sitio — sin uno, la IA no tiene un lugar canónico para saber quién eres.",
-      kg:      "Los Paneles de Google se construyen con presencia consistente y cruzada — sigue publicando y enlazando."
+      kg:      "Los Paneles de Google se construyen con presencia consistente y cruzada — sigue publicando y enlazando.",
+      unverified_profiles: "La IA encontró perfiles a tu nombre que no están declarados en el sameAs de tu sitio. Agrega los reales (o quita los que no sean tuyos) para que la IA confirme tu identidad."
     }
   }
 };
@@ -1356,6 +1365,11 @@ function buildTips(data) {
   if (by.sameas && by.sameas.state !== "full") out.push(t.sameas);
   if (by.basics && by.basics.state !== "full" && !(by.basics.meta && by.basics.meta.noSite)) out.push(t.basics);
   if (by.profiles && by.profiles.state !== "full") out.push(t.profiles);
+  // COMMIT B: surface unverified profiles found by AI (not declared in site's sameAs)
+  if (by.profiles && by.profiles.meta && by.profiles.meta.sameAsFiltered
+      && (by.profiles.meta.unverifiedPlatforms || []).length > 0) {
+    out.push(t.unverified_profiles);
+  }
   if (by.clarity && by.clarity.state !== "full") out.push(t.clarity);
   if (by.kg && by.kg.state !== "full") out.push(t.kg);
   return out.length ? out : (LANG === "es" ? ["Estás en excelente forma — mantén tu Schema.org y llms.txt al día."] : ["You're in excellent shape — keep your Schema.org and llms.txt up to date."]);
@@ -1371,7 +1385,12 @@ const PLATFORM_LABEL = {
   spotify:"Spotify", medium:"Medium", substack:"Substack", behance:"Behance",
   dribbble:"Dribbble", patreon:"Patreon", pinterest:"Pinterest", reddit:"Reddit",
   quora:"Quora", goodreads:"Goodreads", vimeo:"Vimeo", soundcloud:"SoundCloud",
-  aboutme:"About.me", linktree:"Linktree", other:"Other"
+  aboutme:"About.me", linktree:"Linktree",
+  unsplash:"Unsplash", flickr:"Flickr", px500:"500px", deviantart:"DeviantArt",
+  artstation:"ArtStation", vsco:"VSCO", readcv:"Read.cv", bandcamp:"Bandcamp",
+  twitch:"Twitch", bluesky:"Bluesky", gumroad:"Gumroad", producthunt:"Product Hunt",
+  notion:"Notion", cara:"Cara",
+  other:"Other"
 };
 function prettyPlatform(p) { return PLATFORM_LABEL[p] || p; }
 function escapeHtml(s) { return String(s).replace(/[&<>"']/g, c => ({ "&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;" }[c])); }
