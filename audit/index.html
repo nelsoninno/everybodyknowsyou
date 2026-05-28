@@ -245,6 +245,7 @@ input.eky-text:focus, select.eky-select:focus{ outline:3px solid var(--lime); ou
 .eky-target a{ color:var(--lime); font-weight:700; text-decoration:none; }
 .eky-target a:hover{ text-decoration:underline; }
 .eky-target .notyours{ display:block; margin-top:6px; font-size:13px; color:rgba(255,255,255,.7); font-style:italic; }
+.eky-target .disclaimer{ display:block; margin-top:10px; font-size:12.5px; color:rgba(255,255,255,.7); font-style:italic; line-height:1.5; max-width:560px; }
 
 .eky-layers{ display:grid; grid-template-columns:1fr 1fr; gap:14px; margin-top:26px; }
 @media (max-width:640px){ .eky-layers{ grid-template-columns:1fr; } }
@@ -663,6 +664,7 @@ const STRINGS = {
       low:       "AI struggles to see you."
     },
     target_analysed: "Analysed:",
+    target_disclaimer: "Most of the visible improvement happens in the first 3 days. The rest builds over weeks and months, as search engines and AI tools catch up. Scores can shift between runs because what AI sees keeps changing.",
     target_notyours: "Not you? Click \"No — my site is...\" above.",
     target_matches: (n) => "We found ~" + n + " possible matches for this name. AI may confuse you with someone else.",
     err_empty: "Type your name, business, or website first.",
@@ -777,6 +779,7 @@ const STRINGS = {
       low:       "A la IA le cuesta verte."
     },
     target_analysed: "Analizamos:",
+    target_disclaimer: "La mayor parte de la mejora visible ocurre en los primeros 3 días. El resto se construye durante las semanas y meses siguientes, mientras los buscadores y la IA se actualizan. Los puntajes pueden variar entre ejecuciones porque lo que la IA ve sigue cambiando.",
     target_notyours: "¿No eres tú? Pulsa \"No — mi sitio es...\" arriba.",
     target_matches: (n) => "Encontramos ~" + n + " posibles coincidencias para este nombre. La IA podría confundirte con otra persona.",
     err_empty: "Escribe primero tu nombre, negocio o sitio.",
@@ -1363,6 +1366,10 @@ function renderTarget(data) {
     if (typeof data.matches === "number" && data.matches > 1) {
       html += ' · ' + escapeHtml(t.target_matches(data.matches));
     }
+    /* Small italic disclaimer right under the analysed URL — sets expectations
+       about score variance and the 3-day-then-weeks-then-months improvement
+       curve. Educational nudge in the moment the user might wonder. */
+    html += '<span class="disclaimer">' + escapeHtml(t.target_disclaimer) + '</span>';
     // The 'Not you? Click...' hint used to point at a button on the same
     // page. In the two-step flow the button is gone, so we drop the hint.
     elTarget.innerHTML = html;
