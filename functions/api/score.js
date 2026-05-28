@@ -161,60 +161,7 @@ async function modeWebsiteAudit({ url, country, countryName }, env) {
     passedMatches: matches
   }, env);
 }
-) {
-  const s1state = home.ok ? "full" : (home.status > 0 ? "partial" : "none");
-  const s1pts = s1state === "full" ? 10 : (s1state === "partial" ? 5 : 0);
-  const llmsBody = (llms.ok && llms.text.trim()) || (llmsFull.ok && llmsFull.text.trim()) || "";
-  const s2state = llmsBody.length > 200 ? "full" : (llmsBody.length > 0 ? "partial" : "none");
-  const s2pts = s2state === "full" ? 25 : (s2state === "partial" ? 12 : 0);
-  const richEntity = sd.hasEntity && sd.name && (sd.hasDescription || sd.hasImage);
-  const s3state = richEntity ? "full" : (sd.hasEntity ? "partial" : "none");
-  const s3pts = s3state === "full" ? 25 : (s3state === "partial" ? 12 : 0);
-  /* Identity declarations: JSON-LD sameAs (canonical) + visible HTML profile
-     links (footer/header/contact). HTML-only entries count at 0.7 weight
-     since JSON-LD is the gold-standard signal. Linear gradient up to 15. */
-  const declaredHosts = new Set((sd.sameAs || []).map(hostOf).filter(Boolean));
-  const htmlProfileHosts = extractHtmlProfileLinks(html);
-  const htmlOnlyHosts = new Set([...htmlProfileHosts].filter(h => !declaredHosts.has(h)));
-  const sameAsHosts = new Set([...declaredHosts, ...htmlOnlyHosts]);
-  const weightedSameAsCount = declaredHosts.size + (htmlOnlyHosts.size * 0.7);
-  const sameAsCount = sameAsHosts.size;
-  /* Linear gradient: 4 pts per weighted unit, capped at 15 (so 4+ units = full credit) */
-  let s4pts = Math.min(15, Math.round(weightedSameAsCount * 4));
-  let s4state = "none";
-  if (s4pts >= 12) s4state = "full";
-  else if (s4pts > 0) s4state = "partial";
-  const low = (html || "").toLowerCase();
-  const hasTitle  = low.indexOf("<title>") !== -1 || low.indexOf("<title ") !== -1;
-  const hasDesc   = low.indexOf('name="description"') !== -1 || low.indexOf("name='description'") !== -1;
-  const hasOg     = low.indexOf("og:title") !== -1 || low.indexOf("og:description") !== -1 || low.indexOf("og:image") !== -1;
-  const hasCanon  = low.indexOf('rel="canonical"') !== -1 || low.indexOf("rel='canonical'") !== -1;
-  const isHttps   = target.startsWith("https://") || ((home.finalUrl || "").startsWith("https://"));
-  const noindex   = low.indexOf("noindex") !== -1;
-  const stripWS = (s) => { let r = ""; for (let i = 0; i < s.length; i++) { const c = s.charCodeAt(i); if (c !== 9 && c !== 32) r += s.charAt(i); } return r; };
-  const robotsLines = ((robots && robots.text) || "").toLowerCase().split("\n").map(stripWS);
-  const robotsOk = robots.ok && !robotsLines.includes("disallow:/");
-  const sitemapText = (sitemap && sitemap.text) || "";
-  const sitemapOk = sitemap.ok && (sitemapText.indexOf("<urlset") !== -1 || sitemapText.indexOf("<sitemapindex") !== -1);
-  let s5pts = 0;
-  if (hasTitle) s5pts += 5;
-  if (hasDesc)  s5pts += 5;
-  if (hasOg)    s5pts += 5;
-  if (hasCanon) s5pts += 4;
-  if (isHttps && !noindex)   s5pts += 3;
-  if (robotsOk || sitemapOk) s5pts += 3;
-  let s5state = "none";
-  if (s5pts >= 20) s5state = "full";
-  else if (s5pts >= 10) s5state = "partial";
-  const signals = [
-    { id:"site",   layer:"S", state:s1state, points:s1pts, max:10, meta:{ status: home.status } },
-    { id:"llms",   layer:"S", state:s2state, points:s2pts, max:25, meta:{ length: llmsBody.length, file: llms.ok ? "llms.txt" : (llmsFull.ok ? "llms-full.txt" : null) } },
-    { id:"schema", layer:"S", state:s3state, points:s3pts, max:25, meta:{ types: sd.types, name: sd.name || "" } },
-    { id:"sameas", layer:"S", state:s4state, points:s4pts, max:15, meta:{ count: sameAsCount, declaredCount: declaredHosts.size, htmlOnlyCount: htmlOnlyHosts.size, hosts: [...sameAsHosts], htmlOnlyHosts: [...htmlOnlyHosts] } },
-    { id:"basics", layer:"S", state:s5state, points:s5pts, max:25, meta:{ hasTitle, hasDesc, hasOg, hasCanon, isHttps: isHttps && !noindex, crawlable: robotsOk || sitemapOk } }
-  ];
-  return { signals, total: s1pts + s2pts + s3pts + s4pts + s5pts };
-}
+
 /* MODE: discover — name → candidate + profiles + Layer A preview */
 async function modeDiscover({ query, country, countryName }, env) {
   if (!env.SERPER_API_KEY) {
