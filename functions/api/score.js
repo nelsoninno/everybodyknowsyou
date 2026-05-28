@@ -15,7 +15,7 @@
                           Layer A only, cap 40.
 
    Knowledge Panel signal removed (per product decision).
-   computeLayerB and computeWebsiteAudit are intentionally regex-free
+   computeLayerB is intentionally regex-free
    (Cloudflare bundler bug with quote-mixed regex char classes).
    ===================================================================== */
 
@@ -161,7 +161,7 @@ async function modeWebsiteAudit({ url, country, countryName }, env) {
     passedMatches: matches
   }, env);
 }
-function computeWebsiteAudit({ home, llms, llmsFull, robots, sitemap, html, sd, target }) {
+) {
   const s1state = home.ok ? "full" : (home.status > 0 ? "partial" : "none");
   const s1pts = s1state === "full" ? 10 : (s1state === "partial" ? 5 : 0);
   const llmsBody = (llms.ok && llms.text.trim()) || (llmsFull.ok && llmsFull.text.trim()) || "";
@@ -215,17 +215,6 @@ function computeWebsiteAudit({ home, llms, llmsFull, robots, sitemap, html, sd, 
   ];
   return { signals, total: s1pts + s2pts + s3pts + s4pts + s5pts };
 }
-function buildWebsiteTips(signals) {
-  const by = {}; signals.forEach(s => by[s.id] = s);
-  const out = [];
-  if (by.llms   && by.llms.state   !== "full") out.push("Add an /llms.txt — a short plain-text page telling AI assistants who you are and what you do.");
-  if (by.schema && by.schema.state !== "full") out.push("Add Schema.org JSON-LD (Person or Organization) on your homepage with name, description, image and sameAs.");
-  if (by.sameas && by.sameas.state !== "full") out.push("Declare your real profiles (LinkedIn, Wikipedia, social, press) in sameAs on your homepage.");
-  if (by.basics && by.basics.state !== "full") out.push("Set title, meta description, Open Graph image, canonical URL, HTTPS, and allow crawlers.");
-  if (by.site   && by.site.state   !== "full") out.push("Make sure your homepage responds and is publicly reachable.");
-  return out.length ? out : ["Your website is in excellent shape — keep Schema.org and llms.txt up to date."];
-}
-
 /* MODE: discover — name → candidate + profiles + Layer A preview */
 async function modeDiscover({ query, country, countryName }, env) {
   if (!env.SERPER_API_KEY) {
