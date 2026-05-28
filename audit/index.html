@@ -889,6 +889,8 @@ elNoSite.addEventListener("click", () => runNoSite());
 function clearAll() {
   hide(elConfirm); hide(elResult); hide(elCtaBanner);
   clearError();
+  var fb = document.getElementById("ekyFallback");
+  if (fb) fb.remove();
 }
 function hide(el){ el.classList.remove("show"); }
 function show(el){ el.classList.add("show"); }
@@ -903,7 +905,14 @@ function setLoading(on, btn){
     if (lbl.dataset.orig) lbl.textContent = lbl.dataset.orig;
   }
 }
-function showError(msg) { elErr.textContent = msg; elErr.classList.add("show"); }
+function showError(msg) {
+  elErr.textContent = msg;
+  elErr.classList.add("show");
+  // Make sure the user actually sees the error — actions can fire from
+  // far down the page (confirmation card), where errors at the top are
+  // out of viewport. Scroll the error into view.
+  try { elErr.scrollIntoView({ behavior: "smooth", block: "center" }); } catch (e) {}
+}
 function clearError() { elErr.classList.remove("show"); elErr.textContent = ""; }
 
 /* ============================================================
@@ -1020,11 +1029,39 @@ async function runAudit({ confirmedUrl }) {
     renderResult(data);
     hide(elConfirm);
   } catch (e) {
-    showError(e.message || STRINGS[LANG].err_generic);
+    const msg = e.message || STRINGS[LANG].err_generic;
+    showError(msg);
+    // If the URL was unreachable, offer a one-click fallback to no-site audit
+    // (we still have all the profiles from the discover step).
+    if (msg === STRINGS[LANG].err_unreachable) {
+      offerNoSiteFallback();
+    }
   } finally {
     setLoading(false, elMyUrlGo);
     setLoading(false, elYes);
   }
+}
+
+function offerNoSiteFallback() {
+  // Avoid duplicates
+  if (document.getElementById("ekyFallback")) return;
+  const wrap = document.createElement("div");
+  wrap.id = "ekyFallback";
+  wrap.style.cssText = "margin-top:14px; text-align:center;";
+  const btn = document.createElement("button");
+  btn.type = "button";
+  btn.className = "eky-cta ghost";
+  btn.textContent = LANG === "es"
+    ? "Auditar sin sitio web →"
+    : "Audit without a website →";
+  btn.addEventListener("click", () => {
+    wrap.remove();
+    clearError();
+    runNoSite();
+  });
+  wrap.appendChild(btn);
+  elErr.parentNode.insertBefore(wrap, elErr.nextSibling);
+  try { wrap.scrollIntoView({ behavior:"smooth", block:"center" }); } catch (e) {}
 }
 
 async function runNoSite() {

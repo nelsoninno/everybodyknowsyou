@@ -29,7 +29,16 @@ const PLATFORMS = {
   dribbble:["dribbble.com"], patreon:["patreon.com"], pinterest:["pinterest.com"],
   reddit:["reddit.com"], quora:["quora.com"], goodreads:["goodreads.com"],
   vimeo:["vimeo.com"], soundcloud:["soundcloud.com"], aboutme:["about.me"],
-  linktree:["linktr.ee","beacons.ai","bio.link"]
+  linktree:["linktr.ee","beacons.ai","bio.link"],
+  // Creator / photographer / designer platforms — added so user profiles
+  // on these sites (e.g. unsplash.com/@username) are correctly demoted
+  // to the profiles list instead of becoming the audit candidate.
+  unsplash:["unsplash.com"], flickr:["flickr.com"], px500:["500px.com"],
+  deviantart:["deviantart.com"], artstation:["artstation.com"],
+  vsco:["vsco.co"], readcv:["read.cv"], bandcamp:["bandcamp.com"],
+  twitch:["twitch.tv"], bluesky:["bsky.app","bsky.social"],
+  gumroad:["gumroad.com"], producthunt:["producthunt.com"],
+  notion:["notion.site","notion.so"], cara:["cara.app"]
 };
 const NEWS_PR = [
   "bloomberg.com","forbes.com","businesswire.com","prnewswire.com",
