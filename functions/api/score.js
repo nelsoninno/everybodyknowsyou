@@ -226,10 +226,13 @@ async function modeIdentityAudit({ url, name, country, countryName, passedProfil
     profiles = sd.sameAs.map(u => ({ platform: classifyHost(u) || "other", url: u, title: "" }));
     matches = 1;
   }
-  /* COMMIT B: when the site declares sameAs, use it as the identity-truth filter.
-     Tag each AI-found profile as verified (host present in sameAs) or not.
-     Layer A breadth is then scored from verified profiles only — which prevents
-     name-collision profiles ("a different Nelson") from inflating the score. */
+  /* COMMIT B (hotfixed): when the site declares sameAs, tag each AI-found
+     profile with verification status (host present in sameAs or not).
+     We surface the gap via the "unverified_profiles" tip BUT do NOT filter
+     Layer A scoring — an incomplete sameAs shouldn't punish someone whose
+     name is unique and whose AI-found profiles are clearly all theirs
+     (Nelson Inno case). Verified tagging stays so we can use it richer
+     in the result UI later. */
   const sameAsHosts = new Set((sd.sameAs || []).map(hostOf).filter(Boolean));
   const useSameAsFilter = sameAsHosts.size > 0;
   if (useSameAsFilter) {
@@ -237,15 +240,12 @@ async function modeIdentityAudit({ url, name, country, countryName, passedProfil
   } else {
     profiles = profiles.map(p => ({ ...p, verified: false }));
   }
-  const profilesForScoring = useSameAsFilter
-    ? profiles.filter(p => p.verified)
-    : profiles;
   const unverifiedProfiles = useSameAsFilter
     ? profiles.filter(p => !p.verified)
     : [];
   const unverifiedPlatforms = [...new Set(unverifiedProfiles.map(p => p.platform).filter(Boolean))];
   const layerA = computeLayerA({
-    profiles: profilesForScoring,
+    profiles,                            // ← full list, not filtered (restores pre-Commit-B scoring)
     matches,
     unverifiedPlatforms,
     sameAsFiltered: useSameAsFilter
