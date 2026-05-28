@@ -319,6 +319,10 @@ input.eky-text:focus, select.eky-select:focus{ outline:3px solid var(--lime); ou
 }
 
 #ekyNoSite{ background:var(--purple); color:#fff; }
+.eky-confirm-actions .row.two{ display:flex; gap:10px; }
+.eky-confirm-actions .row.two .eky-cta{ flex:1 1 0; }
+.eky-emptystate .eky-cta{ background:var(--lime); color:var(--ink); text-decoration:none; }
+.eky-emptystate .eky-cta:hover{ background:var(--lime); filter:brightness(1.04); }
 #ekyNoSite:hover{ background:var(--purple-deep); filter:none; }
 
 .eky-header{ background:#fff; border-bottom:2px solid var(--ink); padding:14px 24px; position:sticky; top:0; z-index:50; }
@@ -420,15 +424,35 @@ input.eky-text:focus, select.eky-select:focus{ outline:3px solid var(--lime); ou
       </div>
 
       <div class="eky-confirm-actions">
-        <div class="row">
+        <div class="row two">
           <button id="ekyYes" class="eky-cta grow" type="button"><span data-t="confirm_yes">Yes, that's me</span></button>
+          <button id="ekyNotMe" class="eky-cta ghost grow" type="button"><span data-t="confirm_notme">That's not me</span></button>
         </div>
+      </div>
+    </section>
+
+    <!-- ============ STEP 2 - Website ============ -->
+    <section class="eky-confirm eky-website" id="ekyWebsite" aria-live="polite">
+      <h2 data-t="website_title">Do you have a website?</h2>
+      <p class="sub" data-t="website_sub">Paste your URL - or tell us you do not have one yet.</p>
+      <div class="eky-confirm-actions">
         <div class="row">
           <input id="ekyMyUrl" type="text" placeholder="https://yoursite.com" />
           <button id="ekyMyUrlGo" class="eky-cta ghost" type="button"><span data-t="confirm_no_go">Use this URL</span></button>
         </div>
         <div class="row">
           <button id="ekyNoSite" class="eky-cta ghost grow" type="button"><span data-t="confirm_nosite">I don't have a website yet</span></button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ EMPTY STATE - no identity + no site ============ -->
+    <section class="eky-confirm eky-emptystate" id="ekyEmptyState" aria-live="polite">
+      <h2 data-t="empty_title">We couldn't find you in AI</h2>
+      <p class="sub" data-t="empty_sub">That's actually the whole reason to build a website. Let's fix that together.</p>
+      <div class="eky-confirm-actions">
+        <div class="row">
+          <a class="eky-cta grow" href="/" data-langlink="/" data-t="empty_cta">Build me my website &rarr;</a>
         </div>
       </div>
     </section>
@@ -572,6 +596,12 @@ const STRINGS = {
     confirm_title: "Is this you?",
     confirm_sub:   "We searched and found this. Confirm it's really you — otherwise we'd be measuring the wrong person.",
     confirm_yes:   "Yes, that's me",
+    confirm_notme: "That's not me",
+    website_title: "Do you have a website?",
+    website_sub:   "Paste your URL - or tell us you don't have one yet.",
+    empty_title:   "We couldn't find you in AI",
+    empty_sub:     "That's actually the whole reason to build a website. Let's fix that together.",
+    empty_cta:     "Build me my website →",
     confirm_no_go: "Use this URL",
     confirm_nosite:"I don't have a website yet",
     confirm_no_placeholder: "https://yoursite.com",
@@ -674,6 +704,12 @@ const STRINGS = {
     confirm_title: "¿Eres tú?",
     confirm_sub:   "Buscamos y encontramos esto. Confírmanos que eres tú — si no, mediríamos a otra persona.",
     confirm_yes:   "Sí, soy yo",
+    confirm_notme: "No soy yo",
+    website_title: "¿Tienes un sitio web?",
+    website_sub:   "Pega tu URL - o dinos que aún no tienes uno.",
+    empty_title:   "No te encontramos en la IA",
+    empty_sub:     "Esa es exactamente la razón para tener un sitio web. Vamos a arreglarlo juntos.",
+    empty_cta:     "¡Hazme mi sitio web! →",
     confirm_no_go: "Usar este URL",
     confirm_nosite:"Aún no tengo sitio web",
     confirm_no_placeholder: "https://tusitio.com",
@@ -793,6 +829,9 @@ const elYes      = $("ekyYes");
 const elMyUrl    = $("ekyMyUrl");
 const elMyUrlGo  = $("ekyMyUrlGo");
 const elNoSite   = $("ekyNoSite");
+const elNotMe    = $("ekyNotMe");
+const elWebsite  = $("ekyWebsite");
+const elEmpty    = $("ekyEmptyState");
 const elResult   = $("ekyResult");
 const elArc      = $("ekyArc");
 const elNeedle   = $("ekyNeedle");
@@ -875,20 +914,84 @@ setInterval(() => {
    ============================================================ */
 elGo.addEventListener("click", startCheck);
 elQuery.addEventListener("keydown", e => { if (e.key === "Enter") startCheck(); });
+/* Frontend mirror of backend PLATFORMS list - used to detect when a
+   user-pasted URL is a social profile (not a personal website) so we can
+   route to no-site instead of failing on a JS-SPA scrape attempt. */
+const PROFILE_HOSTS = [
+  "linkedin.com","wikipedia.org","wikidata.org","twitter.com","x.com",
+  "instagram.com","facebook.com","fb.com","youtube.com","youtu.be",
+  "tiktok.com","threads.net","github.com","imdb.com","crunchbase.com",
+  "spotify.com","medium.com","substack.com","behance.net","dribbble.com",
+  "patreon.com","pinterest.com","reddit.com","quora.com","goodreads.com",
+  "vimeo.com","soundcloud.com","about.me","linktr.ee","beacons.ai",
+  "bio.link","unsplash.com","flickr.com","500px.com","deviantart.com",
+  "artstation.com","vsco.co","read.cv","bandcamp.com","twitch.tv",
+  "bsky.app","bsky.social","gumroad.com","producthunt.com","notion.site",
+  "notion.so","cara.app"
+];
+function isProfileUrl(url) {
+  try {
+    let u = url.trim();
+    if (!/^https?:\/\//i.test(u)) u = "https://" + u;
+    const h = new URL(u).hostname.replace(/^www\./, "").toLowerCase();
+    return PROFILE_HOSTS.some(p => h === p || h.endsWith("." + p));
+  } catch (e) { return false; }
+}
+
+/* Two-step flow state - did the user confirm "yes, that's me"? Used to
+   decide whether "I don't have a website" should run no-site (we know
+   who they are) or go to the empty state (we don't). */
+let identityConfirmed = false;
+
+function showWebsiteStep() {
+  hide(elConfirm);
+  hide(elEmpty);
+  show(elWebsite);
+  elMyUrl.value = "";
+  clearError();
+  try { elWebsite.scrollIntoView({ behavior:"smooth", block:"start" }); } catch (e) {}
+}
+function showEmptyState() {
+  hide(elConfirm);
+  hide(elWebsite);
+  show(elEmpty);
+  clearError();
+  try { elEmpty.scrollIntoView({ behavior:"smooth", block:"start" }); } catch (e) {}
+}
+
 elYes.addEventListener("click", () => {
-  if (!discovered.candidate || !discovered.candidate.url) return;
-  runAudit({ confirmedUrl: discovered.candidate.url });
+  identityConfirmed = true;
+  if (discovered.candidate && discovered.candidate.url && !isProfileUrl(discovered.candidate.url)) {
+    runAudit({ confirmedUrl: discovered.candidate.url });
+    return;
+  }
+  showWebsiteStep();
+});
+elNotMe.addEventListener("click", () => {
+  identityConfirmed = false;
+  showWebsiteStep();
 });
 elMyUrlGo.addEventListener("click", () => {
   const u = elMyUrl.value.trim();
   if (!u) { showError(STRINGS[LANG].err_url); return; }
+  if (isProfileUrl(u)) {
+    runNoSite();
+    return;
+  }
   runAudit({ confirmedUrl: u });
 });
-elNoSite.addEventListener("click", () => runNoSite());
+elNoSite.addEventListener("click", () => {
+  if (!identityConfirmed) {
+    showEmptyState();
+    return;
+  }
+  runNoSite();
+});
 
 function clearAll() {
-  hide(elConfirm); hide(elResult); hide(elCtaBanner);
+  hide(elConfirm); hide(elWebsite); hide(elEmpty); hide(elResult); hide(elCtaBanner);
   clearError();
+  identityConfirmed = false;
   var fb = document.getElementById("ekyFallback");
   if (fb) fb.remove();
 }
@@ -973,7 +1076,7 @@ function renderConfirm(data) {
   discovered = { candidate: data.candidate, profiles: data.profiles || [], matches: data.matches || 1 };
   const hasCandidate = !!(data.candidate && data.candidate.url);
   const hasProfiles  = (data.profiles || []).length > 0;
-  if (!hasCandidate && !hasProfiles) { runNoSite(); return; }
+  if (!hasCandidate && !hasProfiles) { showEmptyState(); return; }
   const T = STRINGS[LANG];
   const _h2  = elConfirm.querySelector("h2");
   const _sub = elConfirm.querySelector(".sub");
@@ -990,11 +1093,12 @@ function renderConfirm(data) {
     elCandUrl.textContent = data.candidate.url;
     elCandSnip.textContent = data.candidate.snippet || "";
     elCandKG.style.display = data.candidate.source === "knowledgeGraph" ? "inline-block" : "none";
-    elYes.style.display = "inline-flex";
   } else {
     elCandidate.style.display = "none";
-    elYes.style.display = "none";
   }
+  // In the two-step flow both Yes and Thats-not-me are always meaningful
+  elYes.style.display = "inline-flex";
+  elNotMe.style.display = "inline-flex";
   if (hasProfiles) {
     elProfilesWrap.style.display = "block";
     elProfilesChips.innerHTML = "";
