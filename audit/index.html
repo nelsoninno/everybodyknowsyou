@@ -895,6 +895,7 @@ const ARC_LEN = 314.159;
 
 /* discovered state (carried between calls) */
 let discovered = { candidate:null, profiles:[], matches:1 };
+let lastResultData = null;  /* cached so we can re-render when LANG toggles */
 
 /* ============================================================
    I18N
@@ -922,6 +923,12 @@ function applyLang() {
   // CTA banner copy (uses HTML)
   document.querySelector('[data-t="cta_h"]').innerHTML = t.cta_h;
   elCtaLink.textContent = t.cta_btn;
+  // Re-render the result section in the new language if it's currently visible.
+  // The result content is built via JS innerHTML/textContent so data-t alone
+  // doesn't translate it — we need a full re-render with cached data.
+  if (lastResultData && elResult.classList.contains("show")) {
+    renderResult(lastResultData);
+  }
 }
 function buildCountries() {
   const prev = elCountry.value || "SV";
@@ -1278,6 +1285,7 @@ function bandText(score) {
 }
 
 function renderResult(data) {
+  lastResultData = data;
   const score = Math.max(0, Math.min(100, Math.round(data.score || 0)));
   // arc + needle
   elArc.style.strokeDashoffset = ARC_LEN * (1 - score/100);
@@ -1324,6 +1332,11 @@ function renderResult(data) {
   // tips
   elTips.innerHTML = buildTips(data).map(t => "<li>" + escapeHtml(t) + "</li>").join("");
 
+  /* Hide ALL confirmation cards before showing result. Previously only
+     elConfirm was hidden (by runAudit, AFTER renderResult), so when user
+     came through ekyMainSite or ekyWebsite that card stayed visible and
+     pushed the result section down, which felt like 'scrolls to bottom'. */
+  hide(elConfirm); hide(elMainSite); hide(elWebsite); hide(elEmpty);
   // show
   show(elResult);
   // CTA banner if low or no_site
@@ -1333,7 +1346,14 @@ function renderResult(data) {
   } else {
     hide(elCtaBanner);
   }
-  elResult.scrollIntoView({ behavior:"smooth", block:"start" });
+  /* Anchor near the TOP-CENTER of the result block (not the start, which
+     felt too low because the gauge appears below the page header). Using a
+     small delay so the CTA banner can render first without re-stealing scroll. */
+  setTimeout(() => {
+    elResult.scrollIntoView({ behavior:"smooth", block:"start" });
+    /* nudge up so the result heading is visible, not hidden under fixed bars */
+    setTimeout(() => window.scrollBy({ top: -40, behavior:"smooth" }), 350);
+  }, 50);
 }
 
 function renderTarget(data) {

@@ -140,8 +140,8 @@ function computeWebsiteAudit({ home, llms, llmsFull, robots, sitemap, html, sd, 
   const sameAsHosts = new Set([...declaredHosts, ...htmlOnlyHosts]);
   const weightedSameAsCount = declaredHosts.size + (htmlOnlyHosts.size * 0.7);
   const sameAsCount = sameAsHosts.size;
-  /* Smooth gradient: 3 pts per weighted unit, full credit at ~5 units (15 pts) */
-  let s4pts = Math.min(15, Math.round(weightedSameAsCount * 3));
+  /* Linear gradient: 4 pts per weighted unit, capped at 15 (so 4+ units = full credit) */
+  let s4pts = Math.min(15, Math.round(weightedSameAsCount * 4));
   let s4state = "none";
   if (s4pts >= 12) s4state = "full";
   else if (s4pts > 0) s4state = "partial";
@@ -327,8 +327,8 @@ function computeLayerB({ home, llms, llmsFull, robots, sitemap, html, sd, target
   for (const h of htmlOnlyHosts) if (profileHosts.has(h)) htmlOnlyCrossMatches++;
   const weightedCrossMatches = declaredCrossMatches + (htmlOnlyCrossMatches * 0.7);
   const crossMatches = declaredCrossMatches + htmlOnlyCrossMatches;
-  /* Smooth gradient: 3.5 pts per weighted match, full credit at ~4 units */
-  let b4pts = Math.min(14, Math.round(weightedCrossMatches * 3.5));
+  /* Linear gradient: 4 pts per weighted match, capped at 14 (so 4+ matches = full) */
+  let b4pts = Math.min(14, Math.round(weightedCrossMatches * 4));
   let b4state = "none";
   if (b4pts >= 12) b4state = "full";
   else if (b4pts > 0) b4state = "partial";
