@@ -92,7 +92,7 @@ async function handle(body, env) {
   // Back-compat: older front-end may still send mode:"audit"
   if (mode === "audit") mode = "identity_audit";
 
-  if (mode === "url_audit") return await modeWebsiteAudit({ url: query }, env);
+  if (mode === "url_audit") return await modeWebsiteAudit({ url: query, country, countryName }, env);
   if (mode === "no_site")  return await modeNoSite({ query, country, countryName, passedProfiles, passedMatches }, env);
   if (mode === "identity_audit") {
     const url = confirmedUrl || query;
@@ -102,25 +102,64 @@ async function handle(body, env) {
 }
 
 /* MODE: url_audit — pasted URL → pure 100-pt website audit */
-async function modeWebsiteAudit({ url }, env) {
+async function modeWebsiteAudit({ url, country, countryName }, env) {
+  /* UNIFIED SCORING: previously this mode used a separate "Layer S"
+     scoring path (5 site-only signals totaling 100) which gave different
+     scores than the identity_audit path. To make every audit tell the
+     same story, this now:
+       1. Fetches the URL and extracts an entity name from JSON-LD
+          (preferred) or <title> (fallback) or hostname (last resort)
+       2. Runs a Serper search using that name as the query
+       3. Calls modeIdentityAudit with the discovered profiles, so the
+          same Layer A + Layer B scoring applies as if the user had
+          typed the name first
+     One scoring model, one story, regardless of how the user arrived. */
   const target = normalizeUrl(url);
   if (!target) return { error: "That URL doesn't look right. Try again." };
-  const origin = originOf(target);
-  const [home, llms, llmsFull, robots, sitemap] = await Promise.all([
-    fetchText(target), fetchText(origin + "/llms.txt"), fetchText(origin + "/llms-full.txt"),
-    fetchText(origin + "/robots.txt"), fetchText(origin + "/sitemap.xml")
-  ]);
-  if (!home.ok && !llms.ok) return { error: "We couldn't reach that website. Check the address and try again." };
+
+  /* 1. Pre-fetch the page just to extract identity context */
+  const home = await fetchText(target);
+  if (!home.ok) return { error: "We couldn't reach that website. Check the address and try again." };
   const html = home.text || "";
   const sd = analyzeJsonLd(extractJsonLd(html));
-  const site = computeWebsiteAudit({ home, llms, llmsFull, robots, sitemap, html, sd, target });
-  return {
-    stage: "result", mode: "url_audit",
-    score: site.total, scoreCap: 100,
-    resolvedUrl: target,
-    signals: site.signals,
-    tips: buildWebsiteTips(site.signals)
-  };
+
+  /* 2. Derive entity name (best -> worst): JSON-LD name, <title>, domain */
+  let entityName = (sd.name || "").trim();
+  if (!entityName) {
+    const titleMatch = html.match(/<title[^>]*>([^<]+)<\/title>/i);
+    if (titleMatch) {
+      /* titles often look like "Brand — Tagline" or "Person | Role" — take
+         the first segment so we get the entity, not the marketing copy */
+      const raw = titleMatch[1].replace(/&amp;/g, "&").trim();
+      entityName = raw.split(/\s+[\u2014\u2013\-|·]\s+/)[0].trim();
+    }
+  }
+  if (!entityName) {
+    entityName = hostOf(target).split(".")[0];
+  }
+
+  /* 3. Run discovery to get profiles + matches (Layer A inputs) */
+  let profiles = [];
+  let matches = 1;
+  if (env.SERPER_API_KEY) {
+    try {
+      const search = await serper(entityName, country, env);
+      if (search.ok) {
+        profiles = extractProfiles(search.data, entityName);
+        matches = estimateMatches(search.data, entityName);
+      }
+    } catch (e) { /* fall through with empty profiles */ }
+  }
+
+  /* 4. Hand off to identity_audit for unified scoring */
+  return await modeIdentityAudit({
+    url: target,
+    name: entityName,
+    country,
+    countryName,
+    passedProfiles: profiles,
+    passedMatches: matches
+  }, env);
 }
 function computeWebsiteAudit({ home, llms, llmsFull, robots, sitemap, html, sd, target }) {
   const s1state = home.ok ? "full" : (home.status > 0 ? "partial" : "none");
