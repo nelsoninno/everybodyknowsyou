@@ -3,10 +3,10 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Does AI know who you are? — Everybody Knows You</title>
+<title>Does AI know who you are? · Everybody Knows You</title>
 <link rel="icon" type="image/jpeg" href="/images/favicon.jpg">
 <link rel="apple-touch-icon" href="/images/favicon.jpg">
-<meta property="og:title" content="Does AI know who you are? — Everybody Knows You">
+<meta property="og:title" content="Does AI know who you are? · Everybody Knows You">
 <meta property="og:description" content="everybodyknowsyou helps brands and people launch stunning websites optimized for Google and AI discovery in as little as 3 days!">
 <meta property="og:image" content="https://everybodyknowsyou.com/images/everybodyknowsyou_socialshare.jpg">
 <meta property="og:type" content="website">
@@ -14,7 +14,7 @@
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:image" content="https://everybodyknowsyou.com/images/everybodyknowsyou_socialshare.jpg">
 <link rel="canonical" href="https://everybodyknowsyou.com/audit/">
-<meta name="description" content="See what AI actually sees when someone looks you up — and what's missing. A free check from Everybody Knows You." />
+<meta name="description" content="See what AI actually sees when someone looks you up, and what's missing. A free check from Everybody Knows You." />
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Caveat:wght@600&display=swap" rel="stylesheet">
@@ -389,7 +389,7 @@ input.eky-text:focus, select.eky-select:focus{ outline:3px solid var(--lime); ou
     <img class="hero-brand" src="/images/logo/eky-logo.png" alt="" aria-hidden="true">
     <p class="eky-eyebrow" data-t="eyebrow">In the age of AI</p>
     <h1 class="eky-title" data-t="title">Right now, does <span class="pop">AI</span> know who you are?</h1>
-    <p class="eky-sub" data-t="sub">Type your name, or paste your website. We'll show you what AI actually sees — and what's missing.</p>
+    <p class="eky-sub" data-t="sub">Type your name, or paste your website. We'll show you what AI actually sees, and what's missing.</p>
   </header>
 
   <div class="eky-wrap">
@@ -418,7 +418,7 @@ input.eky-text:focus, select.eky-select:focus{ outline:3px solid var(--lime); ou
     <!-- ============ CONFIRMATION CARD ============ -->
     <section class="eky-confirm" id="ekyConfirm" aria-live="polite">
       <h2 data-t="confirm_title">Is this you?</h2>
-      <p class="sub" data-t="confirm_sub">We searched and found this. Confirm it's really you — otherwise we'd be measuring the wrong person.</p>
+      <p class="sub" data-t="confirm_sub">We searched and found this. Confirm it's really you, otherwise we'd be measuring the wrong person.</p>
 
       <div id="ekyCandidate" class="eky-candidate" style="display:none">
         <div class="ctitle" id="ekyCandTitle"></div>
@@ -617,7 +617,7 @@ const STRINGS = {
   en: {
     eyebrow: "In the age of AI",
     title:   'Right now, does <span class="pop">AI</span> know who you are?',
-    sub:     "Type your name, or paste your website. We'll show you what AI actually sees — and what's missing.",
+    sub:     "Type your name, or paste your website. We'll show you what AI actually sees, and what's missing.",
     country_label: "Where are you?",
     query_label:   "Your name, business, or website",
     check:   "Check",
@@ -625,7 +625,7 @@ const STRINGS = {
     placeholders: ["Type your name","Type your business","Type your project","Type your book","Type your brand","Type your community","...or paste your website"],
     searching: "Looking you up...",
     confirm_title: "Is this you?",
-    confirm_sub:   "We searched and found this. Confirm it's really you — otherwise we'd be measuring the wrong person.",
+    confirm_sub:   "We searched and found this. Confirm it's really you, otherwise we'd be measuring the wrong person.",
     confirm_yes:   "Yes, that's me",
     confirm_notme: "That's not me",
     mainsite_title: "Is this your main website?",
@@ -675,7 +675,7 @@ const STRINGS = {
     err_generic: "Something went wrong. Try again in a moment.",
     err_unreachable: "We couldn't reach that website. Check the address and try again.",
     err_nocandidate_title: "We couldn't auto-find your website",
-    err_nocandidate_sub: "But here's where AI sees you. Paste your URL below — or say you don't have one yet.",
+    err_nocandidate_sub: "But here's where AI sees you. Paste your URL below, or say you don't have one yet.",
     sig: {
       kg:          "Google Knowledge Panel",
       profiles:    "AI sees your profiles",
@@ -689,19 +689,19 @@ const STRINGS = {
     },
     detail: {
       kg_full:    "AI has a Knowledge Panel for you.",
-      kg_none:    "No Knowledge Panel yet — AI isn't sure who you are.",
+      kg_none:    "No Knowledge Panel yet. AI isn't sure who you are.",
       profiles_full: (n,p) => "AI sees you on " + n + " platforms: " + p.join(", ") + ".",
       profiles_partial: (n,p) => "AI sees you on " + n + " platform" + (n===1?"":"s") + ": " + p.join(", ") + ".",
       profiles_none: "AI doesn't see any clear profiles for you.",
       clarity_full:    "One clear, dominant match for this name.",
-      clarity_partial: "A few possible matches — some ambiguity for AI.",
+      clarity_partial: "A few possible matches. Some ambiguity for AI.",
       clarity_none:    "Many people share this name; AI may confuse you.",
       site_full:    "Your site responds and is reachable.",
       site_partial: "Your site responds, but oddly.",
       site_none:    "Your site couldn't be reached.",
       llms_full:    "llms.txt is present and substantial.",
       llms_partial: "llms.txt is present but thin.",
-      llms_none:    "No llms.txt — AI has no purpose-built summary of you.",
+      llms_none:    "No llms.txt. AI has no purpose-built summary of you.",
       schema_full: (t) => "Rich Schema.org entity (" + t.join(", ") + ").",
       schema_partial: "Some Schema.org markup, but missing key fields.",
       schema_none: "No Schema.org JSON-LD found.",
@@ -732,7 +732,7 @@ const STRINGS = {
   es: {
     eyebrow: "En la era de la IA",
     title:   '¿La <span class="pop">IA</span> sabe quién eres ahora mismo?',
-    sub:     "Escribe tu nombre o pega tu sitio web. Te mostramos lo que la IA realmente ve — y lo que falta.",
+    sub:     "Escribe tu nombre o pega tu sitio web. Te mostramos lo que la IA realmente ve, y lo que falta.",
     country_label: "¿Dónde estás?",
     query_label:   "Tu nombre, negocio o sitio web",
     check:   "Revisar",
@@ -740,7 +740,7 @@ const STRINGS = {
     placeholders: ["Escribe tu nombre","Escribe tu negocio","Escribe tu proyecto","Escribe tu libro","Escribe tu marca","Escribe tu comunidad","...o pega tu sitio web"],
     searching: "Buscándote...",
     confirm_title: "¿Eres tú?",
-    confirm_sub:   "Buscamos y encontramos esto. Confírmanos que eres tú — si no, mediríamos a otra persona.",
+    confirm_sub:   "Buscamos y encontramos esto. Confírmanos que eres tú. Si no, mediríamos a otra persona.",
     confirm_yes:   "Sí, soy yo",
     confirm_notme: "No soy yo",
     mainsite_title: "¿Es este tu sitio web principal?",
@@ -790,7 +790,7 @@ const STRINGS = {
     err_generic: "Algo salió mal. Inténtalo en un momento.",
     err_unreachable: "No pudimos llegar a ese sitio. Verifica la dirección e intenta de nuevo.",
     err_nocandidate_title: "No pudimos encontrar tu sitio automáticamente",
-    err_nocandidate_sub: "Pero esto es lo que la IA ve de ti. Pega tu URL abajo — o dinos que aún no tienes uno.",
+    err_nocandidate_sub: "Pero esto es lo que la IA ve de ti. Pega tu URL abajo, o dinos que aún no tienes uno.",
     sig: {
       kg:          "Panel de Google",
       profiles:    "La IA ve tus perfiles",
@@ -804,19 +804,19 @@ const STRINGS = {
     },
     detail: {
       kg_full:    "La IA tiene un Panel de Google para ti.",
-      kg_none:    "Sin Panel de Google aún — la IA no está segura de quién eres.",
+      kg_none:    "Sin Panel de Google aún. La IA no está segura de quién eres.",
       profiles_full: (n,p) => "La IA te ve en " + n + " plataformas: " + p.join(", ") + ".",
       profiles_partial: (n,p) => "La IA te ve en " + n + " plataforma" + (n===1?"":"s") + ": " + p.join(", ") + ".",
       profiles_none: "La IA no encuentra perfiles claros tuyos.",
       clarity_full:    "Una coincidencia clara y dominante para este nombre.",
-      clarity_partial: "Algunas coincidencias posibles — hay algo de ambigüedad.",
+      clarity_partial: "Algunas coincidencias posibles. Hay algo de ambigüedad.",
       clarity_none:    "Muchas personas comparten este nombre; la IA puede confundirte.",
       site_full:    "Tu sitio responde y es accesible.",
       site_partial: "Tu sitio responde, pero raro.",
       site_none:    "No pudimos llegar a tu sitio.",
       llms_full:    "llms.txt presente y sustancial.",
       llms_partial: "llms.txt presente pero corto.",
-      llms_none:    "Sin llms.txt — la IA no tiene un resumen hecho para ella.",
+      llms_none:    "Sin llms.txt. La IA no tiene un resumen hecho para ella.",
       schema_full: (t) => "Entidad Schema.org rica (" + t.join(", ") + ").",
       schema_partial: "Algo de Schema.org, pero faltan campos clave.",
       schema_none: "Sin JSON-LD de Schema.org.",
