@@ -143,6 +143,39 @@ footer .flinks a{color:var(--lime);margin:0 .4rem}
 .powered{margin-top:.5rem}
 .powered a{display:inline-flex;align-items:center;gap:.5rem;color:#fff;font-family:var(--display)}
 .powered img{height:36px}
+
+/* ===== Big featured wordmark in 'The name' section ===== */
+.name-feature{background:#fff;border:2px solid var(--ink);border-radius:24px;padding:clamp(2rem,5vw,3.5rem) clamp(1.4rem,4vw,3rem);box-shadow:var(--hard);margin:1.6rem 0;text-align:center}
+.name-feature .wordmark{max-width:min(820px,88%);width:100%;height:auto;margin:0 auto;display:block}
+.name-feature .caption{font-family:var(--hand);font-size:clamp(1.3rem,2.2vw,1.7rem);color:var(--purple);margin-top:1rem;font-weight:700}
+
+/* ===== Characters section ===== */
+.chars{display:grid;grid-template-columns:repeat(3,1fr);gap:1.4rem;margin-top:1.6rem}
+.char-card{background:var(--lime);border:2px solid var(--ink);border-radius:20px;padding:1.4rem 1rem 1.2rem;text-align:center;box-shadow:var(--hard-sm);transition:transform .12s,box-shadow .12s}
+.char-card:hover{transform:translateY(-3px);box-shadow:var(--hard)}
+.char-card img{width:100%;max-width:200px;margin:0 auto 0.8rem;height:auto}
+.char-card .nm{font-family:var(--display);font-weight:700;font-size:1.2rem;color:var(--ink);margin-bottom:.25rem}
+.char-card .role{font-family:var(--hand);font-size:1.05rem;color:var(--purple);font-weight:700}
+@media (max-width:760px){.chars{grid-template-columns:1fr;max-width:340px;margin-left:auto;margin-right:auto}}
+
+/* ===== Profile pictures section ===== */
+.profiles{display:grid;grid-template-columns:1fr 1fr;gap:1.6rem;max-width:760px;margin:1.6rem auto 0}
+.profile-card{background:#fff;border:2px solid var(--ink);border-radius:20px;padding:1.2rem;box-shadow:var(--hard-sm);text-align:center;transition:transform .12s,box-shadow .12s}
+.profile-card:hover{transform:translateY(-3px);box-shadow:var(--hard)}
+.profile-card img{width:100%;max-width:280px;border-radius:50%;display:block;margin:0 auto 1rem;border:2px solid var(--ink)}
+.profile-card .nm{font-weight:700;margin-bottom:.6rem;font-size:1rem}
+@media (max-width:640px){.profiles{grid-template-columns:1fr;max-width:340px}}
+
+/* ===== Compositions section ===== */
+.comps{display:grid;grid-template-columns:1fr;gap:1.6rem;margin-top:1.6rem}
+.comp-card{background:#fff;border:2px solid var(--ink);border-radius:20px;overflow:hidden;box-shadow:var(--hard-sm);transition:transform .12s,box-shadow .12s}
+.comp-card:hover{transform:translateY(-3px);box-shadow:var(--hard)}
+.comp-card img{display:block;width:100%;height:auto;border-bottom:2px solid var(--ink)}
+.comp-card .meta{padding:1rem 1.2rem;font-weight:600;font-size:.96rem;color:rgba(0,0,0,.75)}
+
+/* ===== Press-kit CTA: button MUST be centered (overrides .dl align-self) ===== */
+.kit .dl{align-self:center}
+
 </style>
 </head>
 <body>
@@ -173,6 +206,10 @@ footer .flinks a{color:var(--lime);margin:0 .4rem}
   <div class="wrap">
     <h2>El <span class="accent">nombre</span></h2>
     <p class="sec-sub">Una celebración del reconocimiento, en tres palabras.</p>
+    <div class="name-feature">
+      <img class="wordmark" src="/images/brand/wordmark-color.svg" alt="everybodyknowsyou">
+      <div class="caption">Tres palabras. Una promesa.</div>
+    </div>
     <p style="max-width:720px;font-size:1.06rem;line-height:1.65;margin-bottom:1rem"><strong>"Everybody knows you."</strong> Es lo que dices de alguien atrevido. De alguien famoso. De alguien a quien la gente admira. De alguien que vive bajo sus propios términos. De alguien que genera impacto.</p>
     <p style="max-width:720px;font-size:1.06rem;line-height:1.65">Esa es la promesa del servicio en tres palabras: en tres días, todos te conocen. La frase es a la vez veredicto y destino.</p>
   </div>
@@ -203,6 +240,68 @@ footer .flinks a{color:var(--lime);margin:0 .4rem}
     <h2>El <span class="accent">sentir</span></h2>
     <p class="sec-sub">Divertido e imposible de ignorar. Con confianza en el trabajo que hacemos.</p>
     <p style="max-width:720px;font-size:1.06rem;line-height:1.65">Los colores son fuertes a propósito. El lima llama la atención. El púrpura le da el ancla a la marca. El rosa es la sonrisa. Juntos son sin pedir permiso y a la vez cálidos, así como queremos que se sientan todos los sitios que construimos para nuestros clientes. Detrás de la playfulness hay trabajo técnico real, AI-native, estructurado, medible, que dejamos que hablen los resultados.</p>
+  </div>
+</section>
+
+
+<!-- ============ PERSONAJES ============ -->
+<section class="block bg-soft">
+  <div class="wrap">
+    <h2>Los <span class="accent">personajes</span></h2>
+    <p class="sec-sub">Tres amigos que viven en el sitio. Aparecen para empujarte, para celebrar contigo, y para recordarte que el trabajo puede ser divertido.</p>
+    <div class="chars">
+      <div class="char-card">
+        <img src="/images/brand/characters/blob.png" alt="Blob">
+        <div class="nm">Blob</div>
+        <div class="role">El tranquilo</div>
+      </div>
+      <div class="char-card">
+        <img src="/images/brand/characters/mlem.png" alt="Mlem">
+        <div class="nm">Mlem</div>
+        <div class="role">El curioso</div>
+      </div>
+      <div class="char-card">
+        <img src="/images/brand/characters/plup.png" alt="Plup">
+        <div class="nm">Plup</div>
+        <div class="role">El alegre</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FOTOS DE PERFIL ============ -->
+<section class="block">
+  <div class="wrap">
+    <h2>Fotos de <span class="accent">perfil</span></h2>
+    <p class="sec-sub">Dos avatares que usamos en redes sociales. Si alguna vez nos referencias, elige el que prefieras.</p>
+    <div class="profiles">
+      <div class="profile-card">
+        <img src="/images/brand/profile/profile-v1.png" alt="Foto de perfil, versión 1">
+        <div class="nm">Perfil v1</div>
+      </div>
+      <div class="profile-card">
+        <img src="/images/brand/profile/profile-v2.png" alt="Foto de perfil, versión 2">
+        <div class="nm">Perfil v2</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ COMPOSICIONES ============ -->
+<section class="block bg-soft">
+  <div class="wrap">
+    <h2>La marca en <span class="accent">uso</span></h2>
+    <p class="sec-sub">Un par de composiciones que muestran cómo se ve la marca cuando todo encaja: el icono, el logotipo, los colores y el espíritu divertido, juntos en una sola imagen.</p>
+    <div class="comps">
+      <div class="comp-card">
+        <img src="/images/brand/compositions/social-share.jpg" alt="Composición para compartir en redes" loading="lazy">
+        <div class="meta">Composición de social share. La imagen que aparece cuando se comparte nuestro enlace.</div>
+      </div>
+      <div class="comp-card">
+        <img src="/images/brand/compositions/single-sentence.jpg" alt="Composición de explicación en una frase" loading="lazy">
+        <div class="meta">Explicación en una frase. La marca de un vistazo.</div>
+      </div>
+    </div>
   </div>
 </section>
 
@@ -292,6 +391,20 @@ footer .flinks a{color:var(--lime);margin:0 .4rem}
         <div class="name">Logotipo con .com, negro</div>
         <div class="desc">Negro de un solo color con la URL. Para impresión y usos de una tinta.</div>
         <a class="dl" href="/downloads/EKY-Wordmark-Com-BW.zip" download>Descargar</a>
+      </div>
+
+      <div class="logo-card">
+        <div class="preview dark"><img src="/images/brand/wordmark-white.svg" alt="Logotipo, blanco"></div>
+        <div class="name">Logotipo, blanco</div>
+        <div class="desc">Versión blanca para usar sobre fondos negros o oscuros.</div>
+        <a class="dl" href="/downloads/EKY-Wordmark-White.zip" download>Descargar</a>
+      </div>
+
+      <div class="logo-card">
+        <div class="preview dark"><img src="/images/brand/wordmark-com-white.svg" alt="Logotipo con .com, blanco"></div>
+        <div class="name">Logotipo con .com, blanco</div>
+        <div class="desc">Versión blanca con la URL. Para fondos negros u oscuros.</div>
+        <a class="dl" href="/downloads/EKY-Wordmark-Com-White.zip" download>Descargar</a>
       </div>
 
       <div class="logo-card">

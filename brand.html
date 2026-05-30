@@ -143,6 +143,39 @@ footer .flinks a{color:var(--lime);margin:0 .4rem}
 .powered{margin-top:.5rem}
 .powered a{display:inline-flex;align-items:center;gap:.5rem;color:#fff;font-family:var(--display)}
 .powered img{height:36px}
+
+/* ===== Big featured wordmark in 'The name' section ===== */
+.name-feature{background:#fff;border:2px solid var(--ink);border-radius:24px;padding:clamp(2rem,5vw,3.5rem) clamp(1.4rem,4vw,3rem);box-shadow:var(--hard);margin:1.6rem 0;text-align:center}
+.name-feature .wordmark{max-width:min(820px,88%);width:100%;height:auto;margin:0 auto;display:block}
+.name-feature .caption{font-family:var(--hand);font-size:clamp(1.3rem,2.2vw,1.7rem);color:var(--purple);margin-top:1rem;font-weight:700}
+
+/* ===== Characters section ===== */
+.chars{display:grid;grid-template-columns:repeat(3,1fr);gap:1.4rem;margin-top:1.6rem}
+.char-card{background:var(--lime);border:2px solid var(--ink);border-radius:20px;padding:1.4rem 1rem 1.2rem;text-align:center;box-shadow:var(--hard-sm);transition:transform .12s,box-shadow .12s}
+.char-card:hover{transform:translateY(-3px);box-shadow:var(--hard)}
+.char-card img{width:100%;max-width:200px;margin:0 auto 0.8rem;height:auto}
+.char-card .nm{font-family:var(--display);font-weight:700;font-size:1.2rem;color:var(--ink);margin-bottom:.25rem}
+.char-card .role{font-family:var(--hand);font-size:1.05rem;color:var(--purple);font-weight:700}
+@media (max-width:760px){.chars{grid-template-columns:1fr;max-width:340px;margin-left:auto;margin-right:auto}}
+
+/* ===== Profile pictures section ===== */
+.profiles{display:grid;grid-template-columns:1fr 1fr;gap:1.6rem;max-width:760px;margin:1.6rem auto 0}
+.profile-card{background:#fff;border:2px solid var(--ink);border-radius:20px;padding:1.2rem;box-shadow:var(--hard-sm);text-align:center;transition:transform .12s,box-shadow .12s}
+.profile-card:hover{transform:translateY(-3px);box-shadow:var(--hard)}
+.profile-card img{width:100%;max-width:280px;border-radius:50%;display:block;margin:0 auto 1rem;border:2px solid var(--ink)}
+.profile-card .nm{font-weight:700;margin-bottom:.6rem;font-size:1rem}
+@media (max-width:640px){.profiles{grid-template-columns:1fr;max-width:340px}}
+
+/* ===== Compositions section ===== */
+.comps{display:grid;grid-template-columns:1fr;gap:1.6rem;margin-top:1.6rem}
+.comp-card{background:#fff;border:2px solid var(--ink);border-radius:20px;overflow:hidden;box-shadow:var(--hard-sm);transition:transform .12s,box-shadow .12s}
+.comp-card:hover{transform:translateY(-3px);box-shadow:var(--hard)}
+.comp-card img{display:block;width:100%;height:auto;border-bottom:2px solid var(--ink)}
+.comp-card .meta{padding:1rem 1.2rem;font-weight:600;font-size:.96rem;color:rgba(0,0,0,.75)}
+
+/* ===== Press-kit CTA: button MUST be centered (overrides .dl align-self) ===== */
+.kit .dl{align-self:center}
+
 </style>
 </head>
 <body>
@@ -173,6 +206,10 @@ footer .flinks a{color:var(--lime);margin:0 .4rem}
   <div class="wrap">
     <h2>The <span class="accent">name</span></h2>
     <p class="sec-sub">A celebration of recognition, wrapped in three words.</p>
+    <div class="name-feature">
+      <img class="wordmark" src="/images/brand/wordmark-color.svg" alt="everybodyknowsyou">
+      <div class="caption">Three words. One promise.</div>
+    </div>
     <p style="max-width:720px;font-size:1.06rem;line-height:1.65;margin-bottom:1rem"><strong>"Everybody knows you."</strong> It is what you say to someone bold. To someone famous. To someone people are looking up to. To someone who lives on their own terms. To someone who generates impact.</p>
     <p style="max-width:720px;font-size:1.06rem;line-height:1.65">That is the promise of the service in three words: in three days, everybody knows you. The phrase doubles as a verdict and as a destination.</p>
   </div>
@@ -203,6 +240,68 @@ footer .flinks a{color:var(--lime);margin:0 .4rem}
     <h2>The <span class="accent">feel</span></h2>
     <p class="sec-sub">Playful and impossible to ignore. Confident about the work we do.</p>
     <p style="max-width:720px;font-size:1.06rem;line-height:1.65">The colors are loud on purpose. Lime grabs attention. Purple gives the brand its anchor. Pink is the smile. Together they are unapologetic and warm at the same time, which is also how we want every site we build for a client to feel. Behind the playfulness is real technical work, AI-native, structured, measurable, that we let our results speak for.</p>
+  </div>
+</section>
+
+
+<!-- ============ CHARACTERS ============ -->
+<section class="block bg-soft">
+  <div class="wrap">
+    <h2>The <span class="accent">characters</span></h2>
+    <p class="sec-sub">Three friends that live across the site. They show up to nudge, to celebrate, and to remind you the work can be playful.</p>
+    <div class="chars">
+      <div class="char-card">
+        <img src="/images/brand/characters/blob.png" alt="Blob">
+        <div class="nm">Blob</div>
+        <div class="role">The calm one</div>
+      </div>
+      <div class="char-card">
+        <img src="/images/brand/characters/mlem.png" alt="Mlem">
+        <div class="nm">Mlem</div>
+        <div class="role">The curious one</div>
+      </div>
+      <div class="char-card">
+        <img src="/images/brand/characters/plup.png" alt="Plup">
+        <div class="nm">Plup</div>
+        <div class="role">The cheerful one</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ PROFILE PICTURES ============ -->
+<section class="block">
+  <div class="wrap">
+    <h2>Profile <span class="accent">pictures</span></h2>
+    <p class="sec-sub">Two avatars we use for social media. Pick the one you prefer if you ever need to reference us.</p>
+    <div class="profiles">
+      <div class="profile-card">
+        <img src="/images/brand/profile/profile-v1.png" alt="Profile picture, version 1">
+        <div class="nm">Profile v1</div>
+      </div>
+      <div class="profile-card">
+        <img src="/images/brand/profile/profile-v2.png" alt="Profile picture, version 2">
+        <div class="nm">Profile v2</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ COMPOSITIONS ============ -->
+<section class="block bg-soft">
+  <div class="wrap">
+    <h2>Brand in <span class="accent">use</span></h2>
+    <p class="sec-sub">A couple of compositions that show how the brand comes together: the icon, the wordmark, the colors, and the playful spirit, all in one place.</p>
+    <div class="comps">
+      <div class="comp-card">
+        <img src="/images/brand/compositions/social-share.jpg" alt="Social share composition" loading="lazy">
+        <div class="meta">Social-share composition. The image that previews when our link is shared.</div>
+      </div>
+      <div class="comp-card">
+        <img src="/images/brand/compositions/single-sentence.jpg" alt="Single-sentence explanation composition" loading="lazy">
+        <div class="meta">Single-sentence explanation. The brand at a glance.</div>
+      </div>
+    </div>
   </div>
 </section>
 
@@ -292,6 +391,20 @@ footer .flinks a{color:var(--lime);margin:0 .4rem}
         <div class="name">Wordmark with .com, black</div>
         <div class="desc">Single-color black with the URL. For print and one-ink uses.</div>
         <a class="dl" href="/downloads/EKY-Wordmark-Com-BW.zip" download>Download</a>
+      </div>
+
+      <div class="logo-card">
+        <div class="preview dark"><img src="/images/brand/wordmark-white.svg" alt="Wordmark, white"></div>
+        <div class="name">Wordmark, white</div>
+        <div class="desc">White version for use on black or dark backgrounds.</div>
+        <a class="dl" href="/downloads/EKY-Wordmark-White.zip" download>Download</a>
+      </div>
+
+      <div class="logo-card">
+        <div class="preview dark"><img src="/images/brand/wordmark-com-white.svg" alt="Wordmark with .com, white"></div>
+        <div class="name">Wordmark with .com, white</div>
+        <div class="desc">White with the URL. For use on black or dark backgrounds.</div>
+        <a class="dl" href="/downloads/EKY-Wordmark-Com-White.zip" download>Download</a>
       </div>
 
       <div class="logo-card">
