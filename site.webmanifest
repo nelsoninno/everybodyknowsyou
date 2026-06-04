@@ -1,0 +1,31 @@
+{
+  "name": "everybodyknowsyou.com",
+  "short_name": "EKY",
+  "description": "Stunning websites in 3 days, in English and Spanish, found by Google and AI. From $500. Made with love in El Salvador.",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "background_color": "#CEFF00",
+  "theme_color": "#6200C9",
+  "lang": "en",
+  "icons": [
+    {
+      "src": "/favicon-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/favicon-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/apple-touch-icon.png",
+      "sizes": "180x180",
+      "type": "image/png",
+      "purpose": "any"
+    }
+  ]
+}

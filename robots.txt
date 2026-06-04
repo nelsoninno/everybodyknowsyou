@@ -3,6 +3,7 @@
 
 User-agent: *
 Allow: /
+Disallow: /api/
 
 # AI assistants & LLM crawlers — explicit invitation
 User-agent: GPTBot

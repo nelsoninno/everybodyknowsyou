@@ -129,3 +129,29 @@ All inbound links to old `/en/...` URLs (LinkedIn, social profiles, press, etc.)
 - WhatsApp number set to +50374927681 on every CTA
 - LinkedIn + Instagram added to footer (icons + sameAs)
 - Audit "100% in 3 days" CTA gained asterisk + honest footnote
+
+## 2026-06-03 — Findability + favicon refresh
+- **Rotating pill on homepage:** added CSS so the `.rot` pill always wraps below the "Perfect if you want to" prefix on both desktop and mobile (`.wholine [data-i18n="who_lead"]{display:block}`). EN + ES.
+- **Favicon stack overhaul (cache-bust):** generated `favicon.ico` (multi-res 16/32/48), `favicon-16x16.png`, `favicon-32x32.png`, `favicon-192x192.png`, `favicon-512x512.png`, `apple-touch-icon.png` (180), and `site.webmanifest`, all at repo root. All 10 HTML pages updated to reference the new stack. The new filenames + new root paths force Google and browsers to refresh their cached icon (was showing the old orange-EKY circle).
+- **FAQPage JSON-LD** added to `/` and `/es/` (7 Q&As each, EN + ES, mirroring `llms-full.txt`). High-leverage rich-result driver.
+- **El Salvador local SEO:**
+  - Meta keywords strengthened with "diseño web El Salvador", "agencia web El Salvador", "web design El Salvador", "build my website", "EKY", "everybodyknowsyou", etc.
+  - Organization JSON-LD: added telephone, contactPoint, knowsAbout, slogan, addressRegion, knowsLanguage, alternateName array.
+  - ProfessionalService JSON-LD: upgraded to `["ProfessionalService","LocalBusiness"]`, added telephone, slogan, serviceType, openingHoursSpecification, addressRegion.
+- **llms-full.txt:** fixed two sentences that still said "Spanish-first" (contradicted the EN-at-root architecture).
+- **sitemap.xml:** all `lastmod` bumped to 2026-06-03 (signals freshness, prompts re-crawl).
+
+## 2026-06-03 (second round) — Performance + local-SEO finishing pass
+- **`addressLocality: "San Salvador"`** added to PostalAddress in Organization + ProfessionalService schemas (both EN and ES). The address now reads SV → El Salvador → San Salvador, giving Google enough granularity for local-pack inclusion.
+- **`Disallow: /api/`** added to robots.txt. Stops Google from probing the POST-only Cloudflare Function endpoints (was creating the "Blocked due to other 4xx" line in GSC).
+- **Async-load Google Fonts** across all 10 HTML pages (`media="print" onload="this.media='all'"` + `<noscript>` fallback). Estimated ~2s FCP improvement on mobile (Lighthouse: render-blocking saving 2,020ms).
+- **Logo PNGs shrunk** via Pillow palette-mode quantization (PNG-8, 64 colors). `eky-logo-complete.png` 15.2KB → 7.1KB (53% smaller). Three other logo variants also halved or better. The brand wordmark renders identically — only flat colors.
+- **Updated website-build skill's `seo-ai-findability.md`** so every future client ships with the full upgraded stack (favicon at root, FAQPage, LocalBusiness, telephone, async fonts, addressLocality).
+
+## SEO/GEO — status (updated 2026-06-03)
+- [x] Google Search Console — sitemap submitted, re-indexing requested for `/` and `/es/`
+- [x] Bing Webmaster Tools — sitemap submitted
+- [ ] **Google Business Profile** — Nelson: do tomorrow (highest local-SEO leverage)
+- [ ] **Wikidata entry** — Nelson: check tomorrow
+- [ ] Backlinks from owned properties — Nelson: doing slowly
+- [x] PageSpeed Insights — 86 perf / 100 SEO / 100 best practices / 96 a11y on mobile (next round can target the render-blocking + image-delivery insights for ~95+)

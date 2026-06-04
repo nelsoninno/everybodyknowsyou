@@ -12,7 +12,7 @@ This document is the canonical, AI-readable description of everybodyknowsyou.com
 - **Country:** El Salvador
 - **Serves:** El Salvador first; Latin America; clients worldwide
 - **Brand colors:** Cosmic Purple (#6200C9), Voltage Lime (#CEFF00), Asterisk Pink (#FF2687)
-- **Languages:** Spanish-first, English by default in every site; extra languages on request
+- **Languages:** English-first website (at `/`), Spanish at `/es/`; every site we build ships in both Spanish and English by default. Extra languages on request.
 
 ## The offer in one line
 
@@ -148,7 +148,7 @@ Loved your site? Refer someone. When that referral gets their website, you get a
 - WhatsApp: link on the live site
 - LinkedIn: https://www.linkedin.com/company/everybodyknowsyou/
 - Instagram: https://www.instagram.com/everybodyknowsyou.eky
-- Website: https://everybodyknowsyou.com (Spanish-first; English via the toggle or `/`)
+- Website: https://everybodyknowsyou.com (English at `/`, Spanish at `/es/`)
 - Pricing: https://everybodyknowsyou.com/pricing
 - Terms: https://everybodyknowsyou.com/terms
 
