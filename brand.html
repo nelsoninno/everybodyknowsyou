@@ -112,7 +112,14 @@ section.bg-ink .sec-sub{color:rgba(255,255,255,.75)}
 .copied{color:var(--purple)!important}
 
 /* ===== Logos grid ===== */
-.logos{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:1.3rem;margin-top:1.6rem}
+.logos{display:grid;grid-template-columns:repeat(4,1fr);gap:1.3rem;margin-top:.6rem;margin-bottom:1.4rem}
+.logos-subhead{font-family:var(--display);font-weight:700;font-size:1.05rem;color:var(--ink);margin:1.6rem 0 .3rem;text-transform:uppercase;letter-spacing:.06em;opacity:.85}
+.logos-subhead:first-of-type{margin-top:.4rem}
+@media (max-width:1080px){.logos{grid-template-columns:repeat(2,1fr)}}
+@media (max-width:760px){
+  .logos{grid-template-columns:1fr;max-width:340px;margin-left:auto;margin-right:auto}
+  .row-wordmark, .row-icon-characters, .logos-subhead.hide-mobile{display:none}
+}
 .logo-card{background:#fff;border:2px solid var(--ink);border-radius:20px;padding:1.2rem;display:flex;flex-direction:column;gap:.8rem;box-shadow:var(--hard-sm);transition:transform .12s,box-shadow .12s}
 .logo-card:hover{transform:translateY(-3px);box-shadow:var(--hard)}
 .logo-card .preview{background:#F7F2FF;border-radius:14px;height:140px;display:flex;align-items:center;justify-content:center;padding:1rem}
@@ -201,7 +208,7 @@ footer .flinks a{color:var(--lime);margin:0 .4rem}
 
 <header>
   <div class="wrap bar">
-    <a href="/" aria-label="everybodyknowsyou.com"><img class="brand" src="/images/brand/wordmark-color.svg" alt="everybodyknowsyou.com"></a>
+    <a href="/" aria-label="everybodyknowsyou.com"><img class="brand" src="/images/brand/everybodyknowsyou_logo_color_vector.svg" alt="everybodyknowsyou.com"></a>
     <div class="nav-cta">
       <a class="home" href="/">Home</a>
       <div class="eky-lang" role="group" aria-label="Language">
@@ -226,7 +233,7 @@ footer .flinks a{color:var(--lime);margin:0 .4rem}
     <h2>The <span class="accent">name</span></h2>
     <p class="sec-sub">A celebration of recognition, wrapped in three words.</p>
     <div class="name-feature">
-      <img class="wordmark" src="/images/brand/wordmark-color.svg" alt="everybodyknowsyou">
+      <img class="wordmark" src="/images/brand/everybodyknowsyou_logo_color_vector.svg" alt="everybodyknowsyou">
       <div class="caption">Three words. One promise.</div>
     </div>
     <p style="max-width:720px;font-size:1.06rem;line-height:1.65;margin-bottom:1rem"><strong>"Everybody knows you."</strong> It is what you say to someone bold. To someone famous. To someone people are looking up to. To someone who lives on their own terms. To someone who generates impact.</p>
@@ -247,7 +254,7 @@ footer .flinks a{color:var(--lime);margin:0 .4rem}
         <p>Inside each lens is an asterisk. The asterisks are the eyes. They are also a typographic mark. In Markdown, words wrapped in asterisks become <strong>bold</strong>. The icon says, in a single image: <em>the people are looking at the bold</em>.</p>
       </div>
       <div class="pic lime">
-        <img src="/images/brand/binoculars.svg" alt="Binoculars icon">
+        <img src="/images/brand/eky_binoculars_vector.svg" alt="Binoculars icon">
       </div>
     </div>
   </div>
@@ -396,57 +403,89 @@ footer .flinks a{color:var(--lime);margin:0 .4rem}
   <div class="wrap">
     <h2>Download our logos</h2>
     <p class="sec-sub">Every logo comes as both an SVG (vector) and a 1500-px PNG, in a small ZIP. Transparent background.</p>
-    <div class="logos">
 
+    <h3 class="logos-subhead">Wordmark</h3>
+    <div class="logos row-wordmark">
       <div class="logo-card">
-        <div class="preview"><img src="/images/brand/wordmark-color.svg" alt="Wordmark, color"></div>
-        <div class="name">Wordmark, color</div>
+        <div class="preview"><img src="/images/brand/everybodyknowsyou_logo_color_vector.svg" alt="Color"></div>
+        <div class="name">Color</div>
         <div class="desc">Our standard logo. Use this in most situations.</div>
-        <a class="dl" href="/downloads/EKY-Wordmark-Color.zip" download>Download</a>
+        <a class="dl" href="/downloads/everybodyknowsyou_logo_color.zip" download>Download</a>
       </div>
-
       <div class="logo-card">
-        <div class="preview"><img src="/images/brand/wordmark-bw.svg" alt="Wordmark, black"></div>
-        <div class="name">Wordmark, black</div>
+        <div class="preview dark"><img src="/images/brand/everybodyknowsyou_logo_fordarkbackground_vector.svg" alt="Color for dark background"></div>
+        <div class="name">Color for dark background</div>
+        <div class="desc">Color version designed to read on dark backgrounds.</div>
+        <a class="dl" href="/downloads/everybodyknowsyou_logo_fordarkbackground.zip" download>Download</a>
+      </div>
+      <div class="logo-card">
+        <div class="preview"><img src="/images/brand/everybodyknowsyou_logo_black_vector.svg" alt="Black"></div>
+        <div class="name">Black</div>
         <div class="desc">Single-color black version. For monochrome contexts.</div>
-        <a class="dl" href="/downloads/EKY-Wordmark-BW.zip" download>Download</a>
+        <a class="dl" href="/downloads/everybodyknowsyou_logo_black.zip" download>Download</a>
       </div>
-
       <div class="logo-card">
-        <div class="preview"><img src="/images/brand/wordmark-com-color.svg" alt="Wordmark with .com, color"></div>
-        <div class="name">Wordmark with .com, color</div>
-        <div class="desc">Use when the URL needs to read as part of the mark.</div>
-        <a class="dl" href="/downloads/EKY-Wordmark-Com-Color.zip" download>Download</a>
-      </div>
-
-      <div class="logo-card">
-        <div class="preview"><img src="/images/brand/wordmark-com-bw.svg" alt="Wordmark with .com, black"></div>
-        <div class="name">Wordmark with .com, black</div>
-        <div class="desc">Single-color black with the URL. For print and one-ink uses.</div>
-        <a class="dl" href="/downloads/EKY-Wordmark-Com-BW.zip" download>Download</a>
-      </div>
-
-      <div class="logo-card">
-        <div class="preview dark"><img src="/images/brand/wordmark-white.svg" alt="Wordmark, white"></div>
-        <div class="name">Wordmark, white</div>
+        <div class="preview dark"><img src="/images/brand/everybodyknowsyou_logo_white_vector.svg" alt="White"></div>
+        <div class="name">White</div>
         <div class="desc">White version for use on black or dark backgrounds.</div>
-        <a class="dl" href="/downloads/EKY-Wordmark-White.zip" download>Download</a>
+        <a class="dl" href="/downloads/everybodyknowsyou_logo_white.zip" download>Download</a>
       </div>
+    </div>
 
+    <h3 class="logos-subhead">Wordmark with .com</h3>
+    <div class="logos row-wordmark-com">
       <div class="logo-card">
-        <div class="preview dark"><img src="/images/brand/wordmark-com-white.svg" alt="Wordmark with .com, white"></div>
-        <div class="name">Wordmark with .com, white</div>
+        <div class="preview"><img src="/images/brand/everybodyknowsyou_com_logo_color_vector.svg" alt="Color"></div>
+        <div class="name">Color</div>
+        <div class="desc">Use when the URL needs to read as part of the mark.</div>
+        <a class="dl" href="/downloads/everybodyknowsyou_com_logo_color.zip" download>Download</a>
+      </div>
+      <div class="logo-card">
+        <div class="preview dark"><img src="/images/brand/everybodyknowsyou_com_logo_fordarkbackground_vector.svg" alt="Color for dark background"></div>
+        <div class="name">Color for dark background</div>
+        <div class="desc">Color version with the URL, designed for dark backgrounds.</div>
+        <a class="dl" href="/downloads/everybodyknowsyou_com_logo_fordarkbackground.zip" download>Download</a>
+      </div>
+      <div class="logo-card">
+        <div class="preview"><img src="/images/brand/everybodyknowsyou_com_logo_black_vector.svg" alt="Black"></div>
+        <div class="name">Black</div>
+        <div class="desc">Single-color black with the URL. For print and one-ink uses.</div>
+        <a class="dl" href="/downloads/everybodyknowsyou_com_logo_black.zip" download>Download</a>
+      </div>
+      <div class="logo-card">
+        <div class="preview dark"><img src="/images/brand/everybodyknowsyou_com_logo_white_vector.svg" alt="White"></div>
+        <div class="name">White</div>
         <div class="desc">White with the URL. For use on black or dark backgrounds.</div>
-        <a class="dl" href="/downloads/EKY-Wordmark-Com-White.zip" download>Download</a>
+        <a class="dl" href="/downloads/everybodyknowsyou_com_logo_white.zip" download>Download</a>
       </div>
+    </div>
 
+    <h3 class="logos-subhead">Icon and characters</h3>
+    <div class="logos row-icon-characters">
       <div class="logo-card">
-        <div class="preview"><img src="/images/brand/binoculars.svg" alt="Binoculars icon"></div>
+        <div class="preview"><img src="/images/brand/eky_binoculars_vector.svg" alt="Binoculars icon"></div>
         <div class="name">Binoculars icon</div>
         <div class="desc">The icon alone. Use only when the wordmark is also visible nearby.</div>
-        <a class="dl" href="/downloads/EKY-Binoculars.zip" download>Download</a>
+        <a class="dl" href="/downloads/everybodyknowsyou_binoculars.zip" download>Download</a>
       </div>
-
+      <div class="logo-card">
+        <div class="preview"><img src="/images/brand/characters/blob.png" alt="Blob"></div>
+        <div class="name">Blob</div>
+        <div class="desc">The main character. Calm, friendly, the face of EKY.</div>
+        <a class="dl" href="/downloads/everybodyknowsyou_characters.zip" download>Download</a>
+      </div>
+      <div class="logo-card">
+        <div class="preview"><img src="/images/brand/characters/mlem.png" alt="Mlem"></div>
+        <div class="name">Mlem</div>
+        <div class="desc">The curious one. Bundled with all three characters.</div>
+        <a class="dl" href="/downloads/everybodyknowsyou_characters.zip" download>Download</a>
+      </div>
+      <div class="logo-card">
+        <div class="preview"><img src="/images/brand/characters/plup.png" alt="Plup"></div>
+        <div class="name">Plup</div>
+        <div class="desc">The cheerful one. Bundled with all three characters.</div>
+        <a class="dl" href="/downloads/everybodyknowsyou_characters.zip" download>Download</a>
+      </div>
     </div>
   </div>
 </section>
@@ -457,7 +496,7 @@ footer .flinks a{color:var(--lime);margin:0 .4rem}
     <div class="kit">
       <h3>Press kit</h3>
       <p>Every logo, the color palette, and a one-page brand summary, all in one ZIP.</p>
-      <a class="dl" href="/downloads/EKY-Press-Kit.zip" download>Download the full press kit</a>
+      <a class="dl" href="/downloads/everybodyknowsyou_presskit.zip" download>Download the full press kit</a>
     </div>
   </div>
 </section>
