@@ -45,6 +45,8 @@
   --purple-deep:#4A0099;
   --lime:#CEFF00;
   --pink:#FF2687;
+  --mint:#F8FFD9;
+  --powder:#F8E7CF;
   --offwhite:#FDFCFE;
   --display:'Fredoka', system-ui, sans-serif;
   --hand:'Caveat', cursive;
@@ -162,12 +164,17 @@ footer .flinks a{color:var(--lime);margin:0 .4rem}
 .char-card .nm{font-family:var(--display);font-weight:700;font-size:1.2rem;color:var(--ink);margin-bottom:.25rem}
 .char-card .role{font-family:var(--hand);font-size:1.05rem;color:var(--purple);font-weight:700}
 @media (max-width:760px){.chars{grid-template-columns:1fr;max-width:340px;margin-left:auto;margin-right:auto}}
-/* Per-character card background variants (so Blob and Plup don't blend) */
+/* Per-character card background variants */
 /* Blob is the main character — only card on pink, so she stands alone */
 .char-card:nth-child(1){background:var(--pink)}
 .char-card:nth-child(1) .nm{color:#fff}
 .char-card:nth-child(1) .role{color:var(--ink)}
-/* Mlem (pink body) and Plup (purple body) use the default lime — both pop */
+/* Mlem (pink body) on default lime — high contrast */
+/* Plup (purple body) on Light Powder — soft, on-brand pairing */
+.char-card:nth-child(3){background:var(--powder)}
+/* Subheadings inside the Colors section */
+.colors-subhead{font-family:var(--display);font-weight:700;font-size:1.05rem;color:var(--ink);margin:1.4rem 0 .7rem;text-transform:uppercase;letter-spacing:.06em;opacity:.85}
+.colors-subhead:first-of-type{margin-top:.4rem}
 
 
 /* ===== Profile pictures section ===== */
@@ -322,26 +329,40 @@ footer .flinks a{color:var(--lime);margin:0 .4rem}
   <div class="wrap">
     <h2>Colors</h2>
     <p class="sec-sub">Click any swatch to copy its hex.</p>
+
+    <h3 class="colors-subhead">Primary</h3>
     <div class="colors">
       <div class="color" data-hex="#CEFF00">
-        <div class="swatch" style="background:#CEFF00;color:var(--ink)">Lime</div>
-        <div class="meta"><div class="name">Lime</div><div class="hex">#CEFF00</div></div>
+        <div class="swatch" style="background:#CEFF00;color:var(--ink)">Attention Lime</div>
+        <div class="meta"><div class="name">Attention Lime</div><div class="hex">#CEFF00</div></div>
       </div>
       <div class="color" data-hex="#6200C9">
-        <div class="swatch" style="background:#6200C9;color:#fff">Purple</div>
-        <div class="meta"><div class="name">Purple</div><div class="hex">#6200C9</div></div>
+        <div class="swatch" style="background:#6200C9;color:#fff">Curious Purple</div>
+        <div class="meta"><div class="name">Curious Purple</div><div class="hex">#6200C9</div></div>
       </div>
       <div class="color" data-hex="#FF2687">
-        <div class="swatch" style="background:#FF2687;color:#fff">Pink</div>
-        <div class="meta"><div class="name">Pink</div><div class="hex">#FF2687</div></div>
+        <div class="swatch" style="background:#FF2687;color:#fff">Highlight Pink</div>
+        <div class="meta"><div class="name">Highlight Pink</div><div class="hex">#FF2687</div></div>
       </div>
-      <div class="color" data-hex="#0A0A0A">
-        <div class="swatch" style="background:#0A0A0A;color:#fff">Ink</div>
-        <div class="meta"><div class="name">Ink</div><div class="hex">#0A0A0A</div></div>
+    </div>
+
+    <h3 class="colors-subhead">Secondary</h3>
+    <div class="colors">
+      <div class="color" data-hex="#F8FFD9">
+        <div class="swatch" style="background:#F8FFD9;color:var(--ink);border-bottom:2px solid var(--ink)">Soft Mint</div>
+        <div class="meta"><div class="name">Soft Mint</div><div class="hex">#F8FFD9</div></div>
+      </div>
+      <div class="color" data-hex="#F8E7CF">
+        <div class="swatch" style="background:#F8E7CF;color:var(--ink);border-bottom:2px solid var(--ink)">Light Powder</div>
+        <div class="meta"><div class="name">Light Powder</div><div class="hex">#F8E7CF</div></div>
       </div>
       <div class="color" data-hex="#FDFCFE">
         <div class="swatch" style="background:#FDFCFE;color:var(--ink);border-bottom:2px solid var(--ink)">Off-white</div>
         <div class="meta"><div class="name">Off-white</div><div class="hex">#FDFCFE</div></div>
+      </div>
+      <div class="color" data-hex="#0A0A0A">
+        <div class="swatch" style="background:#0A0A0A;color:#fff">Ink</div>
+        <div class="meta"><div class="name">Ink</div><div class="hex">#0A0A0A</div></div>
       </div>
     </div>
   </div>
