@@ -44,8 +44,7 @@ export async function onRequestPost(context) {
       countryName:   clean(body && body.countryName),
       searchType:    clean(body && body.searchType),
       score:         (body && body.score != null) ? String(body.score) : "",
-      scoreCap:      (body && body.scoreCap != null) ? String(body.scoreCap) : "",
-      hasNoSite:     (body && body.hasNoSite) ? "yes" : "no",
+      hasNoSite:     (body && body.hasNoSite) ? "yes" : "-",
       resolvedUrl:   clean(body && body.resolvedUrl),
       identityConfirmed: (body && body.identityConfirmed) ? "yes" : "no",
       confirmedTitle: clean(body && body.confirmedTitle),
@@ -56,8 +55,7 @@ export async function onRequestPost(context) {
       pageUrl:       clean(body && body.pageUrl),
       consent:       "yes",
       consentText:   "User clicked the opt-in: store audit + email a one-time personalized review.",
-      userAgent:     clean(context.request.headers.get("user-agent")),
-      ip:            clean(context.request.headers.get("cf-connecting-ip"))
+      userAgent:     clean(context.request.headers.get("user-agent"))
     };
 
     const url = env.LEADS_WEBHOOK_URL;
