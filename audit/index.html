@@ -979,6 +979,7 @@ const ARC_LEN = 314.159;
 let discovered = { candidate:null, profiles:[], matches:1 };
 let lastResultData = null;  /* cached so we can re-render when LANG toggles */
 let leadSubmitted = false;  /* true once the visitor opts in (per audit run) */
+let searchLogged = false;   /* true once we have logged the anonymous search (per run) */
 
 /* ============================================================
    I18N
@@ -1160,6 +1161,7 @@ function clearAll() {
   clearError();
   identityConfirmed = false;
   leadSubmitted = false;
+  searchLogged = false;
   var fb = document.getElementById("ekyFallback");
   if (fb) fb.remove();
 }
@@ -1432,6 +1434,8 @@ function renderResult(data) {
   }
   // Lead opt-in (shown for everyone, worded by score band)
   renderOptin(score);
+  // Anonymous search log (no consent / no identifiers) — once per audit run
+  logSearch(data);
   /* Anchor near the TOP-CENTER of the result block (not the start, which
      felt too low because the gauge appears below the page header). Using a
      small delay so the CTA banner can render first without re-stealing scroll. */
@@ -1511,6 +1515,26 @@ async function submitLead(){
   leadSubmitted = true;
   $("ekyOptinForm").style.display = "none";
   $("ekyOptinThanks").style.display = "block";
+}
+function logSearch(d){
+  if (searchLogged) return;
+  searchLogged = true;
+  try {
+    fetch("/api/lead", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        event: "search",
+        query: elQuery.value.trim(),
+        country: elCountry.value,
+        countryName: (elCountry.options[elCountry.selectedIndex] ? elCountry.options[elCountry.selectedIndex].text : ""),
+        lang: LANG,
+        searchType: (d && d.mode) || "",
+        score: (d && typeof d.score === "number" ? Math.round(d.score) : ""),
+        hasNoSite: !!(d && d.hasNoSite)
+      })
+    });
+  } catch (e) {}
 }
 (function wireLead(){
   var go = document.getElementById("ekyLeadGo");

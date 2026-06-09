@@ -1,18 +1,23 @@
 /* ============================================================
-   /api/lead  — receives a consent-based opt-in from the audit
-   tool and forwards it to a Google Sheet (via a Google Apps
-   Script Web App "webhook").
+   /api/lead  — receives events from the audit tool and forwards
+   them to the Google Sheet (Apps Script Web App "webhook").
 
-   Required Cloudflare Pages env var (Production):
-     LEADS_WEBHOOK_URL  = the Apps Script Web App /exec URL
+   Two event types:
+     event:"search"  -> anonymous: what was searched + the result.
+                        No name/email/IP/device info. Goes to the
+                        "Searches" tab. Fired for every audit.
+     (default/lead)  -> consent-based: the visitor ticked the box to
+                        get a free expert review. Goes to the leads tab.
+
+   Cloudflare Pages env var (Production, Secret):
+     LEADS_WEBHOOK_URL   = the Apps Script /exec URL
    Optional:
-     LEADS_WEBHOOK_TOKEN = shared secret, if you set one in the script
+     LEADS_WEBHOOK_TOKEN = shared secret (must match the script)
      ALLOWED_ORIGIN      = lock CORS to your domain (defaults to *)
 
-   The capture is best-effort: if the webhook is not yet configured
-   or is unreachable, we still return ok:true so the visitor sees a
-   normal thank-you — we never block the UX on lead storage, and the
-   audit tool itself is completely unaffected.
+   We never store IP addresses. Capture is best-effort: if the webhook
+   is missing or unreachable we still return ok so the visitor's UX is
+   never blocked, and the audit itself is completely unaffected.
    ============================================================ */
 
 export async function onRequestOptions(context) {
@@ -24,16 +29,35 @@ export async function onRequestPost(context) {
   try {
     const body = await context.request.json();
     const env = context.env || {};
+    if (body && body.hp) return ok(headers); // honeypot
 
-    // Honeypot: real users never fill this hidden field.
-    if (body && body.hp) return ok(headers);
+    const url = env.LEADS_WEBHOOK_URL;
 
+    // ---- anonymous search log (no consent / no personal identifiers) ----
+    if (body && body.event === "search") {
+      const rec = {
+        event: "search",
+        ts: new Date().toISOString(),
+        query: clean(body.query),
+        country: clean(body.country),
+        countryName: clean(body.countryName),
+        lang: clean(body.lang),
+        searchType: clean(body.searchType),
+        score: (body.score != null) ? String(body.score) : "",
+        hasNoSite: body.hasNoSite ? "yes" : "-"
+      };
+      await forward(url, rec, env);
+      return ok(headers);
+    }
+
+    // ---- consented lead ----
     const email = clean(body && body.email);
     const name  = clean(body && body.name);
     if (!name) return bad("Please enter your name or brand.", headers);
     if (!validEmail(email)) return bad("Please enter a valid email.", headers);
 
     const record = {
+      event: "lead",
       ts:            new Date().toISOString(),
       name:          name,
       email:         email,
@@ -54,42 +78,28 @@ export async function onRequestPost(context) {
       profiles:      Array.isArray(body && body.profiles) ? body.profiles.join(" | ") : clean(body && body.profiles),
       pageUrl:       clean(body && body.pageUrl),
       consent:       "yes",
-      consentText:   "User clicked the opt-in: store audit + email a one-time personalized review.",
-      userAgent:     clean(context.request.headers.get("user-agent"))
+      consentText:   "User ticked the consent box: store audit + email a one-time personalized review."
     };
-
-    const url = env.LEADS_WEBHOOK_URL;
-    if (url) {
-      const payload = env.LEADS_WEBHOOK_TOKEN
-        ? { ...record, token: env.LEADS_WEBHOOK_TOKEN }
-        : record;
-      try {
-        await fetch(url, {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify(payload)
-        });
-      } catch (e) {
-        try { console.error("lead webhook failed:", e && (e.message || e)); } catch (_) {}
-        // swallow — best-effort
-      }
-    } else {
-      try { console.warn("LEADS_WEBHOOK_URL not set; lead not stored:", record.email); } catch (_) {}
-    }
-
+    await forward(url, record, env);
     return ok(headers);
   } catch (err) {
     try { console.error("lead.js error:", err && (err.stack || err.message || err)); } catch (_) {}
-    // Never surface an error to the visitor for a lead capture.
     return new Response(JSON.stringify({ ok: true }), { status: 200, headers: { "Content-Type": "application/json", ...cors(context) } });
   }
+}
+
+async function forward(url, payload, env) {
+  if (!url) { try { console.warn("LEADS_WEBHOOK_URL not set; not stored:", payload.event); } catch (_) {} return; }
+  if (env.LEADS_WEBHOOK_TOKEN) payload = { ...payload, token: env.LEADS_WEBHOOK_TOKEN };
+  try {
+    await fetch(url, { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(payload) });
+  } catch (e) { try { console.error("webhook failed:", e && (e.message || e)); } catch (_) {} }
 }
 
 function ok(headers){ return new Response(JSON.stringify({ ok: true }), { status: 200, headers }); }
 function bad(msg, headers){ return new Response(JSON.stringify({ ok: false, error: msg }), { status: 200, headers }); }
 function clean(v){ return (v == null ? "" : String(v)).slice(0, 2000).trim(); }
 function validEmail(s){ return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(s || ""); }
-
 function cors(context) {
   const allow = (context.env && context.env.ALLOWED_ORIGIN) || "*";
   return {
