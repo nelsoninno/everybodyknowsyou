@@ -1217,6 +1217,7 @@ async function startCheck() {
   const query = elQuery.value.trim();
   clearAll();
   if (!query) { showError(STRINGS[LANG].err_empty); return; }
+  logSearch();  // record the search the instant it is made (even if the flow is abandoned)
 
   setLoading(true);
   try {
@@ -1434,8 +1435,6 @@ function renderResult(data) {
   }
   // Lead opt-in (shown for everyone, worded by score band)
   renderOptin(score);
-  // Anonymous search log (no consent / no identifiers) — once per audit run
-  logSearch(data);
   /* Anchor near the TOP-CENTER of the result block (not the start, which
      felt too low because the gauge appears below the page header). Using a
      small delay so the CTA banner can render first without re-stealing scroll. */
@@ -1516,7 +1515,7 @@ async function submitLead(){
   $("ekyOptinForm").style.display = "none";
   $("ekyOptinThanks").style.display = "block";
 }
-function logSearch(d){
+function logSearch(){
   if (searchLogged) return;
   searchLogged = true;
   try {
@@ -1528,10 +1527,7 @@ function logSearch(d){
         query: elQuery.value.trim(),
         country: elCountry.value,
         countryName: (elCountry.options[elCountry.selectedIndex] ? elCountry.options[elCountry.selectedIndex].text : ""),
-        lang: LANG,
-        searchType: (d && d.mode) || "",
-        score: (d && typeof d.score === "number" ? Math.round(d.score) : ""),
-        hasNoSite: !!(d && d.hasNoSite)
+        lang: LANG
       })
     });
   } catch (e) {}

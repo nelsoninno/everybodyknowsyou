@@ -42,9 +42,6 @@ export async function onRequestPost(context) {
         country: clean(body.country),
         countryName: clean(body.countryName),
         lang: clean(body.lang),
-        searchType: clean(body.searchType),
-        score: (body.score != null) ? String(body.score) : "",
-        hasNoSite: body.hasNoSite ? "yes" : "-",
         device: deviceFrom(context.request.headers.get("user-agent"))
       };
       await forward(url, rec, env);
