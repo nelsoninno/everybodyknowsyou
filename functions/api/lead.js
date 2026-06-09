@@ -4,7 +4,7 @@
 
    Two event types:
      event:"search"  -> anonymous: what was searched + the result.
-                        No name/email/IP/device info. Goes to the
+                        No name/email/IP. Only a coarse device type. Goes to the
                         "Searches" tab. Fired for every audit.
      (default/lead)  -> consent-based: the visitor ticked the box to
                         get a free expert review. Goes to the leads tab.
@@ -44,7 +44,8 @@ export async function onRequestPost(context) {
         lang: clean(body.lang),
         searchType: clean(body.searchType),
         score: (body.score != null) ? String(body.score) : "",
-        hasNoSite: body.hasNoSite ? "yes" : "-"
+        hasNoSite: body.hasNoSite ? "yes" : "-",
+        device: deviceFrom(context.request.headers.get("user-agent"))
       };
       await forward(url, rec, env);
       return ok(headers);
@@ -78,7 +79,8 @@ export async function onRequestPost(context) {
       profiles:      Array.isArray(body && body.profiles) ? body.profiles.join(" | ") : clean(body && body.profiles),
       pageUrl:       clean(body && body.pageUrl),
       consent:       "yes",
-      consentText:   "User ticked the consent box: store audit + email a one-time personalized review."
+      consentText:   "User ticked the consent box: store audit + email a one-time personalized review.",
+      device:        deviceFrom(context.request.headers.get("user-agent"))
     };
     await forward(url, record, env);
     return ok(headers);
@@ -100,6 +102,22 @@ function ok(headers){ return new Response(JSON.stringify({ ok: true }), { status
 function bad(msg, headers){ return new Response(JSON.stringify({ ok: false, error: msg }), { status: 200, headers }); }
 function clean(v){ return (v == null ? "" : String(v)).slice(0, 2000).trim(); }
 function validEmail(s){ return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(s || ""); }
+function deviceFrom(ua) {
+  ua = ua || "";
+  if (!ua) return "";
+  var os = "Unknown OS";
+  if (/Windows/i.test(ua)) os = "Windows";
+  else if (/iPad/i.test(ua)) os = "iPadOS";
+  else if (/iPhone|iPod/i.test(ua)) os = "iOS";
+  else if (/Android/i.test(ua)) os = "Android";
+  else if (/Mac OS X|Macintosh/i.test(ua)) os = "macOS";
+  else if (/CrOS/i.test(ua)) os = "ChromeOS";
+  else if (/Linux/i.test(ua)) os = "Linux";
+  var type = /iPad|Tablet/i.test(ua) ? "Tablet"
+           : (/Mobi|iPhone|iPod|Android/i.test(ua) ? "Mobile" : "Desktop");
+  return type + " \u00b7 " + os;
+}
+
 function cors(context) {
   const allow = (context.env && context.env.ALLOWED_ORIGIN) || "*";
   return {
