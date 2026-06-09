@@ -383,6 +383,9 @@ input.eky-text:focus, select.eky-select:focus{ outline:3px solid var(--lime); ou
 .eky-optin-fields .eky-cta:hover{ background:var(--purple-deep); filter:none; }
 .eky-optin .oc{ font-size:12px; line-height:1.45; color:var(--ink); opacity:.6; margin:14px auto 0; max-width:430px; font-weight:500; }
 .eky-optin .eky-hp{ position:absolute !important; left:-9999px !important; width:1px; height:1px; opacity:0; }
+.eky-optin .eky-consent-row{ display:flex; align-items:flex-start; gap:9px; text-align:left; max-width:380px; margin:6px auto 2px; cursor:pointer; }
+.eky-optin .eky-consent-row input[type=checkbox]{ width:18px; height:18px; min-width:18px; margin:2px 0 0; accent-color:var(--purple); cursor:pointer; }
+.eky-optin .eky-consent-row .oc{ margin:0; font-size:12px; line-height:1.45; opacity:.72; font-weight:500; }
 .eky-optin-err{ color:#d11; font-size:13px; margin:8px 0 0; font-weight:600; display:none; }
 .eky-optin-err.show{ display:block; }
 </style>
@@ -560,10 +563,13 @@ input.eky-text:focus, select.eky-select:focus{ outline:3px solid var(--lime); ou
           <input id="ekyLeadEmail" type="email" autocomplete="email" inputmode="email" />
           <input id="ekyLeadWa" type="text" autocomplete="tel" inputmode="tel" />
           <input id="ekyLeadHp" class="eky-hp" type="text" tabindex="-1" autocomplete="off" aria-hidden="true" />
+          <label class="eky-consent-row" for="ekyLeadConsent">
+            <input id="ekyLeadConsent" type="checkbox" />
+            <span class="oc" id="ekyOptinConsent"></span>
+          </label>
           <button id="ekyLeadGo" class="eky-cta" type="button"><span id="ekyLeadGoLabel"></span></button>
         </div>
         <p class="eky-optin-err" id="ekyLeadErr"></p>
-        <p class="oc" id="ekyOptinConsent"></p>
       </div>
       <div id="ekyOptinThanks" style="display:none">
         <h3 class="oh" id="ekyOptinThanksH"></h3>
@@ -674,11 +680,12 @@ const STRINGS = {
     optin_wa_ph:    "WhatsApp (optional)",
     optin_btn:      "Yes \u2014 review my audit for free",
     optin_sending:  "Sending...",
-    optin_consent:  "By continuing you agree everybodyknowsyou.com can store this audit and email you your personalized review. Just this once \u2014 we won't add you to any list.",
+    optin_consent:  "I agree everybodyknowsyou.com can store my audit and email me my personalized review — one time only, no mailing list.",
     optin_thanks_h: "Done! Your audit is on its way to our team.",
     optin_thanks_s: "A real person will review it and send your personalized suggestions to your email soon.",
     optin_err_email:"Please enter a valid email.",
     optin_err_name: "Please enter your name or brand.",
+    optin_err_consent: "Please tick the box to give your consent.",
     confirm_title: "Is this you?",
     confirm_sub:   "We searched and found this. Confirm it's really you, otherwise we'd be measuring the wrong person.",
     confirm_yes:   "Yes, that's me",
@@ -803,11 +810,12 @@ const STRINGS = {
     optin_wa_ph:    "WhatsApp (opcional)",
     optin_btn:      "S\u00ed \u2014 revisen mi auditor\u00eda gratis",
     optin_sending:  "Enviando...",
-    optin_consent:  "Al continuar, aceptas que everybodyknowsyou.com guarde esta auditor\u00eda y te env\u00ede por correo tu revisi\u00f3n personalizada. Solo esta vez \u2014 no te agregamos a ninguna lista.",
+    optin_consent:  "Acepto que everybodyknowsyou.com guarde mi auditoría y me envíe mi revisión personalizada — una sola vez, sin lista de correos.",
     optin_thanks_h: "\u00a1Listo! Tu auditor\u00eda va camino a nuestro equipo.",
     optin_thanks_s: "Una persona real la revisar\u00e1 y te enviar\u00e1 tus sugerencias personalizadas a tu correo pronto.",
     optin_err_email:"Por favor ingresa un correo v\u00e1lido.",
     optin_err_name: "Por favor ingresa tu nombre o marca.",
+    optin_err_consent: "Marca la casilla para dar tu consentimiento.",
     confirm_title: "¿Eres tú?",
     confirm_sub:   "Buscamos y encontramos esto. Confírmanos que eres tú. Si no, mediríamos a otra persona.",
     confirm_yes:   "Sí, soy yo",
@@ -1454,7 +1462,7 @@ function renderOptin(score){
   $("ekyOptinThanksS").textContent= T.optin_thanks_s;
   // keep thank-you state across language toggles; reset on each new audit (clearAll)
   if (leadSubmitted) { $("ekyOptinForm").style.display = "none"; $("ekyOptinThanks").style.display = "block"; }
-  else { $("ekyOptinForm").style.display = ""; $("ekyOptinThanks").style.display = "none"; leadClearErr(); }
+  else { $("ekyOptinForm").style.display = ""; $("ekyOptinThanks").style.display = "none"; var _cb = $("ekyLeadConsent"); if (_cb) _cb.checked = false; leadClearErr(); }
   show(sec);
 }
 function leadShowErr(msg){ const e = $("ekyLeadErr"); if (!e) return; e.textContent = msg; e.classList.add("show"); }
@@ -1469,6 +1477,7 @@ async function submitLead(){
   const hp    = $("ekyLeadHp").value.trim();
   if (!name) { leadShowErr(T.optin_err_name); return; }
   if (!validEmail(email)) { leadShowErr(T.optin_err_email); return; }
+  if (!$("ekyLeadConsent").checked) { leadShowErr(T.optin_err_consent); return; }
   const d = lastResultData || {};
   const missing = (d.signals || [])
     .filter(s => s.state !== "full")
@@ -1664,6 +1673,12 @@ applyLang();
 (function autoFromUrl(){
   try {
     const params = new URLSearchParams(location.search);
+    const lp = (params.get("lang") || "").toLowerCase();
+    if (lp === "en" || lp === "es") {
+      LANG = lp;
+      try { localStorage.setItem("eky_lang", LANG); } catch (e) {}
+      applyLang();
+    }
     const q = params.get("q") || params.get("query");
     const c = params.get("country");
     if (c) elCountry.value = c.toUpperCase();
