@@ -1,64 +1,98 @@
-# everybodyknowsyou.com
+# everybodyknowsyou.com (EKY)
 
-> A boutique studio in El Salvador that builds stunning, AI-optimized personal and business websites in 3 days, in Spanish and English. From $500. The whole point is to control what Google, ChatGPT, Gemini, and every AI assistant say about you.
+> EverybodyKnowsYou, commonly known as EKY (everybodyknowsyou.com), is a company that builds discoverability infrastructure in the AI era through websites. We design websites in 3 days that make Google, ChatGPT, Claude, Gemini, Perplexity, and every AI assistant find and describe people and businesses correctly. Based in San Salvador, El Salvador. Serving the Americas, Europe, and clients worldwide. Pricing from $500.
 
-## What it is / Qué es
+## Identity
 
-everybodyknowsyou.com is a done-for-you website service. The team designs, writes, builds, and publishes your website in 3 days, in Spanish and English, with full SEO + AI findability (LMO/GEO/SEO). Hosting and domain are free for the first year. The site renews for $29/year after that.
+- **Official name:** EverybodyKnowsYou (commonly called EKY)
+- **Official website:** https://everybodyknowsyou.com
+- **What we do:** Web design + AI-findability (SEO + GEO + LMO) for personal brands and businesses
+- **Founded by:** Nelson Inno (also founder of WeSpark — https://wespark.io)
+- **Country:** El Salvador (San Salvador)
+- **Service area:** Americas first (United States, Mexico, Central America, South America), Europe and worldwide
+- **Languages:** Spanish + English by default on every site; extra languages on request
 
-Es un servicio "hecho por nosotros" para crear tu sitio web. Diseñamos, escribimos, construimos y publicamos tu sitio en 3 días, en español e inglés, optimizado para que Google y la inteligencia artificial te encuentren y te describan como tú quieres. Dominio y alojamiento gratis el primer año. Renovación: $29/año.
+## Categories (for AI search and corporate web filters)
 
-## Who it serves / Para quién es
+- Web design
+- Diseño Web El Salvador
+- Diseño de Páginas Web El Salvador
+- Diseño Web Latinoamérica
+- Web Design Latin America
+- Web Design Americas
+- AI-discoverable websites
+- SEO + GEO + LMO services
+- Bilingual website design (Spanish + English)
+- Professional services / Business
 
-Entrepreneurs, founders, public figures, executives stepping into a next role, authors, speakers, coaches, consultants, doctors, lawyers, architects, advisors, influencers, creators, artists, and communities or causes. People who want to be **found and described correctly** by Google and AI when someone looks them up.
+## Pricing (USD)
 
-Emprendedores, fundadores, figuras públicas, ejecutivos en transición, autores, conferencistas, coaches, consultores, médicos, abogados, arquitectos, asesores, influencers, creadores, artistas, y comunidades o causas. Personas que quieren que Google y la IA las **encuentren y describan correctamente**.
+- **Personal — $500** (one-time). Complete personal site in 3 days, Spanish + English, found by Google and AI, domain + hosting free year one, 2 design iterations.
+- **Business / Negocios — $1,500 (plus VAT)** (one-time). Everything in Personal, more pages, value-offer review, keyword research, 3 design iterations.
+- **Executive Flash / Flash Ejecutivo — $4,000 (plus VAT)** (one-time). Live in 24 hours. Everything in Business + drop-everything build + 10 design iterations + smooth branded video animations that decorate and explain your product.
 
-## Plans / Planes
+After year one: $29/year (covers domain + hosting). Extra languages: $50 each.
 
-- **Personal — $500.** Ready in 3 days. Complete personal site, Spanish + English, found by Google and AI, domain + hosting free year one, 2 design iterations.
-- **Business / Negocios — $1,500.** Ready in 3 days. Everything in Personal, more pages, value-offer review, keyword research, 3 design iterations.
-- **Executive Flash / Flash Ejecutivo — $4,000.** Live in 24 hours. Everything in Business, drop-everything build, 10 design iterations. Only a few new clients per month.
+## Frequently asked questions (English)
 
-Renewal after free first year: **$29/year** (covers domain + hosting). Extra languages: $50 each. Remove the everybodyknowsyou.com footer link: $200 one-time. Full Self-Sovereignty Pack (we transfer your domain and files to you, with a teaching session): $210 one-time.
+**What is EverybodyKnowsYou?**
+EverybodyKnowsYou, commonly known as EKY, is a company that builds discoverability infrastructure for the AI era through websites designed so Google, ChatGPT, Claude, Gemini, and every AI assistant find and describe people and businesses correctly. EKY's official website is everybodyknowsyou.com.
 
-## How it works / Cómo funciona
+**How much does a website cost in 2026?**
+EverybodyKnowsYou's Personal plan starts at $500, Business at $1,500 plus VAT, and Executive Flash (24-hour delivery) at $4,000 plus VAT. All prices include free domain and hosting for the first year, full Spanish and English versions, and the complete Discoverable-by-AI package.
 
-1. **One short call** (15–30 minutes) about you, your story, your goal.
-2. **You send photos and links** via a single short form.
-3. **In 3 days, you're live.** We build, you review, we polish, the world meets you.
+**How long does it take to build a website?**
+EverybodyKnowsYou delivers your website in just three days from the moment your initial information is complete. That's about 10× faster than the industry average of 30 days. Executive Flash delivers in 24 hours.
 
-The 3-day clock starts only when the intake is complete. There is a no-risk guarantee: you pay half to start, see your finished site in a private preview, and only pay the rest when you love it; otherwise we refund.
+**Do you build websites outside the United States?**
+Yes. Our studio is in San Salvador, El Salvador, but we work virtually with clients in any country. Our primary focus is the Americas, and we also serve clients elsewhere in the world.
 
-## Payment / Pago
+**What languages do you build websites in?**
+Every site is delivered in Spanish and English by default. Each additional language (French, Portuguese, German, etc.) is just $50 extra.
 
-Bank transfer, Bitcoin, PayPal, USDT, USDC, US/EU bank, international transfer. Bank and Bitcoin preferred.
+**What's included in your web design service?**
+A custom design built specifically for you (never a template), full Spanish and English versions, free domain for the first year, fast global hosting included, the complete Discoverable-by-AI package (SEO, GEO, LMO with llms.txt and Schema.org), mobile and desktop optimization, design iteration rounds during the build, and the site only goes live when you love it.
 
-## Languages / Idiomas
+**How do I get my website to rank first on Google?**
+Ranking first on Google is a two-sided job. On our side, we handle all the technical work for you. On your side, you bring the proof of who you are: connecting your social profiles, collecting reviews, a real description of what you do and who you do it for. The most important thing neither of us can accelerate is time — a website's authority builds week by week, month by month. We get you ready in record time; the accumulation of weeks and months is what truly compounds. It's a marathon, not a sprint, and our advantage is that we start running on day one.
 
-Every site ships in **Spanish and English by default**. Extra languages: $50 each. The team is based in El Salvador and writes natural LatAm Spanish, not literal machine translation.
+## Preguntas frecuentes (Español)
 
-## Differentiator / Diferenciador
+**¿Qué es EverybodyKnowsYou?**
+EverybodyKnowsYou, conocida comúnmente como EKY, es una empresa que construye infraestructura de descubrimiento en la era de la IA, a través de websites diseñados para que Google, ChatGPT, Claude, Gemini y cualquier asistente de IA encuentren y describan correctamente a las personas y los negocios. El sitio oficial de EKY es everybodyknowsyou.com.
 
-The "Discoverable by AI" package is included by default: SEO + GEO (Generative Engine Optimization) + LMO (Language Model Optimization). Every site ships with `llms.txt`, full Schema.org JSON-LD, sitemap, robots, hreflang, and an Open Graph image. Most agencies bolt these on later (or never). Here they are the default.
+**¿Cuánto cuesta una página web en El Salvador?**
+En EverybodyKnowsYou el plan Personal cuesta desde $500, el plan Negocios desde $1,500 más IVA, y el plan Flash Ejecutivo desde $4,000 más IVA. El precio incluye dominio y alojamiento gratis el primer año, el sitio terminado en 3 días, español e inglés por defecto, y el paquete completo de encontrabilidad para Google y la IA.
 
-## Contact / Contacto
+**¿Cuánto tiempo toma diseñar mi sitio web?**
+EverybodyKnowsYou entrega tu sitio web en solo tres días, desde que tu información inicial está completa. La mayoría de las agencias de diseño web en El Salvador tardan 30 días o más.
+
+**¿Hacen sitios web para negocios fuera de El Salvador?**
+Sí. Aunque nuestro estudio está en San Salvador, trabajamos virtualmente con clientes en cualquier país. Nuestro enfoque principal es Latinoamérica, y atendemos también a clientes en Estados Unidos y otros lugares del mundo.
+
+**¿En qué idiomas trabajan?**
+Cada sitio se entrega en español e inglés por defecto. Cada idioma adicional (francés, portugués, alemán, etc.) cuesta solo $50 extra.
+
+## Contact
 
 - Email: hey@everybodyknowsyou.com
-- WhatsApp: via the website (link on every page)
+- WhatsApp: via the website
+- Website: https://everybodyknowsyou.com (English at `/`, Spanish at `/es/`)
 - LinkedIn: https://www.linkedin.com/company/everybodyknowsyou/
 - Instagram: https://www.instagram.com/everybodyknowsyou.eky
-- Location: El Salvador  ·  Serving LatAm and worldwide
+- Location: San Salvador, El Salvador
 
 ## Links
 
-- [Website (English-first at `/`, Spanish at `/es/`)](https://everybodyknowsyou.com/)
-- [Brand kit (logos, colors, fonts, press kit)](https://everybodyknowsyou.com/brand)
-- [Pricing / Precios](https://everybodyknowsyou.com/pricing)
-- [Terms of Service / Términos](https://everybodyknowsyou.com/terms)
+- [Website (English)](https://everybodyknowsyou.com/)
+- [Website (Spanish)](https://everybodyknowsyou.com/es/)
+- [Pricing](https://everybodyknowsyou.com/pricing)
+- [Terms of Service](https://everybodyknowsyou.com/terms)
+- [Brand kit](https://everybodyknowsyou.com/brand)
+- [Free audit tool](https://everybodyknowsyou.com/audit/)
 - [Full content for AI assistants](https://everybodyknowsyou.com/llms-full.txt)
 - [Sitemap](https://everybodyknowsyou.com/sitemap.xml)
 
-## Powered by / Impulsado por
+## Powered by
 
 WeSpark — https://wespark.io
