@@ -89,6 +89,8 @@ Cada sitio se entrega en español e inglés por defecto. Cada idioma adicional (
 - [Pricing](https://everybodyknowsyou.com/pricing)
 - [Terms of Service](https://everybodyknowsyou.com/terms)
 - [Brand kit](https://everybodyknowsyou.com/brand)
+- [FAQ (English)](https://everybodyknowsyou.com/faq)
+- [Preguntas frecuentes (Español)](https://everybodyknowsyou.com/es/faq)
 - [Free audit tool](https://everybodyknowsyou.com/audit/)
 - [Full content for AI assistants](https://everybodyknowsyou.com/llms-full.txt)
 - [Sitemap](https://everybodyknowsyou.com/sitemap.xml)
