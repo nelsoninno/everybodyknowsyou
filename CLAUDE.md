@@ -155,3 +155,16 @@ All inbound links to old `/en/...` URLs (LinkedIn, social profiles, press, etc.)
 - [ ] **Wikidata entry** — Nelson: check tomorrow
 - [ ] Backlinks from owned properties — Nelson: doing slowly
 - [x] PageSpeed Insights — 86 perf / 100 SEO / 100 best practices / 96 a11y on mobile (next round can target the render-blocking + image-delivery insights for ~95+)
+
+## 2026-07-13 — Showcase split (Business/Personal) + NGO offer
+- **Homepage "See what we make" split into two groups (EN + ES, both index files):**
+  - New **Business websites** block on a black background (`.bg-black`): Origen Ganadero (origenganadero.pages.dev), Build In El Salvador (buildinelsalvador.com), and Tacos Hermanos (Coming soon, non-link card with lime "Coming soon" badge). Three cards only.
+  - **Personal websites** block on white: Unstable Innovation, Nelson Inno, Marea Decor, Zaragoza Home. (Marea is a personal-scale brand, grouped with bios/book/hobby sites, not a formal business.)
+  - Sub-line now reads "Real sites we've built, for businesses and for people." / "Sitios reales que hemos creado, para empresas y para personas."
+  - Added i18n keys to both LOCALES dicts in both files: pr_biz, pr_per, pr_soon, prb1, prb2, prb3; updated pr_s.
+  - Added CSS: `.show-group` headings, `.soon-badge`, coming-soon card states, and `.project-card{color:var(--ink)}` (fixes white-on-white card text over the black section).
+  - New thumbnails (aspect ratio preserved, optimized): origenganadero.jpg, buildinelsalvador.jpg, tacoshermanos.jpg.
+- **NGO / nonprofit offer added (EN + ES):** full tier upgrade at no extra cost, the Business website for the Personal price; we may ask for documentation to confirm the organization. (No Executive Flash line, per Nelson.)
+  - Pricing pages: lime callout under the plan cards (pricing.html + es/pricing.html) and a matching Q in each page's FAQPage JSON-LD.
+  - FAQ pages: a new visible Q&A plus a matching entry in the FAQPage JSON-LD (faq/index.html + es/faq/index.html).
+- Verified: all JSON-LD parses; no new em-dashes; footer credit intact; rendered both languages headless (business/personal groups, pricing callouts, FAQ items) before deploy.
