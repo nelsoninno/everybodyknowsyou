@@ -168,3 +168,9 @@ All inbound links to old `/en/...` URLs (LinkedIn, social profiles, press, etc.)
   - Pricing pages: lime callout under the plan cards (pricing.html + es/pricing.html) and a matching Q in each page's FAQPage JSON-LD.
   - FAQ pages: a new visible Q&A plus a matching entry in the FAQPage JSON-LD (faq/index.html + es/faq/index.html).
 - Verified: all JSON-LD parses; no new em-dashes; footer credit intact; rendered both languages headless (business/personal groups, pricing callouts, FAQ items) before deploy.
+
+### 2026-07-14 — Showcase polish (follow-up)
+- "Business websites" heading now EKY green (`--lime`) via `.bg-black .show-group`.
+- "Coming soon" badge + label now EKY pink (`--pink`).
+- Origen Ganadero link corrected: origenganadero.pages.dev -> origenganadero.com (EN + ES).
+- Personal group gained a descriptor line (new i18n key `pr_per_s`): "Book pages, biography pages, hobby pages, and NGO pages." / "Páginas de libros, biografías, pasatiempos y ONG."
