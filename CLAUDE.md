@@ -174,3 +174,4 @@ All inbound links to old `/en/...` URLs (LinkedIn, social profiles, press, etc.)
 - "Coming soon" badge + label now EKY pink (`--pink`).
 - Origen Ganadero link corrected: origenganadero.pages.dev -> origenganadero.com (EN + ES).
 - Personal group gained a descriptor line (new i18n key `pr_per_s`): "Book pages, biography pages, hobby pages, and NGO pages." / "Páginas de libros, biografías, pasatiempos y ONG."
+- Hid Tacos Hermanos (Coming soon) for now: card commented out in both index files, business grid switched g3 -> centered g2. To restore: uncomment the card and set the business grid back to g3.
