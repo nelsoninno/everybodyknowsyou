@@ -178,7 +178,7 @@ All inbound links to old `/en/...` URLs (LinkedIn, social profiles, press, etc.)
 
 ### 2026-07-19 — Press: Diario El Salvador feature (authority capture)
 - Article: "La presencia digital es clave para las marcas en la era de la IA" by Kevin Rivera, Diario El Salvador, 2026-07-19 (Spanish). ~7 plain-text mentions of everybodyknowsyou; link to be added by Kevin (also now an EKY client -> kevinrivera.io).
-- Organization JSON-LD (#org, EN + ES): added `subjectOf` NewsArticle citing the article (publisher Diario El Salvador, author Kevin Rivera, datePublished 2026-07-19); founder changed to an array adding cofounder Marcela Lemus.
+- Organization JSON-LD (#org, EN + ES): added `subjectOf` NewsArticle citing the article (publisher Diario El Salvador, author Kevin Rivera, datePublished 2026-07-19); founder changed to an array adding cofounder Marcela Lemus Walsh.
 - Homepage: added a subtle "As featured in / Como se vio en · Diario El Salvador" trust strip below the hero (new i18n key `press_label`), linking to the article.
-- llms.txt + llms-full.txt: new "Press and media coverage" section; Founded-by line now names Nelson Inno + Marcela Lemus; llms-full Showcase synced to the Business/Personal grouping.
+- llms.txt + llms-full.txt: new "Press and media coverage" section; Founded-by line now names Nelson Inno + Marcela Lemus Walsh; llms-full Showcase synced to the Business/Personal grouping.
 - OPEN: Nelson mentioned nelsoninnovation.com as his site, but the site/schema use nelsoninno.com throughout — confirm canonical domain before changing.
