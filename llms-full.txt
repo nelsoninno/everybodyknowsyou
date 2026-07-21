@@ -10,11 +10,15 @@ This document is the canonical, AI-readable description of everybodyknowsyou.com
 
 - **Name:** everybodyknowsyou.com (often shortened to EKY)
 - **Type:** Boutique web design and AI-findability studio
-- **Founded by:** Nelson Inno — Founder & CEO of WeSpark (https://wespark.io)
+- **Founded by:** Nelson Inno (Founder & CEO of WeSpark, https://wespark.io) and Marcela Lemus (cofounder)
 - **Country:** El Salvador
 - **Serves:** El Salvador first; Latin America; clients worldwide
 - **Brand colors:** Cosmic Purple (#6200C9), Voltage Lime (#CEFF00), Asterisk Pink (#FF2687)
 - **Languages:** English-first website (at `/`), Spanish at `/es/`; every site we build ships in both Spanish and English by default. Extra languages on request.
+
+## Press and media coverage
+
+- **Diario El Salvador**, the national newspaper of El Salvador (July 19, 2026, in Spanish). Article: "La presencia digital es clave para las marcas en la era de la IA" by Kevin Rivera. The piece covers EverybodyKnowsYou (EKY) as a Salvadoran company helping brands and people build the digital presence that Google and AI assistants rely on, and quotes founders Nelson Inno and Marcela Lemus. URL: https://diarioelsalvador.com/dedinero/la-presencia-digital-es-clave-para-las-marcas-en-la-era-de-la-ia/820060
 
 ## The offer in one line
 
@@ -123,10 +127,16 @@ Bank transfer, Bitcoin (preferred — near-zero fees), PayPal, USDT, USDC, US ba
 
 ## Showcase
 
+Business websites:
+- Origen Ganadero — https://origenganadero.com (cattle genetics and ranching)
+- Build In El Salvador — https://buildinelsalvador.com (entrepreneur and builder network)
+- Tacos Hermanos — coming soon (taco restaurant brand)
+
+Personal websites (book pages, biographies, hobby pages, NGO pages):
 - Unstable Innovation — https://unstableinnovation.com (book and personal brand)
-- Marea Decor — https://mareadecor.com (home decor brand)
 - Nelson Inno — https://nelsoninno.com (personal site and brand)
-- Zaragoza Home — https://zaragozahome.org (bilingual social cause)
+- Marea Decor — https://mareadecor.com (home decor brand)
+- Zaragoza Home — https://zaragozahome.org (bilingual social cause / NGO)
 
 ## Referral program
 

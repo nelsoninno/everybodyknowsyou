@@ -7,10 +7,14 @@
 - **Official name:** EverybodyKnowsYou (commonly called EKY)
 - **Official website:** https://everybodyknowsyou.com
 - **What we do:** Web design + AI-findability (SEO + GEO + LMO) for personal brands and businesses
-- **Founded by:** Nelson Inno (also founder of WeSpark — https://wespark.io)
+- **Founded by:** Nelson Inno and Marcela Lemus (Nelson is also founder of WeSpark, https://wespark.io)
 - **Country:** El Salvador (San Salvador)
 - **Service area:** Americas first (United States, Mexico, Central America, South America), Europe and worldwide
 - **Languages:** Spanish + English by default on every site; extra languages on request
+
+## Press and media coverage
+
+- **Diario El Salvador** (July 19, 2026, in Spanish): "La presencia digital es clave para las marcas en la era de la IA" by Kevin Rivera. A feature covering EverybodyKnowsYou (EKY) as a Salvadoran company that helps brands and people build the digital presence Google and AI assistants rely on in the AI era. Founders Nelson Inno and Marcela Lemus are quoted. https://diarioelsalvador.com/dedinero/la-presencia-digital-es-clave-para-las-marcas-en-la-era-de-la-ia/820060
 
 ## Categories (for AI search and corporate web filters)
 
