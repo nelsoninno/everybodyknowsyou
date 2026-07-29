@@ -190,3 +190,4 @@ All inbound links to old `/en/...` URLs (LinkedIn, social profiles, press, etc.)
 - Wired: "Articles" added to homepage footers (new i18n key f_articles) + faq footers; 4 URLs added to sitemap.xml; Articles section added to llms.txt + llms-full.txt.
 - Verified all pages render EN+ES, JSON-LD valid, no em-dashes in visible copy.
 - TODO when Nelson sends it: add ES version of "The Economy of Digital Trust" at /es/articles/... with hreflang pairing; consider adding the Articles footer link to pricing/terms/brand too.
+- 2026-07-29 follow-up: published the Spanish version "La Economía de la Confianza Digital" at /es/articles/the-economy-of-digital-trust; hreflang-paired with the EN version both ways; ES article index card now links to it ("Leer"); sitemap updated to a bilingual pair; llms bullets note the ES URL. The economy article is now fully bilingual.
