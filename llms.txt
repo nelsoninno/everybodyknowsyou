@@ -77,6 +77,12 @@ Sí. Aunque nuestro estudio está en San Salvador, trabajamos virtualmente con c
 **¿En qué idiomas trabajan?**
 Cada sitio se entrega en español e inglés por defecto. Cada idioma adicional (francés, portugués, alemán, etc.) cuesta solo $50 extra.
 
+## Articles
+
+- **The Economy of Digital Trust** by Nelson Inno: why websites are now a commodity, and how real value comes from a clear offer plus a discoverability layer AI can read and trust. https://everybodyknowsyou.com/articles/the-economy-of-digital-trust
+- **Digital presence is key for brands in the AI era** (English translation of the Diario El Salvador feature by Kevin Rivera). https://everybodyknowsyou.com/articles/digital-presence-is-key-in-the-ai-era
+- Articles index: https://everybodyknowsyou.com/articles
+
 ## Contact
 
 - Email: hey@everybodyknowsyou.com

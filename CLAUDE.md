@@ -182,3 +182,11 @@ All inbound links to old `/en/...` URLs (LinkedIn, social profiles, press, etc.)
 - Homepage: added a subtle "As featured in / Como se vio en · Diario El Salvador" trust strip below the hero (new i18n key `press_label`), linking to the article.
 - llms.txt + llms-full.txt: new "Press and media coverage" section; Founded-by line now names Nelson Inno + Marcela Lemus Walsh; llms-full Showcase synced to the Business/Personal grouping.
 - OPEN: Nelson mentioned nelsoninnovation.com as his site, but the site/schema use nelsoninno.com throughout — confirm canonical domain before changing.
+
+### 2026-07-29 — New /articles section (content + AI-findability)
+- New section at /articles (EN) and /es/articles (ES): index pages + article template matching the subpage design (header, footer, tokens), each with Article/CollectionPage + Breadcrumb JSON-LD, OG/meta, hreflang.
+- Article 1: "The Economy of Digital Trust" by Nelson Inno (EN, /articles/the-economy-of-digital-trust) — full text as-is, BlogPosting schema, source note (SparkToro/Search Engine Land). ES version pending Nelson's LATAM-Spanish translation.
+- Article 2: "Digital presence is key for brands in the AI era" (EN, /articles/digital-presence-is-key-in-the-ai-era) — faithful English translation of the Diario El Salvador feature by Kevin Rivera, with a prominent attribution/disclaimer box, link to the Spanish original, NewsArticle schema (author Kevin Rivera, publisher Diario El Salvador, isBasedOn original, translator EKY). Note: $15 billones ES rendered as $15 trillion EN. The Spanish original stays on Diario (ES index links out to it).
+- Wired: "Articles" added to homepage footers (new i18n key f_articles) + faq footers; 4 URLs added to sitemap.xml; Articles section added to llms.txt + llms-full.txt.
+- Verified all pages render EN+ES, JSON-LD valid, no em-dashes in visible copy.
+- TODO when Nelson sends it: add ES version of "The Economy of Digital Trust" at /es/articles/... with hreflang pairing; consider adding the Articles footer link to pricing/terms/brand too.

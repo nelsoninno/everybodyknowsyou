@@ -131,4 +131,39 @@
     <priority>0.7</priority>
   </url>
 
+  <!-- Articles -->
+  <url>
+    <loc>https://everybodyknowsyou.com/articles</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://everybodyknowsyou.com/articles"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://everybodyknowsyou.com/es/articles"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://everybodyknowsyou.com/articles"/>
+    <lastmod>2026-07-29</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://everybodyknowsyou.com/es/articles</loc>
+    <xhtml:link rel="alternate" hreflang="es" href="https://everybodyknowsyou.com/es/articles"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://everybodyknowsyou.com/articles"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://everybodyknowsyou.com/articles"/>
+    <lastmod>2026-07-29</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://everybodyknowsyou.com/articles/the-economy-of-digital-trust</loc>
+    <lastmod>2026-07-29</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://everybodyknowsyou.com/articles/digital-presence-is-key-in-the-ai-era</loc>
+    <lastmod>2026-07-29</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
 </urlset>
