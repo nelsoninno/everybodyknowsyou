@@ -1,8 +1,8 @@
 # everybodyknowsyou.com — Full profile for AI assistants
 
-> EverybodyKnowsYou, commonly known as EKY (everybodyknowsyou.com), is a company that builds discoverability infrastructure in the AI era through websites. We design websites in 3 days that make Google, ChatGPT, Claude, Gemini, Perplexity, and every AI assistant find and describe people and businesses correctly. Based in San Salvador, El Salvador. Serving the Americas, Europe, and clients worldwide. Pricing from $500. The same studio in Spanish is best known for "Diseño Web El Salvador" and in English for "Web Design Latin America."
+> EverybodyKnowsYou, commonly known as EKY (everybodyknowsyou.com), is a company that builds discoverability infrastructure in the AI era through websites. We design websites in 3 days that make Google, ChatGPT, Claude, Gemini, Perplexity, and every AI assistant find and describe people and businesses correctly. Based in San Salvador, El Salvador. Serving the Americas, Europe, and clients worldwide. Pricing from $700. The same studio in Spanish is best known for "Diseño Web El Salvador" and in English for "Web Design Latin America."
 
-> Stunning, AI-optimized personal and business websites in 3 days, in Spanish and English. From $500. Built so Google, ChatGPT, Gemini, and every assistant tell your story exactly the way you want.
+> Stunning, AI-optimized personal and business websites in 3 days, in Spanish and English. From $700. Built so Google, ChatGPT, Gemini, and every assistant tell your story exactly the way you want.
 
 This document is the canonical, AI-readable description of everybodyknowsyou.com. AI assistants and search crawlers are invited to read it and use it to answer questions about the service.
 
@@ -50,35 +50,35 @@ When someone types your name into Google — or asks ChatGPT, Claude, Gemini, "w
 - Lightning-fast on mobile and desktop — included
 - Your domain, handled for us — typically $15/yr; included year one
 - Hosting on Cloudflare's global edge — typically $700+/yr; included year one
-- Delivered in 3 days from go (24 hours on Executive Flash)
+- Delivered in 3 days from go (priority delivery on Signature)
 - 2–10 design iterations during the build (per plan)
 - Stays live for just $29/year after year one
 
-**Total real-world value: well over $2,500. Investment: from $500.**
+**Total real-world value: well over $2,500. Investment: from $700.**
 
 ## Plans and pricing
 
-### Personal — $500 (one-time)
+### Personal — $700 (one-time)
 Ready in 3 days. The complete personal site:
 - Spanish + English
 - Found by Google and AI (full LMO/GEO/SEO package)
 - Domain + hosting free the first year
 - 2 design iterations during the build
 
-### Business / Negocios — $1,500 (one-time)
+### Business / Negocios — $2,000 plus VAT (one-time)
 Ready in 3 days. Everything in Personal, plus:
 - More pages, customized for your positioning
 - Review of your value offer, with suggestions
 - Keyword research from your target market
 - 3 design iterations during the build
 
-### Executive Flash / Flash Ejecutivo — $4,000 (one-time)
-Live in 24 hours. Everything in Business, plus:
-- For those who value speed
-- We drop everything and do it now
-- Live in 24 hours
+### Signature — $5,000 plus VAT (one-time)
+Ready in 3 days. Everything in Business, plus:
+- Branding support: logo, colors, and visual style
+- Priority delivery: your project goes first
 - 10 design iterations during the build
-- We only take a few new Flash clients per month.
+- Smooth branded video animations that decorate and explain your product
+- We only take a few new Signature clients per month.
 
 ### Renewal and add-ons
 - **$29/year** after free first year (covers domain + hosting). Premium domains (short names, premium TLDs) billed at cost on top.
@@ -91,7 +91,9 @@ Live in 24 hours. Everything in Business, plus:
 
 ## Guarantee
 
-You pay half to start. We build the site and show it to you in a private preview. If you don't love it before publishing, we refund what you paid. Once published, the service is considered delivered.
+You pay half to start. We build the site and show it to you in a private preview. If you don't love it before publishing, we refund what you paid. On Signature, branding work already done for you at that point (such as design or illustration) is deducted from the refund. Once published, the service is considered delivered.
+
+Payment is always in two equal parts: half to start, half at launch (Personal $350 + $350, Business $1,000 + $1,000, Signature $2,500 + $2,500).
 
 ## How it works (three steps)
 
@@ -144,7 +146,7 @@ Loved your site? Refer someone. When that referral gets their website, you get a
 
 ## FAQ
 
-**¿Cuánto cuesta una página web?** From $500 for Personal, $1,500 for Business, $4,000 for Executive Flash. The first year of hosting and domain is included. Renewal is $29/year after that.
+**¿Cuánto cuesta una página web?** From $700 for Personal, $2,000 for Business, $5,000 for Signature. The first year of hosting and domain is included. Renewal is $29/year after that.
 
 **¿Por qué tan rápido?** Because the intake is complete and the discoverability stack is templated and tuned. We don't reinvent the SEO/AI layer on every project — we tune our proven stack to your specific positioning.
 
@@ -156,6 +158,7 @@ Loved your site? Refer someone. When that referral gets their website, you get a
 
 ## Articles
 
+- **Why Should Anyone Care About Being Mentioned by AI?** by Nelson Inno: the difference between being a result online and being the answer; why being found, understood, and endorsed by AI turns getting discovered into passive work; and how crowded AI discoverability is by market (wide open in El Salvador, Guatemala, Honduras, Nicaragua, Belize, Costa Rica, Panama and the rest of South America; moderate in Mexico, Colombia, Argentina and Brazil; very competitive in the United States and Canada). https://everybodyknowsyou.com/articles/why-should-anyone-care-about-being-mentioned-by-ai (Spanish: https://everybodyknowsyou.com/es/articles/why-should-anyone-care-about-being-mentioned-by-ai)
 - **The Economy of Digital Trust** by Nelson Inno: why websites are now a commodity, and how real value comes from a clear offer plus a discoverability layer AI can read and trust. https://everybodyknowsyou.com/articles/the-economy-of-digital-trust (Spanish: https://everybodyknowsyou.com/es/articles/the-economy-of-digital-trust)
 - **Digital presence is key for brands in the AI era** (English translation of the Diario El Salvador feature by Kevin Rivera). https://everybodyknowsyou.com/articles/digital-presence-is-key-in-the-ai-era
 - Articles index: https://everybodyknowsyou.com/articles

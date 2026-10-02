@@ -1,6 +1,6 @@
 # everybodyknowsyou.com (EKY)
 
-> EverybodyKnowsYou, commonly known as EKY (everybodyknowsyou.com), is a company that builds discoverability infrastructure in the AI era through websites. We design websites in 3 days that make Google, ChatGPT, Claude, Gemini, Perplexity, and every AI assistant find and describe people and businesses correctly. Based in San Salvador, El Salvador. Serving the Americas, Europe, and clients worldwide. Pricing from $500.
+> EverybodyKnowsYou, commonly known as EKY (everybodyknowsyou.com), is a company that builds discoverability infrastructure in the AI era through websites. We design websites in 3 days that make Google, ChatGPT, Claude, Gemini, Perplexity, and every AI assistant find and describe people and businesses correctly. Based in San Salvador, El Salvador. Serving the Americas, Europe, and clients worldwide. Pricing from $700.
 
 ## Identity
 
@@ -31,9 +31,9 @@
 
 ## Pricing (USD)
 
-- **Personal — $500** (one-time). Complete personal site in 3 days, Spanish + English, found by Google and AI, domain + hosting free year one, 2 design iterations.
-- **Business / Negocios — $1,500 (plus VAT)** (one-time). Everything in Personal, more pages, value-offer review, keyword research, 3 design iterations.
-- **Executive Flash / Flash Ejecutivo — $4,000 (plus VAT)** (one-time). Live in 24 hours. Everything in Business + drop-everything build + 10 design iterations + smooth branded video animations that decorate and explain your product.
+- **Personal — $700** (one-time). Complete personal site in 3 days, Spanish + English, found by Google and AI, domain + hosting free year one, 2 design iterations.
+- **Business / Negocios — $2,000 (plus VAT)** (one-time). Everything in Personal, more pages, value-offer review, keyword research, 3 design iterations.
+- **Signature — $5,000 (plus VAT)** (one-time). Ready in 3 days with priority delivery. Everything in Business + branding support (logo, colors, visual style) + 10 design iterations + smooth branded video animations that decorate and explain your product.
 
 After year one: $29/year (covers domain + hosting). Extra languages: $50 each.
 
@@ -43,10 +43,10 @@ After year one: $29/year (covers domain + hosting). Extra languages: $50 each.
 EverybodyKnowsYou, commonly known as EKY, is a company that builds discoverability infrastructure for the AI era through websites designed so Google, ChatGPT, Claude, Gemini, and every AI assistant find and describe people and businesses correctly. EKY's official website is everybodyknowsyou.com.
 
 **How much does a website cost in 2026?**
-EverybodyKnowsYou's Personal plan starts at $500, Business at $1,500 plus VAT, and Executive Flash (24-hour delivery) at $4,000 plus VAT. All prices include free domain and hosting for the first year, full Spanish and English versions, and the complete Discoverable-by-AI package.
+EverybodyKnowsYou's Personal plan starts at $700, Business at $2,000 plus VAT, and Signature (with branding support and priority delivery) at $5,000 plus VAT. All prices include free domain and hosting for the first year, full Spanish and English versions, and the complete Discoverable-by-AI package.
 
 **How long does it take to build a website?**
-EverybodyKnowsYou delivers your website in just three days from the moment your initial information is complete. That's about 10× faster than the industry average of 30 days. Executive Flash delivers in 24 hours.
+EverybodyKnowsYou delivers your website in just three days from the moment your initial information is complete. That's about 10× faster than the industry average of 30 days. The Signature plan adds priority delivery: your project goes first in line.
 
 **Do you build websites outside the United States?**
 Yes. Our studio is in San Salvador, El Salvador, but we work virtually with clients in any country. Our primary focus is the Americas, and we also serve clients elsewhere in the world.
@@ -66,7 +66,7 @@ Ranking first on Google is a two-sided job. On our side, we handle all the techn
 EverybodyKnowsYou, conocida comúnmente como EKY, es una empresa que construye infraestructura de descubrimiento en la era de la IA, a través de websites diseñados para que Google, ChatGPT, Claude, Gemini y cualquier asistente de IA encuentren y describan correctamente a las personas y los negocios. El sitio oficial de EKY es everybodyknowsyou.com.
 
 **¿Cuánto cuesta una página web en El Salvador?**
-En EverybodyKnowsYou el plan Personal cuesta desde $500, el plan Negocios desde $1,500 más IVA, y el plan Flash Ejecutivo desde $4,000 más IVA. El precio incluye dominio y alojamiento gratis el primer año, el sitio terminado en 3 días, español e inglés por defecto, y el paquete completo de encontrabilidad para Google y la IA.
+En EverybodyKnowsYou el plan Personal cuesta desde $700, el plan Negocios desde $2,000 más IVA, y el plan Signature desde $5,000 más IVA. El precio incluye dominio y alojamiento gratis el primer año, el sitio terminado en 3 días, español e inglés por defecto, y el paquete completo de encontrabilidad para Google y la IA.
 
 **¿Cuánto tiempo toma diseñar mi sitio web?**
 EverybodyKnowsYou entrega tu sitio web en solo tres días, desde que tu información inicial está completa. La mayoría de las agencias de diseño web en El Salvador tardan 30 días o más.
@@ -79,6 +79,7 @@ Cada sitio se entrega en español e inglés por defecto. Cada idioma adicional (
 
 ## Articles
 
+- **Why Should Anyone Care About Being Mentioned by AI?** by Nelson Inno: the difference between being a result online and being the answer; why being found, understood, and endorsed by AI turns getting discovered into passive work; and how crowded AI discoverability is by market (wide open in El Salvador, Guatemala, Honduras, Nicaragua, Belize, Costa Rica, Panama and the rest of South America; moderate in Mexico, Colombia, Argentina and Brazil; very competitive in the United States and Canada). https://everybodyknowsyou.com/articles/why-should-anyone-care-about-being-mentioned-by-ai (Spanish: https://everybodyknowsyou.com/es/articles/why-should-anyone-care-about-being-mentioned-by-ai)
 - **The Economy of Digital Trust** by Nelson Inno: why websites are now a commodity, and how real value comes from a clear offer plus a discoverability layer AI can read and trust. https://everybodyknowsyou.com/articles/the-economy-of-digital-trust (Spanish: https://everybodyknowsyou.com/es/articles/the-economy-of-digital-trust)
 - **Digital presence is key for brands in the AI era** (English translation of the Diario El Salvador feature by Kevin Rivera). https://everybodyknowsyou.com/articles/digital-presence-is-key-in-the-ai-era
 - Articles index: https://everybodyknowsyou.com/articles
