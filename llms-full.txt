@@ -144,6 +144,15 @@ Personal websites (book pages, biographies, hobby pages, NGO pages):
 - Marea Decor: https://mareadecor.com (home decor brand)
 - Zaragoza Home: https://zaragozahome.org (bilingual social cause)
 
+## Results (checked October 2026)
+
+Screenshots of real Google searches for sites EKY built, taken in October 2026. Results change over time, by place and by person.
+- Waveswell Retreats (waveswellretreats.com): first result on Google and named in Google's AI overview for "SUP retreats el salvador".
+- Build In El Salvador (buildinelsalvador.com): named first by Google's AI overview for "is there a builders community in el salvador?".
+- Origen Ganadero (origenganadero.com): first web result on Google for "cattle industry el salvador", and recommended by Google's AI overview as a private firm for "quien me puede ayudar como consultor de ganaderia en el salvador?".
+- Villa del Sol Garden (villadelsolsv.com): first source cited by Google's AI overview for "Where can I stay at a beach villa next to El Salvador's airport?".
+- Acton Academy El Salvador (actonacademyelsalvador.com): first source cited by Google's AI overview for "alternative schools in el salvador".
+
 ## Referral program
 
 Loved your site? Refer someone. When that referral gets their website, you get a full extra year of hosting + domain free.
