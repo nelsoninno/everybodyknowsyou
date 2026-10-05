@@ -130,15 +130,19 @@ Bank transfer, Bitcoin (preferred — near-zero fees), PayPal, USDT, USDC, US ba
 ## Showcase
 
 Business websites:
-- Origen Ganadero — https://origenganadero.com (cattle genetics and ranching)
-- Build In El Salvador — https://buildinelsalvador.com (entrepreneur and builder network)
-- Tacos Hermanos — coming soon (taco restaurant brand)
+- Origen Ganadero: https://origenganadero.com (cattle genetics and ranching)
+- Build In El Salvador: https://buildinelsalvador.com (entrepreneur and builder network)
+- Acton Academy El Salvador: https://actonacademyelsalvador.com (Montessori and K-12 school)
+- Villa del Sol Garden: https://villadelsolsv.com (beach villa by the Pacific)
+- Waveswell Retreats: https://waveswellretreats.com (SUP surf retreats)
+- Surfing ESA: https://surfingesa.com (surf school and board rentals)
 
 Personal websites (book pages, biographies, hobby pages, NGO pages):
-- Unstable Innovation — https://unstableinnovation.com (book and personal brand)
-- Nelson Inno — https://nelsoninno.com (personal site and brand)
-- Marea Decor — https://mareadecor.com (home decor brand)
-- Zaragoza Home — https://zaragozahome.org (bilingual social cause / NGO)
+- Unstable Innovation: https://unstableinnovation.com (book and personal brand)
+- Nelson Inno: https://nelsoninno.com (personal site and brand)
+- Kevin Rivera: https://kevinrivera.io (digital assets and growth partner)
+- Marea Decor: https://mareadecor.com (home decor brand)
+- Zaragoza Home: https://zaragozahome.org (bilingual social cause)
 
 ## Referral program
 
