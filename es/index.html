@@ -336,6 +336,13 @@
 .mq-item .mq-nm{display:block;padding:.8rem 1rem 0;font-family:var(--display);font-weight:700;font-size:1.08rem;text-align:left;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .mq-item .mq-tg{display:block;padding:.15rem 1rem .9rem;font-size:.9rem;opacity:.7;font-weight:500;text-align:left;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .mq-rev .mq-track{animation-direction:reverse}
+.mq{touch-action:pan-y}
+.mq-js .mq-track{animation:none!important;will-change:transform}
+.mq-js{cursor:grab}
+.mq-js.mq-dragging{cursor:grabbing}
+.mq-js .mq-item{-webkit-user-select:none;user-select:none;-webkit-touch-callout:none}
+.mq-js .mq-item img{-webkit-user-drag:none;pointer-events:none}
+.mq-dragging .mq-item{transition:none}
 @keyframes mq-scroll{from{transform:translateX(0)}to{transform:translateX(-50%)}}
 @media(max-width:560px){.mq-item{width:250px}}
 @media(prefers-reduced-motion:reduce){.mq{overflow-x:auto;-webkit-mask-image:none;mask-image:none}.mq-track{animation:none!important}.mq-set[aria-hidden="true"],.mq-item[aria-hidden="true"]{display:none}}
@@ -591,6 +598,65 @@
   setInterval(function(){ ri2++; rotwho(); }, 2400);
   var io = new IntersectionObserver(function(entries){ entries.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add("in"); io.unobserve(e.target); } }); }, {threshold:.12});
   document.querySelectorAll(".reveal").forEach(function(el){ io.observe(el); });
+</script>
+<script>
+/* Swipeable marquee: auto-scroll plus drag/flick with momentum. Links stay plain <a href>. */
+(function(){
+  try{ if(window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches) return; }catch(e){}
+  var list=document.querySelectorAll('.mq'); if(!list.length) return;
+  Array.prototype.forEach.call(list,function(mq){
+    var track=mq.querySelector('.mq-track'); if(!track) return;
+    var dir=mq.classList.contains('mq-rev')?1:-1;
+    var dur=parseFloat(track.style.animationDuration)||80;
+    var half=0,base=0,x=0,v=0,dragging=false,captured=false,hover=false,moved=0,lastX=0,lastT=0,visible=true,pid=null;
+    mq.classList.add('mq-js');
+    function measure(){ var w=track.scrollWidth/2; if(w>0){ half=w; base=half/dur; } }
+    function wrap(){ if(half<=0) return; while(x<=-half) x+=half; while(x>0) x-=half; }
+    measure(); if(dir>0) x=-half/2; v=dir*base;
+    window.addEventListener('resize',measure);
+    window.addEventListener('load',measure);
+    if('IntersectionObserver' in window){ new IntersectionObserver(function(es){ visible=es[0].isIntersecting; },{rootMargin:'100px'}).observe(mq); }
+    var prev=performance.now();
+    function tick(now){
+      var dt=Math.min(0.05,(now-prev)/1000); prev=now;
+      if(visible && !dragging){
+        var target=hover?0:dir*base;
+        v+=(target-v)*Math.min(1,dt*2.2);
+        x+=v*dt; wrap();
+        track.style.transform='translate3d('+x.toFixed(2)+'px,0,0)';
+      }
+      requestAnimationFrame(tick);
+    }
+    requestAnimationFrame(tick);
+    mq.addEventListener('pointerenter',function(e){ if(e.pointerType==='mouse') hover=true; });
+    mq.addEventListener('pointerleave',function(e){ if(e.pointerType==='mouse') hover=false; });
+    mq.addEventListener('pointerdown',function(e){
+      if(e.pointerType==='mouse' && e.button!==0) return;
+      dragging=true; captured=false; moved=0; pid=e.pointerId; lastX=e.clientX; lastT=performance.now(); v=0; measure();
+    });
+    mq.addEventListener('pointermove',function(e){
+      if(!dragging || e.pointerId!==pid) return;
+      var now=performance.now(), dx=e.clientX-lastX, dt=Math.max(1,now-lastT)/1000;
+      moved+=Math.abs(dx);
+      if(!captured && moved>6){ captured=true; try{ mq.setPointerCapture(pid); }catch(err){} mq.classList.add('mq-dragging'); }
+      x+=dx; wrap();
+      track.style.transform='translate3d('+x.toFixed(2)+'px,0,0)';
+      var inst=dx/dt; v=v*0.6+inst*0.4;
+      lastX=e.clientX; lastT=now;
+      if(captured) e.preventDefault();
+    });
+    function end(e){
+      if(!dragging || (e && e.pointerId!==pid)) return;
+      dragging=false; mq.classList.remove('mq-dragging');
+      if(performance.now()-lastT>90) v=v*0.2;
+      if(v>6000) v=6000; if(v<-6000) v=-6000;
+    }
+    mq.addEventListener('pointerup',end);
+    mq.addEventListener('pointercancel',end);
+    mq.addEventListener('click',function(e){ if(moved>6){ e.preventDefault(); e.stopPropagation(); moved=0; } },true);
+    mq.addEventListener('dragstart',function(e){ e.preventDefault(); });
+  });
+})();
 </script>
 </body>
 </html>
