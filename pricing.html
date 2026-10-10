@@ -301,13 +301,12 @@
       }
   apply();
   // Wire up WhatsApp CTAs (uses the `lang` variable from the lang switcher above)
-  var WHATSAPP_NUMBER = "50374927681";
   var WA_MSG_ES = "Hola, vi everybodyknowsyou.com y quiero el mío.";
   var WA_MSG_EN = "Hi, I saw everybodyknowsyou.com and I want one for me!";
   function wireCTAs(){
     var msg = (lang === 'en') ? WA_MSG_EN : WA_MSG_ES;
     document.querySelectorAll("a.cta").forEach(function(a){
-      a.setAttribute("href", "https://wa.me/" + WHATSAPP_NUMBER + "?text=" + encodeURIComponent(msg));
+      a.setAttribute("data-wa", ""); a.setAttribute("data-wa-msg", msg); a.setAttribute("rel", "noopener nofollow");
     });
   }
   // Re-wire whenever language changes
@@ -315,5 +314,6 @@
   apply = function(){ _origApply(); wireCTAs(); };
   wireCTAs();
 </script>
+<script src="/js/wa.js" defer></script>
 </body>
 </html>
