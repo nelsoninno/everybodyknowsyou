@@ -102,6 +102,8 @@ Cada sitio se entrega en español e inglés por defecto. Cada idioma adicional (
 - [Brand kit](https://everybodyknowsyou.com/brand)
 - [Diseño de páginas web en El Salvador (Español)](https://everybodyknowsyou.com/es/diseno-web-el-salvador)
 - [Website design in El Salvador (English)](https://everybodyknowsyou.com/website-design-el-salvador)
+- [AI visibility for tourism businesses in El Salvador (English)](https://everybodyknowsyou.com/tourism)
+- [Visibilidad en IA para negocios de turismo en El Salvador (Español)](https://everybodyknowsyou.com/es/tourism)
 - [FAQ (English)](https://everybodyknowsyou.com/faq)
 - [Preguntas frecuentes (Español)](https://everybodyknowsyou.com/es/faq)
 - [Free audit tool](https://everybodyknowsyou.com/audit/)
