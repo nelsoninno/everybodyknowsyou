@@ -131,6 +131,7 @@ Bank transfer, Bitcoin (preferred — near-zero fees), PayPal, USDT, USDC, US ba
 
 Business websites:
 - Origen Ganadero: https://origenganadero.com (cattle genetics and ranching)
+- Lems: https://lems.ad (advertising agency in El Salvador since 1976, formerly Lemusimún)
 - Build In El Salvador: https://buildinelsalvador.com (entrepreneur and builder network)
 - Acton Academy El Salvador: https://actonacademyelsalvador.com (Montessori and K-12 school)
 - Villa del Sol Garden: https://villadelsolsv.com (beach villa by the Pacific)
