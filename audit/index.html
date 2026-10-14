@@ -388,6 +388,58 @@ input.eky-text:focus, select.eky-select:focus{ outline:3px solid var(--lime); ou
 .eky-optin .eky-consent-row .oc{ margin:0; font-size:12px; line-height:1.45; opacity:.72; font-weight:500; }
 .eky-optin-err{ color:#d11; font-size:13px; margin:8px 0 0; font-weight:600; display:none; }
 .eky-optin-err.show{ display:block; }
+
+/* ===== v4: level ladder + gauge ticks ===== */
+.eky-level-of{ font-size:15px; font-weight:600; color:rgba(255,255,255,.75); margin-top:10px; }
+.eky-score-label{ margin-top:2px; }
+.eky-gauge .tick{ stroke:#fff; stroke-width:3; stroke-linecap:round; opacity:.9; }
+.eky-gauge .ai-zone{ fill:none; stroke:var(--lime); stroke-width:5; stroke-linecap:round; }
+.eky-gauge .ai-zone-lbl{ fill:var(--lime); font-family:var(--font); font-weight:700; font-size:11px; }
+
+.eky-ladder{ background:#fff; color:var(--ink); border:2px solid var(--ink); border-radius:16px; box-shadow:var(--shadow-hard-sm); padding:20px 18px 18px; margin:26px auto 0; max-width:560px; text-align:left; }
+.eky-ladder .lad-title{ font-weight:700; font-size:21px; line-height:1.2; margin:0; letter-spacing:-.01em; }
+.eky-ladder .lad-sub{ color:var(--muted); font-size:14px; line-height:1.45; margin:4px 0 16px; }
+.lad-frame{ position:relative; padding:0 12px; }
+.lad-frame::before, .lad-frame::after{ content:""; position:absolute; top:-8px; bottom:-8px; width:6px; background:var(--ink); border-radius:3px; }
+.lad-frame::before{ left:0; } .lad-frame::after{ right:0; }
+.lad-rungs{ list-style:none; margin:0; padding:0; display:flex; flex-direction:column; gap:8px; }
+.rung{ position:relative; display:grid; grid-template-columns:34px 1fr auto; align-items:center; gap:10px; padding:9px 12px; border:2px dashed #C9C2DA; border-radius:12px; background:#fff; transition:background .25s, border-color .25s, transform .25s; }
+.rung .lad-badge{ width:30px; height:30px; border-radius:50%; display:grid; place-items:center; font-weight:700; font-size:15px; border:2px solid var(--ink); background:#fff; }
+.rung .lad-name{ font-weight:600; font-size:15.5px; line-height:1.2; }
+.rung .lad-desc{ display:none; grid-column:2 / 4; font-size:13.5px; color:var(--ink); line-height:1.45; margin-top:2px; opacity:.85; }
+.rung .lad-range{ white-space:nowrap; font-size:13px; font-weight:700; color:var(--muted); font-variant-numeric:tabular-nums; }
+.rung[data-l="1"]{ --c:#FF2687; } .rung[data-l="2"]{ --c:#FF8DBF; } .rung[data-l="3"]{ --c:#FFE03A; } .rung[data-l="4"]{ --c:#E8FF8A; } .rung[data-l="5"]{ --c:#CEFF00; }
+.rung.climbed{ border:2px solid var(--ink); background:color-mix(in srgb, var(--c) 28%, #fff); }
+.rung.climbed .lad-badge, .rung.current .lad-badge{ background:var(--c); }
+.rung.current{ border:2px solid var(--ink); background:var(--c); box-shadow:0 4px 0 var(--ink); transform:translateY(-2px); }
+.rung.current .lad-range{ color:var(--ink); }
+.rung.current .lad-desc{ display:block; }
+.rung[data-l="5"]{ border-color:var(--lime); border-style:solid; background:color-mix(in srgb, var(--lime) 18%, #fff); }
+.rung[data-l="5"] .lad-desc{ display:block; }
+.rung[data-l="5"].current{ background:var(--lime); }
+.rung .lad-here{ display:none; margin-left:8px; vertical-align:2px; font-family:var(--font-hand); font-size:20px; font-weight:600; line-height:1; color:var(--purple); white-space:nowrap; background:#fff; border:2px solid var(--ink); padding:2px 9px 3px; border-radius:999px; transform:rotate(-2deg); }
+.rung.current .lad-here{ display:inline-block; }
+.eky-ladder.settled .rung.current .lad-here{ animation:eky-blink 1.4s ease-in-out infinite; }
+.eky-ladder.settled .rung.current::after{ content:""; position:absolute; inset:-6px; border-radius:16px; border:3px solid var(--purple); animation:eky-ring 1.4s ease-out infinite; pointer-events:none; }
+.lad-line{ display:flex; align-items:center; gap:8px; margin:2px 0; font-family:var(--font-hand); font-size:19px; color:var(--purple); line-height:1; }
+.lad-line::before, .lad-line::after{ content:""; flex:1 1 auto; border-top:3px dashed var(--purple); }
+.eky-ladder .lad-foot{ font-size:13.5px; line-height:1.45; margin:16px 0 0; color:var(--ink); font-weight:500; }
+@keyframes eky-blink{ 0%,100%{ opacity:1; } 50%{ opacity:.25; } }
+@keyframes eky-ring{ 0%{ opacity:.9; transform:scale(1); } 100%{ opacity:0; transform:scale(1.04); } }
+@media (prefers-reduced-motion: reduce){
+  .eky-ladder.settled .rung.current .lad-here, .eky-ladder.settled .rung.current::after{ animation:none; }
+  .rung{ transition:none; }
+}
+@media (max-width:560px){
+  .eky-ladder{ padding:18px 12px 16px; }
+  .rung{ grid-template-columns:30px 1fr auto; padding:8px 10px; gap:8px; }
+  .rung .lad-badge{ width:26px; height:26px; font-size:13px; }
+  .rung .lad-name{ font-size:14.5px; }
+  .rung.current .lad-here{ display:table; margin:5px 0 0 -2px; font-size:18px; }
+}
+.rung .lad-name{ min-width:0; }
+.eky-emptystate .eky-ladder{ margin:4px 0 18px; max-width:none; }
+.eky-sig-nosite{ color:var(--muted); font-size:13px; line-height:1.45; padding:9px 0 2px; }
 </style>
 </head>
 <body>
@@ -504,6 +556,7 @@ input.eky-text:focus, select.eky-select:focus{ outline:3px solid var(--lime); ou
     <section class="eky-confirm eky-emptystate" id="ekyEmptyState" aria-live="polite">
       <h2 data-t="empty_title">We couldn't find you in AI</h2>
       <p class="sub" data-t="empty_sub">That's actually the whole reason to build a website. Let's fix that together.</p>
+      <div id="ekyEmptyLadder"></div>
       <div class="eky-confirm-actions">
         <div class="row">
           <a class="eky-cta grow" href="/" data-langlink="/" data-t="empty_cta">Build me my website &rarr;</a>
@@ -529,26 +582,30 @@ input.eky-text:focus, select.eky-select:focus{ outline:3px solid var(--lime); ou
           <g id="ekyNeedle" style="transition:transform 1.2s cubic-bezier(.22,1,.36,1); transform-origin:120px 130px; transform:rotate(-90deg);">
             <line x1="120" y1="130" x2="120" y2="48" stroke="#fff" stroke-width="4" stroke-linecap="round"/>
           </g>
+          <g id="ekyGaugeMarks"></g>
           <circle cx="120" cy="130" r="8" fill="#fff"/>
         </svg>
         <div><span id="ekyScoreNum" class="eky-score-num">0</span><span class="eky-score-unit">%</span></div>
+        <div id="ekyLevelOf" class="eky-level-of">&nbsp;</div>
         <div id="ekyScoreLabel" class="eky-score-label">&nbsp;</div>
         <div id="ekyTarget" class="eky-target"></div>
       </div>
 
+      <div id="ekyLadder"></div>
+
       <div class="eky-layers">
         <div class="eky-layer">
-          <h3><span data-t="layer_a">Where AI finds you</span><span class="ltot" id="ekyLayerATot">0 / 40</span></h3>
+          <h3><span data-t="layer_a">Where AI finds you</span></h3>
           <div id="ekyLayerASigs"></div>
         </div>
         <div class="eky-layer">
-          <h3><span data-t="layer_b">Your own hub</span><span class="ltot" id="ekyLayerBTot">0 / 60</span></h3>
+          <h3><span data-t="layer_b">Your own website</span></h3>
           <div id="ekyLayerBSigs"></div>
         </div>
       </div>
 
       <div class="eky-tips">
-        <h3 data-t="how_to_improve">How to improve</h3>
+        <h3 data-t="how_to_improve">What's holding you back</h3>
         <ul id="ekyTips"></ul>
       </div>
     </section>
@@ -709,9 +766,9 @@ const STRINGS = {
     result_title_url: "Here's how AI-ready your website is",
     section_website:  "Website quality",
     layer_a:       "Where AI finds you",
-    layer_b:       "Your own hub",
-    how_to_improve:"How to improve",
-    cta_h:         'Want to start your road to <span class="pop">100%</span> in just 3 days?<sup class="ast-mark">*</sup>',
+    layer_b:       "Your own website",
+    how_to_improve:"What's holding you back",
+    cta_h:         'Want to start your climb to <span class="pop">level 5</span> in just 3 days?<sup class="ast-mark">*</sup>',
     cta_h_note:    "*Some signals (search rankings, AI memory of you, profile cross-links) take days, sometimes weeks, to propagate. But the biggest jump — your own website, properly optimized — happens inside our 3-day window.",
     cta_s:         "We build the website that makes AI tell your story exactly the way you want.",
     cta_btn:       "Build me my website →",
@@ -722,12 +779,20 @@ const STRINGS = {
     footer_cta_btn: "Build me my website! →",
     footer_meta:   "Ready in 3 days · From $700 · In Spanish and English",
     footer_powered:"Powered by",
-    bands: {
-      excellent: "AI knows you cold.",
-      high:      "AI mostly gets you right.",
-      mid:       "AI sort of finds you.",
-      low:       "AI struggles to see you."
+    levels: {
+      1: { name: "Invisible",            range: "0-24%",  desc: "AI can't find you. When people ask it about what you do, you don't exist." },
+      2: { name: "Barely visible",       range: "25-49%", desc: "AI sees bits and pieces of you, not enough to ever mention you. This is serious." },
+      3: { name: "Below the bar",        range: "50-69%", desc: "Some things are in place, but you're under the minimum AI needs to take you seriously." },
+      4: { name: "Foundations in place", range: "70-89%", desc: "The foundations are there. The steps that actually get you mentioned are still missing." },
+      5: { name: "Found by AI",          range: "90%+",   desc: "AI can find you, understand you and mention you. This is where AI looks." }
     },
+    level_of:     (n) => "Level " + n + " of 5",
+    ladder_title: "Only level 5 gets found by AI",
+    ladder_sub:   "AI recommends the best prepared. Everyone else is background noise.",
+    ladder_here:  "You are here",
+    ladder_line:  "the line AI cares about",
+    ladder_empty: "We couldn't measure you because AI couldn't find you. That puts you at level 1.",
+    ladder_nosite:"Without a website, level 2 is as high as you can go.",
     target_analysed: "Analysed:",
     target_disclaimer: "Most of the visible improvement happens in the first 3 days. The rest builds over weeks and months, as search engines and AI tools catch up. Scores can shift between runs because what AI sees keeps changing.",
     target_matches: (n) => "We found ~" + n + " possible matches for this name. AI may confuse you with someone else.",
@@ -738,57 +803,67 @@ const STRINGS = {
     err_unreachable: "We couldn't reach that website. Check the address and try again.",
     err_nocandidate_title: "We couldn't auto-find your website",
     err_nocandidate_sub: "But here's where AI sees you. Paste your URL below, or say you don't have one yet.",
-    sig: {
-      kg:          "Google Knowledge Panel",
-      profiles:    "AI sees your profiles",
-      clarity:     "Clear, single identity",
-      site:        "Your own website",
-      llms:        "AI guide file (llms.txt)",
-      schema:      "Schema.org structured data",
-      sameas_xref: "Site links match AI's profiles",
-      sameas:      "Linked profiles (sameAs)",
-      basics:      "Page basics, canonical, secure, crawlable"
+    /* Plain-language checks. Each state has its own statement, so a check
+       reads like "Your profiles are linked" or "Your profiles are not linked". */
+    checks: {
+      presence: {
+        full:    ["You show up in several places", (n,p) => "AI finds you on " + p.join(", ") + "."],
+        partial: ["You show up in only a few places", (n,p) => "AI finds you on " + p.join(", ") + ". More places means more chances to be found."],
+        none:    ["AI can't find you anywhere", "None of your profiles showed up."]
+      },
+      clarity: {
+        full:    ["AI can tell you apart", "Your name points to one clear person or business."],
+        partial: ["AI might mix you up", "A few others share your name."],
+        none:    ["AI is likely mixing you up", "Many others share your name."]
+      },
+      home: {
+        full:    ["You have a home base online", "Your website is up and reachable."],
+        partial: ["Your home base is shaky", "Your website answers, but not properly."],
+        none:    ["Your home base is down", "We couldn't reach your website."],
+        nosite:  ["You have no home base online", "Without a website, AI pieces you together from scraps."]
+      },
+      understood: {
+        full:    ["AI understands who you are", "Your website tells AI exactly who is behind it."],
+        partial: ["AI only half understands you", "Your website hints at who you are, but leaves out key details."],
+        none:    ["AI sees a page, not you", "Your website never tells AI who is behind it. This is the biggest gap of all."]
+      },
+      linked: {
+        full:    ["Your profiles are linked", "Your website points to your real profiles."],
+        partial: ["Only some profiles are linked", (n) => "Your website points to just " + n + " of your profiles."],
+        none:    ["Your profiles are not linked", "Your website and your profiles act like strangers."]
+      },
+      confirmed: {
+        full:    ["AI can confirm it's really you", "What your website says matches what AI finds about you."],
+        partial: ["AI can only partly confirm it's you", "Only part of what your website says matches what AI finds."],
+        blind:   ["AI couldn't double-check you yet", "Your website points to profiles, but AI didn't find them to compare."],
+        none:    ["AI can't confirm it's really you", "Nothing connects what your website says with what AI finds."]
+      },
+      readable: {
+        full:    ["Search engines read you clearly", "Your pages give search engines and AI what they need to show you well."],
+        partial: ["Search engines get mixed signals", "Some of the basics are there, some are missing."],
+        none:    ["Search engines struggle to read you", "Most of the basics are missing."]
+      },
+      intro: {
+        full:    ["AI gets a clear introduction to you", "Your website gives AI a short, clear summary of who you are."],
+        partial: ["Your introduction to AI is thin", "There's something there, but it's too short to help."],
+        none:    ["AI gets no introduction to you", "Nothing on your website introduces you to AI directly."]
+      }
     },
-    detail: {
-      kg_full:    "AI has a Knowledge Panel for you.",
-      kg_none:    "No Knowledge Panel yet. AI isn't sure who you are.",
-      profiles_full: (n,p) => "AI sees you on " + n + " platforms: " + p.join(", ") + ".",
-      profiles_partial: (n,p) => "AI sees you on " + n + " platform" + (n===1?"":"s") + ": " + p.join(", ") + ".",
-      profiles_none: "AI doesn't see any clear profiles for you.",
-      clarity_full:    "One clear, dominant match for this name.",
-      clarity_partial: "A few possible matches. Some ambiguity for AI.",
-      clarity_none:    "Many people share this name; AI may confuse you.",
-      site_full:    "Your site responds and is reachable.",
-      site_partial: "Your site responds, but oddly.",
-      site_none:    "Your site couldn't be reached.",
-      llms_full:    "llms.txt is present and substantial.",
-      llms_partial: "llms.txt is present but thin.",
-      llms_none:    "No llms.txt. AI has no purpose-built summary of you.",
-      schema_full: (t) => "Rich Schema.org entity (" + t.join(", ") + ").",
-      schema_partial: "Some Schema.org markup, but missing key fields.",
-      schema_none: "No Schema.org JSON-LD found.",
-      sameas_full: (n) => n + " of your sameAs links match the profiles AI found.",
-      sameas_partial_with: "Only 1 sameAs link matches AI's profiles.",
-      sameas_partial_blind: "You declare sameAs links, but we couldn't cross-verify them with AI's search.",
-      sameas_none: "No sameAs links cross-verify your identity to AI.",
-      sameas_count_full:    (n) => n + " profiles declared via sameAs on your site.",
-      sameas_count_partial: (n) => "Only " + n + " sameAs profile(s) declared \u2014 add more.",
-      sameas_count_none:    "No sameAs profiles declared on your site.",
-      basics_full: "Title, description, OG, canonical, HTTPS, crawlable — all good.",
-      basics_partial: "Some basics are in place, some missing.",
-      basics_none: "Title, meta, canonical, OG mostly missing."
-    },
-    tips: {
-      llms:    "Add an /llms.txt, a short plain-text page telling AI assistants who you are, what you do, and links to your key pages.",
-      schema:  "Add Schema.org JSON-LD (Person or Organization) on your homepage with name, description, image and sameAs.",
-      sameas:  "List your real profiles (LinkedIn, Wikipedia, social, press) in sameAs on your homepage. This is the link AI uses to confirm you are you.",
-      basics:  "Set a clear title, meta description, Open Graph image, canonical URL, HTTPS, and allow crawlers.",
-      profiles:"Build a stronger online presence. At minimum LinkedIn plus one social plus one bio site.",
-      clarity: "Use your full unique name everywhere, and link every profile back to your owned site.",
-      site:    "Get your own website. Without one, AI has no canonical place to learn who you are.",
-      kg:      "Knowledge Panels build over time from consistent, cross-verified online presence. Keep posting and linking.",
-      unverified_profiles: "AI also found profiles under your name not declared in your site's sameAs. Add the real ones (or remove if they aren't you) so AI can confirm identity.",
-      html_only_profiles: "We found profile links in your visible HTML (footer/header) that aren't in your JSON-LD Schema.org sameAs. AI reads visible links too, but JSON-LD is the strongest signal. Declare them there as well for maximum confidence."
+    nosite_rest: "Everything else AI needs from a website can't happen until you have one.",
+    /* "What's holding you back": problems only, ordered by impact. No recipes. */
+    problems: {
+      nosite:      "You don't have a website. AI has no single place to learn who you are.",
+      down:        "Your website isn't answering properly. If AI can't get in, nothing else counts.",
+      understood_none:    "Your website never tells AI who is behind it. To AI, it's a page with no owner.",
+      understood_partial: "AI gets an incomplete picture of who you are.",
+      not_linked:  "Your website and your profiles don't vouch for each other, so AI can't be sure they're all you.",
+      part_linked: "Only some of your profiles are tied to your website.",
+      unverified:  "AI found profiles under your name that your website doesn't claim. Some may not even be you.",
+      readable:    "Search engines and AI get mixed signals from your pages.",
+      presence:    "You don't show up in enough places. AI trusts what it can confirm in many places.",
+      clarity:     "Others share your name, and AI may be mixing you up with them.",
+      intro:       "AI gets no clear introduction to you.",
+      all_good:    "You're at the top. Keep it that way: AI keeps learning, and so does your competition."
     }
   },
   es: {
@@ -840,8 +915,8 @@ const STRINGS = {
     section_website:  "Calidad del sitio",
     layer_a:       "Dónde te encuentra la IA",
     layer_b:       "Tu propio sitio",
-    how_to_improve:"Cómo mejorar",
-    cta_h:         '¿Quieres empezar tu camino al <span class="pop">100%</span> en solo 3 días?<sup class="ast-mark">*</sup>',
+    how_to_improve:"Lo que te está frenando",
+    cta_h:         '¿Quieres empezar a subir al <span class="pop">nivel 5</span> en solo 3 días?<sup class="ast-mark">*</sup>',
     cta_h_note:    "*Algunas señales (rankings de búsqueda, lo que la IA recuerda de ti, los enlaces que conectan tus perfiles) tardan días, a veces semanas, en propagarse. Pero el salto más grande —tu propio sitio web, bien optimizado— ocurre dentro de nuestra ventana de 3 días.",
     cta_s:         "Construimos el sitio que hace que la IA cuente tu historia exactamente como tú quieres.",
     cta_btn:       "Construir mi sitio web →",
@@ -852,12 +927,20 @@ const STRINGS = {
     footer_cta_btn: "¡Hazme mi sitio web! →",
     footer_meta:   "Listo en 3 días · Desde $700 · En español e inglés",
     footer_powered:"Impulsado por",
-    bands: {
-      excellent: "La IA te conoce perfectamente.",
-      high:      "La IA te entiende bastante bien.",
-      mid:       "La IA te encuentra a medias.",
-      low:       "A la IA le cuesta verte."
+    levels: {
+      1: { name: "Invisible",          range: "0-24%",  desc: "La IA no te encuentra. Cuando alguien le pregunta por lo que haces, no existes." },
+      2: { name: "Casi invisible",     range: "25-49%", desc: "La IA ve pedazos sueltos de ti, no lo suficiente para mencionarte. Esto es serio." },
+      3: { name: "Bajo el mínimo",     range: "50-69%", desc: "Hay cosas hechas, pero estás por debajo del mínimo que la IA necesita para tomarte en serio." },
+      4: { name: "Bases listas",       range: "70-89%", desc: "Las bases están. Faltan los pasos que de verdad hacen que la IA te mencione." },
+      5: { name: "Te encuentra la IA", range: "90%+",   desc: "La IA te encuentra, te entiende y te puede mencionar. Aquí es donde busca la IA." }
     },
+    level_of:     (n) => "Nivel " + n + " de 5",
+    ladder_title: "Solo el nivel 5 aparece en la IA",
+    ladder_sub:   "La IA recomienda a los mejor preparados. Los demás son ruido de fondo.",
+    ladder_here:  "Estás aquí",
+    ladder_line:  "la línea que le importa a la IA",
+    ladder_empty: "No pudimos medirte porque la IA no te encontró. Eso te pone en el nivel 1.",
+    ladder_nosite:"Sin sitio web, lo más alto que puedes llegar es el nivel 2.",
     target_analysed: "Analizamos:",
     target_disclaimer: "La mayor parte de la mejora visible ocurre en los primeros 3 días. El resto se construye durante las semanas y meses siguientes, mientras los buscadores y la IA se actualizan. Los puntajes pueden variar entre ejecuciones porque lo que la IA ve sigue cambiando.",
     target_matches: (n) => "Encontramos ~" + n + " posibles coincidencias para este nombre. La IA podría confundirte con otra persona.",
@@ -868,57 +951,64 @@ const STRINGS = {
     err_unreachable: "No pudimos llegar a ese sitio. Verifica la dirección e intenta de nuevo.",
     err_nocandidate_title: "No pudimos encontrar tu sitio automáticamente",
     err_nocandidate_sub: "Pero esto es lo que la IA ve de ti. Pega tu URL abajo, o dinos que aún no tienes uno.",
-    sig: {
-      kg:          "Panel de Google",
-      profiles:    "La IA ve tus perfiles",
-      clarity:     "Identidad clara y única",
-      site:        "Tu propio sitio",
-      llms:        "Archivo guía para IA (llms.txt)",
-      schema:      "Datos estructurados (Schema.org)",
-      sameas_xref: "Los enlaces del sitio coinciden con los perfiles",
-      sameas:      "Perfiles enlazados (sameAs)",
-      basics:      "Básicos de página, canónico, seguro, rastreable"
+    checks: {
+      presence: {
+        full:    ["Apareces en varios lugares", (n,p) => "La IA te encuentra en " + p.join(", ") + "."],
+        partial: ["Apareces en pocos lugares", (n,p) => "La IA te encuentra en " + p.join(", ") + ". Más lugares, más oportunidades de que te encuentren."],
+        none:    ["La IA no te encuentra en ningún lado", "No apareció ninguno de tus perfiles."]
+      },
+      clarity: {
+        full:    ["La IA te distingue", "Tu nombre lleva a una sola persona o negocio."],
+        partial: ["La IA podría confundirte", "Algunas otras personas comparten tu nombre."],
+        none:    ["La IA probablemente te confunde", "Muchas personas comparten tu nombre."]
+      },
+      home: {
+        full:    ["Tienes una casa en internet", "Tu sitio está en línea y accesible."],
+        partial: ["Tu casa en internet tambalea", "Tu sitio responde, pero no bien."],
+        none:    ["Tu casa en internet no responde", "No pudimos entrar a tu sitio."],
+        nosite:  ["No tienes casa en internet", "Sin sitio web, la IA arma tu historia con pedazos sueltos."]
+      },
+      understood: {
+        full:    ["La IA entiende quién eres", "Tu sitio le dice a la IA exactamente quién está detrás."],
+        partial: ["La IA te entiende a medias", "Tu sitio da pistas de quién eres, pero deja fuera detalles clave."],
+        none:    ["La IA ve una página, no a ti", "Tu sitio nunca le dice a la IA quién está detrás. Es la brecha más grande de todas."]
+      },
+      linked: {
+        full:    ["Tus perfiles están conectados", "Tu sitio apunta a tus perfiles reales."],
+        partial: ["Solo algunos perfiles están conectados", (n) => "Tu sitio apunta solo a " + n + " de tus perfiles."],
+        none:    ["Tus perfiles no están conectados", "Tu sitio y tus perfiles parecen dos extraños."]
+      },
+      confirmed: {
+        full:    ["La IA puede confirmar que eres tú", "Lo que dice tu sitio coincide con lo que la IA encuentra de ti."],
+        partial: ["La IA solo confirma en parte que eres tú", "Solo una parte de lo que dice tu sitio coincide con lo que encuentra la IA."],
+        blind:   ["La IA aún no pudo verificarte", "Tu sitio apunta a perfiles, pero la IA no los encontró para comparar."],
+        none:    ["La IA no puede confirmar que eres tú", "Nada conecta lo que dice tu sitio con lo que encuentra la IA."]
+      },
+      readable: {
+        full:    ["Los buscadores te leen con claridad", "Tus páginas les dan a los buscadores y a la IA lo que necesitan para mostrarte bien."],
+        partial: ["Los buscadores reciben señales confusas", "Algunas bases están, otras faltan."],
+        none:    ["A los buscadores les cuesta leerte", "Faltan la mayoría de las bases."]
+      },
+      intro: {
+        full:    ["La IA recibe una presentación clara de ti", "Tu sitio le da a la IA un resumen corto y claro de quién eres."],
+        partial: ["Tu presentación ante la IA es débil", "Hay algo, pero es demasiado corto para ayudar."],
+        none:    ["La IA no recibe ninguna presentación tuya", "Nada en tu sitio te presenta directamente ante la IA."]
+      }
     },
-    detail: {
-      kg_full:    "La IA tiene un Panel de Google para ti.",
-      kg_none:    "Sin Panel de Google aún. La IA no está segura de quién eres.",
-      profiles_full: (n,p) => "La IA te ve en " + n + " plataformas: " + p.join(", ") + ".",
-      profiles_partial: (n,p) => "La IA te ve en " + n + " plataforma" + (n===1?"":"s") + ": " + p.join(", ") + ".",
-      profiles_none: "La IA no encuentra perfiles claros tuyos.",
-      clarity_full:    "Una coincidencia clara y dominante para este nombre.",
-      clarity_partial: "Algunas coincidencias posibles. Hay algo de ambigüedad.",
-      clarity_none:    "Muchas personas comparten este nombre; la IA puede confundirte.",
-      site_full:    "Tu sitio responde y es accesible.",
-      site_partial: "Tu sitio responde, pero raro.",
-      site_none:    "No pudimos llegar a tu sitio.",
-      llms_full:    "llms.txt presente y sustancial.",
-      llms_partial: "llms.txt presente pero corto.",
-      llms_none:    "Sin llms.txt. La IA no tiene un resumen hecho para ella.",
-      schema_full: (t) => "Entidad Schema.org rica (" + t.join(", ") + ").",
-      schema_partial: "Algo de Schema.org, pero faltan campos clave.",
-      schema_none: "Sin JSON-LD de Schema.org.",
-      sameas_full: (n) => n + " de tus enlaces sameAs coinciden con los perfiles que ve la IA.",
-      sameas_partial_with: "Solo 1 enlace sameAs coincide con los perfiles.",
-      sameas_partial_blind: "Declaras sameAs, pero no pudimos cruzar la verificación con la búsqueda.",
-      sameas_none: "Ningún sameAs verifica tu identidad ante la IA.",
-      sameas_count_full:    (n) => n + " perfiles declarados vía sameAs en tu sitio.",
-      sameas_count_partial: (n) => "Solo " + n + " perfil(es) sameAs declarados \u2014 agrega más.",
-      sameas_count_none:    "No hay perfiles sameAs declarados en tu sitio.",
-      basics_full: "Título, descripción, OG, canónico, HTTPS, rastreable — todo bien.",
-      basics_partial: "Algunos básicos sí, otros faltan.",
-      basics_none: "Faltan título, meta, canónico, OG."
-    },
-    tips: {
-      llms:    "Agrega un /llms.txt, una página corta de texto que dice a la IA quién eres, qué haces, y enlaza a tus páginas clave.",
-      schema:  "Agrega Schema.org JSON-LD (Person u Organization) en tu portada con nombre, descripción, imagen y sameAs.",
-      sameas:  "Lista tus perfiles reales (LinkedIn, Wikipedia, redes, prensa) en sameAs. Así la IA confirma que eres tú.",
-      basics:  "Pon título claro, meta descripción, imagen Open Graph, URL canónica, HTTPS, y permite a los rastreadores.",
-      profiles:"Construye más presencia. Al menos LinkedIn, una red social y un sitio bio.",
-      clarity: "Usa tu nombre completo único en todas partes, y enlaza cada perfil de vuelta a tu sitio propio.",
-      site:    "Crea tu sitio. Sin uno, la IA no tiene un lugar canónico para saber quién eres.",
-      kg:      "Los Paneles de Google se construyen con presencia consistente y cruzada. Sigue publicando y enlazando.",
-      unverified_profiles: "La IA encontró perfiles a tu nombre que no están declarados en el sameAs de tu sitio. Agrega los reales (o quita los que no sean tuyos) para que la IA confirme tu identidad.",
-      html_only_profiles: "Encontramos enlaces a perfiles en el HTML visible de tu sitio (footer/header) que no están en tu Schema.org sameAs (JSON-LD). La IA lee los enlaces visibles también, pero JSON-LD es la señal más fuerte. Decláralos también allí para máxima confianza."
+    nosite_rest: "Todo lo demás que la IA necesita de un sitio web no puede pasar hasta que tengas uno.",
+    problems: {
+      nosite:      "No tienes sitio web. La IA no tiene un solo lugar donde aprender quién eres.",
+      down:        "Tu sitio no responde bien. Si la IA no puede entrar, nada más cuenta.",
+      understood_none:    "Tu sitio nunca le dice a la IA quién está detrás. Para la IA es una página sin dueño.",
+      understood_partial: "La IA recibe una imagen incompleta de quién eres.",
+      not_linked:  "Tu sitio y tus perfiles no se respaldan entre sí, así que la IA no puede estar segura de que todos son tú.",
+      part_linked: "Solo algunos de tus perfiles están atados a tu sitio.",
+      unverified:  "La IA encontró perfiles a tu nombre que tu sitio no reconoce. Algunos quizá ni siquiera son tuyos.",
+      readable:    "Los buscadores y la IA reciben señales confusas de tus páginas.",
+      presence:    "No apareces en suficientes lugares. La IA confía en lo que puede confirmar en muchos lugares.",
+      clarity:     "Otras personas comparten tu nombre y la IA podría estar confundiéndote con ellas.",
+      intro:       "La IA no recibe una presentación clara de ti.",
+      all_good:    "Estás arriba. Mantente ahí: la IA sigue aprendiendo, y tu competencia también."
     }
   }
 };
@@ -966,8 +1056,9 @@ const elNeedle   = $("ekyNeedle");
 const elScoreNum = $("ekyScoreNum");
 const elScoreLabel = $("ekyScoreLabel");
 const elTarget   = $("ekyTarget");
-const elLayerATot= $("ekyLayerATot");
-const elLayerBTot= $("ekyLayerBTot");
+const elLevelOf  = $("ekyLevelOf");
+const elLadder   = $("ekyLadder");
+const elEmptyLadder = $("ekyEmptyLadder");
 const elLayerASigs = $("ekyLayerASigs");
 const elLayerBSigs = $("ekyLayerBSigs");
 const elTips     = $("ekyTips");
@@ -1012,6 +1103,9 @@ function applyLang() {
   // doesn't translate it — we need a full re-render with cached data.
   if (lastResultData && elResult.classList.contains("show")) {
     renderResult(lastResultData);
+  }
+  if (elEmpty.classList.contains("show")) {
+    renderLadder(elEmptyLadder, 1, { foot: t.ladder_empty });
   }
 }
 function buildCountries() {
@@ -1091,6 +1185,8 @@ function showWebsiteStep() {
 function showEmptyState() {
   hide(elConfirm);
   hide(elWebsite);
+  hide(elMainSite);
+  renderLadder(elEmptyLadder, 1, { foot: STRINGS[LANG].ladder_empty });
   show(elEmpty);
   clearError();
   try { elEmpty.scrollIntoView({ behavior:"smooth", block:"start" }); } catch (e) {}
@@ -1363,84 +1459,131 @@ async function runNoSite() {
 /* ============================================================
    RENDER: result + gauge + breakdown + CTA banner
    ============================================================ */
-function bandText(score) {
-  const b = STRINGS[LANG].bands;
-  if (score >= 90) return b.excellent;
-  if (score >= 70) return b.high;
-  if (score >= 40) return b.mid;
-  return b.low;
+/* ---------- Levels (v4). Thresholds are not a secret; the formula is server-side. */
+const LEVEL_MINS = [0, 25, 50, 70, 90];
+function levelFor(score) {
+  let l = 1;
+  for (let i = 0; i < LEVEL_MINS.length; i++) if (score >= LEVEL_MINS[i]) l = i + 1;
+  return l;
 }
 
+/* Gauge: white ticks at each level boundary + a lime "AI zone" arc for 90-100 */
+function gaugePoint(score, r) {
+  const a = Math.PI * (1 - score / 100);
+  return [120 + r * Math.cos(a), 130 - r * Math.sin(a)];
+}
+(function drawGaugeMarks(){
+  const g = document.getElementById("ekyGaugeMarks");
+  if (!g) return;
+  let out = "";
+  LEVEL_MINS.slice(1).forEach(v => {
+    const [x1, y1] = gaugePoint(v, 88), [x2, y2] = gaugePoint(v, 112);
+    out += '<line class="tick" x1="' + x1.toFixed(1) + '" y1="' + y1.toFixed(1) + '" x2="' + x2.toFixed(1) + '" y2="' + y2.toFixed(1) + '"/>';
+  });
+  const [ax, ay] = gaugePoint(90, 119), [bx, by] = gaugePoint(100, 119);
+  out += '<path class="ai-zone" d="M ' + ax.toFixed(1) + ' ' + ay.toFixed(1) + ' A 119 119 0 0 1 ' + bx.toFixed(1) + ' ' + by.toFixed(1) + '"/>';
+  g.innerHTML = out;
+})();
+
+/* Ladder: 5 rungs, level 5 on top, "the line" between 4 and 5.
+   opts.foot = optional note under the ladder. */
+function ladderHtml(opts) {
+  const T = STRINGS[LANG];
+  let rungs = "";
+  for (let l = 5; l >= 1; l--) {
+    const L = T.levels[l];
+    rungs += '<li class="rung" data-l="' + l + '">' +
+      '<span class="lad-badge">' + l + '</span>' +
+      '<span class="lad-name">' + escapeHtml(L.name) +
+        '<span class="lad-here" aria-hidden="true">&#8592; ' + escapeHtml(T.ladder_here) + '</span></span>' +
+      '<span class="lad-range">' + escapeHtml(L.range) + '</span>' +
+      '<span class="lad-desc">' + escapeHtml(L.desc) + '</span>' +
+    '</li>';
+    if (l === 5) rungs += '<li class="lad-line" aria-hidden="true">' + escapeHtml(T.ladder_line) + '</li>';
+  }
+  return '<div class="eky-ladder" role="img">' +
+    '<p class="lad-title">' + escapeHtml(T.ladder_title) + '</p>' +
+    '<p class="lad-sub">' + escapeHtml(T.ladder_sub) + '</p>' +
+    '<div class="lad-frame"><ol class="lad-rungs">' + rungs + '</ol></div>' +
+    (opts && opts.foot ? '<p class="lad-foot">' + escapeHtml(opts.foot) + '</p>' : '') +
+  '</div>';
+}
+function setLadder(container, level, settled) {
+  const lad = container && container.querySelector(".eky-ladder");
+  if (!lad) return;
+  lad.querySelectorAll(".rung").forEach(r => {
+    const l = +r.dataset.l;
+    r.classList.toggle("current", l === level);
+    r.classList.toggle("climbed", l < level);
+  });
+  lad.classList.toggle("settled", !!settled);
+  const T = STRINGS[LANG];
+  lad.setAttribute("aria-label", T.level_of(level) + ": " + T.levels[level].name);
+}
+function renderLadder(container, level, opts) {
+  if (!container) return;
+  container.innerHTML = ladderHtml(opts);
+  setLadder(container, level, !(opts && opts.animate));
+}
+
+let countTimer = null;
 function renderResult(data) {
   lastResultData = data;
+  const T = STRINGS[LANG];
   const score = Math.max(0, Math.min(100, Math.round(data.score || 0)));
+  const level = (typeof data.level === "number") ? data.level : levelFor(score);
   // arc + needle
   elArc.style.strokeDashoffset = ARC_LEN * (1 - score/100);
   elNeedle.style.transform = "rotate(" + (-90 + score * 1.8) + "deg)";
-  // count up
+  elLevelOf.textContent = T.level_of(level);
+  elScoreLabel.textContent = T.levels[level].name;
+
+  // ladder starts at level 1 and climbs with the number
+  const foot = data.hasNoSite ? T.ladder_nosite : "";
+  renderLadder(elLadder, 1, { animate: true, foot });
+  if (countTimer) clearInterval(countTimer);
   let cur = 0; const step = Math.max(1, Math.round(score/40));
-  const t = setInterval(() => {
-    cur += step; if (cur >= score) { cur = score; clearInterval(t); }
+  elScoreNum.textContent = 0;
+  countTimer = setInterval(() => {
+    cur += step;
+    const done = cur >= score;
+    if (done) { cur = score; clearInterval(countTimer); countTimer = null; }
     elScoreNum.textContent = cur;
+    setLadder(elLadder, done ? level : Math.min(level, levelFor(cur)), done);
   }, 28);
-  elScoreLabel.textContent = bandText(score);
+  if (score === 0) setLadder(elLadder, level, true);
 
   // target line
   renderTarget(data);
 
-  // layer totals
-  elLayerATot.textContent = (data.layerATotal||0) + " / 40";
-  elLayerBTot.textContent = (data.hasNoSite ? "0" : (data.layerBTotal||0)) + " / 60";
-
-  // signal lists + mode-aware layout
-  const _T = STRINGS[LANG];
-  const _isUrlAudit = data.mode === "url_audit";
-  const _layerEls = elResult.querySelectorAll(".eky-layer");
-  const _layerLeft = _layerEls[0] || null;
-  const _layerRight = _layerEls[1] || null;
-  const _rightLabel = _layerRight ? _layerRight.querySelector("h3 > span:first-child") : null;
-  const _titleEl = elResult.querySelector("h2");
-  if (_titleEl) _titleEl.textContent = _isUrlAudit ? _T.result_title_url : _T.result_title;
-  if (_isUrlAudit) {
-    if (_layerLeft) _layerLeft.style.display = "none";
-    if (_rightLabel) _rightLabel.textContent = _T.section_website;
-    elLayerBTot.textContent = score + " / 100";
-    elLayerASigs.innerHTML = "";
-    elLayerBSigs.innerHTML = (data.signals || []).map(sigHtml).join("");
+  // checks, grouped: out in the world / your own website
+  const aSigs = (data.signals || []).filter(s => s.layer === "A");
+  const bSigs = (data.signals || []).filter(s => s.layer === "B");
+  elLayerASigs.innerHTML = aSigs.map(sigHtml).join("");
+  if (data.hasNoSite) {
+    const home = bSigs.find(s => s.id === "home");
+    elLayerBSigs.innerHTML = (home ? sigHtml(home) : "") + '<div class="eky-sig-nosite">' + escapeHtml(T.nosite_rest) + '</div>';
   } else {
-    if (_layerLeft) _layerLeft.style.display = "";
-    if (_rightLabel) _rightLabel.textContent = _T.layer_b;
-    const aSigs = (data.signals || []).filter(s => s.layer === "A");
-    const bSigs = (data.signals || []).filter(s => s.layer === "B");
-    elLayerASigs.innerHTML = aSigs.map(sigHtml).join("");
-    elLayerBSigs.innerHTML = bSigs.length ? bSigs.map(sigHtml).join("") : "";
+    elLayerBSigs.innerHTML = bSigs.map(sigHtml).join("");
   }
+  const _titleEl = elResult.querySelector("h2");
+  if (_titleEl) _titleEl.textContent = T.result_title;
 
-  // tips
+  // problems
   elTips.innerHTML = buildTips(data).map(t => "<li>" + escapeHtml(t) + "</li>").join("");
 
-  /* Hide ALL confirmation cards before showing result. Previously only
-     elConfirm was hidden (by runAudit, AFTER renderResult), so when user
-     came through ekyMainSite or ekyWebsite that card stayed visible and
-     pushed the result section down, which felt like 'scrolls to bottom'. */
   hide(elConfirm); hide(elMainSite); hide(elWebsite); hide(elEmpty);
-  // show
   show(elResult);
-  // CTA banner if low or no_site
-  if (score < 70 || data.hasNoSite) {
+  // Anything below level 5 still needs work, so the CTA shows below 90.
+  if (level < 5 || data.hasNoSite) {
     elCtaLink.href = CONFIG.HOMESITE_URL;
     show(elCtaBanner);
   } else {
     hide(elCtaBanner);
   }
-  // Lead opt-in (shown for everyone, worded by score band)
   renderOptin(score);
-  /* Anchor near the TOP-CENTER of the result block (not the start, which
-     felt too low because the gauge appears below the page header). Using a
-     small delay so the CTA banner can render first without re-stealing scroll. */
   setTimeout(() => {
     elResult.scrollIntoView({ behavior:"smooth", block:"start" });
-    /* nudge up so the result heading is visible, not hidden under fixed bars */
     setTimeout(() => window.scrollBy({ top: -40, behavior:"smooth" }), 350);
   }, 50);
 }
@@ -1448,7 +1591,7 @@ function renderResult(data) {
 /* ============================================================
    LEAD OPT-IN (consent-based capture of warm leads)
    ============================================================ */
-function bandKey(score){ return score >= 70 ? "high" : "low"; }
+function bandKey(score){ return score >= 90 ? "high" : "low"; }
 function renderOptin(score){
   const T = STRINGS[LANG];
   const sec = $("ekyOptin");
@@ -1484,7 +1627,7 @@ async function submitLead(){
   const d = lastResultData || {};
   const missing = (d.signals || [])
     .filter(s => s.state !== "full")
-    .map(s => ((T.sig && T.sig[s.id]) ? T.sig[s.id] : s.id) + " (" + s.points + "/" + s.max + ")");
+    .map(s => s.id + ":" + s.state);
   const payload = {
     name: name, email: email, whatsapp: wa, hp: hp, consent: true,
     lang: LANG,
@@ -1493,6 +1636,7 @@ async function submitLead(){
     countryName: (elCountry.options[elCountry.selectedIndex] ? elCountry.options[elCountry.selectedIndex].text : ""),
     searchType: d.mode || "",
     score: (typeof d.score === "number" ? Math.round(d.score) : ""),
+    level: (typeof d.level === "number" ? d.level : (typeof d.score === "number" ? levelFor(d.score) : "")),
     scoreCap: d.scoreCap || "",
     hasNoSite: !!d.hasNoSite,
     resolvedUrl: d.resolvedUrl || "",
@@ -1562,104 +1706,59 @@ function renderTarget(data) {
   }
 }
 
+function checkText(s) {
+  const C = STRINGS[LANG].checks[s.id];
+  if (!C) return null;
+  const m = s.meta || {};
+  let key = s.state;
+  if (s.id === "home" && m.noSite) key = "nosite";
+  if (s.id === "confirmed" && s.state === "partial" && m.blind) key = "blind";
+  const pair = C[key] || C.none;
+  let detail = pair[1];
+  if (typeof detail === "function") {
+    if (s.id === "presence") detail = detail(m.count || 0, (m.platforms || []).map(prettyPlatform));
+    else detail = detail(m.count || 0);
+  }
+  return { label: pair[0], detail };
+}
+
 function sigHtml(s) {
-  const t = STRINGS[LANG];
+  const txt = checkText(s);
+  if (!txt) return "";
   const cls = s.state === "full" ? "ok" : (s.state === "partial" ? "part" : "no");
   const glyph = s.state === "full" ? "✓" : (s.state === "partial" ? "~" : "✕");
-  const label = t.sig[s.id] || s.id;
-  const detail = detailFor(s);
   return '<div class="eky-sig">' +
-    '<div class="eky-ico ' + cls + '">' + glyph + '</div>' +
+    '<div class="eky-ico ' + cls + '" aria-hidden="true">' + glyph + '</div>' +
     '<div class="eky-sig-body">' +
-      '<div class="eky-sig-name">' + escapeHtml(label) + '</div>' +
-      (detail ? '<div class="eky-sig-detail">' + escapeHtml(detail) + '</div>' : '') +
+      '<div class="eky-sig-name">' + escapeHtml(txt.label) + '</div>' +
+      (txt.detail ? '<div class="eky-sig-detail">' + escapeHtml(txt.detail) + '</div>' : '') +
     '</div>' +
-    '<div class="eky-sig-pts">' + s.points + '/' + s.max + '</div>' +
   '</div>';
 }
 
-function detailFor(s) {
-  const d = STRINGS[LANG].detail;
-  const m = s.meta || {};
-  switch (s.id) {
-    case "kg":
-      return s.state === "full" ? d.kg_full : d.kg_none;
-    case "profiles": {
-      const platforms = (m.platforms || []).map(prettyPlatform);
-      if (s.state === "full") return d.profiles_full(m.count || 0, platforms);
-      if (s.state === "partial") return d.profiles_partial(m.count || 0, platforms);
-      return d.profiles_none;
-    }
-    case "clarity":
-      if (s.state === "full") return d.clarity_full;
-      if (s.state === "partial") return d.clarity_partial;
-      return d.clarity_none;
-    case "site":
-      if (m.noSite) return "";
-      if (s.state === "full") return d.site_full;
-      if (s.state === "partial") return d.site_partial;
-      return d.site_none;
-    case "llms":
-      if (m.noSite) return "";
-      if (s.state === "full") return d.llms_full;
-      if (s.state === "partial") return d.llms_partial;
-      return d.llms_none;
-    case "schema":
-      if (m.noSite) return "";
-      if (s.state === "full") return d.schema_full(m.types || []);
-      if (s.state === "partial") return d.schema_partial;
-      return d.schema_none;
-    case "sameas":
-      if (s.state === "full") return d.sameas_count_full(m.count || 0);
-      if (s.state === "partial") return d.sameas_count_partial(m.count || 0);
-      return d.sameas_count_none;
-    case "sameas_xref":
-      if (m.noSite) return "";
-      if (s.state === "full") return d.sameas_full(m.matches || 0);
-      if (s.state === "partial") {
-        if ((m.matches || 0) >= 1) return d.sameas_partial_with;
-        return d.sameas_partial_blind;
-      }
-      return d.sameas_none;
-    case "basics":
-      if (m.noSite) return "";
-      if (s.state === "full") return d.basics_full;
-      if (s.state === "partial") return d.basics_partial;
-      return d.basics_none;
-  }
-  return "";
-}
-
+/* "What's holding you back": the problem, never the recipe. Ordered by impact. */
 function buildTips(data) {
-  const t = STRINGS[LANG].tips;
-  const out = [];
+  const P = STRINGS[LANG].problems;
   const by = {};
   (data.signals || []).forEach(s => by[s.id] = s);
-  // priority: things that move the most points
-  if (data.hasNoSite) { out.push(t.site); }
-  if (by.llms && by.llms.state !== "full" && !(by.llms.meta && by.llms.meta.noSite)) out.push(t.llms);
-  if (by.schema && by.schema.state !== "full" && !(by.schema.meta && by.schema.meta.noSite)) out.push(t.schema);
-  if (by.sameas_xref && by.sameas_xref.state !== "full" && !(by.sameas_xref.meta && by.sameas_xref.meta.noSite)) out.push(t.sameas);
-  if (by.sameas && by.sameas.state !== "full") out.push(t.sameas);
-  /* When visible HTML has profile links not declared in JSON-LD, suggest
-     upgrading to JSON-LD for maximum AI-readability. Fires even when
-     sameas state is full — because partial credit was given for HTML-only. */
-  if (by.sameas && by.sameas.meta && (by.sameas.meta.htmlOnlyCount || 0) > 0) {
-    out.push(t.html_only_profiles);
+  const bad = (id) => by[id] && by[id].state !== "full";
+  const out = [];
+  if (data.hasNoSite) out.push(P.nosite);
+  else {
+    if (bad("home")) out.push(P.down);
+    if (by.understood && by.understood.state === "none") out.push(P.understood_none);
+    else if (by.understood && by.understood.state === "partial") out.push(P.understood_partial);
+    const linkedNone = by.linked && by.linked.state === "none";
+    const confNone = by.confirmed && by.confirmed.state === "none";
+    if (linkedNone && confNone) out.push(P.not_linked);
+    else if (bad("linked") || bad("confirmed")) out.push(P.part_linked);
   }
-  if (by.basics && by.basics.state !== "full" && !(by.basics.meta && by.basics.meta.noSite)) out.push(t.basics);
-  if (by.profiles && by.profiles.state !== "full") out.push(t.profiles);
-  // COMMIT B: surface unverified profiles found by AI (not declared in site's sameAs)
-  if (by.profiles && by.profiles.meta && by.profiles.meta.sameAsFiltered
-      && (by.profiles.meta.unverifiedPlatforms || []).length > 0) {
-    out.push(t.unverified_profiles);
-  }
-  if (by.clarity && by.clarity.state !== "full") out.push(t.clarity);
-  if (by.kg && by.kg.state !== "full") out.push(t.kg);
-  /* Dedupe — multiple signals (e.g. sameas count + sameas_xref) can push
-     the same tip text, but we should only display each once. */
-  const deduped = [...new Set(out)];
-  return deduped.length ? deduped : (LANG === "es" ? ["Estás en excelente forma. Mantén tu Schema.org y llms.txt al día."] : ["You're in excellent shape. Keep your Schema.org and llms.txt up to date."]);
+  if (by.presence && by.presence.meta && by.presence.meta.unverified) out.push(P.unverified);
+  if (!data.hasNoSite && bad("readable")) out.push(P.readable);
+  if (bad("presence")) out.push(P.presence);
+  if (bad("clarity")) out.push(P.clarity);
+  if (!data.hasNoSite && bad("intro")) out.push(P.intro);
+  return out.length ? out : [P.all_good];
 }
 
 /* ============================================================

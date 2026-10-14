@@ -72,7 +72,8 @@ export async function onRequestPost(context) {
       confirmedTitle: clean(body && body.confirmedTitle),
       confirmedUrl:   clean(body && body.confirmedUrl),
       matches:       (body && body.matches != null) ? String(body.matches) : "",
-      missing:       Array.isArray(body && body.missing) ? body.missing.join(" | ") : clean(body && body.missing),
+      level:         (body && body.level != null) ? String(body.level) : "",
+      missing:       internalMissing(body && body.missing),
       profiles:      Array.isArray(body && body.profiles) ? body.profiles.join(" | ") : clean(body && body.profiles),
       pageUrl:       clean(body && body.pageUrl),
       consent:       "yes",
@@ -85,6 +86,26 @@ export async function onRequestPost(context) {
     try { console.error("lead.js error:", err && (err.stack || err.message || err)); } catch (_) {}
     return new Response(JSON.stringify({ ok: true }), { status: 200, headers: { "Content-Type": "application/json", ...cors(context) } });
   }
+}
+
+/* Neutral check ids from the audit page, mapped to names for the sheet. */
+const INTERNAL_NAMES = {
+  presence:   "Profile breadth (search)",
+  clarity:    "Name clarity (collisions)",
+  home:       "Own site reachable",
+  understood: "Schema.org entity",
+  linked:     "sameAs declared",
+  confirmed:  "sameAs cross-verified",
+  readable:   "Page basics (title/meta/OG/canonical/crawl)",
+  intro:      "llms.txt"
+};
+function internalMissing(list) {
+  if (!Array.isArray(list)) return clean(list);
+  return list.map(function (item) {
+    var parts = String(item).split(":");
+    var name = INTERNAL_NAMES[parts[0]];
+    return name ? name + " (" + (parts[1] || "?") + ")" : clean(item);
+  }).join(" | ");
 }
 
 async function forward(url, payload, env) {

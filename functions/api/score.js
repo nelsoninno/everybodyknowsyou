@@ -1,21 +1,10 @@
 /* =====================================================================
-   EVERYBODY KNOWS YOU — AI Discoverability backend  v3 (split modes)
+   EVERYBODY KNOWS YOU — AI Discoverability backend  v4 (levels + plain-language output)
    ---------------------------------------------------------------------
-   THREE explicit modes:
-
-     1) url_audit      — user pasted a URL. Pure 100-pt website-quality audit.
-                          No Serper call. No identity layer. Just the site.
-     2) discover       — user typed a name. Asks Serper, builds candidate +
-                          profile list, computes Layer A preview.
-                          Returns stage:"needs_confirmation".
-     3) identity_audit — user confirmed a URL after discover.
-                          Layer A (40) + Layer B (60) = 100,
-                          with sameAs CROSS-VERIFICATION.
-     3b) no_site       — user said "I don't have a website yet".
-                          Layer A only, cap 40.
-
+   Modes: url_audit (pasted URL), discover (name search, asks the
+   user to confirm), identity_audit (confirmed URL), no_site.
    Knowledge Panel signal removed (per product decision).
-   computeLayerB is intentionally regex-free
+   measureHome is intentionally regex-free
    (Cloudflare bundler bug with quote-mixed regex char classes).
    ===================================================================== */
 
@@ -165,20 +154,19 @@ async function modeWebsiteAudit({ url, country, countryName }, env) {
 /* MODE: discover — name → candidate + profiles + Layer A preview */
 async function modeDiscover({ query, country, countryName }, env) {
   if (!env.SERPER_API_KEY) {
-    return { stage:"needs_confirmation", mode:"discover", candidate:null, profiles:[], matches:1, layerA: emptyLayerA("Name search is not enabled (no Serper key)."), layerATotal: 0 };
+    return { stage:"needs_confirmation", mode:"discover", candidate:null, profiles:[], matches:1 };
   }
   const search = await serper(query, country, env);
   if (!search.ok) {
-    return { stage:"needs_confirmation", mode:"discover", candidate:null, profiles:[], matches:1, layerA: emptyLayerA("Search is temporarily unavailable. Paste your URL instead."), layerATotal: 0 };
+    return { stage:"needs_confirmation", mode:"discover", candidate:null, profiles:[], matches:1 };
   }
   const profiles = extractProfiles(search.data, query);
   const candidate = pickCandidate(search.data, query);
   const matches = estimateMatches(search.data, query);
-  const layerA = computeLayerA({ profiles, matches });
-  return { stage:"needs_confirmation", mode:"discover", candidate, profiles, matches, layerA: layerA.bySignal, layerATotal: layerA.total };
+  return { stage:"needs_confirmation", mode:"discover", candidate, profiles, matches };
 }
 
-/* MODE: no_site — Layer A only, cap 40 */
+/* MODE: no_site — world checks only, cap 30 */
 async function modeNoSite({ query, country, countryName, passedProfiles, passedMatches }, env) {
   let profiles = passedProfiles;
   let matches = (typeof passedMatches === "number") ? passedMatches : 1;
@@ -186,12 +174,12 @@ async function modeNoSite({ query, country, countryName, passedProfiles, passedM
     const search = await serper(query, country, env);
     if (search.ok) { profiles = extractProfiles(search.data, query); matches = estimateMatches(search.data, query); }
   }
-  const layerA = computeLayerA({ profiles, matches });
-  const signals = layerAToSignals(layerA.bySignal).concat(layerBPlaceholderSignals());
-  return { stage:"result", mode:"no_site", score: layerA.total, scoreCap: 40, hasNoSite: true, resolvedUrl: null, candidate: null, profiles, matches, layerA: layerA.bySignal, layerATotal: layerA.total, layerB: null, layerBTotal: null, signals };
+  const sig = { ...measureWorld({ profiles, matches }), ...emptyHome() };
+  const score = scoreFrom(sig, { noSite: true });
+  return { stage:"result", mode:"no_site", score, level: levelFor(score), scoreCap: NO_SITE_CAP, hasNoSite: true, resolvedUrl: null, candidate: null, profiles, matches, signals: toPublicSignals(sig) };
 }
 
-/* MODE: identity_audit — Layer A + Layer B */
+/* MODE: identity_audit — world + home checks */
 async function modeIdentityAudit({ url, name, country, countryName, passedProfiles, passedMatches }, env) {
   const target = normalizeUrl(url);
   if (!target) return { error: "That URL doesn't look right. Try again." };
@@ -213,7 +201,7 @@ async function modeIdentityAudit({ url, name, country, countryName, passedProfil
   /* COMMIT B (hotfixed): when the site declares sameAs, tag each AI-found
      profile with verification status (host present in sameAs or not).
      We surface the gap via the "unverified_profiles" tip BUT do NOT filter
-     Layer A scoring — an incomplete sameAs shouldn't punish someone whose
+     world scoring — an incomplete sameAs shouldn't punish someone whose
      name is unique and whose AI-found profiles are clearly all theirs
      (Nelson Inno case). Verified tagging stays so we can use it richer
      in the result UI later. */
@@ -228,103 +216,88 @@ async function modeIdentityAudit({ url, name, country, countryName, passedProfil
     ? profiles.filter(p => !p.verified)
     : [];
   const unverifiedPlatforms = [...new Set(unverifiedProfiles.map(p => p.platform).filter(Boolean))];
-  const layerA = computeLayerA({
-    profiles,                            // ← full list, not filtered (restores pre-Commit-B scoring)
-    matches,
-    unverifiedPlatforms,
-    sameAsFiltered: useSameAsFilter
-  });
-  const layerB = computeLayerB({ home, llms, llmsFull, robots, sitemap, html, sd, target, profiles });
-  const signals = layerAToSignals(layerA.bySignal).concat(layerBToSignals(layerB.bySignal));
-  const total = layerA.total + layerB.total;
-  return { stage:"result", mode:"identity_audit", score: total, scoreCap: 100, hasNoSite: false, resolvedUrl: target, candidate: null, profiles, matches, layerA: layerA.bySignal, layerATotal: layerA.total, layerB: layerB.bySignal, layerBTotal: layerB.total, signals };
+  const sig = {
+    ...measureWorld({ profiles, matches, unverifiedPlatforms }),   // full profile list, not filtered
+    ...measureHome({ home, llms, llmsFull, robots, sitemap, html, sd, target, profiles })
+  };
+  const score = scoreFrom(sig, { noSite: false });
+  /* "verified" is an internal flag; strip it from what the browser sees */
+  const publicProfiles = profiles.map(p => ({ platform: p.platform, url: p.url, title: p.title || "" }));
+  return { stage:"result", mode:"identity_audit", score, level: levelFor(score), scoreCap: 100, hasNoSite: false, resolvedUrl: target, candidate: null, profiles: publicProfiles, matches, signals: toPublicSignals(sig) };
 }
 
-/* LAYER A — max 40 (no KG)
-     profileBreadth   25  (0→0, 1→10, 2→18, 3+→25)
-     identityClarity  15  (1→15, 2-3→8, 4+→0)                          */
-function computeLayerA({ profiles, matches }) {
+/* Scoring v4. The browser only receives neutral check ids, a state,
+   the score and the level. Never return weights or points. */
+const WEIGHTS = { presence:20, clarity:10, home:6, understood:22, linked:12, confirmed:12, readable:12, intro:6 };
+const BRAKE_UNDERSTOOD_NONE = 0.70;
+const BRAKE_UNDERSTOOD_PARTIAL = 0.88;
+const BRAKE_NOT_LINKED = 0.80;
+const SQUEEZE_FROM = 70, SQUEEZE_POWER = 1.4;
+const NO_SITE_CAP = 30;
+const LEVEL_MINS = [0, 25, 50, 70, 90]; // index + 1 = level
+
+function levelFor(score) {
+  let lvl = 1;
+  for (let i = 0; i < LEVEL_MINS.length; i++) if (score >= LEVEL_MINS[i]) lvl = i + 1;
+  return lvl;
+}
+function stateFromFrac(f, fullAt, partialAt) {
+  if (f >= fullAt) return "full";
+  if (f >= partialAt && f > 0) return "partial";
+  return "none";
+}
+
+/* WORLD — what search finds about you (presence + clarity) */
+function measureWorld({ profiles, matches, unverifiedPlatforms }) {
   const platformsSeen = new Set((profiles || []).map(p => p.platform).filter(Boolean));
   const breadth = platformsSeen.size;
-  let a1pts = 0, a1state = "none";
-  if (breadth >= 3) { a1pts = 25; a1state = "full"; }
-  else if (breadth === 2) { a1pts = 18; a1state = "partial"; }
-  else if (breadth === 1) { a1pts = 10; a1state = "partial"; }
+  const presenceFrac = breadth >= 3 ? 1 : (breadth === 2 ? 0.7 : (breadth === 1 ? 0.4 : 0));
   const m = (typeof matches === "number") ? matches : 1;
-  let a2pts = 0, a2state = "none";
-  if (m <= 1) { a2pts = 15; a2state = "full"; }
-  else if (m <= 3) { a2pts = 8; a2state = "partial"; }
-  /* unverifiedPlatforms is set by modeIdentityAudit when sameAs filtering
-     was applied — passes through here so the UI knows what to surface. */
-  const unverifiedPlatforms = arguments[0].unverifiedPlatforms || [];
-  const sameAsFiltered = !!arguments[0].sameAsFiltered;
-  const bySignal = {
-    profileBreadth:  { state: a1state, points: a1pts, max: 25, meta: { count: breadth, platforms: [...platformsSeen], unverifiedPlatforms, sameAsFiltered } },
-    identityClarity: { state: a2state, points: a2pts, max: 15, meta: { matches: m } }
-  };
-  return { bySignal, total: a1pts + a2pts };
-}
-function emptyLayerA(note) {
+  const clarityFrac = m <= 1 ? 1 : (m <= 3 ? 0.5 : 0);
   return {
-    profileBreadth:  { state:"none", points:0, max:25, meta:{ count:0, platforms:[], note } },
-    identityClarity: { state:"none", points:0, max:15, meta:{ matches:0 } }
+    presence: { state: breadth >= 3 ? "full" : (breadth > 0 ? "partial" : "none"), frac: presenceFrac,
+                meta: { count: breadth, platforms: [...platformsSeen], unverified: (unverifiedPlatforms || []).length > 0 } },
+    clarity:  { state: clarityFrac === 1 ? "full" : (clarityFrac > 0 ? "partial" : "none"), frac: clarityFrac,
+                meta: { matches: m } }
   };
 }
-function layerAToSignals(la) {
-  return [
-    { id:"profiles", layer:"A", ...la.profileBreadth },
-    { id:"clarity",  layer:"A", ...la.identityClarity }
-  ];
-}
 
-/* LAYER B — max 60 (regex-free)
-     Rebalanced to restore the sameAs COUNT signal that existed in the old
-     Layer-S-only path. Two distinct sameAs measurements:
-       sameas_count    — credit for the declarations you have made (10 pts)
-       sameAsCrossVerify — credit for those declarations matching what AI sees (10 pts)
-     Breakdown:
-       site 6 · llms 12 · schema 12 · sameas_count 10 · sameas_xref 10 · basics 10
-*/
-function computeLayerB({ home, llms, llmsFull, robots, sitemap, html, sd, target, profiles }) {
-  const b1state = home.ok ? "full" : (home.status > 0 ? "partial" : "none");
-  const b1pts = b1state === "full" ? 6 : (b1state === "partial" ? 3 : 0);
+/* HOME — what your own website tells AI */
+function measureHome({ home, llms, llmsFull, robots, sitemap, html, sd, target, profiles }) {
+  const homeState = home.ok ? "full" : (home.status > 0 ? "partial" : "none");
+  const homeFrac = homeState === "full" ? 1 : (homeState === "partial" ? 0.5 : 0);
+
   const llmsBody = (llms.ok && llms.text.trim()) || (llmsFull.ok && llmsFull.text.trim()) || "";
-  const b2state = llmsBody.length > 200 ? "full" : (llmsBody.length > 0 ? "partial" : "none");
-  const b2pts = b2state === "full" ? 12 : (b2state === "partial" ? 6 : 0);
-  const richEntity = sd.hasEntity && sd.name && (sd.hasDescription || sd.hasImage);
-  const b3state = richEntity ? "full" : (sd.hasEntity ? "partial" : "none");
-  const b3pts = b3state === "full" ? 12 : (b3state === "partial" ? 6 : 0);
+  const introState = llmsBody.length > 200 ? "full" : (llmsBody.length > 0 ? "partial" : "none");
+  const introFrac = introState === "full" ? 1 : (introState === "partial" ? 0.5 : 0);
 
-  /* sameAs declarations: JSON-LD canonical + visible HTML profile links
-     (footer/header/contact). HTML-only entries count at 0.7 weight. */
+  const richEntity = sd.hasEntity && sd.name && (sd.hasDescription || sd.hasImage);
+  const understoodState = richEntity ? "full" : (sd.hasEntity ? "partial" : "none");
+  const understoodFrac = understoodState === "full" ? 1 : (understoodState === "partial" ? 0.5 : 0);
+
+  /* Profile declarations: JSON-LD sameAs + visible HTML profile links.
+     HTML-only links count at 0.7 weight. 2.5 weighted links = full. */
   const profileHosts = new Set((profiles || []).map(p => hostOf(p.url)).filter(Boolean));
   const declaredHosts = new Set((sd.sameAs || []).map(hostOf).filter(Boolean));
   const htmlProfileHosts = extractHtmlProfileLinks(html);
   const htmlOnlyHosts = new Set([...htmlProfileHosts].filter(h => !declaredHosts.has(h)));
-  const sameAsHosts = new Set([...declaredHosts, ...htmlOnlyHosts]);
-  const weightedSameAsCount = declaredHosts.size + (htmlOnlyHosts.size * 0.7);
-  const sameAsCount = sameAsHosts.size;
+  const allHosts = new Set([...declaredHosts, ...htmlOnlyHosts]);
+  const weightedCount = declaredHosts.size + (htmlOnlyHosts.size * 0.7);
+  const linkedFrac = Math.min(1, weightedCount / 2.5);
+  const linkedState = stateFromFrac(linkedFrac, 0.8, 0.01);
 
-  /* COUNT signal: credit for declaring real profiles (no AI verification needed).
-     Linear gradient: weighted count × (10/2.5) ≈ × 4, capped at 10.
-     → 0:0, 1:4, 2:8, 2.5+:10. Same gradient shape Nelson liked, scaled to 10. */
-  let b4pts = Math.min(10, Math.round(weightedSameAsCount * 4));
-  let b4state = "none";
-  if (b4pts >= 8) b4state = "full";
-  else if (b4pts > 0) b4state = "partial";
-
-  /* CROSS-VERIFY signal: matches between declared/visible and AI's findings */
-  let declaredCrossMatches = 0;
-  for (const h of declaredHosts) if (profileHosts.has(h)) declaredCrossMatches++;
-  let htmlOnlyCrossMatches = 0;
-  for (const h of htmlOnlyHosts) if (profileHosts.has(h)) htmlOnlyCrossMatches++;
-  const weightedCrossMatches = declaredCrossMatches + (htmlOnlyCrossMatches * 0.7);
-  const crossMatches = declaredCrossMatches + htmlOnlyCrossMatches;
-  let b5pts = Math.min(10, Math.round(weightedCrossMatches * 4));
-  let b5state = "none";
-  if (b5pts >= 8) b5state = "full";
-  else if (b5pts > 0) b5state = "partial";
-  else if (sameAsHosts.size >= 1 && profileHosts.size === 0) { b5state = "partial"; b5pts = 5; }
+  let declaredCross = 0, htmlOnlyCross = 0;
+  for (const h of declaredHosts) if (profileHosts.has(h)) declaredCross++;
+  for (const h of htmlOnlyHosts) if (profileHosts.has(h)) htmlOnlyCross++;
+  const weightedCross = declaredCross + (htmlOnlyCross * 0.7);
+  let confirmedFrac = Math.min(1, weightedCross / 2.5);
+  let confirmedState = stateFromFrac(confirmedFrac, 0.8, 0.01);
+  let blind = false;
+  if (confirmedState === "none" && allHosts.size >= 1 && profileHosts.size === 0) {
+    /* You declare profiles but search found none to compare against:
+       benefit of the doubt, half credit. */
+    confirmedState = "partial"; confirmedFrac = 0.5; blind = true;
+  }
 
   const low = (html || "").toLowerCase();
   const hasTitle = low.indexOf("<title>") !== -1 || low.indexOf("<title ") !== -1;
@@ -338,45 +311,47 @@ function computeLayerB({ home, llms, llmsFull, robots, sitemap, html, sd, target
   const robotsOk = robots.ok && !robotsLines.includes("disallow:/");
   const sitemapText = (sitemap && sitemap.text) || "";
   const sitemapOk = sitemap.ok && (sitemapText.indexOf("<urlset") !== -1 || sitemapText.indexOf("<sitemapindex") !== -1);
-  let b6pts = 0;
-  if (hasTitle) b6pts += 2;
-  if (hasDesc)  b6pts += 2;
-  if (hasOg)    b6pts += 2;
-  if (hasCanon) b6pts += 2;
-  if (isHttps && !noindex)   b6pts += 1;
-  if (robotsOk || sitemapOk) b6pts += 1;
-  let b6state = "none";
-  if (b6pts >= 8) b6state = "full";
-  else if (b6pts >= 4) b6state = "partial";
-  const bySignal = {
-    ownedSite:         { state: b1state, points: b1pts, max: 6,  meta: { status: home.status } },
-    llmsTxt:           { state: b2state, points: b2pts, max: 12, meta: { length: llmsBody.length, file: llms.ok ? "llms.txt" : (llmsFull.ok ? "llms-full.txt" : null) } },
-    structuredData:    { state: b3state, points: b3pts, max: 12, meta: { types: sd.types, name: sd.name || "" } },
-    sameAsCount:       { state: b4state, points: b4pts, max: 10, meta: { count: sameAsCount, declaredCount: declaredHosts.size, htmlOnlyCount: htmlOnlyHosts.size, hosts: [...sameAsHosts], htmlOnlyHosts: [...htmlOnlyHosts] } },
-    sameAsCrossVerify: { state: b5state, points: b5pts, max: 10, meta: { matches: crossMatches, declaredMatches: declaredCrossMatches, htmlOnlyMatches: htmlOnlyCrossMatches, siteSameAs: [...sameAsHosts], declaredHosts: [...declaredHosts], htmlOnlyHosts: [...htmlOnlyHosts], profileHosts: [...profileHosts] } },
-    pageBasics:        { state: b6state, points: b6pts, max: 10, meta: { hasTitle, hasDesc, hasOg, hasCanon, isHttps: isHttps && !noindex, crawlable: robotsOk || sitemapOk } }
+  let basics = 0;
+  if (hasTitle) basics += 2;
+  if (hasDesc)  basics += 2;
+  if (hasOg)    basics += 2;
+  if (hasCanon) basics += 2;
+  if (isHttps && !noindex)   basics += 1;
+  if (robotsOk || sitemapOk) basics += 1;
+  const readableFrac = basics / 10;
+  const readableState = stateFromFrac(readableFrac, 0.8, 0.4);
+
+  return {
+    home:       { state: homeState,       frac: homeFrac,       meta: {} },
+    understood: { state: understoodState, frac: understoodFrac, meta: {} },
+    linked:     { state: linkedState,     frac: linkedFrac,     meta: { count: allHosts.size } },
+    confirmed:  { state: confirmedState,  frac: confirmedFrac,  meta: { matches: declaredCross + htmlOnlyCross, blind } },
+    readable:   { state: readableState,   frac: readableFrac,   meta: {} },
+    intro:      { state: introState,      frac: introFrac,      meta: {} }
   };
-  return { bySignal, total: b1pts + b2pts + b3pts + b4pts + b5pts + b6pts };
 }
-function layerBToSignals(lb) {
-  return [
-    { id:"site",         layer:"B", ...lb.ownedSite },
-    { id:"llms",         layer:"B", ...lb.llmsTxt },
-    { id:"schema",       layer:"B", ...lb.structuredData },
-    { id:"sameas",       layer:"B", ...lb.sameAsCount },
-    { id:"sameas_xref",  layer:"B", ...lb.sameAsCrossVerify },
-    { id:"basics",       layer:"B", ...lb.pageBasics }
-  ];
+function emptyHome() {
+  const none = { state: "none", frac: 0, meta: { noSite: true } };
+  return { home: { ...none }, understood: { ...none }, linked: { ...none, meta: { noSite: true, count: 0 } },
+           confirmed: { ...none, meta: { noSite: true, matches: 0 } }, readable: { ...none }, intro: { ...none } };
 }
-function layerBPlaceholderSignals() {
-  return [
-    { id:"site",        layer:"B", state:"none", points:0, max:6,  meta:{ noSite:true } },
-    { id:"llms",        layer:"B", state:"none", points:0, max:12, meta:{ noSite:true } },
-    { id:"schema",      layer:"B", state:"none", points:0, max:12, meta:{ noSite:true } },
-    { id:"sameas",      layer:"B", state:"none", points:0, max:10, meta:{ noSite:true } },
-    { id:"sameas_xref", layer:"B", state:"none", points:0, max:10, meta:{ noSite:true } },
-    { id:"basics",      layer:"B", state:"none", points:0, max:10, meta:{ noSite:true } }
-  ];
+
+function scoreFrom(sig, { noSite }) {
+  let raw = 0;
+  for (const k in WEIGHTS) raw += WEIGHTS[k] * ((sig[k] && sig[k].frac) || 0);
+  if (noSite) return Math.round(Math.min(raw, NO_SITE_CAP));
+  let s = raw;
+  if (sig.understood.state === "none") s *= BRAKE_UNDERSTOOD_NONE;
+  else if (sig.understood.state === "partial") s *= BRAKE_UNDERSTOOD_PARTIAL;
+  if (sig.linked.state === "none" && sig.confirmed.state === "none") s *= BRAKE_NOT_LINKED;
+  if (s > SQUEEZE_FROM) s = SQUEEZE_FROM + (100 - SQUEEZE_FROM) * Math.pow((s - SQUEEZE_FROM) / (100 - SQUEEZE_FROM), SQUEEZE_POWER);
+  return Math.max(0, Math.min(100, Math.round(s)));
+}
+
+/* Public shape: neutral ids, state, minimal meta. No weights, no points. */
+const ORDER = [["presence","A"],["clarity","A"],["home","B"],["understood","B"],["linked","B"],["confirmed","B"],["readable","B"],["intro","B"]];
+function toPublicSignals(sig) {
+  return ORDER.map(([id, layer]) => ({ id, layer, state: sig[id].state, meta: sig[id].meta || {} }));
 }
 
 /* Helpers */
