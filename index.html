@@ -363,6 +363,141 @@
 .mq-tag{display:inline-block;background:var(--lime);color:var(--ink);border:2px solid var(--ink);border-radius:999px;padding:.12rem .55rem;font-family:var(--display);font-weight:700;font-size:.72rem;line-height:1.3;box-shadow:0 2px 0 var(--ink);white-space:nowrap}
 .mq-tag.ai{background:#fff;color:var(--purple)}
 </style>
+<style>
+/* Visuals. Complete at rest; /js/fx.js plays them while on screen. */
+.fx-ask{max-width:560px;margin:2.2rem auto 0;text-align:left;background:#fff;border:2px solid var(--ink);border-radius:22px;box-shadow:var(--hard);overflow:hidden}
+.fx-ask-bar{display:flex;align-items:center;gap:.6rem;padding:.8rem 1.1rem;border-bottom:2px solid var(--ink);background:#F7F2FF;font-size:1rem;font-weight:600;min-height:3.3rem}
+.fx-ask-bar svg{flex:0 0 auto;width:20px;height:20px;color:var(--purple)}
+.fx-ask-q{min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.fx-caret{flex:0 0 auto;width:2px;height:1.15em;background:var(--ink);margin-left:-.45rem;animation:fx-blink 1s steps(1) infinite}
+@keyframes fx-blink{50%{opacity:0}}
+.fx-ask-body{padding:1rem 1.1rem 1.15rem;display:grid;gap:.7rem}
+.fx-ask-lbl{display:flex;align-items:center;gap:.4rem;font-size:.8rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;opacity:.6}
+.fx-ask-lbl svg{width:14px;height:14px;color:var(--purple)}
+.fx-ask-lines{display:grid;gap:.45rem}
+.fx-ask-lines i{display:block;height:.62rem;border-radius:99px;background:#ECE6F7;transform-origin:left;transition:transform .5s cubic-bezier(.4,0,.2,1)}
+.fx-ask-lines i:nth-child(2){width:72%;transition-delay:.12s}
+.fx-ask-pick{display:flex;align-items:center;gap:.75rem;background:var(--lime);border:2px solid var(--ink);border-radius:14px;padding:.6rem .8rem;box-shadow:var(--hard-sm);transition:transform .45s cubic-bezier(.3,1.4,.5,1),opacity .3s}
+.fx-ask-av{flex:0 0 auto;width:2.3rem;height:2.3rem;border-radius:50%;background:var(--purple);border:2px solid var(--ink);display:grid;place-items:center;color:var(--lime)}
+.fx-ask-av svg{width:16px;height:16px}
+.fx-ask-who{min-width:0;flex:1;line-height:1.2}
+.fx-ask-who b{display:block;font-size:1.08rem}
+.fx-ask-who small{display:block;font-size:.86rem;opacity:.75;font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.fx-ask-src{flex:0 0 auto;font-size:.78rem;font-weight:700;background:#fff;border:2px solid var(--ink);border-radius:99px;padding:.15rem .6rem;white-space:nowrap;transition:transform .35s cubic-bezier(.3,1.6,.5,1) .25s,opacity .2s .25s}
+.fx-ask.fx-s0 .fx-ask-lines i,.fx-ask.fx-s1 .fx-ask-lines i{transform:scaleX(0)}
+.fx-ask.fx-s0 .fx-ask-pick,.fx-ask.fx-s1 .fx-ask-pick,.fx-ask.fx-s2 .fx-ask-pick{opacity:0;transform:translateY(10px) scale(.96)}
+.fx-ask.fx-s0 .fx-ask-src,.fx-ask.fx-s1 .fx-ask-src,.fx-ask.fx-s2 .fx-ask-src{opacity:0;transform:scale(.4)}
+.fx-ask.fx-s0 .fx-caret{opacity:0}
+@media(max-width:560px){.fx-ask-src{display:none}.fx-ask-bar{font-size:.92rem}}
+
+.fx-guess{display:grid;grid-template-columns:1fr auto 1fr;gap:1.1rem;align-items:center;max-width:820px;margin:.4rem auto 0;text-align:left}
+.fx-gcard{position:relative;border:2px solid #fff;border-radius:20px;padding:1.15rem 1.2rem 1.25rem;min-width:0;transition:opacity .4s,transform .4s}
+.fx-bad{background:#1c1c1c;color:#bdbdbd}
+.fx-good{background:#fff;color:var(--ink);box-shadow:0 6px 0 var(--lime)}
+.fx-gtag{display:inline-block;font-family:var(--hand);font-size:1.5rem;font-weight:700;line-height:1;margin-bottom:.8rem;transform:rotate(-2deg)}
+.fx-bad .fx-gtag{color:var(--pink)}
+.fx-good .fx-gtag{color:var(--purple)}
+.fx-gperson{display:flex;align-items:center;gap:.7rem;padding-bottom:.8rem;margin-bottom:.7rem;border-bottom:2px dashed #ddd}
+.fx-bad .fx-gperson{border-bottom-color:#444}
+.fx-gav{flex:0 0 auto;width:2.6rem;height:2.6rem;border-radius:50%;display:grid;place-items:center;font-weight:700;font-size:1.3rem;position:relative}
+.fx-bad .fx-gav{background:#333;color:#888;border:2px dashed #555}
+.fx-good .fx-gav{background:var(--lime);border:2px solid var(--ink);color:var(--ink)}
+.fx-good .fx-gav svg{width:18px;height:18px}
+.fx-gname{min-width:0;line-height:1.25}
+.fx-gname i{display:block;width:8.5rem;max-width:100%;height:.85rem;border-radius:99px;background:linear-gradient(90deg,#3a3a3a 0%,#5a5a5a 50%,#3a3a3a 100%);background-size:200% 100%;filter:blur(2px);margin-bottom:.35rem}
+.fx-gname b{display:block;font-size:1.1rem}
+.fx-gname small{display:block;font-size:.85rem;font-weight:600;opacity:.75}
+.fx-glist{list-style:none;display:grid;gap:.5rem;font-size:.98rem;font-weight:600}
+.fx-glist li{display:flex;align-items:center;gap:.55rem;min-height:1.5em}
+.fx-glist li::before{content:"";flex:0 0 auto;width:1.2rem;height:1.2rem;border-radius:50%;background-position:center;background-repeat:no-repeat;background-size:62%;transition:transform .35s cubic-bezier(.3,1.8,.5,1)}
+.fx-bad .fx-glist li::before{background-color:var(--pink);background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 10 10'%3E%3Cpath d='M2 2l6 6M8 2L2 8' stroke='%23fff' stroke-width='2' stroke-linecap='round'/%3E%3C/svg%3E")}
+.fx-good .fx-glist li::before{background-color:var(--purple);background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 10 10'%3E%3Cpath d='M2 5.2l2 2L8 3' fill='none' stroke='%23CEFF00' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E")}
+.fx-bad .fx-glist span{filter:blur(.4px)}
+.fx-gvs{font-family:var(--hand);font-size:2rem;font-weight:700;color:var(--lime);display:inline-block}
+.fx-stamp{position:absolute;top:.9rem;right:.9rem;font-family:var(--display);font-weight:700;font-size:.85rem;text-transform:uppercase;letter-spacing:.06em;border:2px solid currentColor;border-radius:8px;padding:.15rem .55rem;transform:rotate(8deg);transition:transform .35s cubic-bezier(.3,1.6,.5,1),opacity .2s;pointer-events:none}
+.fx-bad .fx-stamp{color:var(--pink)}
+.fx-good .fx-stamp{color:var(--ink);background:var(--lime);border-color:var(--ink)}
+.fx-pen{display:inline-block;width:2px;height:1.05em;background:var(--purple);margin-left:2px;vertical-align:-2px;animation:fx-blink .8s steps(1) infinite}
+.fx-on .fx-gname i{animation:fx-shimmer 1.6s linear infinite}
+@keyframes fx-shimmer{to{background-position:-200% 0}}
+.fx-on .fx-bad .fx-gav{animation:fx-wobble 2.4s ease-in-out infinite}
+@keyframes fx-wobble{0%,100%{transform:rotate(0)}20%{transform:rotate(-14deg)}40%{transform:rotate(10deg)}60%{transform:rotate(-6deg)}80%{transform:rotate(3deg)}}
+.fx-on .fx-good .fx-gav::after{content:"";position:absolute;inset:-2px;border-radius:50%;animation:fx-ring2 2s ease-out infinite}
+@keyframes fx-ring2{0%{box-shadow:0 0 0 0 rgba(206,255,0,.9)}80%,100%{box-shadow:0 0 0 .8rem rgba(206,255,0,0)}}
+.fx-on .fx-gvs{animation:fx-vs 3s ease-in-out infinite}
+@keyframes fx-vs{0%,100%{transform:rotate(-8deg) scale(1)}50%{transform:rotate(8deg) scale(1.15)}}
+.fx-bad.fx-glitch{animation:fx-glitch .45s steps(2) 1}
+@keyframes fx-glitch{0%{transform:translate(0)}25%{transform:translate(-3px,1px)}50%{transform:translate(3px,-1px)}75%{transform:translate(-2px,0)}100%{transform:translate(0)}}
+.fx-guess.fx-armed .fx-glist li{opacity:0;transform:translateX(-8px)}
+.fx-guess.fx-armed .fx-glist li.fx-done{opacity:1;transform:none;transition:opacity .25s,transform .3s}
+.fx-guess.fx-armed .fx-good .fx-glist li::before{transform:scale(0)}
+.fx-guess.fx-armed .fx-good .fx-glist li.fx-chk::before{transform:scale(1)}
+.fx-guess.fx-armed .fx-stamp{opacity:0;transform:rotate(-14deg) scale(2.2)}
+.fx-guess.fx-armed.fx-stamped .fx-stamp{opacity:1;transform:rotate(8deg) scale(1)}
+.fx-guess.fx-stamped .fx-bad{opacity:.72;transform:scale(.97)}
+@media(max-width:560px){.fx-gtag{display:block;padding-right:6.6rem;font-size:1.4rem}.fx-stamp{font-size:.72rem;top:.8rem;right:.8rem}}
+@media(max-width:700px){.fx-guess{grid-template-columns:1fr;gap:.6rem}.fx-gvs{text-align:center;line-height:1;justify-self:center}.fx-guess.fx-stamped .fx-bad{transform:none}}
+
+.fx-ico svg{display:block;width:54px;height:54px;margin:0 auto;overflow:visible}
+.fx-ico .fx-d{stroke-dasharray:100;stroke-dashoffset:0}
+.fx-on .fx-ico .fx-d{animation:fx-draw 4.5s ease-in-out infinite;animation-delay:var(--dl,0s)}
+@keyframes fx-draw{0%{stroke-dashoffset:100}18%,100%{stroke-dashoffset:0}}
+.fx-ico .fx-ring{transform-origin:24px 24px;opacity:0}
+.fx-on .fx-ico .fx-ring{animation:fx-ring 2.6s ease-out infinite;animation-delay:var(--dl,0s)}
+@keyframes fx-ring{0%{transform:scale(.55);opacity:.9}80%,100%{transform:scale(1.7);opacity:0}}
+.fx-ico .fx-dot{transform-box:fill-box;transform-origin:center}
+.fx-on .fx-ico .fx-dot{animation:fx-dot 4.5s ease-in-out infinite;animation-delay:var(--dl,0s)}
+@keyframes fx-dot{0%,4%{transform:scale(0)}12%,88%{transform:scale(1)}100%{transform:scale(0)}}
+.fx-ico .fx-heart{transform-box:fill-box;transform-origin:center}
+.fx-on .fx-ico .fx-heart{animation:fx-beat 1.6s ease-in-out infinite}
+@keyframes fx-beat{0%,60%,100%{transform:scale(1)}15%{transform:scale(1.18)}30%{transform:scale(.96)}45%{transform:scale(1.1)}}
+.fx-star{display:block;width:50px;height:50px;margin:0 auto}
+.fx-star svg{display:block;width:100%;height:100%;overflow:visible}
+.fx-star .fx-sf rect{fill:var(--ink)}
+.fx-on .fx-star{animation:fx-grow 9s ease-in-out infinite}
+.fx-on .fx-star svg{animation:fx-spin2 12s linear infinite}
+.fx-on .fx-star .fx-sf rect{animation:fx-tint 9s steps(1) infinite}
+@keyframes fx-spin2{to{transform:rotate(360deg)}}
+@keyframes fx-grow{0%,28%,61%,94%,100%{transform:scale(1)}31%,64%,97%{transform:scale(1.4)}}
+@keyframes fx-tint{0%{fill:var(--ink)}31%{fill:var(--purple)}64%{fill:var(--lime)}97%{fill:var(--ink)}}
+
+.fx-r{max-width:720px;margin:-.4rem auto 2rem;background:#fff;border:2px solid var(--ink);border-radius:18px;box-shadow:var(--hard);padding:.9rem 1.1rem 1rem;text-align:left;display:grid;grid-template-columns:auto 1fr;gap:.4rem 1rem;align-items:center}
+.fx-r-day{grid-row:1/3;display:grid;place-items:center;align-content:center;width:5.2rem;height:5.2rem;border-radius:16px;background:var(--ink);color:#fff;line-height:1}
+.fx-r-day small{font-size:.75rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;opacity:.75}
+.fx-r-day b{font-size:2.3rem;color:var(--lime);font-variant-numeric:tabular-nums;margin-top:.15rem}
+.fx-r-lane{display:grid;grid-template-columns:4.4rem 1fr;gap:.15rem .7rem;align-items:center;min-width:0}
+.fx-r-name{grid-row:1/3;font-weight:700;font-size:.95rem;text-align:center;border:2px solid var(--ink);border-radius:99px;padding:.15rem .3rem;white-space:nowrap}
+.fx-r-us .fx-r-name{background:var(--lime)}
+.fx-r-them .fx-r-name{background:#F2EEF8}
+.fx-r-track{position:relative;height:1rem;border-radius:99px;background:#F2EEF8;border:2px solid var(--ink)}
+.fx-r-track i{position:absolute;top:-2px;bottom:-2px;left:-2px;border:2px solid var(--ink);transform-origin:left;transform:scaleX(var(--p,1))}
+.fx-r-us .fx-r-track i{width:calc(7.3% + 4px);border-radius:99px;background:var(--lime)}
+.fx-r-them .fx-r-ok{width:calc(73.2% + 2px);border-radius:99px 0 0 99px;background:#bdb6c9}
+.fx-r-them .fx-r-late{left:73.2%;width:calc(26.8% + 2px);border-radius:0 99px 99px 0;background:var(--pink)}
+.fx-r-live{position:absolute;left:calc(7.3% + .45rem);top:50%;transform:translateY(-50%);font-size:.7rem;font-weight:700;line-height:1.3;background:var(--purple);color:#fff;border:2px solid var(--ink);border-radius:99px;padding:0 .5rem;white-space:nowrap;transition:transform .35s cubic-bezier(.3,1.7,.5,1),opacity .2s}
+.fx-r-pin{position:absolute;left:73.2%;bottom:calc(100% + 3px);transform:translateX(-50%);font-style:normal;font-size:.66rem;font-weight:700;line-height:1.3;white-space:nowrap;background:#fff;border:2px solid var(--ink);border-radius:99px;padding:0 .4rem;transition:background-color .25s,color .25s}
+.fx-r-pin.fx-miss{background:var(--pink);color:#fff;text-decoration:line-through}
+.fx-r-msg{display:block;height:1.35em;overflow:hidden;font-weight:600;font-size:.92rem;line-height:1.35;white-space:nowrap;text-overflow:ellipsis}
+.fx-r-msg span{display:block;overflow:hidden;text-overflow:ellipsis}
+.fx-r-us .fx-r-msg{color:var(--purple)}
+.fx-r-them .fx-r-msg.fx-bad2{color:#C4005A}
+.fx-r-msg.fx-swap span{animation:fx-swap .3s cubic-bezier(.3,1.3,.5,1)}
+@keyframes fx-swap{from{transform:translateY(90%);opacity:0}to{transform:none;opacity:1}}
+.fx-r-them{margin-top:1.1rem}
+.fx-on.fx-r:not(.fx-pre) .fx-r-live{animation:fx-badge 1.6s ease-in-out infinite}
+@keyframes fx-badge{0%,100%{transform:translateY(-50%) scale(1)}50%{transform:translateY(-50%) scale(1.15)}}
+.fx-r.fx-pre .fx-r-live{opacity:0;transform:translateY(-50%) scale(.3)}
+.fx-r-us.fx-won .fx-r-track i{animation:fx-glow 1.4s ease-out}
+@keyframes fx-glow{0%{box-shadow:0 0 0 0 rgba(206,255,0,.95)}100%{box-shadow:0 0 0 .7rem rgba(206,255,0,0)}}
+@media(max-width:560px){.fx-r{grid-template-columns:1fr;padding:.85rem .85rem .95rem}.fx-r-day{grid-row:auto;width:auto;height:auto;grid-template-columns:auto auto;gap:.4rem;justify-content:start;padding:.3rem .8rem;border-radius:99px;justify-self:start}.fx-r-day b{font-size:1.3rem;margin:0}.fx-r-lane{grid-template-columns:3.7rem 1fr;gap:.15rem .55rem}.fx-r-name{font-size:.85rem}.fx-r-msg{font-size:.85rem}}
+
+.fx-ev{text-align:center;margin-top:2.6rem}
+
+@media (prefers-reduced-motion:reduce){
+  .fx-caret,.fx-pen{display:none!important}
+  [class*="fx-"],[class*="fx-"]::before,[class*="fx-"]::after{animation:none!important;transition:none!important}
+}
+</style>
 </head>
 <body>
 <header>
@@ -395,6 +530,14 @@
       <p class="lead" data-i18n-html="lead"><span class='hl'>We build you a stunning website</span> that makes Google and AI tell your story exactly the way you want.</p>
       <a class="btn cta" data-tier="generic" href="#" target="_blank" data-i18n="cta_main">Build me my website!</a>
       <div class="hero-meta" data-i18n="hero_meta">Ready in 3 days · From $700 · In Spanish and English</div>
+      <div class="fx-ask" data-fx="ask" aria-hidden="true" data-nosnippet>
+        <div class="fx-ask-bar"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 1.5c1 5.2 2.6 7.6 9 10.5-6.4 2.9-8 5.3-9 10.5-1-5.2-2.6-7.6-9-10.5 6.4-2.9 8-5.3 9-10.5z"/></svg><span class="fx-ask-q">Which is the best restaurant for families?</span><span class="fx-caret"></span></div>
+        <div class="fx-ask-body">
+          <div class="fx-ask-lbl"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 1.5c1 5.2 2.6 7.6 9 10.5-6.4 2.9-8 5.3-9 10.5-1-5.2-2.6-7.6-9-10.5 6.4-2.9 8-5.3 9-10.5z"/></svg>AI answer</div>
+          <div class="fx-ask-lines"><i></i><i></i></div>
+          <div class="fx-ask-pick"><span class="fx-ask-av"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3.5 8.5l3 3 6-7"/></svg></span><span class="fx-ask-who"><b>You</b><small>Family restaurant</small></span><span class="fx-ask-src">yourrestaurant.com</span></div>
+        </div>
+      </div>
     </div>
   </section>
 
@@ -416,6 +559,15 @@
       <h2 class="sec-title reveal" data-i18n="why_t">Right now, someone is looking you up.</h2>
       <p class="wholine reveal" style="text-align:center;margin:-.2rem auto 1.6rem;font-family:var(--display);font-size:1.2rem;color:#fff;font-weight:500"><span data-i18n="who_lead" style="color:var(--lime);font-weight:700">Perfect if you want to</span> <span class="rot" id="rotwho">conseguir un trabajo mejor pagado</span></p>
       <p class="sec-sub reveal" data-i18n="why_p">When someone types your name into Google, or asks an AI 'who is?', something shows up. The question is simple: did you write it, or did the internet guess? And the longer you wait, the harder that answer is to change. And the people who matter, your next client, your followers, your future boss, form an opinion in seconds.</p>
+      <div class="fx-guess" data-fx="guess" data-nosnippet>
+        <div class="fx-gcard fx-bad"><span class="fx-stamp" aria-hidden="true">Not you</span><span class="fx-gtag">If the internet guesses</span>
+          <div class="fx-gperson"><span class="fx-gav" aria-hidden="true">?</span><span class="fx-gname"><i></i><small>Is this the right person?</small></span></div>
+          <ul class="fx-glist"><li><span>An old job title</span></li><li><span>A photo you never chose</span></li><li><span>Someone else with your name</span></li><li><span>No website to check</span></li></ul></div>
+        <div class="fx-gvs" aria-hidden="true">vs</div>
+        <div class="fx-gcard fx-good"><span class="fx-stamp" aria-hidden="true">Exactly you</span><span class="fx-gtag">If you write it</span>
+          <div class="fx-gperson"><span class="fx-gav"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3.5 8.5l3 3 6-7"/></svg></span><span class="fx-gname"><b>Your name</b><small>yourname.com</small></span></div>
+          <ul class="fx-glist"><li><span>What you do today</span></li><li><span>Your best work, in your words</span></li><li><span>One official website</span></li><li><span>The same story on Google and AI</span></li></ul></div>
+      </div>
     </div>
   </section>
 
@@ -445,7 +597,7 @@
         <option value="ES">Spain</option>
         <option value="__">Worldwide</option>
       </select>
-      <input type="text" name="q" placeholder="Your name, brand, or business" aria-label="Your name, brand, or business" required>
+      <input type="text" name="q" data-fx="type" placeholder="Your name, brand, or business" aria-label="Your name, brand, or business" required>
       <button type="submit" data-i18n="audit_btn">Check me now →</button>
     </form>
     <p class="lead-sm" data-i18n="audit_meta">See exactly what AI says about you, and what it's missing.</p>
@@ -459,14 +611,15 @@
       <img class="eky-sticker sticker-why" src="/images/decorations/binocular.png" alt="" aria-hidden="true">
       <h2 class="sec-title reveal" data-i18n="pill_t">Why people choose us</h2>
       <div class="sec-sub"></div>
-      <div class="grid g3">
-        <div class="pillar reveal"><span class="ast">*</span><h3 data-i18n="p1t">Done for you</h3><p data-i18n="p1p">You barely lift a finger.</p></div>
-        <div class="pillar reveal"><span class="ast">*</span><h3 data-i18n="p2t">Discoverable by AI</h3><p data-i18n="p2p">Google and AI speak well of you.</p></div>
-        <div class="pillar reveal"><span class="ast">*</span><h3 data-i18n="p3t">Ready in 3 days</h3><p data-i18n="p3p">Others take 30.</p></div>
-        <div class="pillar reveal"><span class="ast">*</span><h3 data-i18n="p4t">100% custom</h3><p data-i18n="p4p">Made for you, never a template.</p></div>
-        <div class="pillar reveal"><span class="ast">*</span><h3 data-i18n="p5t">You only go live when you love it</h3><p data-i18n="p5p">And in every language your people speak.</p></div>
-        <div class="pillar reveal"><span class="ast">*</span><h3 data-i18n="p6t">Impress your</h3><div class="rot" id="rotword">clientes</div></div>
+      <div class="grid g3" data-fx="loop">
+        <div class="pillar reveal"><span class="ast fx-ico"><svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path class="fx-d" pathLength="100" d="M6 13l3.5 3.5L16 10"/><path class="fx-d" pathLength="100" style="--dl:.4s" d="M6 25l3.5 3.5L16 22"/><path class="fx-d" pathLength="100" style="--dl:.8s" d="M6 37l3.5 3.5L16 34"/><path d="M23 13.5h19M23 25.5h19M23 37.5h13" opacity=".4"/></svg></span><h3 data-i18n="p1t">Done for you</h3><p data-i18n="p1p">You barely lift a finger.</p></div>
+        <div class="pillar reveal"><span class="ast fx-ico"><svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle class="fx-ring" cx="24" cy="24" r="14"/><circle class="fx-ring" cx="24" cy="24" r="14" style="--dl:1.3s"/><path fill="currentColor" stroke="none" d="M24 10.5c1.3 6.6 3.4 9.7 11.5 13.5-8.1 3.8-10.2 6.9-11.5 13.5-1.3-6.6-3.4-9.7-11.5-13.5 8.1-3.8 10.2-6.9 11.5-13.5z"/></svg></span><h3 data-i18n="p2t">Discoverable by AI</h3><p data-i18n="p2p">Google and AI speak well of you.</p></div>
+        <div class="pillar reveal"><span class="ast fx-ico"><svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="6" y="10" width="36" height="31" rx="6"/><path d="M6 19h36M16 6v8M32 6v8"/><circle class="fx-dot" cx="15" cy="30" r="3.4" fill="currentColor" stroke="none"/><circle class="fx-dot" cx="24" cy="30" r="3.4" fill="currentColor" stroke="none" style="--dl:.4s"/><circle class="fx-dot" cx="33" cy="30" r="3.4" fill="currentColor" stroke="none" style="--dl:.8s"/></svg></span><h3 data-i18n="p3t">Ready in 3 days</h3><p data-i18n="p3p">Others take 30.</p></div>
+        <div class="pillar reveal"><span class="ast fx-ico"><svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path class="fx-d" pathLength="100" d="M6 34c5-13 9-15 13-6s9 9 13-3 6-13 10-9"/><path d="M6 42h36" opacity=".4"/></svg></span><h3 data-i18n="p4t">100% custom</h3><p data-i18n="p4p">Made for you, never a template.</p></div>
+        <div class="pillar reveal"><span class="ast fx-ico"><svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path class="fx-heart" fill="var(--pink)" stroke-width="3" d="M24 41C11 32.5 6 26 6 18.5a9 9 0 0 1 18-3.2 9 9 0 0 1 18 3.2C42 26 37 32.5 24 41z"/></svg></span><h3 data-i18n="p5t">You only go live when you love it</h3><p data-i18n="p5p">And in every language your people speak.</p></div>
+        <div class="pillar reveal"><span class="ast fx-star" aria-hidden="true"><svg viewBox="0 0 50 50"><g fill="#0A0A0A" stroke="#0A0A0A" stroke-width="3.5" stroke-linejoin="round"><rect x="21.5" y="4" width="7" height="42" rx="3.5" transform="rotate(0 25 25)"/><rect x="21.5" y="4" width="7" height="42" rx="3.5" transform="rotate(60 25 25)"/><rect x="21.5" y="4" width="7" height="42" rx="3.5" transform="rotate(120 25 25)"/></g><g class="fx-sf"><rect x="21.5" y="4" width="7" height="42" rx="3.5" transform="rotate(0 25 25)"/><rect x="21.5" y="4" width="7" height="42" rx="3.5" transform="rotate(60 25 25)"/><rect x="21.5" y="4" width="7" height="42" rx="3.5" transform="rotate(120 25 25)"/></g></svg></span><h3 data-i18n="p6t">Impress your</h3><div class="rot" id="rotword">clientes</div></div>
       </div>
+      <p class="fx-ev"><a class="btn purple" href="/evidence">Check the real evidence from our clients →</a></p>
     </div>
   </section>
 
@@ -476,6 +629,11 @@
       <h2 class="sec-title reveal" data-i18n="val_t">Everything you get</h2>
       <p class="sec-sub reveal" data-i18n="val_s">See what you would pay separately elsewhere, and what you pay with us:</p>
       <div class="faster reveal" data-i18n="faster">Most take a month or more. We deliver 10 times faster.</div>
+      <div class="fx-r" data-fx="race" data-days="41" data-promised="30">
+        <div class="fx-r-day" aria-hidden="true"><small>Day</small><b>41</b></div>
+        <div class="fx-r-lane fx-r-us"><span class="fx-r-name">EKY</span><div class="fx-r-track" aria-hidden="true"><i></i><span class="fx-r-live">Live!</span></div><span class="fx-r-msg" data-steps="[[1, &quot;Day 1: one short interview&quot;, 0], [2, &quot;Day 2: you check the draft&quot;, 0], [3, &quot;Day 3: polished. You're live!&quot;, 0], [4, &quot;Live since day 3. Getting found.&quot;, 0]]"><span>Live since day 3. Getting found.</span></span></div>
+        <div class="fx-r-lane fx-r-them"><span class="fx-r-name">Others</span><div class="fx-r-track" aria-hidden="true"><i class="fx-r-ok"></i><i class="fx-r-late"></i><em class="fx-r-pin fx-miss">Promised</em></div><span class="fx-r-msg fx-bad2" data-steps="[[1, &quot;Kickoff call&quot;, 0], [4, &quot;Waiting on their designer&quot;, 0], [8, &quot;A long form to fill out&quot;, 0], [13, &quot;The same questions, again&quot;, 1], [19, &quot;Now they ask for your photos&quot;, 1], [25, &quot;First draft, finally&quot;, 0], [30, &quot;Promised date. Missed.&quot;, 1], [34, &quot;\&quot;Just a few more days\&quot;&quot;, 1], [41, &quot;Live on day 41. 11 days late.&quot;, 1]]"><span>Live on day 41. 11 days late.</span></span></div>
+      </div>
       <div class="value">
         <div class="chead"><span></span><span class="h-mid" data-i18n="h_others">Others</span><span class="h-us" data-i18n="h_us">EKY</span></div>
         <div class="crow reveal"><span class="what" data-i18n="v1">A unique design, made for you</span><span class="others">$900</span><span class="us" data-i18n="incl">included</span></div>
@@ -679,5 +837,6 @@
 })();
 </script>
 <script src="/js/wa.js" defer></script>
+<script src="/js/fx.js" defer></script>
 </body>
 </html>
