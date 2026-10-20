@@ -470,10 +470,10 @@
 .fx-r-us .fx-r-name{background:var(--lime)}
 .fx-r-them .fx-r-name{background:#F2EEF8}
 .fx-r-track{position:relative;height:1rem;border-radius:99px;background:#F2EEF8;border:2px solid var(--ink)}
-.fx-r-track i{position:absolute;top:-2px;bottom:-2px;left:-2px;border:2px solid var(--ink);transform-origin:left;transform:scaleX(var(--p,1))}
-.fx-r-us .fx-r-track i{width:calc(7.3% + 4px);border-radius:99px;background:var(--lime)}
-.fx-r-them .fx-r-ok{width:calc(73.2% + 2px);border-radius:99px 0 0 99px;background:#bdb6c9}
-.fx-r-them .fx-r-late{left:73.2%;width:calc(26.8% + 2px);border-radius:0 99px 99px 0;background:var(--pink)}
+.fx-r-track i{position:absolute;top:-2px;bottom:-2px;left:-2px;border:2px solid var(--ink);opacity:calc(var(--p,1) * 1000)}
+.fx-r-us .fx-r-track i{width:calc((7.3% + 4px) * var(--p,1));border-radius:99px;background:var(--lime)}
+.fx-r-them .fx-r-ok{width:calc((73.2% + 2px) * var(--p,1));border-radius:99px 0 0 99px;background:#bdb6c9}
+.fx-r-them .fx-r-late{left:73.2%;width:calc((26.8% + 2px) * var(--p,1));border-radius:0 99px 99px 0;background:var(--pink)}
 .fx-r-live{position:absolute;left:calc(7.3% + .45rem);top:50%;transform:translateY(-50%);font-size:.7rem;font-weight:700;line-height:1.3;background:var(--purple);color:#fff;border:2px solid var(--ink);border-radius:99px;padding:0 .5rem;white-space:nowrap;transition:transform .35s cubic-bezier(.3,1.7,.5,1),opacity .2s}
 .fx-r-pin{position:absolute;left:73.2%;bottom:calc(100% + 3px);transform:translateX(-50%);font-style:normal;font-size:.66rem;font-weight:700;line-height:1.3;white-space:nowrap;background:#fff;border:2px solid var(--ink);border-radius:99px;padding:0 .4rem;transition:background-color .25s,color .25s}
 .fx-r-pin.fx-miss{background:var(--pink);color:#fff;text-decoration:line-through}
@@ -498,6 +498,58 @@
   [class*="fx-"],[class*="fx-"]::before,[class*="fx-"]::after{animation:none!important;transition:none!important}
 }
 </style>
+<style>
+/* Hero scene: three layers that scroll at different speeds, a satellite, binoculars. */
+.hero-scene{padding-top:clamp(1.6rem,4vw,3rem);padding-bottom:0;--lw:max(100%,900px)}
+.hero-scene>.wrap.hero{z-index:3}
+.hero-scene .fx-ask{margin:0 auto}
+.sc-scene{position:relative;--hb:clamp(300px,26vw,420px);--hm:clamp(220px,19vw,330px);--hf:clamp(260px,22vw,400px);--ft:270px;height:calc(var(--ft) + var(--hf) * .78);margin-top:clamp(1.4rem,2.6vw,2rem)}
+.sc-layer{position:absolute;left:50%;width:var(--lw);margin-left:calc(var(--lw) / -2);will-change:transform}
+.sc-layer img{display:block;width:100%;height:var(--h)}
+.sc-layer i{position:absolute;left:0;right:0;top:calc(100% - 40px);height:140vh}
+.sc-back{top:-64px;z-index:1;--h:var(--hb)}
+.sc-back i{background:var(--pink)}
+.sc-mid{top:calc(var(--ft) - 135px);z-index:4;--h:var(--hm)}
+.sc-mid i{background:var(--lime)}
+.sc-front{top:var(--ft);--h:var(--hf);z-index:7}
+.sc-tile{left:0;right:0;width:auto;margin-left:0;height:var(--h)}
+.sc-layer.sc-tile img{position:absolute;left:50%;top:0;width:auto;max-width:none;height:var(--h);transform:translateX(-50%)}
+.sc-tile i{top:calc(var(--h) - 40px)}
+.sc-front i{background:var(--ink)}
+.sc-card{position:relative;z-index:6;top:20px;padding:0 clamp(1.1rem,4vw,2.5rem);will-change:transform}
+.sc-bino{position:absolute;z-index:5;width:clamp(86px,12vw,170px);top:calc(var(--ft) - clamp(36px,4vw,62px));will-change:transform}
+.sc-bino img{display:block;width:100%;height:auto}
+.sc-bino-a{left:16%}
+.sc-bino-b{left:calc(70% - clamp(43px,6vw,85px));right:auto}
+.sc-bino-b img{transform:scaleX(-1)}
+.sc-peek{animation:sc-peek 5.5s ease-in-out infinite}
+.sc-bino-b .sc-peek{animation-delay:-2.7s}
+@keyframes sc-peek{0%,100%{transform:translateY(18%)}45%,60%{transform:translateY(-6%) rotate(-3deg)}}
+.sc-bino-top{position:absolute;z-index:1;top:9%;right:-46px;width:clamp(150px,17vw,240px);transform:rotate(-24deg);pointer-events:none}
+.sc-bino-top img{display:block;width:100%;height:auto;animation:sc-bob 6s ease-in-out infinite}
+@keyframes sc-bob{0%,100%{transform:translateY(0)}50%{transform:translateY(-12px)}}
+.sc-sat{position:absolute;z-index:2;left:5%;top:36%;width:clamp(78px,9vw,128px);pointer-events:none;will-change:transform}
+.sc-sat img{display:block;width:100%;height:auto;animation:sc-orbit 14s linear infinite}
+@keyframes sc-orbit{
+  0%{transform:translate(0,0) rotate(-6deg)}
+  25%{transform:translate(22px,-16px) rotate(4deg)}
+  50%{transform:translate(4px,-30px) rotate(10deg)}
+  75%{transform:translate(-18px,-12px) rotate(0deg)}
+  100%{transform:translate(0,0) rotate(-6deg)}}
+.hero-scene .char{display:none}
+@media(max-width:900px){.sc-bino-top{display:none}.sc-sat{left:auto;right:3%;top:10%;width:64px}}
+@media(max-width:560px){.sc-bino{display:none}.sc-sat{width:50px;top:11%;right:7%}}
+@media(prefers-reduced-motion:reduce){.sc-peek,.sc-bino-top img,.sc-sat img{animation:none}}
+
+/* Flowers that follow the mouse (desktop only). */
+.mf{position:fixed;inset:0;pointer-events:none;z-index:70;overflow:hidden}
+.mf span{position:absolute;left:0;top:0;display:block;will-change:transform,opacity;opacity:0;transition:opacity .35s}
+.mf svg{display:block;width:100%;height:100%;overflow:visible}
+.mf path{fill:currentColor}
+.mf.mf-on span{opacity:1}
+.mf .mf-lime{color:var(--lime)}
+.mf .mf-lime path{stroke:var(--ink);stroke-width:9;paint-order:stroke fill}
+</style>
 </head>
 <body>
 <header>
@@ -518,11 +570,12 @@
 
 <main>
   <!-- HERO -->
-  <section class="block">
+  <section class="block hero-scene">
     <span class="ast-deco s-spin" style="top:5%;left:3%;font-size:2.6rem;color:var(--ink)">*</span>
-    <span class="ast-deco s-spin" style="bottom:18%;right:8%;font-size:2.2rem;color:var(--pink)">*</span>
-    <div class="char s-float" style="top:6%;right:5%;width:80px"><img src="/images/characters/plup.png" alt=""></div>
-    <div class="wrap hero">
+    <span class="ast-deco s-spin" style="top:34%;right:8%;font-size:2.2rem;color:var(--pink)">*</span>
+    <div class="sc-bino-top" aria-hidden="true"><img src="/images/brand/eky_binoculars_vector.svg" alt=""></div>
+    <div class="sc-sat" data-depth="0.45" aria-hidden="true"><img src="/images/scene/satellite.svg" alt=""></div>
+    <div class="wrap hero" data-depth="0.1">
       <img class="eky-sticker sticker-hero" src="/images/decorations/wwwsticker.png" alt="" aria-hidden="true">
       <h1 class="seo-h1" data-i18n="seo_h1" style="font-family:var(--display);font-weight:500;font-size:.78rem;color:rgba(0,0,0,.45);text-transform:uppercase;letter-spacing:.12em;margin:-1.5rem 0 2.6rem;line-height:1.2;text-align:center">Web Design Latin America in 3 Days</h1>
       <span class="eyebrow" data-i18n="eyebrow">In the age of AI</span>
@@ -530,6 +583,11 @@
       <p class="lead" data-i18n-html="lead"><span class='hl'>We build you a stunning website</span> that makes Google and AI tell your story exactly the way you want.</p>
       <a class="btn cta" data-tier="generic" href="#" target="_blank" data-i18n="cta_main">Build me my website!</a>
       <div class="hero-meta" data-i18n="hero_meta">Ready in 3 days · From $700 · In Spanish and English</div>
+    </div>
+    <div class="sc-scene" aria-hidden="true">
+      <div class="sc-layer sc-back" data-depth="0.32"><img src="/images/scene/back.svg" alt=""><i></i></div>
+      <div class="sc-layer sc-tile sc-mid" data-depth="0.18"><img src="/images/scene/middle.svg" alt=""><i></i></div>
+      <div class="sc-card" data-depth="0.06">
       <div class="fx-ask" data-fx="ask" aria-hidden="true" data-nosnippet>
         <div class="fx-ask-bar"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 1.5c1 5.2 2.6 7.6 9 10.5-6.4 2.9-8 5.3-9 10.5-1-5.2-2.6-7.6-9-10.5 6.4-2.9 8-5.3 9-10.5z"/></svg><span class="fx-ask-q">Which is the best restaurant for families?</span><span class="fx-caret"></span></div>
         <div class="fx-ask-body">
@@ -538,18 +596,13 @@
           <div class="fx-ask-pick"><span class="fx-ask-av"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3.5 8.5l3 3 6-7"/></svg></span><span class="fx-ask-who"><b>You</b><small>Family restaurant</small></span><span class="fx-ask-src">yourrestaurant.com</span></div>
         </div>
       </div>
+      </div>
+      <div class="sc-bino sc-bino-a" data-depth="-0.2"><div class="sc-peek"><img src="/images/brand/eky_binoculars_vector.svg" alt=""></div></div>
+      <div class="sc-bino sc-bino-b" data-depth="-0.2"><div class="sc-peek"><img src="/images/brand/eky_binoculars_vector.svg" alt=""></div></div>
+      <div class="sc-layer sc-tile sc-front" data-depth="-0.25"><img src="/images/scene/front.svg" alt=""><i></i></div>
     </div>
   </section>
 
-  <!-- PRESS: featured in -->
-  <section class="press-bar">
-    <div class="wrap">
-      <a href="https://diarioelsalvador.com/dedinero/la-presencia-digital-es-clave-para-las-marcas-en-la-era-de-la-ia/820060" target="_blank" rel="noopener">
-        <span class="lbl" data-i18n="press_label">As featured in</span>
-        <strong>Diario El Salvador</strong>
-      </a>
-    </div>
-  </section>
 
   <!-- WHY: looking you up -->
   <section class="block bg-black">
@@ -648,6 +701,16 @@
       </div>
       <div class="vtotal reveal"><span class="old" data-i18n="tot_old">Usually: over $2,600</span><br><span class="new"><span data-i18n="tot_new">You pay: from</span> <b>$700</b></span></div>
       <div class="jab reveal" data-i18n="jab">Others charge $59 a MONTH just to host it. We charge $29 a YEAR.</div>
+    </div>
+  </section>
+
+  <!-- PRESS: featured in -->
+  <section class="press-bar">
+    <div class="wrap">
+      <a href="https://diarioelsalvador.com/dedinero/la-presencia-digital-es-clave-para-las-marcas-en-la-era-de-la-ia/820060" target="_blank" rel="noopener">
+        <span class="lbl" data-i18n="press_label">As featured in</span>
+        <strong>Diario El Salvador</strong>
+      </a>
     </div>
   </section>
 
@@ -838,5 +901,6 @@
 </script>
 <script src="/js/wa.js" defer></script>
 <script src="/js/fx.js" defer></script>
+<script src="/js/scene.js" defer></script>
 </body>
 </html>
