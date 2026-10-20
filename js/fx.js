@@ -160,6 +160,42 @@
         if(RM)return;
         st.iv=setInterval(function(){if(!st.hover&&!st.hold&&!el.contains(document.activeElement))st.show(st.i+1)},7000);
       }
+    },
+    steps:{
+      play:function(el,st){
+        var c=$$('.step',el);
+        function run(){
+          var t=0;
+          c.forEach(function(x,i){
+            later(st,function(){c.forEach(function(y){y.classList.remove('fx-hot')});x.classList.add('fx-hot')},t);
+            t+=i===c.length-1?1300:650;
+          });
+          later(st,function(){c.forEach(function(y){y.classList.remove('fx-hot')})},t);
+          later(st,run,t+3000);
+        }
+        later(st,run,900);
+      },
+      stop:function(el){$$('.step',el).forEach(function(y){y.classList.remove('fx-hot')})}
+    },
+    cheer:{
+      init:function(el){
+        var txt=el.textContent.trim(),i=0;
+        el.setAttribute('aria-label',txt);el.textContent='';
+        txt.split(' ').forEach(function(w,k){
+          if(k)el.appendChild(document.createTextNode(' '));
+          var ws=document.createElement('span');ws.className='fx-cw';ws.setAttribute('aria-hidden','true');
+          Array.prototype.forEach.call(w,function(ch){
+            var l=document.createElement('span');l.className='fx-cl'+(/[!¡]/.test(ch)?' fx-bang':'');l.textContent=ch;l.style.setProperty('--i',i++);ws.appendChild(l);
+          });
+          el.appendChild(ws);
+        });
+        el.style.setProperty('--n',i);
+      },
+      play:function(el,st){
+        function run(){el.classList.remove('fx-wave');void el.offsetWidth;el.classList.add('fx-wave');later(st,run,3600)}
+        later(st,run,500);
+      },
+      stop:function(el){el.classList.remove('fx-wave')}
     }
   };
 

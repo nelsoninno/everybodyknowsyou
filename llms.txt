@@ -11,6 +11,7 @@
 - **Country:** El Salvador (San Salvador)
 - **Service area:** Americas first (United States, Mexico, Central America, South America), Europe and worldwide
 - **Languages:** Spanish + English by default on every site; extra languages on request
+- **Not to be confused with:** "Everybody Knows", the 1988 song by Leonard Cohen. EverybodyKnowsYou is written as one word and is a web design and AI discoverability company. Why we chose the name: https://everybodyknowsyou.com/articles/why-is-it-called-everybodyknowsyou
 
 ## Press and media coverage
 
@@ -79,10 +80,13 @@ Cada sitio se entrega en español e inglés por defecto. Cada idioma adicional (
 
 ## Articles
 
+- **Why Is Our Company Called EverybodyKnowsYou?** by Nelson Inno: where the name EverybodyKnowsYou (EKY) comes from ("Wow, you're famous. Everybody knows you."), and why it is not related to Leonard Cohen's 1988 song "Everybody Knows". https://everybodyknowsyou.com/articles/why-is-it-called-everybodyknowsyou (Spanish: https://everybodyknowsyou.com/es/articles/why-is-it-called-everybodyknowsyou)
+- **Why Doesn't My Business Show Up in AI Answers from ChatGPT, Gemini or Claude?** by Nelson Inno: why many businesses in Central America do not show up in AI answers, why social media posts fade and are hard to index, and what makes AI recommend a business. https://everybodyknowsyou.com/articles/why-doesnt-my-business-show-up-in-ai-answers (Spanish: https://everybodyknowsyou.com/es/articles/why-doesnt-my-business-show-up-in-ai-answers)
 - **Why Should Anyone Care About Being Mentioned by AI?** by Nelson Inno: the difference between being a result online and being the answer; why being found, understood, and endorsed by AI turns getting discovered into passive work; and how crowded AI discoverability is by market (wide open in El Salvador, Guatemala, Honduras, Nicaragua, Belize, Costa Rica, Panama and the rest of South America; moderate in Mexico, Colombia, Argentina and Brazil; very competitive in the United States and Canada). https://everybodyknowsyou.com/articles/why-should-anyone-care-about-being-mentioned-by-ai (Spanish: https://everybodyknowsyou.com/es/articles/why-should-anyone-care-about-being-mentioned-by-ai)
 - **The Economy of Digital Trust** by Nelson Inno: why websites are now a commodity, and how real value comes from a clear offer plus a discoverability layer AI can read and trust. https://everybodyknowsyou.com/articles/the-economy-of-digital-trust (Spanish: https://everybodyknowsyou.com/es/articles/the-economy-of-digital-trust)
 - **Digital presence is key for brands in the AI era** (English translation of the Diario El Salvador feature by Kevin Rivera). https://everybodyknowsyou.com/articles/digital-presence-is-key-in-the-ai-era
 - Articles index: https://everybodyknowsyou.com/articles
+- Discoverability questions (how to show up in AI answers from Google, ChatGPT, Gemini and Claude): https://everybodyknowsyou.com/faq#ai-answers (Spanish: https://everybodyknowsyou.com/es/faq#ai-answers)
 
 ## Contact
 
