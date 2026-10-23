@@ -105,6 +105,69 @@ footer .flinks a{color:var(--lime)}
 .powered{margin-top:.5rem}
 .powered a{display:inline-flex;align-items:center;gap:.5rem;color:#fff;font-family:var(--display)}
 .powered img{height:46px}
+/* article visuals */
+.afx{margin:1.6rem 0 1.8rem;border:2px solid var(--ink);border-radius:20px;box-shadow:var(--hard-sm);background:#fff;padding:1.3rem 1.2rem;position:relative;overflow:hidden}
+.afx .sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+.afx-head{display:flex;align-items:baseline;justify-content:center;gap:.6rem;flex-wrap:wrap;text-align:center;margin-bottom:1rem}
+.afx-big{font-family:var(--display);font-weight:700;font-size:clamp(2.4rem,8vw,3.4rem);line-height:1;color:var(--purple)}
+.afx-lbl{font-weight:600;font-size:1rem;color:rgba(0,0,0,.75);max-width:24rem;line-height:1.35}
+.afx-dots{background:linear-gradient(135deg,#F7F2FF,#fff 55%,#F4FFD1)}
+.afx-grid{display:grid;grid-template-columns:repeat(20,1fr);gap:5px;max-width:520px;margin:0 auto}
+.afx-grid i{aspect-ratio:1;border-radius:50%;background:#E3DFEA;transition:background-color .25s,transform .25s}
+.afx-grid i.on{background:var(--purple);transform:scale(1.35);box-shadow:0 0 0 3px var(--lime)}
+.afx-swap{background:linear-gradient(135deg,#FFF0F6,#fff 55%,#F7F2FF)}
+.afx-row{display:flex;justify-content:center;gap:clamp(.4rem,2vw,1rem);padding-top:2.6rem}
+.afx-p{position:relative;display:flex;flex-direction:column;align-items:center;gap:.45rem;width:clamp(3.2rem,15%,5rem)}
+.afx-p .hd{width:1.6rem;height:1.6rem;border-radius:50%;border:2px solid var(--ink);background:#fff}
+.afx-p .bd{width:2.8rem;height:1.6rem;border:2px solid var(--ink);border-bottom:0;border-radius:1.4rem 1.4rem .3rem .3rem;background:#fff;margin-top:-.5rem}
+.afx-p .tg{position:relative;min-width:2.6rem;height:1.9rem;border:2px solid var(--ink);border-radius:999px;background:var(--lime);font-weight:700;font-size:.85rem;display:grid;place-items:center;overflow:hidden;transition:background-color .3s}
+.afx-p .tg span{transition:transform .35s,opacity .35s}
+.afx-p .tg span+span{position:absolute;transform:translateY(120%);opacity:0;color:#fff}
+.afx-p.flip .tg{background:var(--pink)}
+.afx-p.flip .tg span:first-child{transform:translateY(-120%);opacity:0}
+.afx-p.flip .tg span+span{transform:none;opacity:1}
+.afx-p.flip .hd,.afx-p.flip .bd{background:#FFD3E6}
+.afx-p .ai{position:absolute;top:-2.5rem;left:50%;transform:translate(-50%,.4rem) scale(.6);opacity:0;background:var(--purple);color:var(--lime);border:2px solid var(--ink);border-radius:12px;padding:.15rem .5rem;font-weight:700;font-size:.8rem;white-space:nowrap;transition:transform .3s,opacity .3s}
+.afx-p .ai:after{content:"";position:absolute;left:50%;bottom:-7px;width:10px;height:10px;background:var(--purple);border-right:2px solid var(--ink);border-bottom:2px solid var(--ink);transform:translateX(-50%) rotate(45deg)}
+.afx-p.ask .ai{opacity:1;transform:translate(-50%,0) scale(1)}
+.afx-zero{background:linear-gradient(135deg,#F4FFD1,#fff 55%,#F7F2FF)}
+.afx-rings{display:flex;justify-content:center;gap:clamp(1rem,6vw,3rem);flex-wrap:wrap}
+.afx-ring{--p:0;width:9.5rem;text-align:center}
+.afx-ring .dial{width:9.5rem;height:9.5rem;border-radius:50%;border:2px solid var(--ink);background:conic-gradient(var(--c,var(--purple)) calc(var(--p)*1%),#ECE8F1 0);display:grid;place-items:center;box-shadow:var(--hard-sm)}
+.afx-ring .dial div{width:6.6rem;height:6.6rem;border-radius:50%;background:#fff;border:2px solid var(--ink);display:grid;place-items:center;font-family:var(--display);font-weight:700;font-size:2rem}
+.afx-ring .dial div b:after{content:"%"}
+.afx-ring p{font-weight:700;margin-top:.8rem;font-size:.95rem}
+.afx-zero .afx-lbl{display:block;text-align:center;margin:1rem auto 0}
+.afx-ladder{background:linear-gradient(135deg,#F7F2FF,#fff 50%,#F4FFD1)}
+.afx-steps{display:grid;grid-template-columns:repeat(3,1fr);gap:.7rem}
+.afx-step{border:2px solid var(--ink);border-radius:14px;padding:.8rem .7rem;background:#fff;text-align:center;font-weight:700;transition:background-color .3s,transform .3s,box-shadow .3s;position:relative}
+.afx-step small{display:block;font-weight:500;font-size:.82rem;color:rgba(0,0,0,.65);margin-top:.25rem}
+.afx-step i{display:grid;place-items:center;width:1.8rem;height:1.8rem;margin:0 auto .4rem;border-radius:50%;border:2px solid var(--ink);background:#ECE8F1;font-style:normal;font-size:.9rem;transition:background-color .3s,color .3s}
+.afx-step.on{background:var(--lime);transform:translateY(-4px);box-shadow:0 4px 0 var(--ink)}
+.afx-step.on i{background:var(--purple);color:#fff}
+.afx-rec{margin:1.1rem auto 0;max-width:26rem;display:flex;gap:.6rem;align-items:center;border:2px solid var(--ink);border-radius:16px;padding:.7rem .9rem;background:#fff;opacity:.25;transform:scale(.96);transition:opacity .4s,transform .4s}
+.afx-rec.on{opacity:1;transform:none;box-shadow:var(--hard-sm)}
+.afx-rec .st{flex:none;width:2rem;height:2rem;border-radius:50%;background:var(--purple);color:var(--lime);display:grid;place-items:center;font-weight:700;border:2px solid var(--ink)}
+.afx-rec b{background:linear-gradient(transparent 55%,var(--lime) 55%)}
+.afx-answer{background:linear-gradient(135deg,#fff,#F7F2FF)}
+.afx-cols{display:grid;grid-template-columns:1fr 1.15fr;gap:1rem;align-items:start}
+.afx-col h4{font-family:var(--display);font-size:.8rem;letter-spacing:.08em;text-transform:uppercase;color:var(--purple);margin-bottom:.5rem}
+.afx-link{height:1.35rem;border-radius:8px;background:#ECE8F1;margin-bottom:.35rem;font-size:.75rem;font-weight:600;padding:0 .5rem;line-height:1.35rem;color:rgba(0,0,0,.45);transition:background-color .2s}
+.afx-link.hi{background:#D8D2E2}
+.afx-link.you{color:var(--ink)}
+.afx-bub{border:2px solid var(--ink);border-radius:16px;background:#fff;padding:.8rem .9rem;min-height:6.5rem;font-weight:600;line-height:1.45;box-shadow:var(--hard-sm)}
+.afx-bub .who{display:flex;gap:.4rem;align-items:center;font-size:.8rem;color:var(--purple);font-weight:700;margin-bottom:.35rem}
+.afx-bub .who:before{content:"";width:1.1rem;height:1.1rem;border-radius:50%;background:var(--lime);border:2px solid var(--ink)}
+.afx-answer.said .afx-say{background:linear-gradient(transparent 60%,var(--lime) 60%)}
+.market-table td[data-level]:after{content:"";display:block;height:.5rem;margin-top:.45rem;border:2px solid var(--ink);border-radius:999px;background:linear-gradient(90deg,var(--c) 0 var(--w),#fff 0);background-size:0 100%;background-repeat:no-repeat;transition:background-size 1s ease-out}
+.market-table td[data-level="1"]:after{--c:var(--lime);--w:100%}
+.market-table td[data-level="2"]:after{--c:var(--purple);--w:100%}
+.market-table td[data-level="3"]:after{--c:var(--pink);--w:100%}
+.market-table.in td[data-level="1"]:after{background-size:33% 100%}
+.market-table.in td[data-level="2"]:after{background-size:66% 100%;transition-delay:.25s}
+.market-table.in td[data-level="3"]:after{background-size:100% 100%;transition-delay:.5s}
+@media(max-width:560px){.afx-grid{grid-template-columns:repeat(10,1fr);max-width:260px}.afx-steps{grid-template-columns:1fr}.afx-cols{grid-template-columns:1fr}.afx-ring,.afx-ring .dial{width:8rem}.afx-ring .dial{height:8rem}.afx-ring .dial div{width:5.6rem;height:5.6rem;font-size:1.7rem}}
+@media(prefers-reduced-motion:reduce){.afx *,.afx *:after,.market-table td:after{transition:none!important}}
 </style>
 </head>
 <body class="es">
@@ -136,8 +199,17 @@ footer .flinks a{color:var(--lime)}
     <p>Pero ser encontrado y comprendido todavía no es suficiente. Los modelos de IA solamente te van a recomendar con confianza cuando la evidencia respalda. Aquí es donde la mayoría de nosotros tenemos una ventaja que no estamos usando. El trabajo ya es excelente. Los resultados ya son reales. Lo que falta es la prueba visible.</p>
     <p>Tu sitio web debe mostrar evidencia innegable de lo que realmente has hecho. Tus mejores proyectos presentados con claridad. Testimonios reales de clientes reales. Números que cualquiera pueda verificar. Menciones en medios, premios, casos de estudio. Cualquier cosa que le permita a una IA verificar que eres quien dices ser. Esto es lo que construye confianza en un mundo donde tu lector ya no es una persona navegando por tu página de inicio, sino un agente de IA que decide, en una fracción de segundo, si recomienda tu negocio a un desconocido. Esa es la economía de la confianza digital.</p>
     <p>Cada sitio web hoy necesita potenciar su descubribilidad, su comprensibilidad y su evidencia de calidad para que los modelos de IA como Claude, ChatGPT y Gemini puedan hablarles a los clientes potenciales sobre tu negocio con confianza. Un sitio web que no hace esto fue construido para el pasado. Un sitio web que lo hace bien fue construido para servir al presente y al futuro.</p>
+    <figure class="afx afx-ladder" data-afx="ladder">
+      <div class="afx-steps" aria-hidden="true"><div class="afx-step"><i>1</i>Descubrible<small>La IA llega a tu sitio</small></div><div class="afx-step"><i>2</i>Comprensible<small>La IA entiende qué haces</small></div><div class="afx-step"><i>3</i>Comprobable<small>La IA verifica tu evidencia</small></div></div>
+      <div class="afx-rec" aria-hidden="true"><span class="st">*</span><span>Recomendado con confianza: <b>tu negocio</b></span></div>
+      <span class="sr">Descubrible, Comprensible, Comprobable. Recomendado con confianza: tu negocio</span>
+    </figure>
     <p>En El Salvador existe una enorme brecha de visibilidad ante la IA que hay que cerrar. La mayor parte de nuestro país, la mayor parte de nuestras empresas y la mayor parte de la información digital relevante que se ha creado aquí está encerrada tras puertas privadas y servidores privados. Nunca llega a los agentes de IA que necesitan aprender sobre quiénes somos y qué hacemos. En palabras sencillas y honestas: El Salvador es apenas encontrable para la mayoría de los modelos de IA, y eso se traduce en una posición económica y estratégica muy por debajo de la que merecemos.</p>
     <p>Según un estudio de junio de 2026 de SparkToro, el 68% de las búsquedas en Google hoy terminan sin un solo clic en ningún sitio web. En dispositivos móviles, ese número sube al 77%. La mayoría de esos usuarios simplemente lee la respuesta generada por IA en la parte superior de la página. Por eso existen proyectos como <a href="/es/">EverybodyKnowsYou.com</a>: un servicio que te construye un sitio web pensado tanto en su estrategia de ventas como en su capacidad de ser descubierto por la IA. Un sitio web que se ve increíblemente bien, personalizado para tu marca, y al mismo tiempo verdaderamente descubrible, comprensible y recomendable por los agentes de IA.</p>
+    <figure class="afx afx-zero" data-afx="zero">
+      <div class="afx-rings" aria-hidden="true"><div class="afx-ring" data-v="68" style="--c:var(--purple)"><div class="dial"><div><b>68</b></div></div><p>Todas las búsquedas</p></div><div class="afx-ring" data-v="77" style="--c:var(--pink)"><div class="dial"><div><b>77</b></div></div><p>En el celular</p></div></div>
+      <figcaption class="afx-lbl">de las búsquedas en Google terminan sin un solo clic en ningún sitio web. Fuente: SparkToro, junio de 2026.</figcaption>
+    </figure>
     <p>Si eliges Wix, Squarespace o WordPress, vas a pasar muchas horas tratando de construir un sitio web que venda tu negocio, sin experiencia en diseño, sin experiencia en branding y sin saber cómo explicar el valor que ofreces. Y te van a cobrar, mes tras mes, por algo que en otros lugares ya se ha vuelto un producto común.</p>
     <p>La alternativa más popular en nuestro país es trabajar con artistas o diseñadores. Ellos harán que tu sitio se vea hermoso, pero rara vez usarán todo el potencial del sitio web para cumplir su función principal: traerte más clientes.</p>
     <p>Alternativas más nuevas, como EverybodyKnowsYou, integran a nuevos clientes en una sola conversación de una hora con alguien que entiende de negocios y sabe qué preguntas hacer. Tres días después, tu sitio web completo está listo, diseñado desde el inicio para ser descubierto por los agentes de IA, con la mínima molestia. Pero la parte más interesante ocurre en segundo plano. Cada uno de estos nuevos sitios web es incluido en directorios construidos específicamente para IA. En los próximos meses y años, la inteligencia artificial comenzará a formar una imagen más completa de lo que está pasando en El Salvador: quién está haciendo qué. A medida que esa imagen se aclara, a través de servicios como EverybodyKnowsYou.com, la IA comenzará a confiar en los datos que producimos aquí. Comenzará a recomendar nuestras marcas, nuestros negocios y nuestras invitaciones con más confianza a clientes de todo el mundo.</p>
@@ -161,5 +233,6 @@ footer .flinks a{color:var(--lime)}
     <p class="powered"><a href="https://wespark.io" target="_blank">Impulsado por <picture><source srcset="/WeSpark%20Logo%20Classic%20White%20Wide.webp" type="image/webp"><img src="/WeSpark%20Logo%20Classic%20White%20Wide.png" alt="WeSpark"></picture></a></p>
   </div>
 </footer>
+<script src="/js/afx.js" defer></script>
 </body>
 </html>
