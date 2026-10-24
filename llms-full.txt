@@ -150,7 +150,7 @@ Personal websites (book pages, biographies, hobby pages, NGO pages):
 - Parroquia San Juan de la Cruz: https://parroquiasjc.org (Carmelite parish in Nuevo Cuscatlán)
 - Somos Hermanos: https://somoshermanos.ong (food baskets for children in Sonsonate)
 - Parroquia Nuestra Señora de las Gracias, Onuva: https://parroquiaonuva.org (Marian parish in Santa Tecla)
-- Unless I See: https://seetheshroud.org (the Shroud of Turin, examined; personal project)
+- See The Shroud: https://seetheshroud.org (the Shroud of Turin, examined; personal project)
 
 ## Results (checked October 2026)
 
