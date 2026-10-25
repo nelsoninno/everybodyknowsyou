@@ -1,19 +1,6 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-<script>
-(function(){
-  try {
-    if (localStorage.getItem("eky_lang")) return;
-    var nav = (navigator.language || navigator.userLanguage || "").toLowerCase();
-    var browserPrefersEs = nav.indexOf("es") === 0;
-    if (browserPrefersEs && !true) {
-      localStorage.setItem("eky_lang", "es");
-      window.location.replace("/es/evidencia");
-    }
-  } catch (e) {}
-})();
-</script>
 
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">

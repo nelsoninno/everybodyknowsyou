@@ -1,26 +1,6 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-<script>
-(function(){
-  try {
-    if (localStorage.getItem("eky_lang")) return; // already chose; respect
-    var referrer = document.referrer || "";
-    var nav = (navigator.language || navigator.userLanguage || "").toLowerCase();
-    var browserPrefersEn = nav.indexOf("en") === 0;
-    var spanishTld = /\.(es|mx|ar|cl|co|pe|ec|gt|sv|hn|ni|cr|pa|do|ve|bo|py|uy|cu|pr)(\/|:|$)/i;
-    var referrerEs = referrer && spanishTld.test(referrer);
-    // On the Spanish page, only redirect to English if browser is English
-    // AND referrer is NOT from a Spanish-speaking country (don't fight a clear ES signal)
-    if (browserPrefersEn && !referrerEs) {
-      localStorage.setItem("eky_lang", "en");
-      var path = window.location.pathname.replace(/^\/es\//, "/");
-      var dest = path + (window.location.search || "") + (window.location.hash || "");
-      window.location.replace(dest);
-    }
-  } catch (e) {}
-})();
-</script>
 
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -300,8 +280,6 @@
     try {
       var p = new URLSearchParams(window.location.search).get('lang');
       if (p === 'en' || p === 'es') return p;
-      var n = (navigator.language || navigator.userLanguage || '').toLowerCase();
-      if (n.indexOf('en') === 0) return 'en';
     } catch(e) {}
     return 'es';
   })();
