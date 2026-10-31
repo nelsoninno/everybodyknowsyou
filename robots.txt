@@ -5,6 +5,7 @@ User-agent: *
 Allow: /
 Disallow: /api/
 Disallow: /showcase/
+Disallow: /images/scene/
 
 # AI assistants & LLM crawlers — explicit invitation
 User-agent: GPTBot
